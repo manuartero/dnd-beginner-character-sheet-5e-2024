@@ -28,6 +28,7 @@ const DEFAULT_CHARACTER: Character = {
 
 export function CharacterSheet() {
 	const [character, setCharacter] = useState<Character>(DEFAULT_CHARACTER);
+	const [saved, setSaved] = useState(false);
 
 	function updateCharacter(partial: Partial<Character>) {
 		setCharacter((prev) => ({ ...prev, ...partial }));
@@ -70,12 +71,24 @@ export function CharacterSheet() {
 
 			<AbilityScores
 				scores={character.abilityScores as AbilityScoresType}
+				editable={!saved}
 				onScoreChange={updateAbilityScore}
 			/>
+
+			{!saved && (
+				<button
+					type="button"
+					onClick={() => setSaved(true)}
+					style={saveButtonStyle}
+				>
+					Save Character
+				</button>
+			)}
 
 			<HpTracker
 				current={character.hp.current}
 				max={character.hp.max}
+				editable={!saved}
 				onCurrentChange={(v) => updateHp("current", v)}
 				onMaxChange={(v) => updateHp("max", v)}
 			/>
@@ -91,3 +104,14 @@ export function CharacterSheet() {
 		</>
 	);
 }
+
+const saveButtonStyle: React.CSSProperties = {
+	width: "100%",
+	padding: "var(--space-md)",
+	fontSize: "var(--font-size-md)",
+	fontWeight: 600,
+	color: "var(--color-bg)",
+	background: "var(--color-accent)",
+	border: "3px solid var(--color-border)",
+	boxShadow: "4px 4px 0 var(--color-border)",
+};
