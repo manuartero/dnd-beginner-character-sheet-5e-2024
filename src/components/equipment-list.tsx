@@ -121,7 +121,7 @@ const itemRowStyle: React.CSSProperties = {
 	gap: "var(--space-sm)",
 	padding: "var(--space-sm)",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px solid var(--color-border)",
 };
 
 const itemInfoStyle: React.CSSProperties = {
@@ -154,7 +154,6 @@ const removeButtonStyle: React.CSSProperties = {
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
-	borderRadius: "var(--radius-sm)",
 };
 
 const addButtonStyle: React.CSSProperties = {
@@ -163,7 +162,7 @@ const addButtonStyle: React.CSSProperties = {
 	fontSize: "var(--font-size-sm)",
 	color: "var(--color-text-muted)",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px dashed var(--color-border)",
 	textAlign: "center",
 };
 
@@ -177,8 +176,7 @@ const formInputStyle: React.CSSProperties = {
 	padding: "var(--space-sm)",
 	fontSize: "var(--font-size-sm)",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-sm)",
-	border: "1px solid var(--color-border)",
+	border: "2px solid var(--color-border)",
 };
 
 const formSubmitStyle: React.CSSProperties = {
@@ -187,7 +185,7 @@ const formSubmitStyle: React.CSSProperties = {
 	fontWeight: 600,
 	background: "var(--color-accent-dim)",
 	color: "var(--color-bg)",
-	borderRadius: "var(--radius-sm)",
+	border: "2px solid var(--color-border)",
 };
 
 const formCancelStyle: React.CSSProperties = {

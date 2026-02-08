@@ -104,8 +104,7 @@ const nameInputStyle: React.CSSProperties = {
 	fontWeight: 700,
 	background: "var(--color-bg-surface)",
 	padding: "var(--space-xs) var(--space-sm)",
-	borderRadius: "var(--radius-sm)",
-	border: "1px solid var(--color-border)",
+	border: "2px solid var(--color-border)",
 };
 
 const nameDisplayStyle: React.CSSProperties = {
@@ -121,7 +120,6 @@ const levelBadgeStyle: React.CSSProperties = {
 	color: "var(--color-accent)",
 	background: "var(--color-bg-elevated)",
 	padding: "var(--space-xs) var(--space-sm)",
-	borderRadius: "var(--radius-sm)",
 	fontWeight: 600,
 };
 
@@ -135,8 +133,7 @@ const selectStyle: React.CSSProperties = {
 	fontWeight: 600,
 	background: "var(--color-bg-surface)",
 	padding: "var(--space-xs) var(--space-sm)",
-	borderRadius: "var(--radius-sm)",
-	border: "1px solid var(--color-border)",
+	border: "2px solid var(--color-border)",
 };
 
 const raceInputStyle: React.CSSProperties = {
@@ -144,6 +141,5 @@ const raceInputStyle: React.CSSProperties = {
 	fontSize: "var(--font-size-md)",
 	background: "var(--color-bg-surface)",
 	padding: "var(--space-xs) var(--space-sm)",
-	borderRadius: "var(--radius-sm)",
-	border: "1px solid var(--color-border)",
+	border: "2px solid var(--color-border)",
 };
