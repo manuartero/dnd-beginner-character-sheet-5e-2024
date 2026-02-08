@@ -1,6 +1,7 @@
 interface HpTrackerProps {
 	current: number;
 	max: number;
+	editable: boolean;
 	onCurrentChange: (value: number) => void;
 	onMaxChange: (value: number) => void;
 }
@@ -8,6 +9,7 @@ interface HpTrackerProps {
 export function HpTracker({
 	current,
 	max,
+	editable,
 	onCurrentChange,
 	onMaxChange,
 }: HpTrackerProps) {
@@ -23,15 +25,17 @@ export function HpTracker({
 		<div className="section">
 			<h2 className="section-title">Hit Points</h2>
 
-			<div style={barContainerStyle}>
-				<div
-					style={{
-						...barFillStyle,
-						width: `${Math.max(0, Math.min(100, ratio * 100))}%`,
-						backgroundColor: barColor,
-					}}
-				/>
-			</div>
+			{!editable && (
+				<div style={barContainerStyle}>
+					<div
+						style={{
+							...barFillStyle,
+							width: `${Math.max(0, Math.min(100, ratio * 100))}%`,
+							backgroundColor: barColor,
+						}}
+					/>
+				</div>
+			)}
 
 			<div style={controlsStyle}>
 				<button
@@ -43,27 +47,35 @@ export function HpTracker({
 				</button>
 
 				<div style={hpDisplayStyle}>
-					<input
-						type="number"
-						min={0}
-						value={current}
-						onChange={(e) => {
-							const parsed = Number.parseInt(e.target.value, 10);
-							if (!Number.isNaN(parsed)) onCurrentChange(parsed);
-						}}
-						style={hpInputStyle}
-					/>
+					{editable ? (
+						<input
+							type="number"
+							min={0}
+							value={current}
+							onChange={(e) => {
+								const parsed = Number.parseInt(e.target.value, 10);
+								if (!Number.isNaN(parsed)) onCurrentChange(parsed);
+							}}
+							style={hpInputStyle}
+						/>
+					) : (
+						<span style={hpStaticStyle}>{current}</span>
+					)}
 					<span style={separatorStyle}>/</span>
-					<input
-						type="number"
-						min={1}
-						value={max}
-						onChange={(e) => {
-							const parsed = Number.parseInt(e.target.value, 10);
-							if (!Number.isNaN(parsed)) onMaxChange(parsed);
-						}}
-						style={hpInputStyle}
-					/>
+					{editable ? (
+						<input
+							type="number"
+							min={1}
+							value={max}
+							onChange={(e) => {
+								const parsed = Number.parseInt(e.target.value, 10);
+								if (!Number.isNaN(parsed)) onMaxChange(parsed);
+							}}
+							style={hpInputStyle}
+						/>
+					) : (
+						<span style={hpStaticStyle}>{max}</span>
+					)}
 				</div>
 
 				<button
@@ -121,6 +133,12 @@ const hpInputStyle: React.CSSProperties = {
 	fontSize: "var(--font-size-xl)",
 	fontWeight: 700,
 	background: "transparent",
+};
+
+const hpStaticStyle: React.CSSProperties = {
+	fontSize: "var(--font-size-xl)",
+	fontWeight: 700,
+	textAlign: "center",
 };
 
 const separatorStyle: React.CSSProperties = {

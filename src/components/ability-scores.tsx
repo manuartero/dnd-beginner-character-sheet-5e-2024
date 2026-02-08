@@ -10,10 +10,15 @@ import type {
 
 interface AbilityScoresProps {
 	scores: AbilityScoresType;
+	editable: boolean;
 	onScoreChange: (ability: AbilityName, value: number) => void;
 }
 
-export function AbilityScores({ scores, onScoreChange }: AbilityScoresProps) {
+export function AbilityScores({
+	scores,
+	editable,
+	onScoreChange,
+}: AbilityScoresProps) {
 	return (
 		<div className="section">
 			<h2 className="section-title">Abilities</h2>
@@ -25,19 +30,23 @@ export function AbilityScores({ scores, onScoreChange }: AbilityScoresProps) {
 						<div key={key} style={abilityCardStyle}>
 							<span style={labelStyle}>{short}</span>
 							<span style={modifierStyle}>{formatModifier(mod)}</span>
-							<input
-								type="number"
-								min={1}
-								max={30}
-								value={score}
-								onChange={(e) => {
-									const parsed = Number.parseInt(e.target.value, 10);
-									if (!Number.isNaN(parsed)) {
-										onScoreChange(key, parsed);
-									}
-								}}
-								style={scoreInputStyle}
-							/>
+							{editable ? (
+								<input
+									type="number"
+									min={1}
+									max={30}
+									value={score}
+									onChange={(e) => {
+										const parsed = Number.parseInt(e.target.value, 10);
+										if (!Number.isNaN(parsed)) {
+											onScoreChange(key, parsed);
+										}
+									}}
+									style={scoreInputStyle}
+								/>
+							) : (
+								<span style={scoreStaticStyle}>{score}</span>
+							)}
 						</div>
 					);
 				})}
@@ -82,4 +91,9 @@ const scoreInputStyle: React.CSSProperties = {
 	color: "var(--color-text-muted)",
 	background: "transparent",
 	borderBottom: "1px solid var(--color-border)",
+};
+
+const scoreStaticStyle: React.CSSProperties = {
+	fontSize: "var(--font-size-sm)",
+	color: "var(--color-text-muted)",
 };
