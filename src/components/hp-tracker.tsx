@@ -79,17 +79,15 @@ export function HpTracker({
 }
 
 const barContainerStyle: React.CSSProperties = {
-	height: "8px",
+	height: "12px",
 	background: "var(--color-hp-missing)",
-	borderRadius: "4px",
+	border: "2px solid var(--color-border)",
 	overflow: "hidden",
 	marginBottom: "var(--space-sm)",
 };
 
 const barFillStyle: React.CSSProperties = {
 	height: "100%",
-	borderRadius: "4px",
-	transition: "width 0.2s ease, background-color 0.2s ease",
 };
 
 const controlsStyle: React.CSSProperties = {
@@ -105,7 +103,7 @@ const buttonStyle: React.CSSProperties = {
 	fontSize: "var(--font-size-lg)",
 	fontWeight: 700,
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px solid var(--color-border)",
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",

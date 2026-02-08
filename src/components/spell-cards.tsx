@@ -144,7 +144,7 @@ const cardStyle: React.CSSProperties = {
 	gap: "var(--space-xs)",
 	padding: "var(--space-sm) var(--space-md)",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px solid var(--color-border)",
 	textAlign: "left",
 	width: "100%",
 };

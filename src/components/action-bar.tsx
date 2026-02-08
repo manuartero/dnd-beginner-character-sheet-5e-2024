@@ -109,7 +109,7 @@ const actionButtonStyle: React.CSSProperties = {
 	gap: "var(--space-xs)",
 	padding: "var(--space-sm)",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px solid var(--color-border)",
 	minHeight: "72px",
 	justifyContent: "center",
 };
@@ -125,6 +125,7 @@ const descriptionStyle: React.CSSProperties = {
 	color: "var(--color-text-muted)",
 	padding: "var(--space-sm)",
 	background: "var(--color-bg)",
-	borderRadius: "0 0 var(--radius-md) var(--radius-md)",
+	border: "2px solid var(--color-border)",
+	borderTop: "none",
 	lineHeight: 1.4,
 };

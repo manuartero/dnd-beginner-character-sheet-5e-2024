@@ -58,7 +58,7 @@ const abilityCardStyle: React.CSSProperties = {
 	alignItems: "center",
 	gap: "2px",
 	background: "var(--color-bg-elevated)",
-	borderRadius: "var(--radius-md)",
+	border: "2px solid var(--color-border)",
 	padding: "var(--space-sm)",
 };
 
