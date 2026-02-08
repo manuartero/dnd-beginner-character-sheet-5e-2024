@@ -6,9 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 D&D 5th Edition beginner-friendly character sheet application.
 
-## Status
+## Tech Stack
 
-This is a new repository with no source code yet. Update this file as the project takes shape.
+- **Astro** — static site framework
+- **React 19** — interactive components (via `@astrojs/react`)
+- **Raw CSS** — no preprocessors or CSS frameworks; use modern CSS features
+- **pnpm** — package manager
+- **Biome** — linter and formatter
+- **Vitest** — test runner
+
+## Build Commands
+
+```bash
+pnpm dev          # start dev server
+pnpm build        # production build
+pnpm preview      # preview production build
+pnpm check        # run Biome linter/formatter check
+pnpm format       # auto-format with Biome
+pnpm test         # run tests once
+pnpm test:watch   # run tests in watch mode
+```
 
 ## Code Standards
 
