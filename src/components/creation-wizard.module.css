@@ -1,0 +1,54 @@
+.stepIndicator {
+	display: flex;
+	justify-content: center;
+	gap: var(--space-sm);
+	margin-bottom: var(--space-md);
+}
+
+.dot {
+	width: 12px;
+	height: 12px;
+	background: var(--color-border);
+	border: 2px solid var(--color-border);
+}
+
+.dotActive {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+}
+
+.actions {
+	display: flex;
+	gap: var(--space-sm);
+	margin-top: var(--space-md);
+}
+
+.backButton {
+	flex: 1;
+	padding: var(--space-md);
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	background: var(--color-bg-elevated);
+	border: 3px solid var(--color-border);
+	box-shadow: 4px 4px 0 var(--color-border);
+}
+
+.primaryButton {
+	flex: 2;
+	padding: var(--space-md);
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	color: var(--color-bg);
+	background: var(--color-accent);
+	border: 3px solid var(--color-border);
+	box-shadow: 4px 4px 0 var(--color-border);
+}
+
+.primaryButton:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.primaryButton:disabled:active {
+	transform: none;
+}

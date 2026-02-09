@@ -1,4 +1,28 @@
-export type CharacterClass = "fighter" | "rogue" | "wizard";
+export type CharacterClass =
+	| "barbarian"
+	| "bard"
+	| "cleric"
+	| "druid"
+	| "fighter"
+	| "monk"
+	| "paladin"
+	| "ranger"
+	| "rogue"
+	| "sorcerer"
+	| "warlock"
+	| "wizard";
+
+export type CharacterRace =
+	| "aasimar"
+	| "dragonborn"
+	| "dwarf"
+	| "elf"
+	| "gnome"
+	| "goliath"
+	| "halfling"
+	| "human"
+	| "orc"
+	| "tiefling";
 
 export type AbilityName = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -61,7 +85,7 @@ export interface Equipment {
 export interface Character {
 	id: string;
 	name: string;
-	race: string;
+	race: CharacterRace;
 	characterClass: CharacterClass;
 	level: number;
 	abilityScores: AbilityScores;

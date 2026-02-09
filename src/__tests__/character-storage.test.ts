@@ -10,7 +10,7 @@ function makeCharacter(overrides: Partial<Character> = {}): Character {
 	return {
 		id: "test-id-1",
 		name: "Thorn",
-		race: "Human",
+		race: "human",
 		characterClass: "fighter",
 		level: 1,
 		abilityScores: { str: 16, dex: 12, con: 14, int: 8, wis: 10, cha: 10 },
@@ -67,6 +67,20 @@ describe("character-storage", () => {
 		it("returns empty array on corrupted data", () => {
 			store["dnd-characters"] = "not-json{{{";
 			expect(loadCharacters()).toEqual([]);
+		});
+
+		it("migrates old string race to lowercase", () => {
+			const oldChar = { ...makeCharacter(), race: "Human" };
+			store["dnd-characters"] = JSON.stringify([oldChar]);
+			const loaded = loadCharacters();
+			expect(loaded[0].race).toBe("human");
+		});
+
+		it("migrates unknown race to human", () => {
+			const oldChar = { ...makeCharacter(), race: "Half-Dragon" };
+			store["dnd-characters"] = JSON.stringify([oldChar]);
+			const loaded = loadCharacters();
+			expect(loaded[0].race).toBe("human");
 		});
 	});
 

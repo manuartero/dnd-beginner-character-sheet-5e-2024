@@ -1,35 +1,18 @@
-import { useState } from "react";
 import { getClassIcon } from "../data/class-icons";
-import type { CharacterClass } from "../data/types";
+import { CLASS_COLORS } from "../data/classes";
+import { RACE_LIST } from "../data/races";
+import type { CharacterClass, CharacterRace } from "../data/types";
 import styles from "./character-header.module.css";
-
-const CLASS_OPTIONS: { value: CharacterClass; label: string }[] = [
-	{ value: "fighter", label: "Fighter" },
-	{ value: "rogue", label: "Rogue" },
-	{ value: "wizard", label: "Wizard" },
-];
-
-const CLASS_COLORS: Record<CharacterClass, string> = {
-	fighter: "var(--color-fighter)",
-	rogue: "var(--color-rogue)",
-	wizard: "var(--color-wizard)",
-};
-
-const CLASS_LABELS: Record<CharacterClass, string> = {
-	fighter: "Fighter",
-	rogue: "Rogue",
-	wizard: "Wizard",
-};
 
 interface CharacterHeaderProps {
 	name: string;
-	race: string;
+	race: CharacterRace;
 	characterClass: CharacterClass;
 	level: number;
-	editable: boolean;
-	onNameChange: (name: string) => void;
-	onRaceChange: (race: string) => void;
-	onClassChange: (characterClass: CharacterClass) => void;
+}
+
+function getRaceLabel(race: CharacterRace): string {
+	return RACE_LIST.find((r) => r.key === race)?.label ?? race;
 }
 
 export function CharacterHeader({
@@ -37,13 +20,7 @@ export function CharacterHeader({
 	race,
 	characterClass,
 	level,
-	editable,
-	onNameChange,
-	onRaceChange,
-	onClassChange,
 }: CharacterHeaderProps) {
-	const [isEditingName, setIsEditingName] = useState(!name);
-
 	return (
 		<header className={`character-header ${styles.header}`}>
 			<img
@@ -53,65 +30,18 @@ export function CharacterHeader({
 			/>
 			<div className={styles.details}>
 				<div className={styles.topRow}>
-					{editable ? (
-						isEditingName ? (
-							<input
-								type="text"
-								value={name}
-								onChange={(e) => onNameChange(e.target.value)}
-								onBlur={() => name && setIsEditingName(false)}
-								placeholder="Character name"
-								className={styles.nameInput}
-							/>
-						) : (
-							<button
-								type="button"
-								onClick={() => setIsEditingName(true)}
-								className={styles.nameDisplay}
-							>
-								{name || "Unnamed"}
-							</button>
-						)
-					) : (
-						<span className={styles.nameStatic}>{name || "Unnamed"}</span>
-					)}
+					<span className={styles.nameStatic}>{name || "Unnamed"}</span>
 					<span className={styles.levelBadge}>Lvl {level}</span>
 				</div>
 
 				<div className={styles.bottomRow}>
-					{editable ? (
-						<select
-							value={characterClass}
-							onChange={(e) => onClassChange(e.target.value as CharacterClass)}
-							className={styles.select}
-							style={{ color: CLASS_COLORS[characterClass] }}
-						>
-							{CLASS_OPTIONS.map((opt) => (
-								<option key={opt.value} value={opt.value}>
-									{opt.label}
-								</option>
-							))}
-						</select>
-					) : (
-						<span
-							className={styles.classStatic}
-							style={{ color: CLASS_COLORS[characterClass] }}
-						>
-							{CLASS_LABELS[characterClass]}
-						</span>
-					)}
-
-					{editable ? (
-						<input
-							type="text"
-							value={race}
-							onChange={(e) => onRaceChange(e.target.value)}
-							placeholder="Race"
-							className={styles.raceInput}
-						/>
-					) : (
-						<span className={styles.raceStatic}>{race || "Unknown"}</span>
-					)}
+					<span
+						className={styles.classStatic}
+						style={{ color: CLASS_COLORS[characterClass] }}
+					>
+						{characterClass.charAt(0).toUpperCase() + characterClass.slice(1)}
+					</span>
+					<span className={styles.raceStatic}>{getRaceLabel(race)}</span>
 				</div>
 			</div>
 		</header>
