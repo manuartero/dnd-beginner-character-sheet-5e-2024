@@ -1,0 +1,41 @@
+.menu {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	max-width: 480px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 var(--space-md);
+	background: var(--color-bg-surface);
+	border-bottom: 3px solid var(--color-border);
+	box-shadow: 0 4px 0 var(--color-border);
+	z-index: 100;
+}
+
+.backButton {
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	color: var(--color-accent);
+	white-space: nowrap;
+}
+
+.title {
+	font-size: var(--font-size-sm);
+	font-weight: 700;
+	color: var(--color-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+	flex: 1;
+	min-width: 0;
+}
+
+.spacer {
+	width: 60px;
+	flex-shrink: 0;
+}
