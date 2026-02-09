@@ -10,7 +10,7 @@ D&D 5th Edition beginner-friendly character sheet application.
 
 - **Astro** — static site framework
 - **React 19** — interactive components (via `@astrojs/react`)
-- **Raw CSS** — no preprocessors or CSS frameworks; use modern CSS features
+- **CSS Modules** — component styles in `*.module.css` files; global resets and utilities stay in `global.css`
 - **pnpm** — package manager
 - **Biome** — linter and formatter
 - **Vitest** — test runner

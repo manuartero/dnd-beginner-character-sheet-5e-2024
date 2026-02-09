@@ -1,0 +1,53 @@
+.groupsContainer {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+}
+
+.groupLabel {
+	font-size: var(--font-size-xs);
+	color: var(--color-accent);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin-bottom: var(--space-xs);
+}
+
+.actionsGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	gap: var(--space-sm);
+}
+
+.actionWrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.actionButton {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-xs);
+	padding: var(--space-sm);
+	background: var(--color-bg-elevated);
+	border: 2px solid var(--color-border);
+	min-height: 72px;
+	justify-content: center;
+}
+
+.actionLabel {
+	font-size: var(--font-size-xs);
+	text-align: center;
+	line-height: 1.2;
+}
+
+.description {
+	font-size: var(--font-size-sm);
+	color: var(--color-text-muted);
+	padding: var(--space-sm);
+	background: var(--color-bg);
+	border: 2px solid var(--color-border);
+	border-top: none;
+	line-height: 1.4;
+}

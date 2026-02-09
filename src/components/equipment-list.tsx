@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Equipment } from "../data/types";
+import styles from "./equipment-list.module.css";
 
 interface EquipmentListProps {
 	equipment: Equipment[];
@@ -25,13 +26,13 @@ export function EquipmentList({
 		<div className="section">
 			<h2 className="section-title">Equipment</h2>
 
-			<div style={listStyle}>
+			<div className={styles.list}>
 				{equipment.map((item, index) => (
-					<div key={`${item.name}-${index}`} style={itemRowStyle}>
+					<div key={`${item.name}-${index}`} className={styles.itemRow}>
 						<img src={item.icon} alt={item.name} className="icon icon--sm" />
-						<div style={itemInfoStyle}>
-							<span style={itemNameStyle}>{item.name}</span>
-							<span style={itemMetaStyle}>
+						<div className={styles.itemInfo}>
+							<span className={styles.itemName}>{item.name}</span>
+							<span className={styles.itemMeta}>
 								{item.damage && `${item.damage.dice} ${item.damage.type}`}
 								{item.ac && `AC ${item.ac}`}
 								{item.properties && item.properties.length > 0 && (
@@ -40,12 +41,12 @@ export function EquipmentList({
 							</span>
 						</div>
 						{item.attackBonus !== undefined && (
-							<span style={attackBonusStyle}>+{item.attackBonus}</span>
+							<span className={styles.attackBonus}>+{item.attackBonus}</span>
 						)}
 						<button
 							type="button"
 							onClick={() => handleRemove(index)}
-							style={removeButtonStyle}
+							className={styles.removeButton}
 						>
 							x
 						</button>
@@ -62,7 +63,7 @@ export function EquipmentList({
 				<button
 					type="button"
 					onClick={() => setIsAdding(true)}
-					style={addButtonStyle}
+					className={styles.addButton}
 				>
 					+ Add item
 				</button>
@@ -90,106 +91,20 @@ function AddEquipmentForm({ onAdd, onCancel }: AddEquipmentFormProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} style={formStyle}>
+		<form onSubmit={handleSubmit} className={styles.form}>
 			<input
 				type="text"
 				value={name}
 				onChange={(e) => setName(e.target.value)}
 				placeholder="Item name"
-				style={formInputStyle}
+				className={styles.formInput}
 			/>
-			<button type="submit" style={formSubmitStyle}>
+			<button type="submit" className={styles.formSubmit}>
 				Add
 			</button>
-			<button type="button" onClick={onCancel} style={formCancelStyle}>
+			<button type="button" onClick={onCancel} className={styles.formCancel}>
 				Cancel
 			</button>
 		</form>
 	);
 }
-
-const listStyle: React.CSSProperties = {
-	display: "flex",
-	flexDirection: "column",
-	gap: "var(--space-xs)",
-	marginBottom: "var(--space-sm)",
-};
-
-const itemRowStyle: React.CSSProperties = {
-	display: "flex",
-	alignItems: "center",
-	gap: "var(--space-sm)",
-	padding: "var(--space-sm)",
-	background: "var(--color-bg-elevated)",
-	border: "2px solid var(--color-border)",
-};
-
-const itemInfoStyle: React.CSSProperties = {
-	flex: 1,
-	display: "flex",
-	flexDirection: "column",
-};
-
-const itemNameStyle: React.CSSProperties = {
-	fontWeight: 600,
-	fontSize: "var(--font-size-sm)",
-};
-
-const itemMetaStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-xs)",
-	color: "var(--color-text-muted)",
-};
-
-const attackBonusStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-sm)",
-	fontWeight: 700,
-	color: "var(--color-accent)",
-};
-
-const removeButtonStyle: React.CSSProperties = {
-	width: "24px",
-	height: "24px",
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-text-muted)",
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-};
-
-const addButtonStyle: React.CSSProperties = {
-	width: "100%",
-	padding: "var(--space-sm)",
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-text-muted)",
-	background: "var(--color-bg-elevated)",
-	border: "2px dashed var(--color-border)",
-	textAlign: "center",
-};
-
-const formStyle: React.CSSProperties = {
-	display: "flex",
-	gap: "var(--space-xs)",
-};
-
-const formInputStyle: React.CSSProperties = {
-	flex: 1,
-	padding: "var(--space-sm)",
-	fontSize: "var(--font-size-sm)",
-	background: "var(--color-bg-elevated)",
-	border: "2px solid var(--color-border)",
-};
-
-const formSubmitStyle: React.CSSProperties = {
-	padding: "var(--space-sm) var(--space-md)",
-	fontSize: "var(--font-size-sm)",
-	fontWeight: 600,
-	background: "var(--color-accent-dim)",
-	color: "var(--color-bg)",
-	border: "2px solid var(--color-border)",
-};
-
-const formCancelStyle: React.CSSProperties = {
-	padding: "var(--space-sm) var(--space-md)",
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-text-muted)",
-};

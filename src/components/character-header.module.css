@@ -1,0 +1,76 @@
+.header {
+	display: flex;
+	align-items: center;
+	gap: var(--space-md);
+}
+
+.classIcon {
+	width: 72px;
+	height: 72px;
+	flex-shrink: 0;
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+	flex: 1;
+	min-width: 0;
+}
+
+.topRow {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+}
+
+.nameInput {
+	flex: 1;
+	min-width: 0;
+	font-size: var(--font-size-xl);
+	font-weight: 700;
+	background: var(--color-bg-surface);
+	padding: var(--space-xs) var(--space-sm);
+	border: 2px solid var(--color-border);
+}
+
+.nameDisplay {
+	flex: 1;
+	min-width: 0;
+	font-size: var(--font-size-xl);
+	font-weight: 700;
+	text-align: left;
+	padding: var(--space-xs) 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.levelBadge {
+	font-size: var(--font-size-sm);
+	color: var(--color-accent);
+	background: var(--color-bg-elevated);
+	padding: var(--space-xs) var(--space-sm);
+	font-weight: 600;
+}
+
+.bottomRow {
+	display: flex;
+	gap: var(--space-sm);
+}
+
+.select {
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	background: var(--color-bg-surface);
+	padding: var(--space-xs) var(--space-sm);
+	border: 2px solid var(--color-border);
+}
+
+.raceInput {
+	flex: 1;
+	font-size: var(--font-size-md);
+	background: var(--color-bg-surface);
+	padding: var(--space-xs) var(--space-sm);
+	border: 2px solid var(--color-border);
+}
