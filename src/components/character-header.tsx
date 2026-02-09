@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getClassIcon } from "../data/class-icons";
 import type { CharacterClass } from "../data/types";
 
 const CLASS_OPTIONS: { value: CharacterClass; label: string }[] = [
@@ -36,51 +37,59 @@ export function CharacterHeader({
 
 	return (
 		<header className="character-header" style={headerStyle}>
-			<div style={topRowStyle}>
-				{isEditingName ? (
+			<img
+				src={getClassIcon(characterClass)}
+				alt={characterClass}
+				className="class-icon"
+				style={classIconStyle}
+			/>
+			<div style={detailsStyle}>
+				<div style={topRowStyle}>
+					{isEditingName ? (
+						<input
+							type="text"
+							value={name}
+							onChange={(e) => onNameChange(e.target.value)}
+							onBlur={() => name && setIsEditingName(false)}
+							placeholder="Character name"
+							style={nameInputStyle}
+						/>
+					) : (
+						<button
+							type="button"
+							onClick={() => setIsEditingName(true)}
+							style={nameDisplayStyle}
+						>
+							{name || "Unnamed"}
+						</button>
+					)}
+					<span style={levelBadgeStyle}>Lvl {level}</span>
+				</div>
+
+				<div style={bottomRowStyle}>
+					<select
+						value={characterClass}
+						onChange={(e) => onClassChange(e.target.value as CharacterClass)}
+						style={{
+							...selectStyle,
+							color: CLASS_COLORS[characterClass],
+						}}
+					>
+						{CLASS_OPTIONS.map((opt) => (
+							<option key={opt.value} value={opt.value}>
+								{opt.label}
+							</option>
+						))}
+					</select>
+
 					<input
 						type="text"
-						value={name}
-						onChange={(e) => onNameChange(e.target.value)}
-						onBlur={() => name && setIsEditingName(false)}
-						placeholder="Character name"
-						style={nameInputStyle}
+						value={race}
+						onChange={(e) => onRaceChange(e.target.value)}
+						placeholder="Race"
+						style={raceInputStyle}
 					/>
-				) : (
-					<button
-						type="button"
-						onClick={() => setIsEditingName(true)}
-						style={nameDisplayStyle}
-					>
-						{name || "Unnamed"}
-					</button>
-				)}
-				<span style={levelBadgeStyle}>Lvl {level}</span>
-			</div>
-
-			<div style={bottomRowStyle}>
-				<select
-					value={characterClass}
-					onChange={(e) => onClassChange(e.target.value as CharacterClass)}
-					style={{
-						...selectStyle,
-						color: CLASS_COLORS[characterClass],
-					}}
-				>
-					{CLASS_OPTIONS.map((opt) => (
-						<option key={opt.value} value={opt.value}>
-							{opt.label}
-						</option>
-					))}
-				</select>
-
-				<input
-					type="text"
-					value={race}
-					onChange={(e) => onRaceChange(e.target.value)}
-					placeholder="Race"
-					style={raceInputStyle}
-				/>
+				</div>
 			</div>
 		</header>
 	);
@@ -88,8 +97,22 @@ export function CharacterHeader({
 
 const headerStyle: React.CSSProperties = {
 	display: "flex",
+	alignItems: "center",
+	gap: "var(--space-md)",
+};
+
+const classIconStyle: React.CSSProperties = {
+	width: 72,
+	height: 72,
+	flexShrink: 0,
+};
+
+const detailsStyle: React.CSSProperties = {
+	display: "flex",
 	flexDirection: "column",
 	gap: "var(--space-sm)",
+	flex: 1,
+	minWidth: 0,
 };
 
 const topRowStyle: React.CSSProperties = {
@@ -100,6 +123,7 @@ const topRowStyle: React.CSSProperties = {
 
 const nameInputStyle: React.CSSProperties = {
 	flex: 1,
+	minWidth: 0,
 	fontSize: "var(--font-size-xl)",
 	fontWeight: 700,
 	background: "var(--color-bg-surface)",
@@ -109,10 +133,14 @@ const nameInputStyle: React.CSSProperties = {
 
 const nameDisplayStyle: React.CSSProperties = {
 	flex: 1,
+	minWidth: 0,
 	fontSize: "var(--font-size-xl)",
 	fontWeight: 700,
 	textAlign: "left",
 	padding: "var(--space-xs) 0",
+	overflow: "hidden",
+	textOverflow: "ellipsis",
+	whiteSpace: "nowrap",
 };
 
 const levelBadgeStyle: React.CSSProperties = {
