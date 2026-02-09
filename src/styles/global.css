@@ -129,6 +129,20 @@ img {
 	height: 48px;
 }
 
+/* Class icon — pixelated retro look */
+.class-icon {
+	width: 32px;
+	height: 32px;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+	filter: contrast(1.4) saturate(0.6);
+}
+
+.class-icon--lg {
+	width: 48px;
+	height: 48px;
+}
+
 /* Section card — retro pixel border */
 .section {
 	background: var(--color-bg-surface);
