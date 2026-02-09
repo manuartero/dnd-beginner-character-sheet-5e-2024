@@ -1,12 +1,41 @@
-import type { Character } from "./types";
+import type { Character, CharacterRace } from "./types";
 
 const STORAGE_KEY = "dnd-characters";
+
+const VALID_RACES: CharacterRace[] = [
+	"aasimar",
+	"dragonborn",
+	"dwarf",
+	"elf",
+	"gnome",
+	"goliath",
+	"halfling",
+	"human",
+	"orc",
+	"tiefling",
+];
+
+function migrateRace(raw: string): CharacterRace {
+	const lower = raw.toLowerCase().trim();
+	if (VALID_RACES.includes(lower as CharacterRace)) {
+		return lower as CharacterRace;
+	}
+	return "human";
+}
+
+function migrateCharacter(raw: Record<string, unknown>): Character {
+	return {
+		...(raw as unknown as Character),
+		race: migrateRace(String(raw.race ?? "human")),
+	};
+}
 
 export function loadCharacters(): Character[] {
 	try {
 		const raw = localStorage.getItem(STORAGE_KEY);
 		if (!raw) return [];
-		return JSON.parse(raw) as Character[];
+		const parsed = JSON.parse(raw) as Record<string, unknown>[];
+		return parsed.map(migrateCharacter);
 	} catch {
 		return [];
 	}

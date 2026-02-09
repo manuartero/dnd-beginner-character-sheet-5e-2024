@@ -1,0 +1,68 @@
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-sm);
+}
+
+.abilityCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	background: var(--color-bg-elevated);
+	border: 2px solid var(--color-border);
+	padding: var(--space-sm);
+}
+
+.label {
+	font-size: var(--font-size-xs);
+	color: var(--color-text-muted);
+	font-weight: 600;
+	letter-spacing: 0.05em;
+}
+
+.modifier {
+	font-size: var(--font-size-lg);
+	font-weight: 700;
+	color: var(--color-accent);
+}
+
+.scoreInput {
+	width: 40px;
+	text-align: center;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-muted);
+	background: transparent;
+	border-bottom: 1px solid var(--color-border);
+}
+
+.scoreInputError {
+	border-bottom-color: var(--color-fighter);
+	color: var(--color-fighter);
+}
+
+.hpRow {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	margin-top: var(--space-sm);
+}
+
+.hpLabel {
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+}
+
+.hpInput {
+	width: 50px;
+	text-align: center;
+	font-size: var(--font-size-md);
+	background: var(--color-bg-surface);
+	padding: var(--space-xs) var(--space-sm);
+	border: 2px solid var(--color-border);
+}
+
+.hpInputError {
+	border-color: var(--color-fighter);
+	color: var(--color-fighter);
+}
