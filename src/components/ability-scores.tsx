@@ -7,6 +7,7 @@ import type {
 	AbilityName,
 	AbilityScores as AbilityScoresType,
 } from "../data/types";
+import styles from "./ability-scores.module.css";
 
 interface AbilityScoresProps {
 	scores: AbilityScoresType;
@@ -22,14 +23,14 @@ export function AbilityScores({
 	return (
 		<div className="section">
 			<h2 className="section-title">Abilities</h2>
-			<div style={gridStyle}>
+			<div className={styles.grid}>
 				{ABILITY_LIST.map(({ key, short }) => {
 					const score = scores[key];
 					const mod = computeModifier(score);
 					return (
-						<div key={key} style={abilityCardStyle}>
-							<span style={labelStyle}>{short}</span>
-							<span style={modifierStyle}>{formatModifier(mod)}</span>
+						<div key={key} className={styles.abilityCard}>
+							<span className={styles.label}>{short}</span>
+							<span className={styles.modifier}>{formatModifier(mod)}</span>
 							{editable ? (
 								<input
 									type="number"
@@ -42,10 +43,10 @@ export function AbilityScores({
 											onScoreChange(key, parsed);
 										}
 									}}
-									style={scoreInputStyle}
+									className={styles.scoreInput}
 								/>
 							) : (
-								<span style={scoreStaticStyle}>{score}</span>
+								<span className={styles.scoreStatic}>{score}</span>
 							)}
 						</div>
 					);
@@ -54,46 +55,3 @@ export function AbilityScores({
 		</div>
 	);
 }
-
-const gridStyle: React.CSSProperties = {
-	display: "grid",
-	gridTemplateColumns: "repeat(3, 1fr)",
-	gap: "var(--space-sm)",
-};
-
-const abilityCardStyle: React.CSSProperties = {
-	display: "flex",
-	flexDirection: "column",
-	alignItems: "center",
-	gap: "2px",
-	background: "var(--color-bg-elevated)",
-	border: "2px solid var(--color-border)",
-	padding: "var(--space-sm)",
-};
-
-const labelStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-xs)",
-	color: "var(--color-text-muted)",
-	fontWeight: 600,
-	letterSpacing: "0.05em",
-};
-
-const modifierStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-lg)",
-	fontWeight: 700,
-	color: "var(--color-accent)",
-};
-
-const scoreInputStyle: React.CSSProperties = {
-	width: "40px",
-	textAlign: "center",
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-text-muted)",
-	background: "transparent",
-	borderBottom: "1px solid var(--color-border)",
-};
-
-const scoreStaticStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-text-muted)",
-};

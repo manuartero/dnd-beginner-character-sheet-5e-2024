@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getClassIcon } from "../data/class-icons";
 import type { CharacterClass } from "../data/types";
+import styles from "./character-header.module.css";
 
 const CLASS_OPTIONS: { value: CharacterClass; label: string }[] = [
 	{ value: "fighter", label: "Fighter" },
@@ -36,15 +37,14 @@ export function CharacterHeader({
 	const [isEditingName, setIsEditingName] = useState(!name);
 
 	return (
-		<header className="character-header" style={headerStyle}>
+		<header className={`character-header ${styles.header}`}>
 			<img
 				src={getClassIcon(characterClass)}
 				alt={characterClass}
-				className="class-icon"
-				style={classIconStyle}
+				className={`class-icon ${styles.classIcon}`}
 			/>
-			<div style={detailsStyle}>
-				<div style={topRowStyle}>
+			<div className={styles.details}>
+				<div className={styles.topRow}>
 					{isEditingName ? (
 						<input
 							type="text"
@@ -52,28 +52,26 @@ export function CharacterHeader({
 							onChange={(e) => onNameChange(e.target.value)}
 							onBlur={() => name && setIsEditingName(false)}
 							placeholder="Character name"
-							style={nameInputStyle}
+							className={styles.nameInput}
 						/>
 					) : (
 						<button
 							type="button"
 							onClick={() => setIsEditingName(true)}
-							style={nameDisplayStyle}
+							className={styles.nameDisplay}
 						>
 							{name || "Unnamed"}
 						</button>
 					)}
-					<span style={levelBadgeStyle}>Lvl {level}</span>
+					<span className={styles.levelBadge}>Lvl {level}</span>
 				</div>
 
-				<div style={bottomRowStyle}>
+				<div className={styles.bottomRow}>
 					<select
 						value={characterClass}
 						onChange={(e) => onClassChange(e.target.value as CharacterClass)}
-						style={{
-							...selectStyle,
-							color: CLASS_COLORS[characterClass],
-						}}
+						className={styles.select}
+						style={{ color: CLASS_COLORS[characterClass] }}
 					>
 						{CLASS_OPTIONS.map((opt) => (
 							<option key={opt.value} value={opt.value}>
@@ -87,87 +85,10 @@ export function CharacterHeader({
 						value={race}
 						onChange={(e) => onRaceChange(e.target.value)}
 						placeholder="Race"
-						style={raceInputStyle}
+						className={styles.raceInput}
 					/>
 				</div>
 			</div>
 		</header>
 	);
 }
-
-const headerStyle: React.CSSProperties = {
-	display: "flex",
-	alignItems: "center",
-	gap: "var(--space-md)",
-};
-
-const classIconStyle: React.CSSProperties = {
-	width: 72,
-	height: 72,
-	flexShrink: 0,
-};
-
-const detailsStyle: React.CSSProperties = {
-	display: "flex",
-	flexDirection: "column",
-	gap: "var(--space-sm)",
-	flex: 1,
-	minWidth: 0,
-};
-
-const topRowStyle: React.CSSProperties = {
-	display: "flex",
-	alignItems: "center",
-	gap: "var(--space-sm)",
-};
-
-const nameInputStyle: React.CSSProperties = {
-	flex: 1,
-	minWidth: 0,
-	fontSize: "var(--font-size-xl)",
-	fontWeight: 700,
-	background: "var(--color-bg-surface)",
-	padding: "var(--space-xs) var(--space-sm)",
-	border: "2px solid var(--color-border)",
-};
-
-const nameDisplayStyle: React.CSSProperties = {
-	flex: 1,
-	minWidth: 0,
-	fontSize: "var(--font-size-xl)",
-	fontWeight: 700,
-	textAlign: "left",
-	padding: "var(--space-xs) 0",
-	overflow: "hidden",
-	textOverflow: "ellipsis",
-	whiteSpace: "nowrap",
-};
-
-const levelBadgeStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-sm)",
-	color: "var(--color-accent)",
-	background: "var(--color-bg-elevated)",
-	padding: "var(--space-xs) var(--space-sm)",
-	fontWeight: 600,
-};
-
-const bottomRowStyle: React.CSSProperties = {
-	display: "flex",
-	gap: "var(--space-sm)",
-};
-
-const selectStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-md)",
-	fontWeight: 600,
-	background: "var(--color-bg-surface)",
-	padding: "var(--space-xs) var(--space-sm)",
-	border: "2px solid var(--color-border)",
-};
-
-const raceInputStyle: React.CSSProperties = {
-	flex: 1,
-	fontSize: "var(--font-size-md)",
-	background: "var(--color-bg-surface)",
-	padding: "var(--space-xs) var(--space-sm)",
-	border: "2px solid var(--color-border)",
-};

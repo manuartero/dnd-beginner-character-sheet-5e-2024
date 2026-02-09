@@ -1,0 +1,10 @@
+.saveButton {
+	width: 100%;
+	padding: var(--space-md);
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	color: var(--color-bg);
+	background: var(--color-accent);
+	border: 3px solid var(--color-border);
+	box-shadow: 4px 4px 0 var(--color-border);
+}

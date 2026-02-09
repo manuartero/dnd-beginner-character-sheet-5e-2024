@@ -9,6 +9,7 @@ import type {
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
+import styles from "./character-sheet.module.css";
 import { EquipmentList } from "./equipment-list";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
@@ -79,7 +80,7 @@ export function CharacterSheet() {
 				<button
 					type="button"
 					onClick={() => setSaved(true)}
-					style={saveButtonStyle}
+					className={styles.saveButton}
 				>
 					Save Character
 				</button>
@@ -104,14 +105,3 @@ export function CharacterSheet() {
 		</>
 	);
 }
-
-const saveButtonStyle: React.CSSProperties = {
-	width: "100%",
-	padding: "var(--space-md)",
-	fontSize: "var(--font-size-md)",
-	fontWeight: 600,
-	color: "var(--color-bg)",
-	background: "var(--color-accent)",
-	border: "3px solid var(--color-border)",
-	boxShadow: "4px 4px 0 var(--color-border)",
-};

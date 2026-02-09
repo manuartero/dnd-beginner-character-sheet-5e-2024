@@ -1,3 +1,5 @@
+import styles from "./hp-tracker.module.css";
+
 interface HpTrackerProps {
 	current: number;
 	max: number;
@@ -26,10 +28,10 @@ export function HpTracker({
 			<h2 className="section-title">Hit Points</h2>
 
 			{!editable && (
-				<div style={barContainerStyle}>
+				<div className={styles.barContainer}>
 					<div
+						className={styles.barFill}
 						style={{
-							...barFillStyle,
 							width: `${Math.max(0, Math.min(100, ratio * 100))}%`,
 							backgroundColor: barColor,
 						}}
@@ -37,16 +39,16 @@ export function HpTracker({
 				</div>
 			)}
 
-			<div style={controlsStyle}>
+			<div className={styles.controls}>
 				<button
 					type="button"
 					onClick={() => onCurrentChange(Math.max(0, current - 1))}
-					style={buttonStyle}
+					className={styles.button}
 				>
 					-
 				</button>
 
-				<div style={hpDisplayStyle}>
+				<div className={styles.hpDisplay}>
 					{editable ? (
 						<input
 							type="number"
@@ -56,12 +58,12 @@ export function HpTracker({
 								const parsed = Number.parseInt(e.target.value, 10);
 								if (!Number.isNaN(parsed)) onCurrentChange(parsed);
 							}}
-							style={hpInputStyle}
+							className={styles.hpInput}
 						/>
 					) : (
-						<span style={hpStaticStyle}>{current}</span>
+						<span className={styles.hpStatic}>{current}</span>
 					)}
-					<span style={separatorStyle}>/</span>
+					<span className={styles.separator}>/</span>
 					{editable ? (
 						<input
 							type="number"
@@ -71,17 +73,17 @@ export function HpTracker({
 								const parsed = Number.parseInt(e.target.value, 10);
 								if (!Number.isNaN(parsed)) onMaxChange(parsed);
 							}}
-							style={hpInputStyle}
+							className={styles.hpInput}
 						/>
 					) : (
-						<span style={hpStaticStyle}>{max}</span>
+						<span className={styles.hpStatic}>{max}</span>
 					)}
 				</div>
 
 				<button
 					type="button"
 					onClick={() => onCurrentChange(Math.min(max, current + 1))}
-					style={buttonStyle}
+					className={styles.button}
 				>
 					+
 				</button>
@@ -89,59 +91,3 @@ export function HpTracker({
 		</div>
 	);
 }
-
-const barContainerStyle: React.CSSProperties = {
-	height: "12px",
-	background: "var(--color-hp-missing)",
-	border: "2px solid var(--color-border)",
-	overflow: "hidden",
-	marginBottom: "var(--space-sm)",
-};
-
-const barFillStyle: React.CSSProperties = {
-	height: "100%",
-};
-
-const controlsStyle: React.CSSProperties = {
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-	gap: "var(--space-md)",
-};
-
-const buttonStyle: React.CSSProperties = {
-	width: "40px",
-	height: "40px",
-	fontSize: "var(--font-size-lg)",
-	fontWeight: 700,
-	background: "var(--color-bg-elevated)",
-	border: "2px solid var(--color-border)",
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-};
-
-const hpDisplayStyle: React.CSSProperties = {
-	display: "flex",
-	alignItems: "center",
-	gap: "var(--space-xs)",
-};
-
-const hpInputStyle: React.CSSProperties = {
-	width: "48px",
-	textAlign: "center",
-	fontSize: "var(--font-size-xl)",
-	fontWeight: 700,
-	background: "transparent",
-};
-
-const hpStaticStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-xl)",
-	fontWeight: 700,
-	textAlign: "center",
-};
-
-const separatorStyle: React.CSSProperties = {
-	fontSize: "var(--font-size-lg)",
-	color: "var(--color-text-muted)",
-};
