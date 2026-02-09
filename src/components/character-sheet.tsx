@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { saveCharacter } from "../data/character-storage";
 import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "../data/spells";
 import type {
 	AbilityName,
@@ -14,7 +15,7 @@ import { EquipmentList } from "./equipment-list";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
 
-const DEFAULT_CHARACTER: Character = {
+const DEFAULT_CHARACTER: Omit<Character, "id"> = {
 	name: "",
 	race: "",
 	characterClass: "fighter",
@@ -27,59 +28,106 @@ const DEFAULT_CHARACTER: Character = {
 	equipment: [],
 };
 
-export function CharacterSheet() {
-	const [character, setCharacter] = useState<Character>(DEFAULT_CHARACTER);
-	const [saved, setSaved] = useState(false);
+type CharacterSheetProps =
+	| {
+			mode: "creation";
+			onSave: (character: Character) => void;
+	  }
+	| {
+			mode: "view";
+			character: Character;
+			onCharacterUpdate: (character: Character) => void;
+	  };
 
-	function updateCharacter(partial: Partial<Character>) {
-		setCharacter((prev) => ({ ...prev, ...partial }));
+export function CharacterSheet(props: CharacterSheetProps) {
+	const isCreation = props.mode === "creation";
+
+	const [draft, setDraft] = useState<Omit<Character, "id">>(
+		isCreation ? DEFAULT_CHARACTER : props.character,
+	);
+
+	function updateDraft(partial: Partial<Character>) {
+		if (isCreation) {
+			setDraft((prev) => ({ ...prev, ...partial }));
+		}
 	}
 
 	function updateAbilityScore(ability: AbilityName, value: number) {
-		setCharacter((prev) => ({
-			...prev,
-			abilityScores: { ...prev.abilityScores, [ability]: value },
-		}));
+		if (isCreation) {
+			setDraft((prev) => ({
+				...prev,
+				abilityScores: { ...prev.abilityScores, [ability]: value },
+			}));
+		}
 	}
 
 	function updateHp(field: "current" | "max", value: number) {
-		setCharacter((prev) => ({
-			...prev,
-			hp: { ...prev.hp, [field]: value },
-		}));
+		if (isCreation) {
+			setDraft((prev) => ({
+				...prev,
+				hp: { ...prev.hp, [field]: value },
+			}));
+			return;
+		}
+		if (field === "current") {
+			const updated = {
+				...props.character,
+				hp: { ...props.character.hp, current: value },
+			};
+			saveCharacter(updated);
+			props.onCharacterUpdate(updated);
+		}
 	}
 
 	function updateEquipment(equipment: Equipment[]) {
-		updateCharacter({ equipment });
+		if (isCreation) {
+			setDraft((prev) => ({ ...prev, equipment }));
+			return;
+		}
+		const updated = { ...props.character, equipment };
+		saveCharacter(updated);
+		props.onCharacterUpdate(updated);
 	}
 
+	function handleSave() {
+		if (!isCreation) return;
+		const saved: Character = {
+			...draft,
+			id: crypto.randomUUID(),
+		};
+		saveCharacter(saved);
+		props.onSave(saved);
+	}
+
+	const activeChar = isCreation ? { ...draft, id: "" } : props.character;
 	const spells =
-		character.characterClass === "wizard"
+		activeChar.characterClass === "wizard"
 			? [...WIZARD_CANTRIPS, ...WIZARD_SPELLS_LEVEL_1]
 			: [];
 
 	return (
 		<>
 			<CharacterHeader
-				name={character.name}
-				race={character.race}
-				characterClass={character.characterClass}
-				level={character.level}
-				onNameChange={(name) => updateCharacter({ name })}
-				onRaceChange={(race) => updateCharacter({ race })}
-				onClassChange={(characterClass) => updateCharacter({ characterClass })}
+				name={activeChar.name}
+				race={activeChar.race}
+				characterClass={activeChar.characterClass}
+				level={activeChar.level}
+				editable={isCreation}
+				onNameChange={(name) => updateDraft({ name })}
+				onRaceChange={(race) => updateDraft({ race })}
+				onClassChange={(characterClass) => updateDraft({ characterClass })}
 			/>
 
 			<AbilityScores
-				scores={character.abilityScores as AbilityScoresType}
-				editable={!saved}
+				scores={activeChar.abilityScores as AbilityScoresType}
+				editable={isCreation}
 				onScoreChange={updateAbilityScore}
 			/>
 
-			{!saved && (
+			{isCreation && (
 				<button
 					type="button"
-					onClick={() => setSaved(true)}
+					onClick={handleSave}
 					className={styles.saveButton}
 				>
 					Save Character
@@ -87,19 +135,19 @@ export function CharacterSheet() {
 			)}
 
 			<HpTracker
-				current={character.hp.current}
-				max={character.hp.max}
-				editable={!saved}
+				current={activeChar.hp.current}
+				max={activeChar.hp.max}
+				editable={isCreation}
 				onCurrentChange={(v) => updateHp("current", v)}
 				onMaxChange={(v) => updateHp("max", v)}
 			/>
 
-			<ActionBar characterClass={character.characterClass} />
+			<ActionBar characterClass={activeChar.characterClass} />
 
 			{spells.length > 0 && <SpellCards spells={spells} />}
 
 			<EquipmentList
-				equipment={character.equipment}
+				equipment={activeChar.equipment}
 				onEquipmentChange={updateEquipment}
 			/>
 		</>

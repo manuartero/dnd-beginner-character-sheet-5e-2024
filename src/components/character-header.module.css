@@ -74,3 +74,26 @@
 	padding: var(--space-xs) var(--space-sm);
 	border: 2px solid var(--color-border);
 }
+
+.nameStatic {
+	flex: 1;
+	min-width: 0;
+	font-size: var(--font-size-xl);
+	font-weight: 700;
+	padding: var(--space-xs) 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.classStatic {
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	padding: var(--space-xs) var(--space-sm);
+}
+
+.raceStatic {
+	flex: 1;
+	font-size: var(--font-size-md);
+	padding: var(--space-xs) var(--space-sm);
+}

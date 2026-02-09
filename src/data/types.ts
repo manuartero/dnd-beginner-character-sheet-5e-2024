@@ -59,6 +59,7 @@ export interface Equipment {
 }
 
 export interface Character {
+	id: string;
 	name: string;
 	race: string;
 	characterClass: CharacterClass;
@@ -70,3 +71,8 @@ export interface Character {
 	spells: Spell[];
 	equipment: Equipment[];
 }
+
+export type AppView =
+	| { kind: "character-list" }
+	| { kind: "character-view"; characterId: string }
+	| { kind: "character-creation" };

@@ -44,6 +44,9 @@
 	--radius-md: 0px;
 	--radius-lg: 0px;
 
+	/* Layout */
+	--menu-height: 48px;
+
 	/* Typography */
 	--font-body: "Press Start 2P", monospace;
 	--font-size-xs: 0.5rem;
