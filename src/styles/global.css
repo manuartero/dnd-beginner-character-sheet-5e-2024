@@ -25,6 +25,9 @@
 	--color-warlock: #7b539d;
 	--color-wizard: #5c3d99;
 
+	/* Modifier */
+	--color-modifier-high: #2e7d32;
+
 	/* HP */
 	--color-hp: #4caf50;
 	--color-hp-missing: #d4bfa2;
