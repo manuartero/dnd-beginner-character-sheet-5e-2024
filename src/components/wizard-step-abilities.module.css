@@ -5,13 +5,15 @@
 }
 
 .abilityCard {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2px;
+	gap: var(--space-xs);
 	background: var(--color-bg-elevated);
 	border: 2px solid var(--color-border);
 	padding: var(--space-sm);
+	padding-top: var(--space-md);
 }
 
 .label {
@@ -22,18 +24,23 @@
 }
 
 .modifier {
-	font-size: var(--font-size-lg);
-	font-weight: 700;
+	position: absolute;
+	top: 4px;
+	right: 6px;
+	font-size: var(--font-size-xs);
+	font-weight: 600;
 	color: var(--color-accent);
 }
 
 .scoreInput {
-	width: 40px;
+	width: 56px;
 	text-align: center;
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: var(--color-text);
 	background: transparent;
-	border-bottom: 1px solid var(--color-border);
+	border: none;
+	border-bottom: 2px solid var(--color-border);
 }
 
 .scoreInputError {

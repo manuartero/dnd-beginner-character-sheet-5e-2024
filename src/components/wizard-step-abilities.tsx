@@ -76,8 +76,8 @@ export function WizardStepAbilities({
 							: "+0";
 						return (
 							<div key={key} className={styles.abilityCard}>
-								<span className={styles.label}>{short}</span>
 								<span className={styles.modifier}>{displayMod}</span>
+								<span className={styles.label}>{short}</span>
 								<input
 									type="text"
 									maxLength={2}
