@@ -2,6 +2,7 @@ import { getClassIcon } from "../data/class-icons";
 import { CLASS_LIST } from "../data/classes";
 import { RACE_LIST } from "../data/races";
 import type { CharacterClass, CharacterRace } from "../data/types";
+import cardStyles from "./wizard-card.module.css";
 import styles from "./wizard-step-identity.module.css";
 
 interface WizardStepIdentityProps {
@@ -41,15 +42,15 @@ export function WizardStepIdentity({
 						<button
 							key={key}
 							type="button"
-							className={`${styles.card} ${characterClass === key ? styles.cardSelected : ""}`}
+							className={`${cardStyles.card} ${characterClass === key ? cardStyles.cardSelected : ""}`}
 							onClick={() => onClassChange(key)}
 						>
 							<img
 								src={getClassIcon(key)}
 								alt={label}
-								className={styles.cardIcon}
+								className={cardStyles.cardIcon}
 							/>
-							<span className={styles.cardLabel}>{label}</span>
+							<span className={cardStyles.cardLabel}>{label}</span>
 						</button>
 					))}
 				</div>
@@ -62,15 +63,15 @@ export function WizardStepIdentity({
 						<button
 							key={key}
 							type="button"
-							className={`${styles.card} ${race === key ? styles.cardSelected : ""}`}
+							className={`${cardStyles.card} ${race === key ? cardStyles.cardSelected : ""}`}
 							onClick={() => onRaceChange(key)}
 						>
 							<img
 								src="/race-icons/placeholder.png"
 								alt={label}
-								className={styles.cardIcon}
+								className={cardStyles.cardIcon}
 							/>
-							<span className={styles.cardLabel}>{label}</span>
+							<span className={cardStyles.cardLabel}>{label}</span>
 						</button>
 					))}
 				</div>

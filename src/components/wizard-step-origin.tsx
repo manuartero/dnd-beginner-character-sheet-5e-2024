@@ -1,5 +1,6 @@
 import type { Background } from "../data/backgrounds";
 import { BACKGROUND_LIST } from "../data/backgrounds";
+import cardStyles from "./wizard-card.module.css";
 import styles from "./wizard-step-origin.module.css";
 
 interface WizardStepOriginProps {
@@ -21,15 +22,15 @@ export function WizardStepOrigin({
 					<button
 						key={key}
 						type="button"
-						className={`${styles.card} ${background === key ? styles.cardSelected : ""}`}
+						className={`${cardStyles.card} ${background === key ? cardStyles.cardSelected : ""}`}
 						onClick={() => onBackgroundChange(key)}
 					>
 						<img
 							src="/race-icons/placeholder.png"
 							alt={label}
-							className={styles.cardIcon}
+							className={cardStyles.cardIcon}
 						/>
-						<span className={styles.cardLabel}>{label}</span>
+						<span className={cardStyles.cardLabel}>{label}</span>
 					</button>
 				))}
 			</div>

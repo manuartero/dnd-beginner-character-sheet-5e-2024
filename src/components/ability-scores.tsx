@@ -9,6 +9,13 @@ import type {
 } from "../data/types";
 import styles from "./ability-scores.module.css";
 
+function modifierColorClass(mod: number): string {
+	if (mod < 0) return styles.modifierNegative;
+	if (mod === 0) return styles.modifierNeutral;
+	if (mod >= 3) return styles.modifierHigh;
+	return styles.modifierPositive;
+}
+
 interface AbilityScoresProps {
 	scores: AbilityScoresType;
 	editable: boolean;
@@ -30,7 +37,6 @@ export function AbilityScores({
 					return (
 						<div key={key} className={styles.abilityCard}>
 							<span className={styles.label}>{short}</span>
-							<span className={styles.modifier}>{formatModifier(mod)}</span>
 							{editable ? (
 								<input
 									type="number"
@@ -46,8 +52,11 @@ export function AbilityScores({
 									className={styles.scoreInput}
 								/>
 							) : (
-								<span className={styles.scoreStatic}>{score}</span>
+								<span className={styles.score}>{score}</span>
 							)}
+							<span className={`${styles.modifier} ${modifierColorClass(mod)}`}>
+								{formatModifier(mod)}
+							</span>
 						</div>
 					);
 				})}

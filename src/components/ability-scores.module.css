@@ -1,42 +1,68 @@
 .grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: var(--space-sm);
+	gap: var(--space-md);
 }
 
 .abilityCard {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 	align-items: center;
-	gap: 2px;
+	justify-items: center;
 	background: var(--color-bg-elevated);
 	border: 2px solid var(--color-border);
-	padding: var(--space-sm);
+	box-shadow: 3px 3px 0 var(--color-border);
+	overflow: hidden;
 }
 
 .label {
+	width: 100%;
+	padding: 2px 0;
 	font-size: var(--font-size-xs);
-	color: var(--color-text-muted);
 	font-weight: 600;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.08em;
+	text-align: center;
+	color: var(--color-bg);
+	background: var(--color-border);
 }
 
 .modifier {
-	font-size: var(--font-size-lg);
+	padding: var(--space-xs) 0 var(--space-sm);
+	font-size: 1.5rem;
 	font-weight: 700;
+	line-height: 1;
+}
+
+.modifierNegative {
+	color: var(--color-fighter);
+}
+
+.modifierNeutral {
+	color: var(--color-text-muted);
+}
+
+.modifierPositive {
 	color: var(--color-accent);
 }
 
-.scoreInput {
-	width: 40px;
-	text-align: center;
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	background: transparent;
-	border-bottom: 1px solid var(--color-border);
+.modifierHigh {
+	color: var(--color-modifier-high);
 }
 
-.scoreStatic {
-	font-size: var(--font-size-sm);
+.score {
+	justify-self: start;
+	padding: var(--space-xs) 0 0 var(--space-xs);
+	font-size: var(--font-size-md);
 	color: var(--color-text-muted);
+}
+
+.scoreInput {
+	justify-self: start;
+	width: 36px;
+	padding: var(--space-xs) 0 0 var(--space-xs);
+	text-align: center;
+	font-size: var(--font-size-md);
+	color: var(--color-text-muted);
+	background: transparent;
+	border-bottom: 2px solid var(--color-border);
 }
