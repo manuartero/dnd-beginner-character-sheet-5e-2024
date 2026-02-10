@@ -12,6 +12,11 @@ interface WizardStepAbilitiesProps {
 	hpMax: number;
 	onScoresChange: (scores: AbilityScores) => void;
 	onHpMaxChange: (hpMax: number) => void;
+	abilityOptions: [AbilityName, AbilityName, AbilityName] | null;
+	abilityBonuses: Partial<Record<AbilityName, number>>;
+	onAbilityBonusesChange: (
+		bonuses: Partial<Record<AbilityName, number>>,
+	) => void;
 }
 
 function isValidScore(value: string): boolean {
@@ -26,11 +31,18 @@ function isValidHp(value: string): boolean {
 	return !Number.isNaN(num) && num >= 1;
 }
 
+function totalBonuses(bonuses: Partial<Record<AbilityName, number>>): number {
+	return Object.values(bonuses).reduce<number>((sum, v) => sum + (v ?? 0), 0);
+}
+
 export function WizardStepAbilities({
 	scores,
 	hpMax,
 	onScoresChange,
 	onHpMaxChange,
+	abilityOptions,
+	abilityBonuses,
+	onAbilityBonusesChange,
 }: WizardStepAbilitiesProps) {
 	const [rawScores, setRawScores] = useState<Record<AbilityName, string>>(
 		() => {
@@ -42,6 +54,8 @@ export function WizardStepAbilities({
 	);
 	const [rawHp, setRawHp] = useState(String(hpMax));
 	const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+	const remaining = 3 - totalBonuses(abilityBonuses);
 
 	function handleScoreChange(ability: AbilityName, value: string) {
 		setRawScores((prev) => ({ ...prev, [ability]: value }));
@@ -63,6 +77,38 @@ export function WizardStepAbilities({
 		setTouched((prev) => ({ ...prev, [field]: true }));
 	}
 
+	function handleBonusClick(ability: AbilityName) {
+		const current = abilityBonuses[ability] ?? 0;
+		if (remaining > 0) {
+			onAbilityBonusesChange({
+				...abilityBonuses,
+				[ability]: current + 1,
+			});
+		} else if (current > 0) {
+			const next = { ...abilityBonuses };
+			if (current === 1) {
+				delete next[ability];
+			} else {
+				next[ability] = current - 1;
+			}
+			onAbilityBonusesChange(next);
+		}
+	}
+
+	function handleBonusRightClick(e: React.MouseEvent, ability: AbilityName) {
+		e.preventDefault();
+		const current = abilityBonuses[ability] ?? 0;
+		if (current > 0) {
+			const next = { ...abilityBonuses };
+			if (current === 1) {
+				delete next[ability];
+			} else {
+				next[ability] = current - 1;
+			}
+			onAbilityBonusesChange(next);
+		}
+	}
+
 	return (
 		<>
 			<div className="section">
@@ -71,12 +117,17 @@ export function WizardStepAbilities({
 					{ABILITY_LIST.map(({ key, short }) => {
 						const raw = rawScores[key];
 						const showError = touched[key] && !isValidScore(raw);
-						const displayMod = isValidScore(raw)
-							? formatModifier(computeModifier(Number.parseInt(raw, 10)))
-							: "+0";
+						const bonus = abilityBonuses[key] ?? 0;
+						const baseScore = isValidScore(raw) ? Number.parseInt(raw, 10) : 10;
+						const displayMod = formatModifier(
+							computeModifier(baseScore + bonus),
+						);
 						return (
 							<div key={key} className={styles.abilityCard}>
 								<span className={styles.modifier}>{displayMod}</span>
+								{bonus > 0 && (
+									<span className={styles.bonusBadge}>+{bonus}</span>
+								)}
 								<span className={styles.label}>{short}</span>
 								<input
 									type="text"
@@ -92,6 +143,38 @@ export function WizardStepAbilities({
 					})}
 				</div>
 			</div>
+
+			{abilityOptions && (
+				<div className="section">
+					<h2 className="section-title">Origin Bonus</h2>
+					<p className={styles.bonusHint}>
+						{remaining} bonus {remaining === 1 ? "point" : "points"} remaining
+					</p>
+					<div className={styles.bonusGrid}>
+						{ABILITY_LIST.map(({ key, short }) => {
+							const eligible = abilityOptions.includes(key);
+							const allocated = abilityBonuses[key] ?? 0;
+							return (
+								<button
+									key={key}
+									type="button"
+									disabled={!eligible}
+									className={`${styles.bonusCell} ${eligible ? styles.bonusCellEligible : ""} ${allocated > 0 ? styles.bonusCellActive : ""}`}
+									onClick={() => eligible && handleBonusClick(key)}
+									onContextMenu={(e) =>
+										eligible && handleBonusRightClick(e, key)
+									}
+								>
+									<span className={styles.bonusAbility}>{short}</span>
+									{allocated > 0 && (
+										<span className={styles.bonusCount}>+{allocated}</span>
+									)}
+								</button>
+							);
+						})}
+					</div>
+				</div>
+			)}
 
 			<div className="section">
 				<h2 className="section-title">Hit Points</h2>
