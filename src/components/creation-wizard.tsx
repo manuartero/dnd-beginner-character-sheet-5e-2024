@@ -1,6 +1,9 @@
 import { useState } from "react";
+import type { Background } from "../data/backgrounds";
+import { BACKGROUND_LIST } from "../data/backgrounds";
 import { saveCharacter } from "../data/character-storage";
 import type {
+	AbilityName,
 	AbilityScores,
 	Character,
 	CharacterClass,
@@ -13,6 +16,7 @@ import {
 	WizardStepAbilities,
 } from "./wizard-step-abilities";
 import { WizardStepIdentity } from "./wizard-step-identity";
+import { WizardStepOrigin } from "./wizard-step-origin";
 
 interface CreationWizardProps {
 	onSave: (character: Character) => void;
@@ -22,16 +26,23 @@ interface DraftState {
 	name: string;
 	characterClass: CharacterClass | null;
 	race: CharacterRace | null;
+	background: Background | null;
 	abilityScores: AbilityScores;
+	abilityBonuses: Partial<Record<AbilityName, number>>;
 	hpMax: number;
 }
 
+function totalBonuses(bonuses: Partial<Record<AbilityName, number>>): number {
+	return Object.values(bonuses).reduce<number>((sum, v) => sum + (v ?? 0), 0);
+}
+
 export function CreationWizard({ onSave }: CreationWizardProps) {
-	const [step, setStep] = useState<1 | 2>(1);
+	const [step, setStep] = useState<1 | 2 | 3>(1);
 	const [draft, setDraft] = useState<DraftState>({
 		name: "",
 		characterClass: null,
 		race: null,
+		background: null,
 		abilityScores: {
 			str: 10,
 			dex: 10,
@@ -40,6 +51,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 			wis: 10,
 			cha: 10,
 		},
+		abilityBonuses: {},
 		hpMax: 10,
 	});
 
@@ -48,9 +60,24 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 		draft.characterClass !== null &&
 		draft.race !== null;
 
-	const step2Complete =
+	const step2Complete = draft.background !== null;
+
+	const step3Complete =
 		Object.values(draft.abilityScores).every((v) => isValidScore(String(v))) &&
-		isValidHp(String(draft.hpMax));
+		isValidHp(String(draft.hpMax)) &&
+		totalBonuses(draft.abilityBonuses) === 3;
+
+	const backgroundEntry = draft.background
+		? BACKGROUND_LIST.find((b) => b.key === draft.background)
+		: null;
+
+	function handleBackgroundChange(background: Background) {
+		setDraft((prev) => ({
+			...prev,
+			background,
+			abilityBonuses: {},
+		}));
+	}
 
 	function handleCreate() {
 		if (!draft.characterClass || !draft.race) return;
@@ -59,6 +86,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 			name: draft.name.trim(),
 			race: draft.race,
 			characterClass: draft.characterClass,
+			background: draft.background ?? undefined,
 			level: 1,
 			abilityScores: draft.abilityScores,
 			hp: { current: draft.hpMax, max: draft.hpMax },
@@ -84,6 +112,11 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 					className={`${styles.dot} ${step >= 2 ? styles.dotActive : ""}`}
 					onClick={() => setStep(2)}
 				/>
+				<button
+					type="button"
+					className={`${styles.dot} ${step >= 3 ? styles.dotActive : ""}`}
+					onClick={() => setStep(3)}
+				/>
 			</div>
 
 			{step === 1 && (
@@ -94,7 +127,10 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 						race={draft.race}
 						onNameChange={(name) => setDraft((prev) => ({ ...prev, name }))}
 						onClassChange={(characterClass) =>
-							setDraft((prev) => ({ ...prev, characterClass }))
+							setDraft((prev) => ({
+								...prev,
+								characterClass,
+							}))
 						}
 						onRaceChange={(race) => setDraft((prev) => ({ ...prev, race }))}
 					/>
@@ -113,13 +149,9 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 
 			{step === 2 && (
 				<>
-					<WizardStepAbilities
-						scores={draft.abilityScores}
-						hpMax={draft.hpMax}
-						onScoresChange={(abilityScores) =>
-							setDraft((prev) => ({ ...prev, abilityScores }))
-						}
-						onHpMaxChange={(hpMax) => setDraft((prev) => ({ ...prev, hpMax }))}
+					<WizardStepOrigin
+						background={draft.background}
+						onBackgroundChange={handleBackgroundChange}
 					/>
 					<div className={styles.actions}>
 						<button
@@ -133,6 +165,47 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 							type="button"
 							className={styles.primaryButton}
 							disabled={!step2Complete}
+							onClick={() => setStep(3)}
+						>
+							Next
+						</button>
+					</div>
+				</>
+			)}
+
+			{step === 3 && (
+				<>
+					<WizardStepAbilities
+						scores={draft.abilityScores}
+						hpMax={draft.hpMax}
+						onScoresChange={(abilityScores) =>
+							setDraft((prev) => ({
+								...prev,
+								abilityScores,
+							}))
+						}
+						onHpMaxChange={(hpMax) => setDraft((prev) => ({ ...prev, hpMax }))}
+						abilityOptions={backgroundEntry?.abilityOptions ?? null}
+						abilityBonuses={draft.abilityBonuses}
+						onAbilityBonusesChange={(abilityBonuses) =>
+							setDraft((prev) => ({
+								...prev,
+								abilityBonuses,
+							}))
+						}
+					/>
+					<div className={styles.actions}>
+						<button
+							type="button"
+							className={styles.backButton}
+							onClick={() => setStep(2)}
+						>
+							Back
+						</button>
+						<button
+							type="button"
+							className={styles.primaryButton}
+							disabled={!step3Complete}
 							onClick={handleCreate}
 						>
 							Create

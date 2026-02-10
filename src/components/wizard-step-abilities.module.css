@@ -32,6 +32,15 @@
 	color: var(--color-accent);
 }
 
+.bonusBadge {
+	position: absolute;
+	top: 4px;
+	left: 6px;
+	font-size: var(--font-size-xs);
+	font-weight: 600;
+	color: var(--color-cleric);
+}
+
 .scoreInput {
 	width: 56px;
 	text-align: center;
@@ -46,6 +55,56 @@
 .scoreInputError {
 	border-bottom-color: var(--color-fighter);
 	color: var(--color-fighter);
+}
+
+.bonusHint {
+	font-size: var(--font-size-sm);
+	color: var(--color-text-muted);
+	margin-bottom: var(--space-sm);
+}
+
+.bonusGrid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: var(--space-xs);
+}
+
+.bonusCell {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	padding: var(--space-sm);
+	background: var(--color-bg-surface);
+	border: 2px solid var(--color-border);
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.bonusCellEligible {
+	opacity: 1;
+	cursor: pointer;
+	background: var(--color-bg-elevated);
+	border-color: var(--color-accent);
+}
+
+.bonusCellEligible:hover {
+	background: var(--color-bg-surface);
+}
+
+.bonusCellActive {
+	background: var(--color-accent);
+	color: var(--color-bg);
+}
+
+.bonusAbility {
+	font-size: var(--font-size-xs);
+	font-weight: 600;
+}
+
+.bonusCount {
+	font-size: var(--font-size-sm);
+	font-weight: 700;
 }
 
 .hpRow {

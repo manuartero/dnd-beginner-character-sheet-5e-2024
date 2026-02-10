@@ -1,3 +1,5 @@
+export type { Background } from "./backgrounds";
+
 export type CharacterClass =
 	| "barbarian"
 	| "bard"
@@ -87,6 +89,7 @@ export interface Character {
 	name: string;
 	race: CharacterRace;
 	characterClass: CharacterClass;
+	background?: Background;
 	level: number;
 	abilityScores: AbilityScores;
 	hp: { current: number; max: number };
