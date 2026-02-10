@@ -74,8 +74,16 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 	return (
 		<>
 			<div className={styles.stepIndicator}>
-				<div className={`${styles.dot} ${step >= 1 ? styles.dotActive : ""}`} />
-				<div className={`${styles.dot} ${step >= 2 ? styles.dotActive : ""}`} />
+				<button
+					type="button"
+					className={`${styles.dot} ${step >= 1 ? styles.dotActive : ""}`}
+					onClick={() => setStep(1)}
+				/>
+				<button
+					type="button"
+					className={`${styles.dot} ${step >= 2 ? styles.dotActive : ""}`}
+					onClick={() => setStep(2)}
+				/>
 			</div>
 
 			{step === 1 && (
