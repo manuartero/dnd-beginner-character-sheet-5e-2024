@@ -46,8 +46,8 @@ export function AbilityScores({
   }
 
   return (
-    <div className="section">
-      <h2 className="section-title">Abilities</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Abilities</h2>
       <div className={styles.grid}>
         {ABILITY_LIST.map(({ key, short }) => {
           const score = scores[key];
