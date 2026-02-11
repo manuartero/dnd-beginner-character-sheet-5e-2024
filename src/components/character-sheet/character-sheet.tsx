@@ -1,6 +1,6 @@
 import { saveCharacter } from "src/data/character-storage";
 import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/data/spells";
-import type { Character, Equipment } from "src/data/types";
+import type { Character } from "src/data/types";
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
@@ -17,17 +17,8 @@ export function CharacterSheet({
   character,
   onCharacterUpdate,
 }: CharacterSheetProps) {
-  function updateHpCurrent(value: number) {
-    const updated = {
-      ...character,
-      hp: { ...character.hp, current: value },
-    };
-    saveCharacter(updated);
-    onCharacterUpdate(updated);
-  }
-
-  function updateEquipment(equipment: Equipment[]) {
-    const updated = { ...character, equipment };
+  function updateCharacter(patch: Partial<Character>) {
+    const updated = { ...character, ...patch };
     saveCharacter(updated);
     onCharacterUpdate(updated);
   }
@@ -49,7 +40,6 @@ export function CharacterSheet({
       <AbilityScores
         scores={character.abilityScores}
         editable={false}
-        onScoreChange={() => {}}
         proficiencyBonus={character.proficiencyBonus}
       />
 
@@ -57,8 +47,9 @@ export function CharacterSheet({
         current={character.hp.current}
         max={character.hp.max}
         editable={false}
-        onCurrentChange={updateHpCurrent}
-        onMaxChange={() => {}}
+        onCurrentChange={(value) =>
+          updateCharacter({ hp: { ...character.hp, current: value } })
+        }
       />
 
       <ActionBar characterClass={character.characterClass} />
@@ -67,7 +58,7 @@ export function CharacterSheet({
 
       <EquipmentList
         equipment={character.equipment}
-        onEquipmentChange={updateEquipment}
+        onEquipmentChange={(equipment) => updateCharacter({ equipment })}
       />
     </>
   );

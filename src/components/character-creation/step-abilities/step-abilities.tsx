@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { totalBonuses } from "src/components/character-creation/total-bonuses";
+import type { AbilityName, AbilityScores } from "src/data/abilities";
 import {
   ABILITY_LIST,
   computeModifier,
   formatModifier,
 } from "src/data/abilities";
-import type { AbilityName, AbilityScores } from "src/data/types";
+import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
+import { isValidHp, isValidScore } from "./validation";
 
 type StepAbilitiesProps = {
   scores: AbilityScores;
@@ -19,18 +20,6 @@ type StepAbilitiesProps = {
     bonuses: Partial<Record<AbilityName, number>>,
   ) => void;
 };
-
-function isValidScore(value: string): boolean {
-  if (value === "") return false;
-  const num = Number.parseInt(value, 10);
-  return !Number.isNaN(num) && num >= 3 && num <= 18;
-}
-
-function isValidHp(value: string): boolean {
-  if (value === "") return false;
-  const num = Number.parseInt(value, 10);
-  return !Number.isNaN(num) && num >= 1;
-}
 
 export function StepAbilities({
   scores,
@@ -52,8 +41,6 @@ export function StepAbilities({
   const [rawHp, setRawHp] = useState(String(hpMax));
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const remaining = 3 - totalBonuses(abilityBonuses);
-
   function handleScoreChange(ability: AbilityName, value: string) {
     setRawScores((prev) => ({ ...prev, [ability]: value }));
     const parsed = Number.parseInt(value, 10);
@@ -72,38 +59,6 @@ export function StepAbilities({
 
   function handleBlur(field: string) {
     setTouched((prev) => ({ ...prev, [field]: true }));
-  }
-
-  function handleBonusClick(ability: AbilityName) {
-    const current = abilityBonuses[ability] ?? 0;
-    if (remaining > 0) {
-      onAbilityBonusesChange({
-        ...abilityBonuses,
-        [ability]: current + 1,
-      });
-    } else if (current > 0) {
-      const next = { ...abilityBonuses };
-      if (current === 1) {
-        delete next[ability];
-      } else {
-        next[ability] = current - 1;
-      }
-      onAbilityBonusesChange(next);
-    }
-  }
-
-  function handleBonusRightClick(e: React.MouseEvent, ability: AbilityName) {
-    e.preventDefault();
-    const current = abilityBonuses[ability] ?? 0;
-    if (current > 0) {
-      const next = { ...abilityBonuses };
-      if (current === 1) {
-        delete next[ability];
-      } else {
-        next[ability] = current - 1;
-      }
-      onAbilityBonusesChange(next);
-    }
   }
 
   return (
@@ -142,35 +97,11 @@ export function StepAbilities({
       </div>
 
       {abilityOptions && (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Origin Bonus</h2>
-          <p className={styles.bonusHint}>
-            {remaining} bonus {remaining === 1 ? "point" : "points"} remaining
-          </p>
-          <div className={styles.bonusGrid}>
-            {ABILITY_LIST.map(({ key, short }) => {
-              const eligible = abilityOptions.includes(key);
-              const allocated = abilityBonuses[key] ?? 0;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  disabled={!eligible}
-                  className={`${styles.bonusCell} ${eligible ? styles.bonusCellEligible : ""} ${allocated > 0 ? styles.bonusCellActive : ""}`}
-                  onClick={() => eligible && handleBonusClick(key)}
-                  onContextMenu={(e) =>
-                    eligible && handleBonusRightClick(e, key)
-                  }
-                >
-                  <span className={styles.bonusAbility}>{short}</span>
-                  {allocated > 0 && (
-                    <span className={styles.bonusCount}>+{allocated}</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <OriginBonusPicker
+          abilityOptions={abilityOptions}
+          abilityBonuses={abilityBonuses}
+          onAbilityBonusesChange={onAbilityBonusesChange}
+        />
       )}
 
       <div className={styles.section}>
@@ -190,5 +121,3 @@ export function StepAbilities({
     </>
   );
 }
-
-export { isValidHp, isValidScore };
