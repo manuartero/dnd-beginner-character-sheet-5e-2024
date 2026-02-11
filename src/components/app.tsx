@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadCharacters } from "../data/character-storage";
+import { deleteCharacter, loadCharacters } from "../data/character-storage";
 import type { AppView, Character } from "../data/types";
 import styles from "./app.module.css";
 import { CharacterList } from "./character-list";
@@ -26,6 +26,11 @@ export function App() {
 
 	function handleNew() {
 		setView({ kind: "character-creation" });
+	}
+
+	function handleDelete(characterId: string) {
+		deleteCharacter(characterId);
+		setCharacters(loadCharacters());
 	}
 
 	function handleSave(character: Character) {
@@ -68,6 +73,7 @@ export function App() {
 						characters={characters}
 						onSelect={handleSelect}
 						onNew={handleNew}
+						onDelete={handleDelete}
 					/>
 				)}
 				{view.kind === "character-creation" && (
