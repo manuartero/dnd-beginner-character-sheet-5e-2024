@@ -7,21 +7,21 @@ import {
   getSkillLabel,
 } from "src/data/backgrounds";
 import type { AbilityName } from "src/data/types";
-import styles from "./wizard-step-origin.module.css";
+import styles from "./step-origin.module.css";
 
 function abilityShortLabel(key: AbilityName): string {
   return ABILITY_LIST.find((a) => a.key === key)?.short ?? key;
 }
 
-type WizardStepOriginProps = {
+type StepOriginProps = {
   background: Background | null;
   onBackgroundChange: (background: Background) => void;
 };
 
-export function WizardStepOrigin({
+export function StepOrigin({
   background,
   onBackgroundChange,
-}: WizardStepOriginProps) {
+}: StepOriginProps) {
   const selected = BACKGROUND_LIST.find((b) => b.key === background);
 
   return (

@@ -1,18 +1,18 @@
-import styles from "../creation-wizard/creation-wizard.module.css";
+import styles from "../character-creation/character-creation.module.css";
 
-type WizardActionsProps = {
+type CreationActionsProps = {
   onBack?: () => void;
   onNext: () => void;
   nextLabel?: string;
   nextDisabled?: boolean;
 };
 
-export function WizardActions({
+export function CreationActions({
   onBack,
   onNext,
   nextLabel = "Next",
   nextDisabled,
-}: WizardActionsProps) {
+}: CreationActionsProps) {
   return (
     <div className={styles.actions}>
       {onBack && (
