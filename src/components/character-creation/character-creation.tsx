@@ -172,6 +172,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       {step === 4 && (
         <>
           <StepAbilities
+            characterClass={draft.characterClass}
             scores={draft.abilityScores}
             hpMax={draft.hpMax}
             onScoresChange={(abilityScores) =>

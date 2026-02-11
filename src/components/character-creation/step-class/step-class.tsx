@@ -66,10 +66,6 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
               </dd>
             </div>
             <div className={styles.detailsRow}>
-              <dt className={styles.detailsLabel}>Primary Ability</dt>
-              <dd className={styles.detailsValue}>{details.primaryAbility}</dd>
-            </div>
-            <div className={styles.detailsRow}>
               <dt className={styles.detailsLabel}>Saves</dt>
               <dd className={styles.detailsValue}>{details.saves}</dd>
             </div>

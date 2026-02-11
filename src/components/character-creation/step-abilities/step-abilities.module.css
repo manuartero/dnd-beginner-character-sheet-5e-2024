@@ -33,6 +33,11 @@
   padding-top: var(--space-md);
 }
 
+.abilityCardPrimary {
+  border-color: var(--color-accent);
+  box-shadow: 3px 3px 0 var(--color-accent);
+}
+
 .label {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
