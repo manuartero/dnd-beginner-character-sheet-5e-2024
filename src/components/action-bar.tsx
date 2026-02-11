@@ -15,6 +15,12 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
 	reaction: "Reactions",
 };
 
+const TIMING_SYMBOL_CLASS: Record<ActionTiming, string> = {
+	action: styles.timingSymbol_action,
+	"bonus-action": styles.timingSymbol_bonusAction,
+	reaction: styles.timingSymbol_reaction,
+};
+
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
 export function ActionBar({ characterClass }: ActionBarProps) {
@@ -31,7 +37,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
 		timing,
 		label: TIMING_LABELS[timing],
 		actions: availableActions.filter((a) => a.timing === timing),
-	})).filter((group) => group.actions.length > 0);
+	}));
 
 	return (
 		<div className="section">
@@ -39,21 +45,28 @@ export function ActionBar({ characterClass }: ActionBarProps) {
 			<div className={styles.groupsContainer}>
 				{grouped.map((group) => (
 					<div key={group.timing}>
-						<h3 className={styles.groupLabel}>{group.label}</h3>
-						<div className={styles.actionsGrid}>
-							{group.actions.map((action) => (
-								<ActionButton
-									key={action.name}
-									action={action}
-									isExpanded={expandedAction === action.name}
-									onToggle={() =>
-										setExpandedAction(
-											expandedAction === action.name ? null : action.name,
-										)
-									}
-								/>
-							))}
-						</div>
+						<h3 className={styles.groupLabel}>
+							{group.label}
+							<span className={TIMING_SYMBOL_CLASS[group.timing]} />
+						</h3>
+						{group.actions.length > 0 ? (
+							<div className={styles.actionsGrid}>
+								{group.actions.map((action) => (
+									<ActionButton
+										key={action.name}
+										action={action}
+										isExpanded={expandedAction === action.name}
+										onToggle={() =>
+											setExpandedAction(
+												expandedAction === action.name ? null : action.name,
+											)
+										}
+									/>
+								))}
+							</div>
+						) : (
+							<div className={styles.emptyState}>Empty</div>
+						)}
 					</div>
 				))}
 			</div>
