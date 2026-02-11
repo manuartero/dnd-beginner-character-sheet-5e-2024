@@ -5,11 +5,14 @@ import {
   computeModifier,
   formatModifier,
 } from "src/data/abilities";
+import { CLASS_DETAILS } from "src/data/class-details";
+import type { CharacterClass } from "src/data/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
 import { isValidHp, isValidScore } from "./validation";
 
 type StepAbilitiesProps = {
+  characterClass: CharacterClass | null;
   scores: AbilityScores;
   hpMax: number;
   onScoresChange: (scores: AbilityScores) => void;
@@ -22,6 +25,7 @@ type StepAbilitiesProps = {
 };
 
 export function StepAbilities({
+  characterClass,
   scores,
   hpMax,
   onScoresChange,
@@ -30,6 +34,9 @@ export function StepAbilities({
   abilityBonuses,
   onAbilityBonusesChange,
 }: StepAbilitiesProps) {
+  const primaryAbilities = characterClass
+    ? CLASS_DETAILS[characterClass].primaryAbilities
+    : [];
   const [rawScores, setRawScores] = useState<Record<AbilityName, string>>(
     () => {
       const entries = Object.entries(scores) as [AbilityName, number][];
@@ -74,8 +81,12 @@ export function StepAbilities({
             const displayMod = formatModifier(
               computeModifier(baseScore + bonus),
             );
+            const isPrimary = primaryAbilities.includes(key);
             return (
-              <div key={key} className={styles.abilityCard}>
+              <div
+                key={key}
+                className={`${styles.abilityCard} ${isPrimary ? styles.abilityCardPrimary : ""}`}
+              >
                 <span className={styles.modifier}>{displayMod}</span>
                 {bonus > 0 && (
                   <span className={styles.bonusBadge}>+{bonus}</span>
