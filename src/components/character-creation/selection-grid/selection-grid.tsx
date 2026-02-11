@@ -6,6 +6,7 @@ type SelectionGridProps = {
   onSelect: (key: string) => void;
   columns: number;
   getIcon: (key: string) => string;
+  iconSize?: number;
 };
 
 export function SelectionGrid({
@@ -14,6 +15,7 @@ export function SelectionGrid({
   onSelect,
   columns,
   getIcon,
+  iconSize,
 }: SelectionGridProps) {
   return (
     <div
@@ -30,7 +32,12 @@ export function SelectionGrid({
           className={`${cardStyles.card} ${selectedKey === key ? cardStyles.cardSelected : ""}`}
           onClick={() => onSelect(key)}
         >
-          <img src={getIcon(key)} alt={label} className={cardStyles.cardIcon} />
+          <img
+            src={getIcon(key)}
+            alt={label}
+            className={cardStyles.cardIcon}
+            style={iconSize ? { width: iconSize, height: iconSize } : undefined}
+          />
           <span className={cardStyles.cardLabel}>{label}</span>
         </button>
       ))}
