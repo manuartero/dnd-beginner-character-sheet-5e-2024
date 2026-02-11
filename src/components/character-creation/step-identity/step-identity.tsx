@@ -1,8 +1,8 @@
-import { SelectionGrid } from "src/components/selection-grid";
 import { getClassIcon } from "src/data/class-icons";
 import { CLASS_LIST } from "src/data/classes";
 import { RACE_LIST } from "src/data/races";
 import type { CharacterClass, CharacterRace } from "src/data/types";
+import { SelectionGrid } from "../selection-grid";
 import styles from "./step-identity.module.css";
 
 type StepIdentityProps = {

@@ -1,12 +1,12 @@
-import { SelectionGrid } from "src/components/selection-grid";
 import { ABILITY_LIST } from "src/data/abilities";
 import type { Background } from "src/data/backgrounds";
 import {
-  BACKGROUND_LIST,
-  getOriginFeatDescription,
-  getSkillLabel,
+    BACKGROUND_LIST,
+    getOriginFeatDescription,
+    getSkillLabel,
 } from "src/data/backgrounds";
 import type { AbilityName } from "src/data/types";
+import { SelectionGrid } from "../selection-grid";
 import styles from "./step-origin.module.css";
 
 function abilityShortLabel(key: AbilityName): string {
