@@ -1,12 +1,12 @@
 import styles from "./hp-tracker.module.css";
 
-interface HpTrackerProps {
+type HpTrackerProps = {
   current: number;
   max: number;
   editable: boolean;
   onCurrentChange: (value: number) => void;
   onMaxChange: (value: number) => void;
-}
+};
 
 export function HpTracker({
   current,

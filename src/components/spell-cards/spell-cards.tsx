@@ -4,9 +4,9 @@ import type { Spell } from "src/data/types";
 import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./spell-cards.module.css";
 
-interface SpellCardsProps {
+type SpellCardsProps = {
   spells: Spell[];
-}
+};
 
 const DAMAGE_COLORS: Record<string, string> = {
   fire: "var(--color-fire)",
@@ -67,11 +67,11 @@ export function SpellCards({ spells }: SpellCardsProps) {
   );
 }
 
-interface SpellCardProps {
+type SpellCardProps = {
   spell: Spell;
   isExpanded: boolean;
   onToggle: () => void;
-}
+};
 
 function SpellCard({ spell, isExpanded, onToggle }: SpellCardProps) {
   const damageColor = spell.damage

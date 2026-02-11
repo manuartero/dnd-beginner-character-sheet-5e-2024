@@ -34,14 +34,14 @@ export type OriginFeat =
   | "tavern-brawler"
   | "tough";
 
-interface BackgroundEntry {
+type BackgroundEntry = {
   key: Background;
   label: string;
   originFeat: OriginFeat;
   originFeatLabel: string;
   abilityOptions: [AbilityName, AbilityName, AbilityName];
   skillProficiencies: [SkillName, SkillName];
-}
+};
 
 const ORIGIN_FEAT_DESCRIPTIONS: Record<OriginFeat, string> = {
   alert:

@@ -4,12 +4,12 @@ import { RACE_LIST } from "src/data/races";
 import type { CharacterClass, CharacterRace } from "src/data/types";
 import styles from "./character-header.module.css";
 
-interface CharacterHeaderProps {
+type CharacterHeaderProps = {
   name: string;
   race: CharacterRace;
   characterClass: CharacterClass;
   level: number;
-}
+};
 
 function getRaceLabel(race: CharacterRace): string {
   return RACE_LIST.find((r) => r.key === race)?.label ?? race;

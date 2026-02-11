@@ -4,10 +4,10 @@ import { getIconPath } from "src/data/icons";
 import type { Equipment } from "src/data/types";
 import styles from "./equipment-list.module.css";
 
-interface EquipmentListProps {
+type EquipmentListProps = {
   equipment: Equipment[];
   onEquipmentChange: (equipment: Equipment[]) => void;
-}
+};
 
 export function EquipmentList({
   equipment,
@@ -80,10 +80,10 @@ export function EquipmentList({
   );
 }
 
-interface AddEquipmentFormProps {
+type AddEquipmentFormProps = {
   onAdd: (item: Equipment) => void;
   onCancel: () => void;
-}
+};
 
 function AddEquipmentForm({ onAdd, onCancel }: AddEquipmentFormProps) {
   const [name, setName] = useState("");

@@ -5,9 +5,9 @@ import type { Action, ActionTiming, CharacterClass } from "src/data/types";
 import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./action-bar.module.css";
 
-interface ActionBarProps {
+type ActionBarProps = {
   characterClass: CharacterClass;
-}
+};
 
 const TIMING_LABELS: Record<ActionTiming, string> = {
   action: "Actions",
@@ -71,11 +71,11 @@ export function ActionBar({ characterClass }: ActionBarProps) {
   );
 }
 
-interface ActionButtonProps {
+type ActionButtonProps = {
   action: Action;
   isExpanded: boolean;
   onToggle: () => void;
-}
+};
 
 function ActionButton({ action, isExpanded, onToggle }: ActionButtonProps) {
   return (

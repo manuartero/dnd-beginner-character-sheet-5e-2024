@@ -1,3 +1,4 @@
+import { SelectionGrid } from "src/components/selection-grid";
 import { ABILITY_LIST } from "src/data/abilities";
 import type { Background } from "src/data/backgrounds";
 import {
@@ -6,17 +7,16 @@ import {
   getSkillLabel,
 } from "src/data/backgrounds";
 import type { AbilityName } from "src/data/types";
-import { SelectionGrid } from "src/components/selection-grid";
 import styles from "./wizard-step-origin.module.css";
 
 function abilityShortLabel(key: AbilityName): string {
   return ABILITY_LIST.find((a) => a.key === key)?.short ?? key;
 }
 
-interface WizardStepOriginProps {
+type WizardStepOriginProps = {
   background: Background | null;
   onBackgroundChange: (background: Background) => void;
-}
+};
 
 export function WizardStepOrigin({
   background,
