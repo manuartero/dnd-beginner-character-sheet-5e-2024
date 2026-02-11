@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "../data/actions";
+import type { IconName } from "../data/icons";
+import { getIconPath } from "../data/icons";
 import type { Action, ActionTiming, CharacterClass } from "../data/types";
 import styles from "./action-bar.module.css";
 
@@ -69,7 +71,13 @@ function ActionButton({ action, isExpanded, onToggle }: ActionButtonProps) {
 	return (
 		<div className={styles.actionWrapper}>
 			<button type="button" onClick={onToggle} className={styles.actionButton}>
-				<img src={action.icon} alt={action.name} className="icon" />
+				{action.icon && (
+					<img
+						src={getIconPath(action.icon as IconName)}
+						alt={action.name}
+						className="icon icon--lg"
+					/>
+				)}
 				<span className={styles.actionLabel}>{action.name}</span>
 			</button>
 			{isExpanded && (

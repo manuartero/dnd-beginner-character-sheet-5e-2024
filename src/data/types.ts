@@ -50,7 +50,7 @@ export type ActionTiming = "action" | "bonus-action" | "reaction";
 export interface Action {
 	name: string;
 	timing: ActionTiming;
-	icon: string;
+	icon?: string;
 	description: string;
 	classRestriction?: CharacterClass;
 }
@@ -68,7 +68,7 @@ export interface Spell {
 		dice: string;
 		type: DamageType;
 	};
-	icon: string;
+	icon?: string;
 }
 
 export interface Equipment {
@@ -80,7 +80,7 @@ export interface Equipment {
 		type: DamageType;
 	};
 	ac?: number;
-	icon: string;
+	icon?: string;
 	properties?: string[];
 }
 

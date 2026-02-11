@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" data-name="Warstwa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.77 48.87">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Icon-Set-V1">
+    <g id="icon-set-v1-pixarts-store_22">
+      <polygon class="cls-1" points="4.68 48.87 8.92 43.3 4.85 41.59 4.68 48.87"/>
+      <path class="cls-1" d="M8.08,48.21c2.98-1.64,4.92-2.89,7.14-4.49-4.45-.84-5.7,1.49-7.14,4.49Z"/>
+      <g>
+        <polygon class="cls-1" points="20.41 19.53 10.43 15.12 5.1 39.63 9.96 41.46 20.41 19.53"/>
+        <path class="cls-1" d="M12.14,41.58c1.96.12,3.85-.04,5.85-.49l11.58-22.83-7.19,1.81-10.24,21.51Z"/>
+        <polygon class="cls-1" points="0 34.99 3.27 38.18 8.66 13.78 5.45 9.35 0 34.99"/>
+        <polygon class="cls-1" points="20.88 17.6 22.24 .5 11.37 13.33 20.88 17.6"/>
+        <polygon class="cls-1" points="24.29 1.17 22.94 17.85 29.77 15.94 24.29 1.17"/>
+        <polygon class="cls-1" points="9.85 11.9 19.81 0 6.59 7.28 9.85 11.9"/>
+        <path class="cls-1" d="M.48,39.03l2.13,7.99.26-4.81c.08-1.57-.56-3.41-2.39-3.18Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import type { IconName } from "../data/icons";
+import { getIconPath } from "../data/icons";
 import type { Spell } from "../data/types";
 import styles from "./spell-cards.module.css";
 
@@ -86,7 +88,13 @@ function SpellCard({ spell, isExpanded, onToggle }: SpellCardProps) {
 	return (
 		<button type="button" onClick={onToggle} className={styles.card}>
 			<div className={styles.cardHeader}>
-				<img src={spell.icon} alt={spell.name} className="icon" />
+				{spell.icon && (
+					<img
+						src={getIconPath(spell.icon as IconName)}
+						alt={spell.name}
+						className="icon"
+					/>
+				)}
 				<div className={styles.cardInfo}>
 					<span className={styles.spellName}>{spell.name}</span>
 					<span className={styles.spellMeta}>{spell.range}</span>

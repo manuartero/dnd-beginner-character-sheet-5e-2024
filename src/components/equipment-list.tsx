@@ -1,4 +1,6 @@
 import { useState } from "react";
+import type { IconName } from "../data/icons";
+import { getIconPath } from "../data/icons";
 import type { Equipment } from "../data/types";
 import styles from "./equipment-list.module.css";
 
@@ -29,7 +31,13 @@ export function EquipmentList({
 			<div className={styles.list}>
 				{equipment.map((item, index) => (
 					<div key={`${item.name}-${index}`} className={styles.itemRow}>
-						<img src={item.icon} alt={item.name} className="icon icon--sm" />
+						{item.icon && (
+							<img
+								src={getIconPath(item.icon as IconName)}
+								alt={item.name}
+								className="icon icon--sm"
+							/>
+						)}
 						<div className={styles.itemInfo}>
 							<span className={styles.itemName}>{item.name}</span>
 							<span className={styles.itemMeta}>
@@ -86,7 +94,6 @@ function AddEquipmentForm({ onAdd, onCancel }: AddEquipmentFormProps) {
 		onAdd({
 			name: name.trim(),
 			type: "gear",
-			icon: "/dnd-example-assets/BLACK/1x/icon-v9-equipment-pixarts-store_131.png",
 		});
 	}
 
