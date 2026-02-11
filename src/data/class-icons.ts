@@ -1,18 +1,18 @@
 import type { CharacterClass } from "src/data/classes";
 
 const CLASS_ICONS: Record<CharacterClass, string> = {
-  barbarian: "/class-icons/barbarian.png",
-  bard: "/class-icons/bard.png",
-  cleric: "/class-icons/cleric.png",
-  druid: "/class-icons/druid.png",
-  fighter: "/class-icons/fighter.png",
-  monk: "/class-icons/monk.png",
-  paladin: "/class-icons/paladin.png",
-  ranger: "/class-icons/ranger.png",
-  rogue: "/class-icons/rogue.png",
-  sorcerer: "/class-icons/sorcerer.png",
-  warlock: "/class-icons/warlock.png",
-  wizard: "/class-icons/wizard.png",
+  barbarian: "/class-icons/barbarian.jpeg",
+  bard: "/class-icons/bard.jpeg",
+  cleric: "/class-icons/cleric.jpeg",
+  druid: "/class-icons/druid.jpeg",
+  fighter: "/class-icons/fighter.jpeg",
+  monk: "/class-icons/monk.jpeg",
+  paladin: "/class-icons/paladin.jpeg",
+  ranger: "/class-icons/ranger.jpeg",
+  rogue: "/class-icons/rogue.jpeg",
+  sorcerer: "/class-icons/sorcerer.jpeg",
+  warlock: "/class-icons/warlock.jpeg",
+  wizard: "/class-icons/wizard.jpeg",
 };
 
 export function getClassIcon(characterClass: CharacterClass): string {
