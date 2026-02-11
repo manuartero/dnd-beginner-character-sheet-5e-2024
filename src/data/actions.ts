@@ -1,4 +1,14 @@
-import type { Action } from "src/data/types";
+import type { CharacterClass } from "./classes";
+
+export type ActionTiming = "action" | "bonus-action" | "reaction";
+
+export type Action = {
+  name: string;
+  timing: ActionTiming;
+  icon?: string;
+  description: string;
+  classRestriction?: CharacterClass;
+};
 
 export const UNIVERSAL_ACTIONS: Action[] = [
   {

@@ -1,21 +1,21 @@
 import { useState } from "react";
+import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import type { Background } from "src/data/backgrounds";
 import { BACKGROUND_LIST } from "src/data/backgrounds";
 import { saveCharacter } from "src/data/character-storage";
 import type {
-    AbilityName,
-    AbilityScores,
-    Character,
-    CharacterClass,
-    CharacterRace,
+  AbilityName,
+  AbilityScores,
+  Character,
+  CharacterClass,
+  CharacterRace,
 } from "src/data/types";
-import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./character-creation.module.css";
 import { CreationActions } from "./creation-actions";
 import {
-    isValidHp,
-    isValidScore,
-    StepAbilities,
+  isValidHp,
+  isValidScore,
+  StepAbilities,
 } from "./step-abilities";
 import { StepIdentity } from "./step-identity";
 import { StepOrigin } from "./step-origin";

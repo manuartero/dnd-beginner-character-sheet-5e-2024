@@ -1,4 +1,5 @@
-import type { AbilityName } from "src/data/types";
+export type AbilityName = "str" | "dex" | "con" | "int" | "wis" | "cha";
+export type AbilityScores = Record<AbilityName, number>;
 
 export const ABILITY_LIST: {
   key: AbilityName;

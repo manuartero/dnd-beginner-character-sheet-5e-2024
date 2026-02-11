@@ -1,4 +1,16 @@
-import type { CharacterClass } from "src/data/types";
+export type CharacterClass =
+  | "barbarian"
+  | "bard"
+  | "cleric"
+  | "druid"
+  | "fighter"
+  | "monk"
+  | "paladin"
+  | "ranger"
+  | "rogue"
+  | "sorcerer"
+  | "warlock"
+  | "wizard";
 
 export const CLASS_LIST: { key: CharacterClass; label: string }[] = [
   { key: "barbarian", label: "Barbarian" },

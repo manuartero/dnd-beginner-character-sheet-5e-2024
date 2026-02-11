@@ -46,6 +46,7 @@ pnpm test:watch   # run tests in watch mode
 - Types must be shared between CMS schemas and webapp code; no copy-pasting identical type definitions.
 - Generated types from Strapi schemas must be used in webapp.
 - **Use absolute imports** from `src/` for all cross-folder imports (e.g., `import { X } from "src/data/types"`). Use relative imports only for same-folder files (CSS modules, index re-exports).
+- **No `utils/` folders.** Do not create catch-all utility directories. Instead, create a standalone file named after the function it exports (e.g., `src/data/get-foo.ts` instead of `src/utils/get-foo.ts`). Place it in the most relevant existing folder, close to its consumers.
 
 ### Style: Functions over Classes
 

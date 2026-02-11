@@ -1,35 +1,9 @@
+import type { Background } from "src/data/backgrounds";
+import type { CharacterClass } from "./classes";
+import type { CharacterRace } from "./races";
+import type { AbilityScores } from "./abilities";
 export type { Background } from "src/data/backgrounds";
 export type { SkillName } from "src/data/skills";
-
-export type CharacterClass =
-  | "barbarian"
-  | "bard"
-  | "cleric"
-  | "druid"
-  | "fighter"
-  | "monk"
-  | "paladin"
-  | "ranger"
-  | "rogue"
-  | "sorcerer"
-  | "warlock"
-  | "wizard";
-
-export type CharacterRace =
-  | "aasimar"
-  | "dragonborn"
-  | "dwarf"
-  | "elf"
-  | "gnome"
-  | "goliath"
-  | "halfling"
-  | "human"
-  | "orc"
-  | "tiefling";
-
-export type AbilityName = "str" | "dex" | "con" | "int" | "wis" | "cha";
-
-export type AbilityScores = Record<AbilityName, number>;
 
 export type DamageType =
   | "slashing"
@@ -45,16 +19,6 @@ export type DamageType =
   | "psychic"
   | "thunder"
   | "acid";
-
-export type ActionTiming = "action" | "bonus-action" | "reaction";
-
-export type Action = {
-  name: string;
-  timing: ActionTiming;
-  icon?: string;
-  description: string;
-  classRestriction?: CharacterClass;
-};
 
 export type Spell = {
   name: string;
