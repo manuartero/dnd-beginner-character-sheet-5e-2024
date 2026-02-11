@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { CreationActions } from "src/components/creation-actions";
-import {
-  isValidHp,
-  isValidScore,
-  StepAbilities,
-} from "src/components/step-abilities";
-import { StepIdentity } from "src/components/step-identity";
-import { StepOrigin } from "src/components/step-origin";
 import type { Background } from "src/data/backgrounds";
 import { BACKGROUND_LIST } from "src/data/backgrounds";
 import { saveCharacter } from "src/data/character-storage";
 import type {
-  AbilityName,
-  AbilityScores,
-  Character,
-  CharacterClass,
-  CharacterRace,
+    AbilityName,
+    AbilityScores,
+    Character,
+    CharacterClass,
+    CharacterRace,
 } from "src/data/types";
 import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./character-creation.module.css";
+import { CreationActions } from "./creation-actions";
+import {
+    isValidHp,
+    isValidScore,
+    StepAbilities,
+} from "./step-abilities";
+import { StepIdentity } from "./step-identity";
+import { StepOrigin } from "./step-origin";
 
 type CharacterCreationProps = {
   onSave: (character: Character) => void;
