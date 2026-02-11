@@ -50,6 +50,7 @@ export function CharacterSheet({
 				scores={character.abilityScores}
 				editable={false}
 				onScoreChange={() => {}}
+				proficiencyBonus={character.proficiencyBonus}
 			/>
 
 			<HpTracker
