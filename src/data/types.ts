@@ -1,5 +1,5 @@
-export type { Background } from "./backgrounds";
-export type { SkillName } from "./skills";
+export type { Background } from "src/data/backgrounds";
+export type { SkillName } from "src/data/skills";
 
 export type CharacterClass =
 	| "barbarian"

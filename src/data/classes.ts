@@ -1,4 +1,4 @@
-import type { CharacterClass } from "./types";
+import type { CharacterClass } from "src/data/types";
 
 export const CLASS_LIST: { key: CharacterClass; label: string }[] = [
 	{ key: "barbarian", label: "Barbarian" },

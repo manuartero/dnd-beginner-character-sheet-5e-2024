@@ -3,8 +3,8 @@ import {
 	deleteCharacter,
 	loadCharacters,
 	saveCharacter,
-} from "../data/character-storage";
-import type { Character } from "../data/types";
+} from "src/data/character-storage";
+import type { Character } from "src/data/types";
 
 function makeCharacter(overrides: Partial<Character> = {}): Character {
 	return {

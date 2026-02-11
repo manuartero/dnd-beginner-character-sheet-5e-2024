@@ -1,12 +1,12 @@
-import { ABILITY_LIST } from "../../data/abilities";
-import type { Background } from "../../data/backgrounds";
+import { ABILITY_LIST } from "src/data/abilities";
+import type { Background } from "src/data/backgrounds";
 import {
 	BACKGROUND_LIST,
 	getOriginFeatDescription,
 	getSkillLabel,
-} from "../../data/backgrounds";
-import type { AbilityName } from "../../data/types";
-import { SelectionGrid } from "../selection-grid";
+} from "src/data/backgrounds";
+import type { AbilityName } from "src/data/types";
+import { SelectionGrid } from "src/components/selection-grid";
 import styles from "./wizard-step-origin.module.css";
 
 function abilityShortLabel(key: AbilityName): string {

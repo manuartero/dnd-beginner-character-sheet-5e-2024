@@ -1,6 +1,6 @@
-import type { SkillName } from "./skills";
-import { SKILLS } from "./skills";
-import type { AbilityName } from "./types";
+import type { SkillName } from "src/data/skills";
+import { SKILLS } from "src/data/skills";
+import type { AbilityName } from "src/data/types";
 
 export type Background =
 	| "acolyte"

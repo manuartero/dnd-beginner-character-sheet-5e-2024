@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { IconName } from "../../data/icons";
-import { getIconPath } from "../../data/icons";
-import type { Equipment } from "../../data/types";
+import type { IconName } from "src/data/icons";
+import { getIconPath } from "src/data/icons";
+import type { Equipment } from "src/data/types";
 import styles from "./equipment-list.module.css";
 
 interface EquipmentListProps {

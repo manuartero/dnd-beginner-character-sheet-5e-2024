@@ -44,6 +44,7 @@ pnpm test:watch   # run tests in watch mode
 - Apply DRY, but prioritize clarity.
 - Types must be shared between CMS schemas and webapp code; no copy-pasting identical type definitions.
 - Generated types from Strapi schemas must be used in webapp.
+- **Use absolute imports** from `src/` for all cross-folder imports (e.g., `import { X } from "src/data/types"`). Use relative imports only for same-folder files (CSS modules, index re-exports).
 
 ### Style: Functions over Classes
 
