@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	ABILITY_LIST,
 	computeModifier,
@@ -13,6 +12,7 @@ import type {
 	AbilityName,
 	AbilityScores as AbilityScoresType,
 } from "../data/types";
+import { useExpandable } from "../hooks/use-expandable";
 import styles from "./ability-scores.module.css";
 
 function modifierColorClass(mod: number): string {
@@ -35,15 +35,14 @@ export function AbilityScores({
 	onScoreChange,
 	proficiencyBonus = 2,
 }: AbilityScoresProps) {
-	const [flippedAbility, setFlippedAbility] = useState<AbilityName | null>(
-		null,
-	);
+	const { expandedKey: flippedAbility, toggle: toggleFlip } =
+		useExpandable<AbilityName>();
 
 	function handleCardClick(key: AbilityName) {
 		if (editable) return;
 		const skills = skillsForAbility(key);
 		if (skills.length === 0) return;
-		setFlippedAbility((prev) => (prev === key ? null : key));
+		toggleFlip(key);
 	}
 
 	return (

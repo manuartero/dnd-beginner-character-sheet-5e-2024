@@ -48,7 +48,7 @@ export type DamageType =
 
 export type ActionTiming = "action" | "bonus-action" | "reaction";
 
-export interface Action {
+export type Action = {
 	name: string;
 	timing: ActionTiming;
 	icon?: string;
@@ -56,7 +56,7 @@ export interface Action {
 	classRestriction?: CharacterClass;
 }
 
-export interface Spell {
+export type Spell = {
 	name: string;
 	level: number; // 0 = cantrip
 	school: string;
@@ -72,7 +72,7 @@ export interface Spell {
 	icon?: string;
 }
 
-export interface Equipment {
+export type Equipment = {
 	name: string;
 	type: "weapon" | "armor" | "shield" | "gear";
 	attackBonus?: number;
@@ -85,7 +85,7 @@ export interface Equipment {
 	properties?: string[];
 }
 
-export interface Character {
+export type Character = {
 	id: string;
 	name: string;
 	race: CharacterRace;

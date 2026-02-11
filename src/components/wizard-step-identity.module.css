@@ -6,15 +6,3 @@
 	padding: var(--space-sm) var(--space-md);
 	border: 2px solid var(--color-border);
 }
-
-.classGrid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--space-sm);
-}
-
-.raceGrid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: var(--space-sm);
-}

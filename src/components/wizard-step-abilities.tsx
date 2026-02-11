@@ -5,6 +5,7 @@ import {
 	formatModifier,
 } from "../data/abilities";
 import type { AbilityName, AbilityScores } from "../data/types";
+import { totalBonuses } from "../utils/total-bonuses";
 import styles from "./wizard-step-abilities.module.css";
 
 interface WizardStepAbilitiesProps {
@@ -29,10 +30,6 @@ function isValidHp(value: string): boolean {
 	if (value === "") return false;
 	const num = Number.parseInt(value, 10);
 	return !Number.isNaN(num) && num >= 1;
-}
-
-function totalBonuses(bonuses: Partial<Record<AbilityName, number>>): number {
-	return Object.values(bonuses).reduce<number>((sum, v) => sum + (v ?? 0), 0);
 }
 
 export function WizardStepAbilities({
