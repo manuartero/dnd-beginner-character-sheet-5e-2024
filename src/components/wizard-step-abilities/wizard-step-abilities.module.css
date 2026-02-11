@@ -1,134 +1,134 @@
 .grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--space-sm);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
 }
 
 .abilityCard {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--space-xs);
-	background: var(--color-bg-elevated);
-	border: 2px solid var(--color-border);
-	padding: var(--space-sm);
-	padding-top: var(--space-md);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  padding: var(--space-sm);
+  padding-top: var(--space-md);
 }
 
 .label {
-	font-size: var(--font-size-xs);
-	color: var(--color-text-muted);
-	font-weight: 600;
-	letter-spacing: 0.05em;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .modifier {
-	position: absolute;
-	top: 4px;
-	right: 6px;
-	font-size: var(--font-size-xs);
-	font-weight: 600;
-	color: var(--color-accent);
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .bonusBadge {
-	position: absolute;
-	top: 4px;
-	left: 6px;
-	font-size: var(--font-size-xs);
-	font-weight: 600;
-	color: var(--color-cleric);
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-cleric);
 }
 
 .scoreInput {
-	width: 56px;
-	text-align: center;
-	font-size: 1.75rem;
-	font-weight: 700;
-	color: var(--color-text);
-	background: transparent;
-	border: none;
-	border-bottom: 2px solid var(--color-border);
+  width: 56px;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .scoreInputError {
-	border-bottom-color: var(--color-fighter);
-	color: var(--color-fighter);
+  border-bottom-color: var(--color-fighter);
+  color: var(--color-fighter);
 }
 
 .bonusHint {
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	margin-bottom: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
 }
 
 .bonusGrid {
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	gap: var(--space-xs);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-xs);
 }
 
 .bonusCell {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 2px;
-	padding: var(--space-sm);
-	background: var(--color-bg-surface);
-	border: 2px solid var(--color-border);
-	opacity: 0.4;
-	cursor: not-allowed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-sm);
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-border);
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .bonusCellEligible {
-	opacity: 1;
-	cursor: pointer;
-	background: var(--color-bg-elevated);
-	border-color: var(--color-accent);
+  opacity: 1;
+  cursor: pointer;
+  background: var(--color-bg-elevated);
+  border-color: var(--color-accent);
 }
 
 .bonusCellEligible:hover {
-	background: var(--color-bg-surface);
+  background: var(--color-bg-surface);
 }
 
 .bonusCellActive {
-	background: var(--color-accent);
-	color: var(--color-bg);
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 
 .bonusAbility {
-	font-size: var(--font-size-xs);
-	font-weight: 600;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
 }
 
 .bonusCount {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
 }
 
 .hpRow {
-	display: flex;
-	align-items: center;
-	gap: var(--space-sm);
-	margin-top: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
 }
 
 .hpLabel {
-	font-size: var(--font-size-sm);
-	font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
 .hpInput {
-	width: 50px;
-	text-align: center;
-	font-size: var(--font-size-md);
-	background: var(--color-bg-surface);
-	padding: var(--space-xs) var(--space-sm);
-	border: 2px solid var(--color-border);
+  width: 50px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  background: var(--color-bg-surface);
+  padding: var(--space-xs) var(--space-sm);
+  border: 2px solid var(--color-border);
 }
 
 .hpInputError {
-	border-color: var(--color-fighter);
-	color: var(--color-fighter);
+  border-color: var(--color-fighter);
+  color: var(--color-fighter);
 }

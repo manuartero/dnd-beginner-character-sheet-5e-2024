@@ -1,113 +1,113 @@
 .grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: var(--space-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
 }
 
 .abilityCard {
-	display: grid;
-	grid-template-rows: auto auto 1fr;
-	align-items: center;
-	justify-items: center;
-	background: var(--color-bg-elevated);
-	border: 2px solid var(--color-border);
-	box-shadow: 3px 3px 0 var(--color-border);
-	overflow: hidden;
-	min-height: 120px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: center;
+  justify-items: center;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  box-shadow: 3px 3px 0 var(--color-border);
+  overflow: hidden;
+  min-height: 120px;
 }
 
 button.abilityCard {
-	font: inherit;
-	color: inherit;
-	padding: 0;
-	text-align: inherit;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  text-align: inherit;
 }
 
 .abilityCardClickable {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .abilityCardActive {
-	border-color: var(--color-accent);
-	box-shadow: 3px 3px 0 var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 3px 3px 0 var(--color-accent);
 }
 
 .label {
-	width: 100%;
-	padding: var(--space-xs) 0;
-	font-size: var(--font-size-lg);
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	text-align: center;
-	color: var(--color-bg);
-	background: var(--color-border);
+  width: 100%;
+  padding: var(--space-xs) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--color-bg);
+  background: var(--color-border);
 }
 
 .modifier {
-	align-self: center;
-	font-size: 2.25rem;
-	font-weight: 700;
-	line-height: 1;
+  align-self: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .modifierNegative {
-	color: var(--color-fighter);
+  color: var(--color-fighter);
 }
 
 .modifierNeutral {
-	color: var(--color-text-muted);
+  color: var(--color-text-muted);
 }
 
 .modifierPositive {
-	color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .modifierHigh {
-	color: var(--color-modifier-high);
+  color: var(--color-modifier-high);
 }
 
 .score {
-	padding: var(--space-xs) 0 0;
-	font-size: var(--font-size-md);
-	font-weight: 600;
-	color: var(--color-text-muted);
+  padding: var(--space-xs) 0 0;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-muted);
 }
 
 .scoreInput {
-	justify-self: start;
-	width: 36px;
-	padding: var(--space-xs) 0 0 var(--space-xs);
-	text-align: center;
-	font-size: var(--font-size-md);
-	color: var(--color-text-muted);
-	background: transparent;
-	border-bottom: 2px solid var(--color-border);
+  justify-self: start;
+  width: 36px;
+  padding: var(--space-xs) 0 0 var(--space-xs);
+  text-align: center;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  background: transparent;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .skillList {
-	width: 100%;
-	padding: var(--space-xs) var(--space-sm);
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .skillRow {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 2px 0;
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }
 
 .skillProficient {
-	font-weight: 700;
-	color: var(--color-modifier-high);
+  font-weight: 700;
+  color: var(--color-modifier-high);
 }
 
 .skillName {
-	text-align: left;
+  text-align: left;
 }
 
 .skillModifier {
-	text-align: right;
-	font-weight: 700;
+  text-align: right;
+  font-weight: 700;
 }

@@ -1,114 +1,114 @@
 .container {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
 .grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
 }
 
 .card {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--space-sm);
-	padding: var(--space-md);
-	text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  text-align: center;
 }
 
 .deleteButton {
-	position: absolute;
-	top: var(--space-xs);
-	right: var(--space-xs);
-	width: 24px;
-	height: 24px;
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .confirmContent {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--space-sm);
-	padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
 }
 
 .confirmText {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
 }
 
 .confirmActions {
-	display: flex;
-	gap: var(--space-sm);
+  display: flex;
+  gap: var(--space-sm);
 }
 
 .confirmYes {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
-	color: var(--color-accent);
-	padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .confirmNo {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
-	color: var(--color-text-muted);
-	padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .cardBody {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--space-sm);
-	width: 100%;
-	background: none;
-	border: none;
-	padding: 0;
-	cursor: pointer;
-	text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
 }
 
 .cardIcon {
-	width: 48px;
-	height: 48px;
+  width: 48px;
+  height: 48px;
 }
 
 .cardName {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 100%;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .cardLevel {
-	font-size: var(--font-size-xs);
-	color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .newCard {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: var(--space-md);
-	border: 3px dashed var(--color-border);
-	background: transparent;
-	min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  border: 3px dashed var(--color-border);
+  background: transparent;
+  min-height: 120px;
 }
 
 .newLabel {
-	font-size: var(--font-size-md);
-	font-weight: 600;
-	color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-muted);
 }
