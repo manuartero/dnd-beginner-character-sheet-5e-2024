@@ -1,12 +1,12 @@
-import { saveCharacter } from "../data/character-storage";
-import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "../data/spells";
-import type { Character, Equipment } from "../data/types";
-import { AbilityScores } from "./ability-scores";
-import { ActionBar } from "./action-bar";
-import { CharacterHeader } from "./character-header";
-import { EquipmentList } from "./equipment-list";
-import { HpTracker } from "./hp-tracker";
-import { SpellCards } from "./spell-cards";
+import { saveCharacter } from "../../data/character-storage";
+import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "../../data/spells";
+import type { Character, Equipment } from "../../data/types";
+import { AbilityScores } from "../ability-scores";
+import { ActionBar } from "../action-bar";
+import { CharacterHeader } from "../character-header";
+import { EquipmentList } from "../equipment-list";
+import { HpTracker } from "../hp-tracker";
+import { SpellCards } from "../spell-cards";
 
 interface CharacterSheetProps {
 	character: Character;
