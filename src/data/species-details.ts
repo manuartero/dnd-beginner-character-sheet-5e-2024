@@ -1,0 +1,103 @@
+import type { CharacterRace } from "src/data/races";
+
+export type SpeciesDetails = {
+  size: string;
+  speed: string;
+  traits: string[];
+  description: string;
+};
+
+export const SPECIES_DETAILS: Record<CharacterRace, SpeciesDetails> = {
+  aasimar: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: [
+      "Celestial Resistance",
+      "Darkvision",
+      "Healing Hands",
+      "Light Bearer",
+      "Celestial Revelation",
+    ],
+    description:
+      "Mortals who carry a spark of the Upper Planes within their souls",
+  },
+  dragonborn: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: [
+      "Dragon Ancestry",
+      "Breath Weapon",
+      "Damage Resistance",
+      "Darkvision",
+      "Draconic Flight",
+    ],
+    description:
+      "Descendants hatched from the eggs of chromatic and metallic dragons",
+  },
+  dwarf: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: [
+      "Darkvision",
+      "Dwarven Resilience",
+      "Dwarven Toughness",
+      "Stonecunning",
+    ],
+    description:
+      "Raised from the earth in the elder days by a deity of the forge",
+  },
+  elf: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: [
+      "Darkvision",
+      "Elven Lineage",
+      "Fey Ancestry",
+      "Keen Senses",
+      "Trance",
+    ],
+    description:
+      "Magical people of otherworldly grace with curiosity for other planes",
+  },
+  gnome: {
+    size: "Small",
+    speed: "30 ft.",
+    traits: ["Darkvision", "Gnomish Cunning", "Gnomish Lineage"],
+    description:
+      "Magical folk created by gods of invention, illusions, and life underground",
+  },
+  goliath: {
+    size: "Medium",
+    speed: "35 ft.",
+    traits: ["Giant Ancestry", "Large Form", "Powerful Build"],
+    description:
+      "Distant descendants of giants who seek heights above their ancestors",
+  },
+  halfling: {
+    size: "Small",
+    speed: "30 ft.",
+    traits: ["Brave", "Halfling Nimbleness", "Luck", "Naturally Stealthy"],
+    description: "Brave and adventurous spirits led on journeys of discovery",
+  },
+  human: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: ["Resourceful", "Skillful", "Versatile"],
+    description:
+      "Found throughout the multiverse, as varied as they are numerous",
+  },
+  orc: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: ["Adrenaline Rush", "Darkvision", "Relentless Endurance"],
+    description:
+      "Equipped with gifts to wander great plains, vast caverns, and churning seas",
+  },
+  tiefling: {
+    size: "Medium",
+    speed: "30 ft.",
+    traits: ["Darkvision", "Fiendish Legacy", "Otherworldly Presence"],
+    description:
+      "Born in the Lower Planes or with fiendish ancestors who originated there",
+  },
+};

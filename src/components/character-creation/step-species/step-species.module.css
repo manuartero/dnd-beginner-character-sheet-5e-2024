@@ -14,3 +14,90 @@
   border-bottom: 2px solid var(--color-border);
   padding-bottom: var(--space-xs);
 }
+
+.detailsSection {
+  background: var(--color-bg-surface);
+  border: 3px solid var(--color-border);
+  padding: var(--space-md);
+  box-shadow: 4px 4px 0 var(--color-border);
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.detailsIcon {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.detailsName {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.detailsDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-top: 2px solid var(--color-border);
+  padding-top: var(--space-sm);
+}
+
+.detailsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.detailsLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailsValue {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.traitsSection {
+  border-top: 2px solid var(--color-border);
+  padding-top: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.traitsTitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.traitsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.traitBadge {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+}
