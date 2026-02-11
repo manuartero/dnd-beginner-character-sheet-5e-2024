@@ -1,24 +1,24 @@
 import { useState } from "react";
-import type { Background } from "../data/backgrounds";
-import { BACKGROUND_LIST } from "../data/backgrounds";
-import { saveCharacter } from "../data/character-storage";
+import type { Background } from "../../data/backgrounds";
+import { BACKGROUND_LIST } from "../../data/backgrounds";
+import { saveCharacter } from "../../data/character-storage";
 import type {
 	AbilityName,
 	AbilityScores,
 	Character,
 	CharacterClass,
 	CharacterRace,
-} from "../data/types";
-import { totalBonuses } from "../utils/total-bonuses";
+} from "../../data/types";
+import { totalBonuses } from "../../utils/total-bonuses";
 import styles from "./creation-wizard.module.css";
-import { WizardActions } from "./wizard-actions";
+import { WizardActions } from "../wizard-actions";
 import {
 	isValidHp,
 	isValidScore,
 	WizardStepAbilities,
-} from "./wizard-step-abilities";
-import { WizardStepIdentity } from "./wizard-step-identity";
-import { WizardStepOrigin } from "./wizard-step-origin";
+} from "../wizard-step-abilities";
+import { WizardStepIdentity } from "../wizard-step-identity";
+import { WizardStepOrigin } from "../wizard-step-origin";
 
 interface CreationWizardProps {
 	onSave: (character: Character) => void;

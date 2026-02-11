@@ -1,7 +1,7 @@
-import type { IconName } from "../data/icons";
-import { getIconPath } from "../data/icons";
-import type { Spell } from "../data/types";
-import { useExpandable } from "../hooks/use-expandable";
+import type { IconName } from "../../data/icons";
+import { getIconPath } from "../../data/icons";
+import type { Spell } from "../../data/types";
+import { useExpandable } from "../../hooks/use-expandable";
 import styles from "./spell-cards.module.css";
 
 interface SpellCardsProps {

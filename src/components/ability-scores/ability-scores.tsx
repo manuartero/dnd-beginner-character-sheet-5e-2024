@@ -2,17 +2,17 @@ import {
 	ABILITY_LIST,
 	computeModifier,
 	formatModifier,
-} from "../data/abilities";
+} from "../../data/abilities";
 import {
 	computeSkillModifier,
 	DEFAULT_PROFICIENCIES,
 	skillsForAbility,
-} from "../data/skills";
+} from "../../data/skills";
 import type {
 	AbilityName,
 	AbilityScores as AbilityScoresType,
-} from "../data/types";
-import { useExpandable } from "../hooks/use-expandable";
+} from "../../data/types";
+import { useExpandable } from "../../hooks/use-expandable";
 import styles from "./ability-scores.module.css";
 
 function modifierColorClass(mod: number): string {

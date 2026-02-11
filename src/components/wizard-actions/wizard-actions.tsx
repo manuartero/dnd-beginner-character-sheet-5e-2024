@@ -1,4 +1,4 @@
-import styles from "./creation-wizard.module.css";
+import styles from "../creation-wizard/creation-wizard.module.css";
 
 interface WizardActionsProps {
 	onBack?: () => void;

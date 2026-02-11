@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { deleteCharacter, loadCharacters } from "../data/character-storage";
-import type { AppView, Character } from "../data/types";
+import { deleteCharacter, loadCharacters } from "../../data/character-storage";
+import type { AppView, Character } from "../../data/types";
 import styles from "./app.module.css";
-import { CharacterList } from "./character-list";
-import { CharacterSheet } from "./character-sheet";
-import { CreationWizard } from "./creation-wizard";
-import { TopMenu } from "./top-menu";
+import { CharacterList } from "../character-list";
+import { CharacterSheet } from "../character-sheet";
+import { CreationWizard } from "../creation-wizard";
+import { TopMenu } from "../top-menu";
 
 export function App() {
 	const [view, setView] = useState<AppView>({ kind: "character-list" });
