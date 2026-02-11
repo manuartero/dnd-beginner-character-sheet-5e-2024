@@ -1,1 +1,1 @@
-export * from './spell-cards';
+export * from "./spell-cards";

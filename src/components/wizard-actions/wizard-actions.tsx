@@ -16,11 +16,7 @@ export function WizardActions({
 	return (
 		<div className={styles.actions}>
 			{onBack && (
-				<button
-					type="button"
-					className={styles.backButton}
-					onClick={onBack}
-				>
+				<button type="button" className={styles.backButton} onClick={onBack}>
 					Back
 				</button>
 			)}

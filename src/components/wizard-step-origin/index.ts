@@ -1,1 +1,1 @@
-export * from './wizard-step-origin';
+export * from "./wizard-step-origin";

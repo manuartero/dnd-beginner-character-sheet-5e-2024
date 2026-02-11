@@ -1,1 +1,1 @@
-export * from './character-header';
+export * from "./character-header";
