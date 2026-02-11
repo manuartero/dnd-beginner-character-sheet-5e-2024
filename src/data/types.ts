@@ -54,7 +54,7 @@ export type Action = {
 	icon?: string;
 	description: string;
 	classRestriction?: CharacterClass;
-}
+};
 
 export type Spell = {
 	name: string;
@@ -70,7 +70,7 @@ export type Spell = {
 		type: DamageType;
 	};
 	icon?: string;
-}
+};
 
 export type Equipment = {
 	name: string;
@@ -83,7 +83,7 @@ export type Equipment = {
 	ac?: number;
 	icon?: string;
 	properties?: string[];
-}
+};
 
 export type Character = {
 	id: string;
@@ -98,7 +98,7 @@ export type Character = {
 	proficiencyBonus: number;
 	spells: Spell[];
 	equipment: Equipment[];
-}
+};
 
 export type AppView =
 	| { kind: "character-list" }

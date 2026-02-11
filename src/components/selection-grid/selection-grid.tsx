@@ -30,11 +30,7 @@ export function SelectionGrid({
 					className={`${cardStyles.card} ${selectedKey === key ? cardStyles.cardSelected : ""}`}
 					onClick={() => onSelect(key)}
 				>
-					<img
-						src={getIcon(key)}
-						alt={label}
-						className={cardStyles.cardIcon}
-					/>
+					<img src={getIcon(key)} alt={label} className={cardStyles.cardIcon} />
 					<span className={cardStyles.cardLabel}>{label}</span>
 				</button>
 			))}
