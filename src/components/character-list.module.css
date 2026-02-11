@@ -11,11 +11,70 @@
 }
 
 .card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: var(--space-sm);
 	padding: var(--space-md);
+	text-align: center;
+}
+
+.deleteButton {
+	position: absolute;
+	top: var(--space-xs);
+	right: var(--space-xs);
+	width: 24px;
+	height: 24px;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.confirmContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-sm);
+	padding: var(--space-sm);
+}
+
+.confirmText {
+	font-size: var(--font-size-sm);
+	font-weight: 700;
+}
+
+.confirmActions {
+	display: flex;
+	gap: var(--space-sm);
+}
+
+.confirmYes {
+	font-size: var(--font-size-sm);
+	font-weight: 700;
+	color: var(--color-accent);
+	padding: var(--space-xs) var(--space-sm);
+}
+
+.confirmNo {
+	font-size: var(--font-size-sm);
+	font-weight: 700;
+	color: var(--color-text-muted);
+	padding: var(--space-xs) var(--space-sm);
+}
+
+.cardBody {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-sm);
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
 	text-align: center;
 }
 
