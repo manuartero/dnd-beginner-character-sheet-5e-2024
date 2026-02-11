@@ -1,4 +1,14 @@
-import type { CharacterRace } from "src/data/types";
+export type CharacterRace =
+  | "aasimar"
+  | "dragonborn"
+  | "dwarf"
+  | "elf"
+  | "gnome"
+  | "goliath"
+  | "halfling"
+  | "human"
+  | "orc"
+  | "tiefling";
 
 export const RACE_LIST: { key: CharacterRace; label: string }[] = [
   { key: "aasimar", label: "Aasimar" },

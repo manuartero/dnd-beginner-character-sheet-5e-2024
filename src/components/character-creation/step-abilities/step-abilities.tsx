@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import {
   ABILITY_LIST,
   computeModifier,
   formatModifier,
 } from "src/data/abilities";
 import type { AbilityName, AbilityScores } from "src/data/types";
-import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./step-abilities.module.css";
 
 type StepAbilitiesProps = {
