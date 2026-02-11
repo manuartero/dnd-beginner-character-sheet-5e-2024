@@ -3,9 +3,9 @@ import { getClassIcon } from "src/data/class-icons";
 import { CLASS_LIST } from "src/data/classes";
 import { RACE_LIST } from "src/data/races";
 import type { CharacterClass, CharacterRace } from "src/data/types";
-import styles from "./wizard-step-identity.module.css";
+import styles from "./step-identity.module.css";
 
-type WizardStepIdentityProps = {
+type StepIdentityProps = {
   name: string;
   characterClass: CharacterClass | null;
   race: CharacterRace | null;
@@ -14,14 +14,14 @@ type WizardStepIdentityProps = {
   onRaceChange: (race: CharacterRace) => void;
 };
 
-export function WizardStepIdentity({
+export function StepIdentity({
   name,
   characterClass,
   race,
   onNameChange,
   onClassChange,
   onRaceChange,
-}: WizardStepIdentityProps) {
+}: StepIdentityProps) {
   return (
     <>
       <div className="section">

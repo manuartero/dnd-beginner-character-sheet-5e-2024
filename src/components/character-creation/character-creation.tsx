@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { WizardActions } from "src/components/wizard-actions";
+import { CreationActions } from "src/components/creation-actions";
 import {
   isValidHp,
   isValidScore,
-  WizardStepAbilities,
-} from "src/components/wizard-step-abilities";
-import { WizardStepIdentity } from "src/components/wizard-step-identity";
-import { WizardStepOrigin } from "src/components/wizard-step-origin";
+  StepAbilities,
+} from "src/components/step-abilities";
+import { StepIdentity } from "src/components/step-identity";
+import { StepOrigin } from "src/components/step-origin";
 import type { Background } from "src/data/backgrounds";
 import { BACKGROUND_LIST } from "src/data/backgrounds";
 import { saveCharacter } from "src/data/character-storage";
@@ -18,9 +18,9 @@ import type {
   CharacterRace,
 } from "src/data/types";
 import { totalBonuses } from "src/utils/total-bonuses";
-import styles from "./creation-wizard.module.css";
+import styles from "./character-creation.module.css";
 
-type CreationWizardProps = {
+type CharacterCreationProps = {
   onSave: (character: Character) => void;
 };
 
@@ -34,7 +34,7 @@ type DraftState = {
   hpMax: number;
 };
 
-export function CreationWizard({ onSave }: CreationWizardProps) {
+export function CharacterCreation({ onSave }: CharacterCreationProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [draft, setDraft] = useState<DraftState>({
     name: "",
@@ -119,7 +119,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 
       {step === 1 && (
         <>
-          <WizardStepIdentity
+          <StepIdentity
             name={draft.name}
             characterClass={draft.characterClass}
             race={draft.race}
@@ -132,7 +132,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
             }
             onRaceChange={(race) => setDraft((prev) => ({ ...prev, race }))}
           />
-          <WizardActions
+          <CreationActions
             onNext={() => setStep(2)}
             nextDisabled={!step1Complete}
           />
@@ -141,11 +141,11 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 
       {step === 2 && (
         <>
-          <WizardStepOrigin
+          <StepOrigin
             background={draft.background}
             onBackgroundChange={handleBackgroundChange}
           />
-          <WizardActions
+          <CreationActions
             onBack={() => setStep(1)}
             onNext={() => setStep(3)}
             nextDisabled={!step2Complete}
@@ -155,7 +155,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 
       {step === 3 && (
         <>
-          <WizardStepAbilities
+          <StepAbilities
             scores={draft.abilityScores}
             hpMax={draft.hpMax}
             onScoresChange={(abilityScores) =>
@@ -174,7 +174,7 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
               }))
             }
           />
-          <WizardActions
+          <CreationActions
             onBack={() => setStep(2)}
             onNext={handleCreate}
             nextLabel="Create"

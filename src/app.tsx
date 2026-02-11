@@ -4,7 +4,7 @@ import type { AppView, Character } from "src/data/types";
 import styles from "./app.module.css";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
-import { CreationWizard } from "src/components/creation-wizard";
+import { CharacterCreation } from "src/components/character-creation";
 import { TopMenu } from "src/components/top-menu";
 
 export function App() {
@@ -77,7 +77,7 @@ export function App() {
           />
         )}
         {view.kind === "character-creation" && (
-          <CreationWizard onSave={handleSave} />
+          <CharacterCreation onSave={handleSave} />
         )}
         {view.kind === "character-view" && activeCharacter && (
           <CharacterSheet

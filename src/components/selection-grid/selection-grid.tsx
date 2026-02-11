@@ -1,4 +1,4 @@
-import cardStyles from "../wizard-card.module.css";
+import cardStyles from "../card.module.css";
 
 type SelectionGridProps = {
   items: { key: string; label: string }[];

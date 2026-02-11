@@ -6,7 +6,7 @@ type IconVariant = "BLACK" | "WHITE";
 function getIconPath(
   name: IconName,
   { variant = "BLACK" }: { variant?: IconVariant } = {},
-): string {
+) {
   const entry = iconMap[name];
   const [vol, file] = entry.split("/");
   return `/assets/${vol}/${variant}/${file}.svg`;

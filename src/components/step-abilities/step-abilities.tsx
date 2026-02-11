@@ -6,9 +6,9 @@ import {
 } from "src/data/abilities";
 import type { AbilityName, AbilityScores } from "src/data/types";
 import { totalBonuses } from "src/utils/total-bonuses";
-import styles from "./wizard-step-abilities.module.css";
+import styles from "./step-abilities.module.css";
 
-type WizardStepAbilitiesProps = {
+type StepAbilitiesProps = {
   scores: AbilityScores;
   hpMax: number;
   onScoresChange: (scores: AbilityScores) => void;
@@ -32,7 +32,7 @@ function isValidHp(value: string): boolean {
   return !Number.isNaN(num) && num >= 1;
 }
 
-export function WizardStepAbilities({
+export function StepAbilities({
   scores,
   hpMax,
   onScoresChange,
@@ -40,7 +40,7 @@ export function WizardStepAbilities({
   abilityOptions,
   abilityBonuses,
   onAbilityBonusesChange,
-}: WizardStepAbilitiesProps) {
+}: StepAbilitiesProps) {
   const [rawScores, setRawScores] = useState<Record<AbilityName, string>>(
     () => {
       const entries = Object.entries(scores) as [AbilityName, number][];
