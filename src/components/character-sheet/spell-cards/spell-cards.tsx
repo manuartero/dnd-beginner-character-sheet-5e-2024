@@ -29,12 +29,12 @@ export function SpellCards({ spells }: SpellCardsProps) {
   const levelSpells = spells.filter((s) => s.level > 0);
 
   return (
-    <div className="section">
-      <h2 className="section-title">Spells</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Spells</h2>
 
       {cantrips.length > 0 && (
         <div className={styles.spellGroup}>
-          <h3 className="group-label">Cantrips</h3>
+          <h3 className={styles.groupLabel}>Cantrips</h3>
           <div className={styles.cardsGrid}>
             {cantrips.map((spell) => (
               <SpellCard
@@ -50,7 +50,7 @@ export function SpellCards({ spells }: SpellCardsProps) {
 
       {levelSpells.length > 0 && (
         <div className={styles.spellGroup}>
-          <h3 className="group-label">Level 1</h3>
+          <h3 className={styles.groupLabel}>Level 1</h3>
           <div className={styles.cardsGrid}>
             {levelSpells.map((spell) => (
               <SpellCard
@@ -85,7 +85,7 @@ function SpellCard({ spell, isExpanded, onToggle }: SpellCardProps) {
           <img
             src={getIconPath(spell.icon as IconName)}
             alt={spell.name}
-            className="icon"
+            className={styles.icon}
           />
         )}
         <div className={styles.cardInfo}>

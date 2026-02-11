@@ -108,8 +108,8 @@ export function StepAbilities({
 
   return (
     <>
-      <div className="section">
-        <h2 className="section-title">Ability Scores</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Ability Scores</h2>
         <div className={styles.grid}>
           {ABILITY_LIST.map(({ key, short }) => {
             const raw = rawScores[key];
@@ -142,8 +142,8 @@ export function StepAbilities({
       </div>
 
       {abilityOptions && (
-        <div className="section">
-          <h2 className="section-title">Origin Bonus</h2>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Origin Bonus</h2>
           <p className={styles.bonusHint}>
             {remaining} bonus {remaining === 1 ? "point" : "points"} remaining
           </p>
@@ -173,8 +173,8 @@ export function StepAbilities({
         </div>
       )}
 
-      <div className="section">
-        <h2 className="section-title">Hit Points</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Hit Points</h2>
         <div className={styles.hpRow}>
           <span className={styles.hpLabel}>HP Max</span>
           <input

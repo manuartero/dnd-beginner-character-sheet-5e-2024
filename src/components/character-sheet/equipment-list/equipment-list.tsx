@@ -25,8 +25,8 @@ export function EquipmentList({
   }
 
   return (
-    <div className="section">
-      <h2 className="section-title">Equipment</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Equipment</h2>
 
       <div className={styles.list}>
         {equipment.map((item, index) => (
@@ -35,7 +35,7 @@ export function EquipmentList({
               <img
                 src={getIconPath(item.icon as IconName)}
                 alt={item.name}
-                className="icon icon--sm"
+                className={styles.icon}
               />
             )}
             <div className={styles.itemInfo}>

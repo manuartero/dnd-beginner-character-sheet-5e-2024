@@ -22,11 +22,11 @@ export function CharacterHeader({
   level,
 }: CharacterHeaderProps) {
   return (
-    <header className={`character-header ${styles.header}`}>
+    <header className={styles.header}>
       <img
         src={getClassIcon(characterClass)}
         alt={characterClass}
-        className={`class-icon ${styles.classIcon}`}
+        className={styles.classIcon}
       />
       <div className={styles.details}>
         <div className={styles.topRow}>

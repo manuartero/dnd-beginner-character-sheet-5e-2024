@@ -41,12 +41,12 @@ export function ActionBar({ characterClass }: ActionBarProps) {
   }));
 
   return (
-    <div className="section">
-      <h2 className="section-title">Combat</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Combat</h2>
       <div className={styles.groupsContainer}>
         {grouped.map((group) => (
           <div key={group.timing}>
-            <h3 className="group-label">
+            <h3 className={styles.groupLabel}>
               {group.label}
               <span className={TIMING_SYMBOL_CLASS[group.timing]} />
             </h3>
@@ -85,7 +85,7 @@ function ActionButton({ action, isExpanded, onToggle }: ActionButtonProps) {
           <img
             src={getIconPath(action.icon as IconName)}
             alt={action.name}
-            className="icon icon--lg"
+            className={styles.icon}
           />
         )}
         <span className={styles.actionLabel}>{action.name}</span>

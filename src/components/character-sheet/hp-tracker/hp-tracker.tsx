@@ -24,8 +24,8 @@ export function HpTracker({
         : "var(--color-fighter)";
 
   return (
-    <div className="section">
-      <h2 className="section-title">Hit Points</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Hit Points</h2>
 
       {!editable && (
         <div className={styles.barContainer}>

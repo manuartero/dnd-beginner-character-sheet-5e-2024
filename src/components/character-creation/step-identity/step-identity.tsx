@@ -24,8 +24,8 @@ export function StepIdentity({
 }: StepIdentityProps) {
   return (
     <>
-      <div className="section">
-        <h2 className="section-title">Name</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Name</h2>
         <input
           type="text"
           value={name}
@@ -35,8 +35,8 @@ export function StepIdentity({
         />
       </div>
 
-      <div className="section">
-        <h2 className="section-title">Class</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Class</h2>
         <SelectionGrid
           items={CLASS_LIST}
           selectedKey={characterClass}
@@ -46,8 +46,8 @@ export function StepIdentity({
         />
       </div>
 
-      <div className="section">
-        <h2 className="section-title">Species</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Species</h2>
         <SelectionGrid
           items={RACE_LIST}
           selectedKey={race}

@@ -1,9 +1,9 @@
 import { ABILITY_LIST } from "src/data/abilities";
 import type { Background } from "src/data/backgrounds";
 import {
-    BACKGROUND_LIST,
-    getOriginFeatDescription,
-    getSkillLabel,
+  BACKGROUND_LIST,
+  getOriginFeatDescription,
+  getSkillLabel,
 } from "src/data/backgrounds";
 import type { AbilityName } from "src/data/types";
 import { SelectionGrid } from "../selection-grid";
@@ -25,8 +25,8 @@ export function StepOrigin({
   const selected = BACKGROUND_LIST.find((b) => b.key === background);
 
   return (
-    <div className="section">
-      <h2 className="section-title">Background</h2>
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>Background</h2>
       <SelectionGrid
         items={BACKGROUND_LIST}
         selectedKey={background}

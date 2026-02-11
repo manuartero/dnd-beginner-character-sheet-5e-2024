@@ -20,10 +20,10 @@ export function CharacterList({
 
   return (
     <div className={styles.container}>
-      <h2 className="section-title">Characters</h2>
+      <h2 className={styles.sectionTitle}>Characters</h2>
       <div className={styles.grid}>
         {characters.map((char) => (
-          <div key={char.id} className={`section ${styles.card}`}>
+          <div key={char.id} className={`${styles.section} ${styles.card}`}>
             {confirmDeleteId === char.id ? (
               <div className={styles.confirmContent}>
                 <span className={styles.confirmText}>Delete?</span>
@@ -64,7 +64,7 @@ export function CharacterList({
                   <img
                     src={getClassIcon(char.characterClass)}
                     alt={char.characterClass}
-                    className={`class-icon ${styles.cardIcon}`}
+                    className={`${styles.classIcon} ${styles.cardIcon}`}
                   />
                   <span className={styles.cardName}>
                     {char.name || "Unnamed"}
