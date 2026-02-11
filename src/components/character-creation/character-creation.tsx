@@ -10,8 +10,10 @@ import type { Character } from "src/data/types";
 import styles from "./character-creation.module.css";
 import { CreationActions } from "./creation-actions";
 import { isValidHp, isValidScore, StepAbilities } from "./step-abilities";
-import { StepIdentity } from "./step-identity";
+import { StepClass } from "./step-class";
+import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
+import { StepSpecies } from "./step-species";
 
 type CharacterCreationProps = {
   onSave: (character: Character) => void;
@@ -28,7 +30,7 @@ type DraftState = {
 };
 
 export function CharacterCreation({ onSave }: CharacterCreationProps) {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [draft, setDraft] = useState<DraftState>({
     name: "",
     characterClass: null,
@@ -46,17 +48,18 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
     hpMax: 10,
   });
 
-  const step1Complete =
-    draft.name.trim() !== "" &&
-    draft.characterClass !== null &&
-    draft.race !== null;
+  const step1Complete = draft.characterClass !== null;
 
-  const step2Complete = draft.background !== null;
+  const step2Complete = draft.race !== null;
 
-  const step3Complete =
+  const step3Complete = draft.background !== null;
+
+  const step4Complete =
     Object.values(draft.abilityScores).every((v) => isValidScore(String(v))) &&
     isValidHp(String(draft.hpMax)) &&
     totalBonuses(draft.abilityBonuses) === 3;
+
+  const step5Complete = draft.name.trim() !== "";
 
   const backgroundEntry = draft.background
     ? BACKGROUND_LIST.find((b) => b.key === draft.background)
@@ -108,22 +111,28 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
           className={`${styles.dot} ${step >= 3 ? styles.dotActive : ""}`}
           onClick={() => setStep(3)}
         />
+        <button
+          type="button"
+          className={`${styles.dot} ${step >= 4 ? styles.dotActive : ""}`}
+          onClick={() => setStep(4)}
+        />
+        <button
+          type="button"
+          className={`${styles.dot} ${step >= 5 ? styles.dotActive : ""}`}
+          onClick={() => setStep(5)}
+        />
       </div>
 
       {step === 1 && (
         <>
-          <StepIdentity
-            name={draft.name}
+          <StepClass
             characterClass={draft.characterClass}
-            race={draft.race}
-            onNameChange={(name) => setDraft((prev) => ({ ...prev, name }))}
             onClassChange={(characterClass) =>
               setDraft((prev) => ({
                 ...prev,
                 characterClass,
               }))
             }
-            onRaceChange={(race) => setDraft((prev) => ({ ...prev, race }))}
           />
           <CreationActions
             onNext={() => setStep(2)}
@@ -134,9 +143,9 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
       {step === 2 && (
         <>
-          <StepOrigin
-            background={draft.background}
-            onBackgroundChange={handleBackgroundChange}
+          <StepSpecies
+            race={draft.race}
+            onRaceChange={(race) => setDraft((prev) => ({ ...prev, race }))}
           />
           <CreationActions
             onBack={() => setStep(1)}
@@ -147,6 +156,20 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       )}
 
       {step === 3 && (
+        <>
+          <StepOrigin
+            background={draft.background}
+            onBackgroundChange={handleBackgroundChange}
+          />
+          <CreationActions
+            onBack={() => setStep(2)}
+            onNext={() => setStep(4)}
+            nextDisabled={!step3Complete}
+          />
+        </>
+      )}
+
+      {step === 4 && (
         <>
           <StepAbilities
             scores={draft.abilityScores}
@@ -168,10 +191,24 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
             }
           />
           <CreationActions
-            onBack={() => setStep(2)}
+            onBack={() => setStep(3)}
+            onNext={() => setStep(5)}
+            nextDisabled={!step4Complete}
+          />
+        </>
+      )}
+
+      {step === 5 && (
+        <>
+          <StepName
+            name={draft.name}
+            onNameChange={(name) => setDraft((prev) => ({ ...prev, name }))}
+          />
+          <CreationActions
+            onBack={() => setStep(4)}
             onNext={handleCreate}
             nextLabel="Create"
-            nextDisabled={!step3Complete}
+            nextDisabled={!step5Complete}
           />
         </>
       )}
