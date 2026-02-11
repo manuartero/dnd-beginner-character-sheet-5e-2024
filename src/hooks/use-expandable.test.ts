@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { useExpandable } from "./use-expandable";
+import { useExpandable } from "src/hooks/use-expandable";
 
 describe("useExpandable()", () => {
 	it("initially has null expandedKey", () => {

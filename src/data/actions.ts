@@ -1,4 +1,4 @@
-import type { Action } from "./types";
+import type { Action } from "src/data/types";
 
 export const UNIVERSAL_ACTIONS: Action[] = [
 	{

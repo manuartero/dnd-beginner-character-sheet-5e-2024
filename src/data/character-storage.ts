@@ -1,4 +1,4 @@
-import type { Character, CharacterRace } from "./types";
+import type { Character, CharacterRace } from "src/data/types";
 
 const STORAGE_KEY = "dnd-characters";
 

@@ -1,4 +1,4 @@
-import type { AbilityName } from "../data/types";
+import type { AbilityName } from "src/data/types";
 
 export function totalBonuses(
 	bonuses: Partial<Record<AbilityName, number>>,

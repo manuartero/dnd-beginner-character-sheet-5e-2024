@@ -1,4 +1,4 @@
-import { computeSkillModifier, skillsForAbility } from "./skills";
+import { computeSkillModifier, skillsForAbility } from "src/data/skills";
 
 describe("skillsForAbility()", () => {
 	[

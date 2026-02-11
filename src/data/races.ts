@@ -1,4 +1,4 @@
-import type { CharacterRace } from "./types";
+import type { CharacterRace } from "src/data/types";
 
 export const RACE_LIST: { key: CharacterRace; label: string }[] = [
 	{ key: "aasimar", label: "Aasimar" },

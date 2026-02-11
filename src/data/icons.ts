@@ -1,4 +1,4 @@
-import iconMap from "./icon-map.json";
+import iconMap from "src/data/icon-map.json";
 
 type IconName = keyof typeof iconMap;
 type IconVariant = "BLACK" | "WHITE";

@@ -3,9 +3,9 @@ import {
 	ABILITY_LIST,
 	computeModifier,
 	formatModifier,
-} from "../../data/abilities";
-import type { AbilityName, AbilityScores } from "../../data/types";
-import { totalBonuses } from "../../utils/total-bonuses";
+} from "src/data/abilities";
+import type { AbilityName, AbilityScores } from "src/data/types";
+import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./wizard-step-abilities.module.css";
 
 interface WizardStepAbilitiesProps {
