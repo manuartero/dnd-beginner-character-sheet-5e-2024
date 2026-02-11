@@ -44,21 +44,20 @@ export function App() {
     );
   }
 
+  const activeCharacter =
+    view.kind === "character-view"
+      ? characters.find((c) => c.id === view.characterId)
+      : undefined;
+
   function getMenuTitle(): string {
     if (view.kind === "character-view") {
-      const char = characters.find((c) => c.id === view.characterId);
-      return char?.name || "Character";
+      return activeCharacter?.name || "Character";
     }
     if (view.kind === "character-creation") {
       return "New Character";
     }
     return "D&D 5e Sheet";
   }
-
-  const activeCharacter =
-    view.kind === "character-view"
-      ? characters.find((c) => c.id === view.characterId)
-      : undefined;
 
   return (
     <div className={styles.layout}>

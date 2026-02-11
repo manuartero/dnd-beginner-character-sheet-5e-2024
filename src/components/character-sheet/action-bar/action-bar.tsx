@@ -1,7 +1,8 @@
+import type { Action, ActionTiming } from "src/data/actions";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/data/actions";
+import type { CharacterClass } from "src/data/classes";
 import type { IconName } from "src/data/icons";
 import { getIconPath } from "src/data/icons";
-import type { Action, ActionTiming, CharacterClass } from "src/data/types";
 import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./action-bar.module.css";
 

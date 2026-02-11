@@ -1,4 +1,4 @@
-import type { AbilityName } from "src/data/types";
+import type { AbilityName } from "src/data/abilities";
 
 export type SkillName =
   | "athletics"

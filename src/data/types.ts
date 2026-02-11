@@ -1,9 +1,7 @@
-import type { Background } from "src/data/backgrounds";
+import type { AbilityScores } from "./abilities";
+import type { Background } from "./backgrounds";
 import type { CharacterClass } from "./classes";
 import type { CharacterRace } from "./races";
-import type { AbilityScores } from "./abilities";
-export type { Background } from "src/data/backgrounds";
-export type { SkillName } from "src/data/skills";
 
 export type DamageType =
   | "slashing"

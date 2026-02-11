@@ -1,9 +1,9 @@
 import iconMap from "src/data/icon-map.json";
 
-type IconName = keyof typeof iconMap;
-type IconVariant = "BLACK" | "WHITE";
+export type IconName = keyof typeof iconMap;
+export type IconVariant = "BLACK" | "WHITE";
 
-function getIconPath(
+export function getIconPath(
   name: IconName,
   { variant = "BLACK" }: { variant?: IconVariant } = {},
 ) {
@@ -11,6 +11,3 @@ function getIconPath(
   const [vol, file] = entry.split("/");
   return `/assets/${vol}/${variant}/${file}.svg`;
 }
-
-export { getIconPath };
-export type { IconName, IconVariant };

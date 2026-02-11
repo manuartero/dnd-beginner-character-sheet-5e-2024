@@ -1,19 +1,10 @@
-import type { Character, CharacterRace } from "src/data/types";
+import type { CharacterRace } from "src/data/races";
+import { RACE_LIST } from "src/data/races";
+import type { Character } from "src/data/types";
 
 const STORAGE_KEY = "dnd-characters";
 
-const VALID_RACES: CharacterRace[] = [
-  "aasimar",
-  "dragonborn",
-  "dwarf",
-  "elf",
-  "gnome",
-  "goliath",
-  "halfling",
-  "human",
-  "orc",
-  "tiefling",
-];
+const VALID_RACES: CharacterRace[] = RACE_LIST.map((r) => r.key);
 
 function migrateRace(raw: string): CharacterRace {
   const lower = raw.toLowerCase().trim();

@@ -1,3 +1,4 @@
+import type { AbilityName, AbilityScores as Scores } from "src/data/abilities";
 import {
   ABILITY_LIST,
   computeModifier,
@@ -8,10 +9,6 @@ import {
   DEFAULT_PROFICIENCIES,
   skillsForAbility,
 } from "src/data/skills";
-import type {
-  AbilityName,
-  AbilityScores as AbilityScoresType,
-} from "src/data/types";
 import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./ability-scores.module.css";
 
@@ -23,9 +20,9 @@ function modifierColorClass(mod: number): string {
 }
 
 type AbilityScoresProps = {
-  scores: AbilityScoresType;
+  scores: Scores;
   editable: boolean;
-  onScoreChange: (ability: AbilityName, value: number) => void;
+  onScoreChange?: (ability: AbilityName, value: number) => void;
   proficiencyBonus?: number;
 };
 
@@ -38,101 +35,168 @@ export function AbilityScores({
   const { expandedKey: flippedAbility, toggle: toggleFlip } =
     useExpandable<AbilityName>();
 
-  function handleCardClick(key: AbilityName) {
-    if (editable) return;
-    const skills = skillsForAbility(key);
-    if (skills.length === 0) return;
-    toggleFlip(key);
-  }
-
   return (
     <div className={styles.section}>
       <h2 className={styles.sectionTitle}>Abilities</h2>
       <div className={styles.grid}>
-        {ABILITY_LIST.map(({ key, short }) => {
-          const score = scores[key];
-          const mod = computeModifier(score);
-          const skills = skillsForAbility(key);
-          const hasSkills = skills.length > 0;
-          const isFlipped = !editable && flippedAbility === key;
-          const isClickable = !editable && hasSkills;
-
-          const cardContent = (
-            <>
-              <span className={styles.label}>{short}</span>
-              {isFlipped ? (
-                <div className={styles.skillList}>
-                  {skills.map((skill) => {
-                    const isProficient = DEFAULT_PROFICIENCIES.includes(
-                      skill.name,
-                    );
-                    const skillMod = computeSkillModifier({
-                      abilityModifier: mod,
-                      proficiencyBonus,
-                      isProficient,
-                    });
-                    return (
-                      <div
-                        key={skill.name}
-                        className={`${styles.skillRow} ${isProficient ? styles.skillProficient : ""}`}
-                      >
-                        <span className={styles.skillName}>{skill.label}</span>
-                        <span className={styles.skillModifier}>
-                          {formatModifier(skillMod)}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <>
-                  {editable ? (
-                    <input
-                      type="number"
-                      min={1}
-                      max={30}
-                      value={score}
-                      onChange={(e) => {
-                        const parsed = Number.parseInt(e.target.value, 10);
-                        if (!Number.isNaN(parsed)) {
-                          onScoreChange(key, parsed);
-                        }
-                      }}
-                      className={styles.scoreInput}
-                    />
-                  ) : (
-                    <span className={styles.score}>Score: {score}</span>
-                  )}
-                  <span
-                    className={`${styles.modifier} ${modifierColorClass(mod)}`}
-                  >
-                    {formatModifier(mod)}
-                  </span>
-                </>
-              )}
-            </>
-          );
-
-          if (isClickable) {
-            return (
-              <button
-                key={key}
-                type="button"
-                className={`${styles.abilityCard} ${styles.abilityCardClickable} ${isFlipped ? styles.abilityCardActive : ""}`}
-                onClick={() => handleCardClick(key)}
-              >
-                {cardContent}
-              </button>
-            );
-          }
-
-          return (
-            <div key={key} className={styles.abilityCard}>
-              {cardContent}
-            </div>
-          );
-        })}
+        {ABILITY_LIST.map(({ key, short }) => (
+          <AbilityCard
+            key={key}
+            abilityKey={key}
+            short={short}
+            score={scores[key]}
+            editable={editable}
+            isFlipped={!editable && flippedAbility === key}
+            proficiencyBonus={proficiencyBonus}
+            onScoreChange={onScoreChange}
+            onToggle={toggleFlip}
+          />
+        ))}
       </div>
     </div>
+  );
+}
+
+type AbilityCardProps = {
+  abilityKey: AbilityName;
+  short: string;
+  score: number;
+  editable: boolean;
+  isFlipped: boolean;
+  proficiencyBonus: number;
+  onScoreChange?: (ability: AbilityName, value: number) => void;
+  onToggle: (key: AbilityName) => void;
+};
+
+function AbilityCard({
+  abilityKey,
+  short,
+  score,
+  editable,
+  isFlipped,
+  proficiencyBonus,
+  onScoreChange,
+  onToggle,
+}: AbilityCardProps) {
+  const mod = computeModifier(score);
+  const skills = skillsForAbility(abilityKey);
+  const isClickable = !editable && skills.length > 0;
+
+  const cardClass = isClickable
+    ? `${styles.abilityCard} ${styles.abilityCardClickable} ${isFlipped ? styles.abilityCardActive : ""}`
+    : styles.abilityCard;
+
+  const content = (
+    <>
+      <span className={styles.label}>{short}</span>
+      {isFlipped ? (
+        <SkillList
+          skills={skills}
+          abilityModifier={mod}
+          proficiencyBonus={proficiencyBonus}
+        />
+      ) : (
+        <ScoreDisplay
+          score={score}
+          mod={mod}
+          editable={editable}
+          abilityKey={abilityKey}
+          onScoreChange={onScoreChange}
+        />
+      )}
+    </>
+  );
+
+  if (isClickable) {
+    return (
+      <button
+        type="button"
+        className={cardClass}
+        onClick={() => onToggle(abilityKey)}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return <div className={cardClass}>{content}</div>;
+}
+
+type SkillListProps = {
+  skills: { name: string; label: string }[];
+  abilityModifier: number;
+  proficiencyBonus: number;
+};
+
+function SkillList({
+  skills,
+  abilityModifier,
+  proficiencyBonus,
+}: SkillListProps) {
+  return (
+    <div className={styles.skillList}>
+      {skills.map((skill) => {
+        const isProficient = DEFAULT_PROFICIENCIES.includes(
+          skill.name as Parameters<typeof DEFAULT_PROFICIENCIES.includes>[0],
+        );
+        const skillMod = computeSkillModifier({
+          abilityModifier,
+          proficiencyBonus,
+          isProficient,
+        });
+        return (
+          <div
+            key={skill.name}
+            className={`${styles.skillRow} ${isProficient ? styles.skillProficient : ""}`}
+          >
+            <span className={styles.skillName}>{skill.label}</span>
+            <span className={styles.skillModifier}>
+              {formatModifier(skillMod)}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+type ScoreDisplayProps = {
+  score: number;
+  mod: number;
+  editable: boolean;
+  abilityKey: AbilityName;
+  onScoreChange?: (ability: AbilityName, value: number) => void;
+};
+
+function ScoreDisplay({
+  score,
+  mod,
+  editable,
+  abilityKey,
+  onScoreChange,
+}: ScoreDisplayProps) {
+  return (
+    <>
+      {editable ? (
+        <input
+          type="number"
+          min={1}
+          max={30}
+          value={score}
+          onChange={(e) => {
+            const parsed = Number.parseInt(e.target.value, 10);
+            if (!Number.isNaN(parsed) && onScoreChange) {
+              onScoreChange(abilityKey, parsed);
+            }
+          }}
+          className={styles.scoreInput}
+        />
+      ) : (
+        <span className={styles.score}>Score: {score}</span>
+      )}
+      <span className={`${styles.modifier} ${modifierColorClass(mod)}`}>
+        {formatModifier(mod)}
+      </span>
+    </>
   );
 }

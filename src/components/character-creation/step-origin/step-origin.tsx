@@ -1,3 +1,4 @@
+import type { AbilityName } from "src/data/abilities";
 import { ABILITY_LIST } from "src/data/abilities";
 import type { Background } from "src/data/backgrounds";
 import {
@@ -5,7 +6,6 @@ import {
   getOriginFeatDescription,
   getSkillLabel,
 } from "src/data/backgrounds";
-import type { AbilityName } from "src/data/types";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-origin.module.css";
 

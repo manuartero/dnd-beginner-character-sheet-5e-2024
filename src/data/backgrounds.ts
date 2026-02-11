@@ -1,6 +1,6 @@
+import type { AbilityName } from "src/data/abilities";
 import type { SkillName } from "src/data/skills";
 import { SKILLS } from "src/data/skills";
-import type { AbilityName } from "src/data/types";
 
 export type Background =
   | "acolyte"

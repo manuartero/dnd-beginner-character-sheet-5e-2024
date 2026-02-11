@@ -16,69 +16,86 @@ export function CharacterList({
   onNew,
   onDelete,
 }: CharacterListProps) {
-  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
-
   return (
     <div className={styles.container}>
       <h2 className={styles.sectionTitle}>Characters</h2>
       <div className={styles.grid}>
         {characters.map((char) => (
-          <div key={char.id} className={`${styles.section} ${styles.card}`}>
-            {confirmDeleteId === char.id ? (
-              <div className={styles.confirmContent}>
-                <span className={styles.confirmText}>Delete?</span>
-                <div className={styles.confirmActions}>
-                  <button
-                    type="button"
-                    className={styles.confirmYes}
-                    onClick={() => {
-                      onDelete(char.id);
-                      setConfirmDeleteId(null);
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.confirmNo}
-                    onClick={() => setConfirmDeleteId(null)}
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className={styles.deleteButton}
-                  onClick={() => setConfirmDeleteId(char.id)}
-                >
-                  x
-                </button>
-                <button
-                  type="button"
-                  className={styles.cardBody}
-                  onClick={() => onSelect(char.id)}
-                >
-                  <img
-                    src={getClassIcon(char.characterClass)}
-                    alt={char.characterClass}
-                    className={`${styles.classIcon} ${styles.cardIcon}`}
-                  />
-                  <span className={styles.cardName}>
-                    {char.name || "Unnamed"}
-                  </span>
-                  <span className={styles.cardLevel}>Lvl {char.level}</span>
-                </button>
-              </>
-            )}
-          </div>
+          <CharacterCard
+            key={char.id}
+            character={char}
+            onSelect={onSelect}
+            onDelete={onDelete}
+          />
         ))}
         <button type="button" className={styles.newCard} onClick={onNew}>
           <span className={styles.newLabel}>+ New</span>
         </button>
       </div>
+    </div>
+  );
+}
+
+type CharacterCardProps = {
+  character: Character;
+  onSelect: (characterId: string) => void;
+  onDelete: (characterId: string) => void;
+};
+
+function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
+  const [confirming, setConfirming] = useState(false);
+
+  if (confirming) {
+    return (
+      <div className={`${styles.section} ${styles.card}`}>
+        <div className={styles.confirmContent}>
+          <span className={styles.confirmText}>Delete?</span>
+          <div className={styles.confirmActions}>
+            <button
+              type="button"
+              className={styles.confirmYes}
+              onClick={() => {
+                onDelete(character.id);
+                setConfirming(false);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              className={styles.confirmNo}
+              onClick={() => setConfirming(false)}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${styles.section} ${styles.card}`}>
+      <button
+        type="button"
+        className={styles.deleteButton}
+        onClick={() => setConfirming(true)}
+      >
+        x
+      </button>
+      <button
+        type="button"
+        className={styles.cardBody}
+        onClick={() => onSelect(character.id)}
+      >
+        <img
+          src={getClassIcon(character.characterClass)}
+          alt={character.characterClass}
+          className={`${styles.classIcon} ${styles.cardIcon}`}
+        />
+        <span className={styles.cardName}>{character.name || "Unnamed"}</span>
+        <span className={styles.cardLevel}>Lvl {character.level}</span>
+      </button>
     </div>
   );
 }

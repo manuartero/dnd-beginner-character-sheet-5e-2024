@@ -1,10 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   deleteCharacter,
   loadCharacters,
   saveCharacter,
 } from "src/data/character-storage";
 import type { Character } from "src/data/types";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 function makeCharacter(overrides: Partial<Character> = {}): Character {
   return {

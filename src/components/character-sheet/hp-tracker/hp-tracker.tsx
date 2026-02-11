@@ -5,7 +5,7 @@ type HpTrackerProps = {
   max: number;
   editable: boolean;
   onCurrentChange: (value: number) => void;
-  onMaxChange: (value: number) => void;
+  onMaxChange?: (value: number) => void;
 };
 
 export function HpTracker({
@@ -71,7 +71,7 @@ export function HpTracker({
               value={max}
               onChange={(e) => {
                 const parsed = Number.parseInt(e.target.value, 10);
-                if (!Number.isNaN(parsed)) onMaxChange(parsed);
+                if (!Number.isNaN(parsed)) onMaxChange?.(parsed);
               }}
               className={styles.hpInput}
             />
