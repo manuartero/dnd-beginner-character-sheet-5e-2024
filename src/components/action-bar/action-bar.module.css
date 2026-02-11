@@ -1,128 +1,128 @@
 .groupsContainer {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
 /* 8-bit pixel art symbols (3px per pixel, box-shadow technique) */
 
 /* Action: green circle (5x5 grid, corners removed) */
 .timingSymbol_action {
-	display: inline-block;
-	width: 3px;
-	height: 3px;
-	background: #3c3;
-	margin: 6px;
-	box-shadow:
-		-3px -6px 0 #3c3,
-		0px -6px 0 #3c3,
-		3px -6px 0 #3c3,
-		-6px -3px 0 #3c3,
-		-3px -3px 0 #3c3,
-		0px -3px 0 #3c3,
-		3px -3px 0 #3c3,
-		6px -3px 0 #3c3,
-		-6px 0px 0 #3c3,
-		-3px 0px 0 #3c3,
-		3px 0px 0 #3c3,
-		6px 0px 0 #3c3,
-		-6px 3px 0 #3c3,
-		-3px 3px 0 #3c3,
-		0px 3px 0 #3c3,
-		3px 3px 0 #3c3,
-		6px 3px 0 #3c3,
-		-3px 6px 0 #3c3,
-		0px 6px 0 #3c3,
-		3px 6px 0 #3c3;
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: #3c3;
+  margin: 6px;
+  box-shadow:
+    -3px -6px 0 #3c3,
+    0px -6px 0 #3c3,
+    3px -6px 0 #3c3,
+    -6px -3px 0 #3c3,
+    -3px -3px 0 #3c3,
+    0px -3px 0 #3c3,
+    3px -3px 0 #3c3,
+    6px -3px 0 #3c3,
+    -6px 0px 0 #3c3,
+    -3px 0px 0 #3c3,
+    3px 0px 0 #3c3,
+    6px 0px 0 #3c3,
+    -6px 3px 0 #3c3,
+    -3px 3px 0 #3c3,
+    0px 3px 0 #3c3,
+    3px 3px 0 #3c3,
+    6px 3px 0 #3c3,
+    -3px 6px 0 #3c3,
+    0px 6px 0 #3c3,
+    3px 6px 0 #3c3;
 }
 
 /* Bonus Action: orange triangle pointing up (3 rows) */
 .timingSymbol_bonusAction {
-	display: inline-block;
-	width: 3px;
-	height: 3px;
-	background: #f80;
-	margin: 3px 6px 6px;
-	box-shadow:
-		-3px 3px 0 #f80,
-		0px 3px 0 #f80,
-		3px 3px 0 #f80,
-		-6px 6px 0 #f80,
-		-3px 6px 0 #f80,
-		0px 6px 0 #f80,
-		3px 6px 0 #f80,
-		6px 6px 0 #f80;
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: #f80;
+  margin: 3px 6px 6px;
+  box-shadow:
+    -3px 3px 0 #f80,
+    0px 3px 0 #f80,
+    3px 3px 0 #f80,
+    -6px 6px 0 #f80,
+    -3px 6px 0 #f80,
+    0px 6px 0 #f80,
+    3px 6px 0 #f80,
+    6px 6px 0 #f80;
 }
 
 /* Reaction: blue diamond (5x5 grid, diamond shape) */
 .timingSymbol_reaction {
-	display: inline-block;
-	width: 3px;
-	height: 3px;
-	background: #48f;
-	margin: 6px;
-	box-shadow:
-		0px -6px 0 #48f,
-		-3px -3px 0 #48f,
-		0px -3px 0 #48f,
-		3px -3px 0 #48f,
-		-6px 0px 0 #48f,
-		-3px 0px 0 #48f,
-		3px 0px 0 #48f,
-		6px 0px 0 #48f,
-		-3px 3px 0 #48f,
-		0px 3px 0 #48f,
-		3px 3px 0 #48f,
-		0px 6px 0 #48f;
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: #48f;
+  margin: 6px;
+  box-shadow:
+    0px -6px 0 #48f,
+    -3px -3px 0 #48f,
+    0px -3px 0 #48f,
+    3px -3px 0 #48f,
+    -6px 0px 0 #48f,
+    -3px 0px 0 #48f,
+    3px 0px 0 #48f,
+    6px 0px 0 #48f,
+    -3px 3px 0 #48f,
+    0px 3px 0 #48f,
+    3px 3px 0 #48f,
+    0px 6px 0 #48f;
 }
 
 .actionsGrid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-	gap: var(--space-sm);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--space-sm);
 }
 
 .actionWrapper {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .actionButton {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--space-xs);
-	padding: var(--space-sm);
-	background: var(--color-bg-elevated);
-	border: 2px solid var(--color-border);
-	min-height: 72px;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  min-height: 72px;
+  justify-content: center;
 }
 
 .actionLabel {
-	font-size: var(--font-size-xs);
-	text-align: center;
-	line-height: 1.2;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  line-height: 1.2;
 }
 
 .emptyState {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 72px;
-	color: var(--color-text-muted);
-	font-size: var(--font-size-sm);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	border: 2px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px dashed var(--color-border);
 }
 
 .description {
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	padding: var(--space-sm);
-	background: var(--color-bg);
-	border: 2px solid var(--color-border);
-	border-top: none;
-	line-height: 1.4;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-sm);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-top: none;
+  line-height: 1.4;
 }

@@ -1,85 +1,85 @@
 .list {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-xs);
-	margin-bottom: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
 }
 
 .itemRow {
-	display: flex;
-	align-items: center;
-	gap: var(--space-sm);
-	padding: var(--space-sm);
-	background: var(--color-bg-elevated);
-	border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
 }
 
 .itemInfo {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .itemName {
-	font-weight: 600;
-	font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
 }
 
 .itemMeta {
-	font-size: var(--font-size-xs);
-	color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .attackBonus {
-	font-size: var(--font-size-sm);
-	font-weight: 700;
-	color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-accent);
 }
 
 .removeButton {
-	width: 24px;
-	height: 24px;
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .addButton {
-	width: 100%;
-	padding: var(--space-sm);
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
-	background: var(--color-bg-elevated);
-	border: 2px dashed var(--color-border);
-	text-align: center;
+  width: 100%;
+  padding: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: var(--color-bg-elevated);
+  border: 2px dashed var(--color-border);
+  text-align: center;
 }
 
 .form {
-	display: flex;
-	gap: var(--space-xs);
+  display: flex;
+  gap: var(--space-xs);
 }
 
 .formInput {
-	flex: 1;
-	padding: var(--space-sm);
-	font-size: var(--font-size-sm);
-	background: var(--color-bg-elevated);
-	border: 2px solid var(--color-border);
+  flex: 1;
+  padding: var(--space-sm);
+  font-size: var(--font-size-sm);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
 }
 
 .formSubmit {
-	padding: var(--space-sm) var(--space-md);
-	font-size: var(--font-size-sm);
-	font-weight: 600;
-	background: var(--color-accent-dim);
-	color: var(--color-bg);
-	border: 2px solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  background: var(--color-accent-dim);
+  color: var(--color-bg);
+  border: 2px solid var(--color-border);
 }
 
 .formCancel {
-	padding: var(--space-sm) var(--space-md);
-	font-size: var(--font-size-sm);
-	color: var(--color-text-muted);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }
