@@ -6,7 +6,7 @@ import {
 	getSkillLabel,
 } from "../data/backgrounds";
 import type { AbilityName } from "../data/types";
-import cardStyles from "./wizard-card.module.css";
+import { SelectionGrid } from "./selection-grid";
 import styles from "./wizard-step-origin.module.css";
 
 function abilityShortLabel(key: AbilityName): string {
@@ -27,23 +27,13 @@ export function WizardStepOrigin({
 	return (
 		<div className="section">
 			<h2 className="section-title">Background</h2>
-			<div className={styles.backgroundGrid}>
-				{BACKGROUND_LIST.map(({ key, label }) => (
-					<button
-						key={key}
-						type="button"
-						className={`${cardStyles.card} ${background === key ? cardStyles.cardSelected : ""}`}
-						onClick={() => onBackgroundChange(key)}
-					>
-						<img
-							src="/race-icons/placeholder.png"
-							alt={label}
-							className={cardStyles.cardIcon}
-						/>
-						<span className={cardStyles.cardLabel}>{label}</span>
-					</button>
-				))}
-			</div>
+			<SelectionGrid
+				items={BACKGROUND_LIST}
+				selectedKey={background}
+				onSelect={(key) => onBackgroundChange(key as Background)}
+				columns={4}
+				getIcon={() => "/race-icons/placeholder.png"}
+			/>
 			{selected && (
 				<div className={styles.originInfo}>
 					<div className={styles.infoBox}>

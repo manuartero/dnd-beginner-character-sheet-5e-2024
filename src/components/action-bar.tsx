@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "../data/actions";
 import type { IconName } from "../data/icons";
 import { getIconPath } from "../data/icons";
 import type { Action, ActionTiming, CharacterClass } from "../data/types";
+import { useExpandable } from "../hooks/use-expandable";
 import styles from "./action-bar.module.css";
 
 interface ActionBarProps {
@@ -24,7 +24,8 @@ const TIMING_SYMBOL_CLASS: Record<ActionTiming, string> = {
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
 export function ActionBar({ characterClass }: ActionBarProps) {
-	const [expandedAction, setExpandedAction] = useState<string | null>(null);
+	const { expandedKey: expandedAction, toggle: toggleAction } =
+		useExpandable<string>();
 
 	const availableActions = [
 		...UNIVERSAL_ACTIONS,
@@ -45,7 +46,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
 			<div className={styles.groupsContainer}>
 				{grouped.map((group) => (
 					<div key={group.timing}>
-						<h3 className={styles.groupLabel}>
+						<h3 className="group-label">
 							{group.label}
 							<span className={TIMING_SYMBOL_CLASS[group.timing]} />
 						</h3>
@@ -56,11 +57,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
 										key={action.name}
 										action={action}
 										isExpanded={expandedAction === action.name}
-										onToggle={() =>
-											setExpandedAction(
-												expandedAction === action.name ? null : action.name,
-											)
-										}
+										onToggle={() => toggleAction(action.name)}
 									/>
 								))}
 							</div>

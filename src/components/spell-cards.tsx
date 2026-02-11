@@ -1,7 +1,7 @@
-import { useState } from "react";
 import type { IconName } from "../data/icons";
 import { getIconPath } from "../data/icons";
 import type { Spell } from "../data/types";
+import { useExpandable } from "../hooks/use-expandable";
 import styles from "./spell-cards.module.css";
 
 interface SpellCardsProps {
@@ -22,7 +22,8 @@ const DAMAGE_COLORS: Record<string, string> = {
 };
 
 export function SpellCards({ spells }: SpellCardsProps) {
-	const [expandedSpell, setExpandedSpell] = useState<string | null>(null);
+	const { expandedKey: expandedSpell, toggle: toggleSpell } =
+		useExpandable<string>();
 
 	const cantrips = spells.filter((s) => s.level === 0);
 	const levelSpells = spells.filter((s) => s.level > 0);
@@ -33,18 +34,14 @@ export function SpellCards({ spells }: SpellCardsProps) {
 
 			{cantrips.length > 0 && (
 				<div className={styles.spellGroup}>
-					<h3 className={styles.groupLabel}>Cantrips</h3>
+					<h3 className="group-label">Cantrips</h3>
 					<div className={styles.cardsGrid}>
 						{cantrips.map((spell) => (
 							<SpellCard
 								key={spell.name}
 								spell={spell}
 								isExpanded={expandedSpell === spell.name}
-								onToggle={() =>
-									setExpandedSpell(
-										expandedSpell === spell.name ? null : spell.name,
-									)
-								}
+								onToggle={() => toggleSpell(spell.name)}
 							/>
 						))}
 					</div>
@@ -53,18 +50,14 @@ export function SpellCards({ spells }: SpellCardsProps) {
 
 			{levelSpells.length > 0 && (
 				<div className={styles.spellGroup}>
-					<h3 className={styles.groupLabel}>Level 1</h3>
+					<h3 className="group-label">Level 1</h3>
 					<div className={styles.cardsGrid}>
 						{levelSpells.map((spell) => (
 							<SpellCard
 								key={spell.name}
 								spell={spell}
 								isExpanded={expandedSpell === spell.name}
-								onToggle={() =>
-									setExpandedSpell(
-										expandedSpell === spell.name ? null : spell.name,
-									)
-								}
+								onToggle={() => toggleSpell(spell.name)}
 							/>
 						))}
 					</div>

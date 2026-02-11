@@ -4,18 +4,6 @@
 	gap: var(--space-md);
 }
 
-.groupLabel {
-	display: flex;
-	align-items: center;
-	gap: var(--space-xs);
-	font-size: var(--font-size-xs);
-	color: var(--color-accent);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	margin-bottom: var(--space-xs);
-}
-
 /* 8-bit pixel art symbols (3px per pixel, box-shadow technique) */
 
 /* Action: green circle (5x5 grid, corners removed) */

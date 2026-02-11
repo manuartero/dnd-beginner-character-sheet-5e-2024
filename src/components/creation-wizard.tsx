@@ -9,7 +9,9 @@ import type {
 	CharacterClass,
 	CharacterRace,
 } from "../data/types";
+import { totalBonuses } from "../utils/total-bonuses";
 import styles from "./creation-wizard.module.css";
+import { WizardActions } from "./wizard-actions";
 import {
 	isValidHp,
 	isValidScore,
@@ -30,10 +32,6 @@ interface DraftState {
 	abilityScores: AbilityScores;
 	abilityBonuses: Partial<Record<AbilityName, number>>;
 	hpMax: number;
-}
-
-function totalBonuses(bonuses: Partial<Record<AbilityName, number>>): number {
-	return Object.values(bonuses).reduce<number>((sum, v) => sum + (v ?? 0), 0);
 }
 
 export function CreationWizard({ onSave }: CreationWizardProps) {
@@ -134,16 +132,10 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 						}
 						onRaceChange={(race) => setDraft((prev) => ({ ...prev, race }))}
 					/>
-					<div className={styles.actions}>
-						<button
-							type="button"
-							className={styles.primaryButton}
-							disabled={!step1Complete}
-							onClick={() => setStep(2)}
-						>
-							Next
-						</button>
-					</div>
+					<WizardActions
+						onNext={() => setStep(2)}
+						nextDisabled={!step1Complete}
+					/>
 				</>
 			)}
 
@@ -153,23 +145,11 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 						background={draft.background}
 						onBackgroundChange={handleBackgroundChange}
 					/>
-					<div className={styles.actions}>
-						<button
-							type="button"
-							className={styles.backButton}
-							onClick={() => setStep(1)}
-						>
-							Back
-						</button>
-						<button
-							type="button"
-							className={styles.primaryButton}
-							disabled={!step2Complete}
-							onClick={() => setStep(3)}
-						>
-							Next
-						</button>
-					</div>
+					<WizardActions
+						onBack={() => setStep(1)}
+						onNext={() => setStep(3)}
+						nextDisabled={!step2Complete}
+					/>
 				</>
 			)}
 
@@ -194,23 +174,12 @@ export function CreationWizard({ onSave }: CreationWizardProps) {
 							}))
 						}
 					/>
-					<div className={styles.actions}>
-						<button
-							type="button"
-							className={styles.backButton}
-							onClick={() => setStep(2)}
-						>
-							Back
-						</button>
-						<button
-							type="button"
-							className={styles.primaryButton}
-							disabled={!step3Complete}
-							onClick={handleCreate}
-						>
-							Create
-						</button>
-					</div>
+					<WizardActions
+						onBack={() => setStep(2)}
+						onNext={handleCreate}
+						nextLabel="Create"
+						nextDisabled={!step3Complete}
+					/>
 				</>
 			)}
 		</>
