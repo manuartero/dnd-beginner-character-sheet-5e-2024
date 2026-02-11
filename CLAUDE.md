@@ -38,6 +38,7 @@ pnpm test:watch   # run tests in watch mode
 - **Named exports** only (`export function …`); default exports forbidden unless required by a dependency.
 - Use `import type { ... } from '...'` for type-only imports.
 - `any` type must have an explicit justification comment.
+- **Prefer `type` over `interface`** for regular object definitions. Use `interface` only for semantic behavior contracts (e.g., `interface Runnable`, `interface Serializable`). For plain data shapes, use `type`.
 - No emojis in code or comments.
 - Keep functions small and focused (guideline: < 50 lines).
 - Prefer meaningful names over explanatory comments.

@@ -22,12 +22,12 @@ function modifierColorClass(mod: number): string {
   return styles.modifierPositive;
 }
 
-interface AbilityScoresProps {
+type AbilityScoresProps = {
   scores: AbilityScoresType;
   editable: boolean;
   onScoreChange: (ability: AbilityName, value: number) => void;
   proficiencyBonus?: number;
-}
+};
 
 export function AbilityScores({
   scores,

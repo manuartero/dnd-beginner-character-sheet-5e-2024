@@ -1,4 +1,12 @@
 import { useState } from "react";
+import { WizardActions } from "src/components/wizard-actions";
+import {
+  isValidHp,
+  isValidScore,
+  WizardStepAbilities,
+} from "src/components/wizard-step-abilities";
+import { WizardStepIdentity } from "src/components/wizard-step-identity";
+import { WizardStepOrigin } from "src/components/wizard-step-origin";
 import type { Background } from "src/data/backgrounds";
 import { BACKGROUND_LIST } from "src/data/backgrounds";
 import { saveCharacter } from "src/data/character-storage";
@@ -11,20 +19,12 @@ import type {
 } from "src/data/types";
 import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./creation-wizard.module.css";
-import { WizardActions } from "src/components/wizard-actions";
-import {
-  isValidHp,
-  isValidScore,
-  WizardStepAbilities,
-} from "src/components/wizard-step-abilities";
-import { WizardStepIdentity } from "src/components/wizard-step-identity";
-import { WizardStepOrigin } from "src/components/wizard-step-origin";
 
-interface CreationWizardProps {
+type CreationWizardProps = {
   onSave: (character: Character) => void;
-}
+};
 
-interface DraftState {
+type DraftState = {
   name: string;
   characterClass: CharacterClass | null;
   race: CharacterRace | null;
@@ -32,7 +32,7 @@ interface DraftState {
   abilityScores: AbilityScores;
   abilityBonuses: Partial<Record<AbilityName, number>>;
   hpMax: number;
-}
+};
 
 export function CreationWizard({ onSave }: CreationWizardProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1);

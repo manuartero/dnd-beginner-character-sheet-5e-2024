@@ -1,12 +1,12 @@
 import cardStyles from "../wizard-card.module.css";
 
-interface SelectionGridProps {
+type SelectionGridProps = {
   items: { key: string; label: string }[];
   selectedKey: string | null;
   onSelect: (key: string) => void;
   columns: number;
   getIcon: (key: string) => string;
-}
+};
 
 export function SelectionGrid({
   items,

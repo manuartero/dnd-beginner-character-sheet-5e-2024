@@ -20,11 +20,11 @@ export type SkillName =
   | "performance"
   | "persuasion";
 
-interface SkillDefinition {
+type SkillDefinition = {
   name: SkillName;
   label: string;
   ability: AbilityName;
-}
+};
 
 export const SKILLS: SkillDefinition[] = [
   { name: "athletics", label: "Athletics", ability: "str" },

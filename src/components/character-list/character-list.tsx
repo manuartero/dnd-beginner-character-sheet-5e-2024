@@ -3,12 +3,12 @@ import { getClassIcon } from "src/data/class-icons";
 import type { Character } from "src/data/types";
 import styles from "./character-list.module.css";
 
-interface CharacterListProps {
+type CharacterListProps = {
   characters: Character[];
   onSelect: (characterId: string) => void;
   onNew: () => void;
   onDelete: (characterId: string) => void;
-}
+};
 
 export function CharacterList({
   characters,

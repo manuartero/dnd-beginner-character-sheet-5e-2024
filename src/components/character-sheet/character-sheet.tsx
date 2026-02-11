@@ -1,17 +1,17 @@
-import { saveCharacter } from "src/data/character-storage";
-import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/data/spells";
-import type { Character, Equipment } from "src/data/types";
 import { AbilityScores } from "src/components/ability-scores";
 import { ActionBar } from "src/components/action-bar";
 import { CharacterHeader } from "src/components/character-header";
 import { EquipmentList } from "src/components/equipment-list";
 import { HpTracker } from "src/components/hp-tracker";
 import { SpellCards } from "src/components/spell-cards";
+import { saveCharacter } from "src/data/character-storage";
+import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/data/spells";
+import type { Character, Equipment } from "src/data/types";
 
-interface CharacterSheetProps {
+type CharacterSheetProps = {
   character: Character;
   onCharacterUpdate: (character: Character) => void;
-}
+};
 
 export function CharacterSheet({
   character,

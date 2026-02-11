@@ -1,18 +1,18 @@
+import { SelectionGrid } from "src/components/selection-grid";
 import { getClassIcon } from "src/data/class-icons";
 import { CLASS_LIST } from "src/data/classes";
 import { RACE_LIST } from "src/data/races";
 import type { CharacterClass, CharacterRace } from "src/data/types";
-import { SelectionGrid } from "src/components/selection-grid";
 import styles from "./wizard-step-identity.module.css";
 
-interface WizardStepIdentityProps {
+type WizardStepIdentityProps = {
   name: string;
   characterClass: CharacterClass | null;
   race: CharacterRace | null;
   onNameChange: (name: string) => void;
   onClassChange: (characterClass: CharacterClass) => void;
   onRaceChange: (race: CharacterRace) => void;
-}
+};
 
 export function WizardStepIdentity({
   name,

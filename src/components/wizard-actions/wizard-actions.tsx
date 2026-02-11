@@ -1,11 +1,11 @@
 import styles from "../creation-wizard/creation-wizard.module.css";
 
-interface WizardActionsProps {
+type WizardActionsProps = {
   onBack?: () => void;
   onNext: () => void;
   nextLabel?: string;
   nextDisabled?: boolean;
-}
+};
 
 export function WizardActions({
   onBack,

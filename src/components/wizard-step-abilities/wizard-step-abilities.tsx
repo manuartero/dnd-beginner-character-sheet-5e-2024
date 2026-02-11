@@ -8,7 +8,7 @@ import type { AbilityName, AbilityScores } from "src/data/types";
 import { totalBonuses } from "src/utils/total-bonuses";
 import styles from "./wizard-step-abilities.module.css";
 
-interface WizardStepAbilitiesProps {
+type WizardStepAbilitiesProps = {
   scores: AbilityScores;
   hpMax: number;
   onScoresChange: (scores: AbilityScores) => void;
@@ -18,7 +18,7 @@ interface WizardStepAbilitiesProps {
   onAbilityBonusesChange: (
     bonuses: Partial<Record<AbilityName, number>>,
   ) => void;
-}
+};
 
 function isValidScore(value: string): boolean {
   if (value === "") return false;
@@ -191,4 +191,4 @@ export function WizardStepAbilities({
   );
 }
 
-export { isValidScore, isValidHp };
+export { isValidHp, isValidScore };

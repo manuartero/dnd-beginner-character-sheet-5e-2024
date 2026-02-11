@@ -1,10 +1,10 @@
 import styles from "./top-menu.module.css";
 
-interface TopMenuProps {
+type TopMenuProps = {
   title: string;
   showBack: boolean;
   onBack: () => void;
-}
+};
 
 export function TopMenu({ title, showBack, onBack }: TopMenuProps) {
   return (
