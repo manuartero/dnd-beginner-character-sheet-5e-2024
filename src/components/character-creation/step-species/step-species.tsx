@@ -1,5 +1,9 @@
 import type { Species } from "src/models/species";
-import { getSpeciesIcon, SPECIES_DETAILS, SPECIES_LIST } from "src/models/species";
+import {
+  getSpeciesIcon,
+  SPECIES_DETAILS,
+  SPECIES_LIST,
+} from "src/models/species";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-species.module.css";
 

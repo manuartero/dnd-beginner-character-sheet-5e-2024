@@ -1,6 +1,7 @@
 {
   "barbarian": {
     "label": "Barbarian",
+    "icon": "/class-icons/barbarian.jpeg",
     "hitDie": "d12",
     "primaryAbilities": ["str"],
     "saves": "Strength & Constitution",
@@ -8,6 +9,7 @@
   },
   "bard": {
     "label": "Bard",
+    "icon": "/class-icons/bard.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Dexterity & Charisma",
@@ -15,6 +17,7 @@
   },
   "cleric": {
     "label": "Cleric",
+    "icon": "/class-icons/cleric.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Wisdom & Charisma",
@@ -22,6 +25,7 @@
   },
   "druid": {
     "label": "Druid",
+    "icon": "/class-icons/druid.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Intelligence & Wisdom",
@@ -29,6 +33,7 @@
   },
   "fighter": {
     "label": "Fighter",
+    "icon": "/class-icons/fighter.jpeg",
     "hitDie": "d10",
     "primaryAbilities": ["str", "dex"],
     "saves": "Strength & Constitution",
@@ -36,6 +41,7 @@
   },
   "monk": {
     "label": "Monk",
+    "icon": "/class-icons/monk.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
@@ -43,6 +49,7 @@
   },
   "paladin": {
     "label": "Paladin",
+    "icon": "/class-icons/paladin.jpeg",
     "hitDie": "d10",
     "primaryAbilities": ["str", "cha"],
     "saves": "Wisdom & Charisma",
@@ -50,6 +57,7 @@
   },
   "ranger": {
     "label": "Ranger",
+    "icon": "/class-icons/ranger.jpeg",
     "hitDie": "d10",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
@@ -57,6 +65,7 @@
   },
   "rogue": {
     "label": "Rogue",
+    "icon": "/class-icons/rogue.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["dex"],
     "saves": "Dexterity & Intelligence",
@@ -64,6 +73,7 @@
   },
   "sorcerer": {
     "label": "Sorcerer",
+    "icon": "/class-icons/sorcerer.jpeg",
     "hitDie": "d6",
     "primaryAbilities": ["cha"],
     "saves": "Constitution & Charisma",
@@ -71,6 +81,7 @@
   },
   "warlock": {
     "label": "Warlock",
+    "icon": "/class-icons/warlock.jpeg",
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Wisdom & Charisma",
@@ -78,6 +89,7 @@
   },
   "wizard": {
     "label": "Wizard",
+    "icon": "/class-icons/wizard.jpeg",
     "hitDie": "d6",
     "primaryAbilities": ["int"],
     "saves": "Intelligence & Wisdom",

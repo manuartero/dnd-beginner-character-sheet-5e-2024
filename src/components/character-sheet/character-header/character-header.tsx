@@ -1,5 +1,4 @@
-import { getClassIcon } from "src/models/class-icons";
-import type { CharacterClass } from "src/models/classes";
+import { type CharacterClass, getClassIcon } from "src/models/classes";
 import type { Species } from "src/models/species";
 import { SPECIES_LIST } from "src/models/species";
 import styles from "./character-header.module.css";

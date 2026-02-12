@@ -2,9 +2,9 @@ import type { AbilityName } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
 import type { Background } from "src/models/backgrounds";
 import {
-    BACKGROUND_LIST,
-    getOriginFeatDescription,
-    getSkillLabel,
+  BACKGROUND_LIST,
+  getOriginFeatDescription,
+  getSkillLabel,
 } from "src/models/backgrounds";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-origin.module.css";

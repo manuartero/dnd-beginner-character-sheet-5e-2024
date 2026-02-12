@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getClassIcon } from "src/models/class-icons";
+import { getClassIcon } from "src/models/classes";
 import type { Character } from "src/models/types";
 import styles from "./character-list.module.css";
 
