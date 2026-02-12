@@ -1,6 +1,6 @@
 import { useState } from "react";
+import type { Character } from "src/models/character";
 import { getClassIcon } from "src/models/classes";
-import type { Character } from "src/models/types";
 import styles from "./character-list.module.css";
 
 type CharacterListProps = {

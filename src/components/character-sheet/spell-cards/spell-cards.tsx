@@ -1,7 +1,7 @@
 import { useExpandable } from "src/hooks/use-expandable";
 import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
-import type { Spell } from "src/models/types";
+import type { Spell } from "src/models/spells";
 import styles from "./spell-cards.module.css";
 
 type SpellCardsProps = {

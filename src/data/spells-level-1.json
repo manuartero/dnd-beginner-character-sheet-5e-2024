@@ -1,0 +1,69 @@
+{
+  "magic-missile": {
+    "id": "magic-missile",
+    "name": "Magic Missile",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "description": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. Each dart deals 1d4 + 1 force damage. The darts all strike simultaneously.",
+    "damage": {
+      "dice": "3x(1d4+1)",
+      "type": "force"
+    }
+  },
+  "shield": {
+    "id": "shield",
+    "name": "Shield",
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "1 reaction",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "1 round",
+    "description": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack."
+  },
+  "burning-hands": {
+    "id": "burning-hands",
+    "name": "Burning Hands",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Self (15-ft cone)",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much on a successful one.",
+    "damage": {
+      "dice": "3d6",
+      "type": "fire"
+    }
+  },
+  "thunderwave": {
+    "id": "thunderwave",
+    "name": "Thunderwave",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Self (15-ft cube)",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away. On a success, half damage and not pushed.",
+    "damage": {
+      "dice": "2d8",
+      "type": "thunder"
+    }
+  },
+  "detect-magic": {
+    "id": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self (30-ft radius)",
+    "components": "V, S",
+    "duration": "Concentration, up to 10 minutes",
+    "description": "For the duration, you sense the presence of magic within 30 feet of you. You can also see a faint aura around any visible creature or object that bears magic."
+  }
+}

@@ -1,0 +1,21 @@
+import type { AbilityScores } from "./abilities";
+import type { Background } from "./backgrounds";
+import type { CharacterClass } from "./classes";
+import type { Equipment } from "./equipment";
+import type { Species } from "./species";
+import type { Spell } from "./spells";
+
+export type Character = {
+  id: string;
+  name: string;
+  race: Species;
+  characterClass: CharacterClass;
+  background?: Background;
+  level: number;
+  abilityScores: AbilityScores;
+  hp: { current: number; max: number };
+  ac: number;
+  proficiencyBonus: number;
+  spells: Spell[];
+  equipment: Equipment[];
+};
