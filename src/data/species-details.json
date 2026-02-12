@@ -1,5 +1,7 @@
 {
   "aasimar": {
+    "label": "Aasimar",
+    "icon": "/race-icons/aasimar.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": [
@@ -12,6 +14,8 @@
     "description": "Mortals who carry a spark of the Upper Planes within their souls"
   },
   "dragonborn": {
+    "label": "Dragonborn",
+    "icon": "/race-icons/dragonborn.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": [
@@ -24,6 +28,8 @@
     "description": "Descendants hatched from the eggs of chromatic and metallic dragons"
   },
   "dwarf": {
+    "label": "Dwarf",
+    "icon": "/race-icons/dwarf.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": [
@@ -35,6 +41,8 @@
     "description": "Raised from the earth in the elder days by a deity of the forge"
   },
   "elf": {
+    "label": "Elf",
+    "icon": "/race-icons/elf.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": [
@@ -47,36 +55,48 @@
     "description": "Magical people of otherworldly grace with curiosity for other planes"
   },
   "gnome": {
+    "label": "Gnome",
+    "icon": "/race-icons/gnome.jpeg",
     "size": "Small",
     "speed": "30 ft.",
     "traits": ["Darkvision", "Gnomish Cunning", "Gnomish Lineage"],
     "description": "Magical folk created by gods of invention, illusions, and life underground"
   },
   "goliath": {
+    "label": "Goliath",
+    "icon": "/race-icons/goliath.png",
     "size": "Medium",
     "speed": "35 ft.",
     "traits": ["Giant Ancestry", "Large Form", "Powerful Build"],
     "description": "Distant descendants of giants who seek heights above their ancestors"
   },
   "halfling": {
+    "label": "Halfling",
+    "icon": "/race-icons/halfling.jpeg",
     "size": "Small",
     "speed": "30 ft.",
     "traits": ["Brave", "Halfling Nimbleness", "Luck", "Naturally Stealthy"],
     "description": "Brave and adventurous spirits led on journeys of discovery"
   },
   "human": {
+    "label": "Human",
+    "icon": "/race-icons/human.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": ["Resourceful", "Skillful", "Versatile"],
     "description": "Found throughout the multiverse, as varied as they are numerous"
   },
   "orc": {
+    "label": "Orc",
+    "icon": "/race-icons/orc.png",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": ["Adrenaline Rush", "Darkvision", "Relentless Endurance"],
     "description": "Equipped with gifts to wander great plains, vast caverns, and churning seas"
   },
   "tiefling": {
+    "label": "Tiefling",
+    "icon": "/race-icons/tiefling.jpeg",
     "size": "Medium",
     "speed": "30 ft.",
     "traits": ["Darkvision", "Fiendish Legacy", "Otherworldly Presence"],

@@ -1,13 +1,11 @@
-import type { CharacterRace } from "src/models/races";
-import { RACE_LIST } from "src/models/races";
-import { SPECIES_DETAILS } from "src/models/species-details";
-import { getSpeciesIcon } from "src/models/species-icons";
+import type { Species } from "src/models/species";
+import { getSpeciesIcon, SPECIES_DETAILS, SPECIES_LIST } from "src/models/species";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-species.module.css";
 
 type StepSpeciesProps = {
-  race: CharacterRace | null;
-  onRaceChange: (race: CharacterRace) => void;
+  race: Species | null;
+  onRaceChange: (race: Species) => void;
 };
 
 export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
@@ -18,11 +16,11 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>Species</h2>
         <SelectionGrid
-          items={RACE_LIST}
+          items={SPECIES_LIST}
           selectedKey={race}
-          onSelect={(key) => onRaceChange(key as CharacterRace)}
+          onSelect={(key) => onRaceChange(key as Species)}
           columns={2}
-          getIcon={(key) => getSpeciesIcon(key as CharacterRace)}
+          getIcon={(key) => getSpeciesIcon(key as Species)}
           iconSize={96}
         />
       </div>
@@ -37,7 +35,7 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
             />
             <div>
               <h3 className={styles.detailsName}>
-                {RACE_LIST.find((r) => r.key === race)?.label}
+                {SPECIES_LIST.find((r) => r.key === race)?.label}
               </h3>
               <p className={styles.detailsDescription}>{details.description}</p>
             </div>

@@ -1,15 +1,15 @@
-import type { CharacterRace } from "src/models/races";
-import { RACE_LIST } from "src/models/races";
+import type { Species } from "src/models/species";
+import { SPECIES_LIST } from "src/models/species";
 import type { Character } from "src/models/types";
 
 const STORAGE_KEY = "dnd-characters";
 
-const VALID_RACES: CharacterRace[] = RACE_LIST.map((r) => r.key);
+const VALID_SPECIES: Species[] = SPECIES_LIST.map((r) => r.key);
 
-function migrateRace(raw: string): CharacterRace {
+function migrateRace(raw: string): Species {
   const lower = raw.toLowerCase().trim();
-  if (VALID_RACES.includes(lower as CharacterRace)) {
-    return lower as CharacterRace;
+  if (VALID_SPECIES.includes(lower as Species)) {
+    return lower as Species;
   }
   return "human";
 }

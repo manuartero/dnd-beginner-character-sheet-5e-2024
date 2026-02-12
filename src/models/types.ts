@@ -1,7 +1,7 @@
 import type { AbilityScores } from "./abilities";
 import type { Background } from "./backgrounds";
 import type { CharacterClass } from "./classes";
-import type { CharacterRace } from "./races";
+import type { Species } from "./species";
 
 export type DamageType =
   | "slashing"
@@ -50,7 +50,7 @@ export type Equipment = {
 export type Character = {
   id: string;
   name: string;
-  race: CharacterRace;
+  race: Species;
   characterClass: CharacterClass;
   background?: Background;
   level: number;

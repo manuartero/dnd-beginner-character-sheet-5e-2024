@@ -5,7 +5,7 @@ import type { Background } from "src/models/backgrounds";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
 import { saveCharacter } from "src/models/character-storage";
 import type { CharacterClass } from "src/models/classes";
-import type { CharacterRace } from "src/models/races";
+import type { Species } from "src/models/species";
 import type { Character } from "src/models/types";
 import styles from "./character-creation.module.css";
 import { CreationActions } from "./creation-actions";
@@ -22,7 +22,7 @@ type CharacterCreationProps = {
 type DraftState = {
   name: string;
   characterClass: CharacterClass | null;
-  race: CharacterRace | null;
+  race: Species | null;
   background: Background | null;
   abilityScores: AbilityScores;
   abilityBonuses: Partial<Record<AbilityName, number>>;

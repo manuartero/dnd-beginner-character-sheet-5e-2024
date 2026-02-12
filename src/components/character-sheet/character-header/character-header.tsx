@@ -1,18 +1,18 @@
 import { getClassIcon } from "src/models/class-icons";
 import type { CharacterClass } from "src/models/classes";
-import type { CharacterRace } from "src/models/races";
-import { RACE_LIST } from "src/models/races";
+import type { Species } from "src/models/species";
+import { SPECIES_LIST } from "src/models/species";
 import styles from "./character-header.module.css";
 
 type CharacterHeaderProps = {
   name: string;
-  race: CharacterRace;
+  race: Species;
   characterClass: CharacterClass;
   level: number;
 };
 
-function getRaceLabel(race: CharacterRace): string {
-  return RACE_LIST.find((r) => r.key === race)?.label ?? race;
+function getRaceLabel(race: Species): string {
+  return SPECIES_LIST.find((r) => r.key === race)?.label ?? race;
 }
 
 export function CharacterHeader({
