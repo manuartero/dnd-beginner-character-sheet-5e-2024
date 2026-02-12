@@ -1,6 +1,9 @@
 import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
-import { WIZARD_SPELLS_LEVEL_0, WIZARD_SPELLS_LEVEL_1 } from "src/models/spells";
+import {
+  WIZARD_SPELLS_LEVEL_0,
+  WIZARD_SPELLS_LEVEL_1,
+} from "src/models/spells";
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
@@ -39,7 +42,6 @@ export function CharacterSheet({
 
       <AbilityScores
         scores={character.abilityScores}
-        editable={false}
         proficiencyBonus={character.proficiencyBonus}
       />
 

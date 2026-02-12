@@ -1,10 +1,8 @@
 import { useState } from "react";
+import { AbilityCard } from "src/components/ability-card";
+import { useExpandable } from "src/hooks/use-expandable";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
-import {
-  ABILITY_LIST,
-  computeModifier,
-  formatModifier,
-} from "src/models/abilities";
+import { ABILITY_LIST } from "src/models/abilities";
 import { type CharacterClass, CLASS_DETAILS } from "src/models/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
@@ -46,6 +44,8 @@ export function StepAbilities({
   );
   const [rawHp, setRawHp] = useState(String(hpMax));
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const { expandedKey: flippedAbility, toggle: toggleFlip } =
+    useExpandable<AbilityName>();
 
   function handleScoreChange(ability: AbilityName, value: string) {
     setRawScores((prev) => ({ ...prev, [ability]: value }));
@@ -63,7 +63,7 @@ export function StepAbilities({
     }
   }
 
-  function handleBlur(field: string) {
+  function handleBlur(field: AbilityName | "hp") {
     setTouched((prev) => ({ ...prev, [field]: true }));
   }
 
@@ -77,30 +77,23 @@ export function StepAbilities({
             const showError = touched[key] && !isValidScore(raw);
             const bonus = abilityBonuses[key] ?? 0;
             const baseScore = isValidScore(raw) ? Number.parseInt(raw, 10) : 10;
-            const displayMod = formatModifier(
-              computeModifier(baseScore + bonus),
-            );
-            const isPrimary = primaryAbilities.includes(key);
             return (
-              <div
+              <AbilityCard
                 key={key}
-                className={`${styles.abilityCard} ${isPrimary ? styles.abilityCardPrimary : ""}`}
-              >
-                <span className={styles.modifier}>{displayMod}</span>
-                {bonus > 0 && (
-                  <span className={styles.bonusBadge}>+{bonus}</span>
-                )}
-                <span className={styles.label}>{short}</span>
-                <input
-                  type="text"
-                  maxLength={2}
-                  inputMode="numeric"
-                  value={raw}
-                  onChange={(e) => handleScoreChange(key, e.target.value)}
-                  onBlur={() => handleBlur(key)}
-                  className={`${styles.scoreInput} ${showError ? styles.scoreInputError : ""}`}
-                />
-              </div>
+                mode="creation"
+                abilityKey={key}
+                short={short}
+                score={baseScore + bonus}
+                isFlipped={flippedAbility === key}
+                proficiencyBonus={2}
+                onToggle={toggleFlip}
+                rawScore={raw}
+                isPrimary={primaryAbilities.includes(key)}
+                bonus={bonus}
+                showError={showError}
+                onScoreChange={handleScoreChange}
+                onBlur={handleBlur}
+              />
             );
           })}
         </div>

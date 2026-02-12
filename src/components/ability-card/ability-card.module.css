@@ -1,0 +1,154 @@
+/* Shared ability card styles (display + creation modes) */
+
+.abilityCard {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: center;
+  justify-items: center;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  box-shadow: 3px 3px 0 var(--color-border);
+  overflow: hidden;
+  min-height: 120px;
+}
+
+button.abilityCard {
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  text-align: inherit;
+}
+
+.abilityCardClickable {
+  cursor: pointer;
+}
+
+.abilityCardActive {
+  border-color: var(--color-accent);
+  box-shadow: 3px 3px 0 var(--color-accent);
+}
+
+.abilityCardPrimary {
+  border-color: var(--color-accent);
+  box-shadow: 3px 3px 0 var(--color-accent);
+}
+
+/* Label banner */
+
+.label {
+  width: 100%;
+  padding: var(--space-xs) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--color-bg);
+  background: var(--color-border);
+}
+
+/* Display mode: large modifier */
+
+.modifier {
+  align-self: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.modifierNegative {
+  color: var(--color-accent);
+}
+
+.modifierNeutral {
+  color: var(--color-text-muted);
+}
+
+.modifierPositive {
+  color: var(--color-accent);
+}
+
+.modifierHigh {
+  color: var(--color-modifier-high);
+}
+
+/* Display mode: score text */
+
+.score {
+  padding: var(--space-xs) 0 0;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+/* Creation mode: small modifier (top-right corner) */
+
+.modifierSmall {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+  z-index: 1;
+}
+
+/* Creation mode: bonus badge (top-left corner) */
+
+.bonusBadge {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+  z-index: 1;
+}
+
+/* Creation mode: score input */
+
+.scoreInput {
+  width: 56px;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.scoreInputError {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Skill list (back face) */
+
+.skillList {
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.skillRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.skillProficient {
+  font-weight: 700;
+  color: var(--color-modifier-high);
+}
+
+.skillName {
+  text-align: left;
+}
+
+.skillModifier {
+  text-align: right;
+  font-weight: 700;
+}
