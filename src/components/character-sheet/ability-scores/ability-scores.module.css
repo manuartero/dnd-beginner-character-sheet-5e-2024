@@ -68,7 +68,7 @@ button.abilityCard {
 }
 
 .modifierNegative {
-  color: var(--color-fighter);
+  color: var(--color-accent);
 }
 
 .modifierNeutral {

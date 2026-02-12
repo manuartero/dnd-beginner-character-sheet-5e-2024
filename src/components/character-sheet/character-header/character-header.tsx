@@ -1,6 +1,5 @@
 import { getClassIcon } from "src/models/class-icons";
 import type { CharacterClass } from "src/models/classes";
-import { CLASS_COLORS } from "src/models/classes";
 import type { CharacterRace } from "src/models/races";
 import { RACE_LIST } from "src/models/races";
 import styles from "./character-header.module.css";
@@ -36,10 +35,7 @@ export function CharacterHeader({
         </div>
 
         <div className={styles.bottomRow}>
-          <span
-            className={styles.classStatic}
-            style={{ color: CLASS_COLORS[characterClass] }}
-          >
+          <span className={styles.classStatic}>
             {characterClass.charAt(0).toUpperCase() + characterClass.slice(1)}
           </span>
           <span className={styles.raceStatic}>{getRaceLabel(race)}</span>

@@ -19,9 +19,7 @@ export function HpTracker({
   const barColor =
     ratio > 0.5
       ? "var(--color-hp)"
-      : ratio > 0.25
-        ? "var(--color-accent)"
-        : "var(--color-fighter)";
+      : "var(--color-accent)";
 
   return (
     <div className={styles.section}>
