@@ -1,0 +1,14 @@
+{
+  "alert": "Add Proficiency Bonus to Initiative. Swap Initiative with a willing ally.",
+  "crafter": "Proficiency with 3 Artisan's Tools. 20% discount on nonmagical items. Craft temporary items during a Short Rest.",
+  "healer": "Use a Healer's Kit to let a creature spend Hit Dice to heal, adding your Proficiency Bonus. Reroll 1s.",
+  "lucky": "Gain Luck Points equal to Proficiency Bonus after a Long Rest. Spend to gain Advantage or impose Disadvantage on attacks against you.",
+  "magic-initiate-cleric": "Learn 2 Cleric cantrips and one 1st-level Cleric spell. Cast the spell once per Long Rest without a spell slot.",
+  "magic-initiate-druid": "Learn 2 Druid cantrips and one 1st-level Druid spell. Cast the spell once per Long Rest without a spell slot.",
+  "magic-initiate-wizard": "Learn 2 Wizard cantrips and one 1st-level Wizard spell. Cast the spell once per Long Rest without a spell slot.",
+  "musician": "Proficiency with 3 musical instruments. After a rest, grant Heroic Inspiration to allies (up to Proficiency Bonus).",
+  "savage-attacker": "Once per turn on a weapon hit, roll damage dice twice and use either result.",
+  "skilled": "Gain proficiency in any 3 skills or tools.",
+  "tavern-brawler": "Unarmed Strikes deal 1d4 + STR mod. Proficiency with improvised weapons. Reroll 1s on damage. Push target 5 ft on hit.",
+  "tough": "HP max increases by 2 per character level."
+}
