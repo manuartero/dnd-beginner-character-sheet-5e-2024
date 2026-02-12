@@ -16,10 +16,7 @@ export function HpTracker({
   onMaxChange,
 }: HpTrackerProps) {
   const ratio = max > 0 ? current / max : 0;
-  const barColor =
-    ratio > 0.5
-      ? "var(--color-hp)"
-      : "var(--color-accent)";
+  const barColor = ratio > 0.5 ? "var(--color-hp)" : "var(--color-accent)";
 
   return (
     <div className={styles.section}>

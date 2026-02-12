@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
 import {
-    ABILITY_LIST,
-    computeModifier,
-    formatModifier,
+  ABILITY_LIST,
+  computeModifier,
+  formatModifier,
 } from "src/models/abilities";
 import { type CharacterClass, CLASS_DETAILS } from "src/models/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";

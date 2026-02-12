@@ -1,7 +1,7 @@
 import {
-    deleteCharacter,
-    loadCharacters,
-    saveCharacter,
+  deleteCharacter,
+  loadCharacters,
+  saveCharacter,
 } from "src/models/character-storage";
 import type { Character } from "src/models/types";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";

@@ -1,5 +1,9 @@
-import { getClassIcon } from "src/models/class-icons";
-import { type CharacterClass, CLASS_DETAILS, CLASS_LIST } from "src/models/classes";
+import {
+  type CharacterClass,
+  CLASS_DETAILS,
+  CLASS_LIST,
+  getClassIcon,
+} from "src/models/classes";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-class.module.css";
 
