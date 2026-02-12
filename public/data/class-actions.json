@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Second Wind",
+    "timing": "bonus-action",
+    "description": "Regain hit points equal to 1d10 + your Fighter level. Once per short or long rest.",
+    "classRestriction": "fighter"
+  },
+  {
+    "name": "Cunning Action: Dash",
+    "timing": "bonus-action",
+    "description": "You can Dash as a bonus action.",
+    "classRestriction": "rogue"
+  },
+  {
+    "name": "Cunning Action: Disengage",
+    "timing": "bonus-action",
+    "description": "You can Disengage as a bonus action.",
+    "classRestriction": "rogue"
+  },
+  {
+    "name": "Cunning Action: Hide",
+    "timing": "bonus-action",
+    "description": "You can Hide as a bonus action.",
+    "classRestriction": "rogue"
+  },
+  {
+    "name": "Sneak Attack",
+    "timing": "action",
+    "description": "Once per turn, deal extra 1d6 damage when you hit with a finesse or ranged weapon and have advantage, or an ally is within 5 ft of the target.",
+    "classRestriction": "rogue"
+  },
+  {
+    "name": "Cast a Spell",
+    "timing": "action",
+    "description": "Cast one of your prepared spells using the appropriate casting time.",
+    "classRestriction": "wizard"
+  }
+]

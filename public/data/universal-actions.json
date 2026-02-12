@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Attack",
+    "timing": "action",
+    "icon": "combat.common.actions.attack",
+    "description": "Make one melee or ranged attack with a weapon you are holding."
+  },
+  {
+    "name": "Dash",
+    "timing": "action",
+    "icon": "combat.common.actions.dash",
+    "description": "You gain extra movement equal to your speed for this turn."
+  },
+  {
+    "name": "Dodge",
+    "timing": "action",
+    "icon": "combat.common.actions.dodge",
+    "description": "Until your next turn, any attack roll against you has disadvantage if you can see the attacker, and you make Dexterity saving throws with advantage."
+  },
+  {
+    "name": "Disengage",
+    "timing": "action",
+    "icon": "combat.common.actions.disengage",
+    "description": "Your movement does not provoke opportunity attacks for the rest of this turn."
+  },
+  {
+    "name": "Help",
+    "timing": "action",
+    "icon": "combat.common.actions.help",
+    "description": "You give advantage to an ally's next ability check or attack roll against a target within 5 feet of you."
+  },
+  {
+    "name": "Hide",
+    "timing": "action",
+    "icon": "combat.common.actions.hide",
+    "description": "Make a Dexterity (Stealth) check to try to become hidden from enemies."
+  },
+  {
+    "name": "Opportunity Attack",
+    "timing": "reaction",
+    "icon": "combat.common.reactions.opportunity-attack",
+    "description": "When a creature you can see moves out of your reach, you can use your reaction to make one melee attack against it."
+  }
+]
