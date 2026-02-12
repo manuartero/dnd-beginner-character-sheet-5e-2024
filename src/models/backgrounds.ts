@@ -39,6 +39,7 @@ export type OriginFeat =
 type BackgroundEntry = {
   key: Background;
   label: string;
+  icon: string;
   originFeat: OriginFeat;
   originFeatLabel: string;
   abilityOptions: [AbilityName, AbilityName, AbilityName];
@@ -64,3 +65,15 @@ export function getSkillLabel(skill: SkillName): string {
 
 export const BACKGROUND_LIST: BackgroundEntry[] =
   backgroundListData as BackgroundEntry[];
+
+export function getBackgroundIcon(
+  background: Background,
+  { variant = "BLACK" }: { variant?: "BLACK" | "WHITE" } = {},
+): string {
+  const entry = BACKGROUND_LIST.find((b) => b.key === background);
+  if (!entry?.icon) {
+    return "/race-icons/placeholder.png";
+  }
+  const [vol, file] = entry.icon.split("/");
+  return `/assets/${vol}/${variant}/${file}.svg`;
+}
