@@ -3,8 +3,8 @@ import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
 import { TopMenu } from "src/components/top-menu";
-import { deleteCharacter, loadCharacters } from "src/data/character-storage";
-import type { AppView, Character } from "src/data/types";
+import { deleteCharacter, loadCharacters } from "src/models/character-storage";
+import type { AppView, Character } from "src/models/types";
 import styles from "./app.module.css";
 
 export function App() {

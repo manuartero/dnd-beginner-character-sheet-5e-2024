@@ -1,4 +1,4 @@
-import type { Spell } from "src/data/types";
+import type { Spell } from "src/models/types";
 
 export const WIZARD_CANTRIPS: Spell[] = [
   {

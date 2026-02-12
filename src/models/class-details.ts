@@ -1,5 +1,5 @@
-import type { AbilityName } from "src/data/abilities";
-import type { CharacterClass } from "src/data/classes";
+import type { AbilityName } from "src/models/abilities";
+import type { CharacterClass } from "src/models/classes";
 
 export type ClassDetails = {
   hitDie: string;

@@ -1,8 +1,8 @@
-import type { AbilityName } from "src/data/abilities";
-import type { SkillName } from "src/data/skills";
-import { SKILLS } from "src/data/skills";
-import backgroundListData from "../../public/data/background-list.json";
-import originFeatDescriptions from "../../public/data/origin-feat-descriptions.json";
+import type { AbilityName } from "src/models/abilities";
+import type { SkillName } from "src/models/skills";
+import { SKILLS } from "src/models/skills";
+import backgroundListData from "../data/background-list.json";
+import originFeatDescriptions from "../data/origin-feat-descriptions.json";
 
 export type Background =
   | "acolyte"
@@ -55,7 +55,7 @@ export function getOriginFeatDescription(feat: OriginFeat): string {
 }
 
 export function getSkillLabel(skill: SkillName): string {
-  const entry = SKILLS.find((s) => s.name === skill);
+  const entry = SKILLS.find((s: { name: SkillName; label: string; ability: AbilityName }) => s.name === skill);
   return entry ? entry.label : skill;
 }
 

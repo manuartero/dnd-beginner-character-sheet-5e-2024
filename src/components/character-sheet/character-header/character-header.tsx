@@ -1,8 +1,8 @@
-import { getClassIcon } from "src/data/class-icons";
-import type { CharacterClass } from "src/data/classes";
-import { CLASS_COLORS } from "src/data/classes";
-import type { CharacterRace } from "src/data/races";
-import { RACE_LIST } from "src/data/races";
+import { getClassIcon } from "src/models/class-icons";
+import type { CharacterClass } from "src/models/classes";
+import { CLASS_COLORS } from "src/models/classes";
+import type { CharacterRace } from "src/models/races";
+import { RACE_LIST } from "src/models/races";
 import styles from "./character-header.module.css";
 
 type CharacterHeaderProps = {

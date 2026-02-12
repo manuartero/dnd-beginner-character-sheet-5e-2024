@@ -1,6 +1,6 @@
-import type { CharacterRace } from "src/data/races";
-import { RACE_LIST } from "src/data/races";
-import type { Character } from "src/data/types";
+import type { CharacterRace } from "src/models/races";
+import { RACE_LIST } from "src/models/races";
+import type { Character } from "src/models/types";
 
 const STORAGE_KEY = "dnd-characters";
 
