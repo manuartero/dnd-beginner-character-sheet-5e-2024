@@ -17,66 +17,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-sm);
-}
-
-.abilityCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-xs);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
-  padding: var(--space-sm);
-  padding-top: var(--space-md);
-}
-
-.abilityCardPrimary {
-  border-color: var(--color-accent);
-  box-shadow: 3px 3px 0 var(--color-accent);
-}
-
-.label {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.modifier {
-  position: absolute;
-  top: 4px;
-  right: 6px;
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-accent);
-}
-
-.bonusBadge {
-  position: absolute;
-  top: 4px;
-  left: 6px;
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-accent);
-}
-
-.scoreInput {
-  width: 56px;
-  text-align: center;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-text);
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid var(--color-border);
-}
-
-.scoreInputError {
-  border-bottom-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 .bonusHint {
