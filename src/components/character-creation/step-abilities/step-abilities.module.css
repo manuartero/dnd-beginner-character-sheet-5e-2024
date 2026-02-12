@@ -60,7 +60,7 @@
   left: 6px;
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-cleric);
+  color: var(--color-accent);
 }
 
 .scoreInput {
@@ -75,8 +75,8 @@
 }
 
 .scoreInputError {
-  border-bottom-color: var(--color-fighter);
-  color: var(--color-fighter);
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .bonusHint {
@@ -151,6 +151,6 @@
 }
 
 .hpInputError {
-  border-color: var(--color-fighter);
-  color: var(--color-fighter);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }

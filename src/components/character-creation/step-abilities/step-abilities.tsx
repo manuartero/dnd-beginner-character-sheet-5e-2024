@@ -5,8 +5,7 @@ import {
     computeModifier,
     formatModifier,
 } from "src/models/abilities";
-import { CLASS_DETAILS } from "src/models/class-details";
-import type { CharacterClass } from "src/models/classes";
+import { type CharacterClass, CLASS_DETAILS } from "src/models/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
 import { isValidHp, isValidScore } from "./validation";

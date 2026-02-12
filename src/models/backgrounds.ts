@@ -55,7 +55,10 @@ export function getOriginFeatDescription(feat: OriginFeat): string {
 }
 
 export function getSkillLabel(skill: SkillName): string {
-  const entry = SKILLS.find((s: { name: SkillName; label: string; ability: AbilityName }) => s.name === skill);
+  const entry = SKILLS.find(
+    (s: { name: SkillName; label: string; ability: AbilityName }) =>
+      s.name === skill,
+  );
   return entry ? entry.label : skill;
 }
 

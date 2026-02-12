@@ -1,43 +1,33 @@
+import classDetailsData from "src/data/class-details.json";
+import type { AbilityName } from "src/models/abilities";
+
 export type CharacterClass =
-  | "barbarian"
-  | "bard"
-  | "cleric"
-  | "druid"
-  | "fighter"
-  | "monk"
-  | "paladin"
-  | "ranger"
-  | "rogue"
-  | "sorcerer"
-  | "warlock"
-  | "wizard";
+	| "barbarian"
+	| "bard"
+	| "cleric"
+	| "druid"
+	| "fighter"
+	| "monk"
+	| "paladin"
+	| "ranger"
+	| "rogue"
+	| "sorcerer"
+	| "warlock"
+	| "wizard";
 
-export const CLASS_LIST: { key: CharacterClass; label: string }[] = [
-  { key: "barbarian", label: "Barbarian" },
-  { key: "bard", label: "Bard" },
-  { key: "cleric", label: "Cleric" },
-  { key: "druid", label: "Druid" },
-  { key: "fighter", label: "Fighter" },
-  { key: "monk", label: "Monk" },
-  { key: "paladin", label: "Paladin" },
-  { key: "ranger", label: "Ranger" },
-  { key: "rogue", label: "Rogue" },
-  { key: "sorcerer", label: "Sorcerer" },
-  { key: "warlock", label: "Warlock" },
-  { key: "wizard", label: "Wizard" },
-];
-
-export const CLASS_COLORS: Record<CharacterClass, string> = {
-  barbarian: "var(--color-barbarian)",
-  bard: "var(--color-bard)",
-  cleric: "var(--color-cleric)",
-  druid: "var(--color-druid)",
-  fighter: "var(--color-fighter)",
-  monk: "var(--color-monk)",
-  paladin: "var(--color-paladin)",
-  ranger: "var(--color-ranger)",
-  rogue: "var(--color-rogue)",
-  sorcerer: "var(--color-sorcerer)",
-  warlock: "var(--color-warlock)",
-  wizard: "var(--color-wizard)",
+export type ClassDetails = {
+	label: string;
+	hitDie: string;
+	primaryAbilities: AbilityName[];
+	saves: string;
+	description: string;
 };
+
+export const CLASS_DETAILS: Record<CharacterClass, ClassDetails> =
+	classDetailsData as Record<CharacterClass, ClassDetails>;
+
+export const CLASS_LIST: { key: CharacterClass; label: string }[] =
+	Object.entries(CLASS_DETAILS).map(([key, value]) => ({
+		key: key as CharacterClass,
+		label: value.label,
+	}));
