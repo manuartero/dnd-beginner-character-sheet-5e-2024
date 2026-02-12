@@ -1,6 +1,6 @@
-import { saveCharacter } from "src/data/character-storage";
-import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/data/spells";
-import type { Character } from "src/data/types";
+import { saveCharacter } from "src/models/character-storage";
+import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/models/spells";
+import type { Character } from "src/models/types";
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";

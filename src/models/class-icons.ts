@@ -1,4 +1,4 @@
-import type { CharacterClass } from "src/data/classes";
+import type { CharacterClass } from "src/models/classes";
 
 const CLASS_ICONS: Record<CharacterClass, string> = {
   barbarian: "/class-icons/barbarian.jpeg",

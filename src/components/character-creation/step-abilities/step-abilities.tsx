@@ -1,12 +1,12 @@
 import { useState } from "react";
-import type { AbilityName, AbilityScores } from "src/data/abilities";
+import type { AbilityName, AbilityScores } from "src/models/abilities";
 import {
-  ABILITY_LIST,
-  computeModifier,
-  formatModifier,
-} from "src/data/abilities";
-import { CLASS_DETAILS } from "src/data/class-details";
-import type { CharacterClass } from "src/data/classes";
+    ABILITY_LIST,
+    computeModifier,
+    formatModifier,
+} from "src/models/abilities";
+import { CLASS_DETAILS } from "src/models/class-details";
+import type { CharacterClass } from "src/models/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
 import { isValidHp, isValidScore } from "./validation";

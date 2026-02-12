@@ -1,6 +1,6 @@
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import type { AbilityName } from "src/data/abilities";
-import { ABILITY_LIST } from "src/data/abilities";
+import type { AbilityName } from "src/models/abilities";
+import { ABILITY_LIST } from "src/models/abilities";
 import styles from "./step-abilities.module.css";
 
 type OriginBonusPickerProps = {

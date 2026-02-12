@@ -1,7 +1,7 @@
-import type { CharacterRace } from "src/data/races";
-import { RACE_LIST } from "src/data/races";
-import { SPECIES_DETAILS } from "src/data/species-details";
-import { getSpeciesIcon } from "src/data/species-icons";
+import type { CharacterRace } from "src/models/races";
+import { RACE_LIST } from "src/models/races";
+import { SPECIES_DETAILS } from "src/models/species-details";
+import { getSpeciesIcon } from "src/models/species-icons";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-species.module.css";
 

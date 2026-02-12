@@ -1,4 +1,4 @@
-import type { CharacterRace } from "src/data/races";
+import type { CharacterRace } from "src/models/races";
 
 const SPECIES_ICONS: Record<CharacterRace, string> = {
   aasimar: "/race-icons/aasimar.jpeg",

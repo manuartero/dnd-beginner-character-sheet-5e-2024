@@ -1,15 +1,15 @@
-import type { AbilityName, AbilityScores as Scores } from "src/data/abilities";
-import {
-  ABILITY_LIST,
-  computeModifier,
-  formatModifier,
-} from "src/data/abilities";
-import {
-  computeSkillModifier,
-  DEFAULT_PROFICIENCIES,
-  skillsForAbility,
-} from "src/data/skills";
 import { useExpandable } from "src/hooks/use-expandable";
+import type { AbilityName, AbilityScores as Scores } from "src/models/abilities";
+import {
+    ABILITY_LIST,
+    computeModifier,
+    formatModifier,
+} from "src/models/abilities";
+import {
+    computeSkillModifier,
+    DEFAULT_PROFICIENCIES,
+    skillsForAbility,
+} from "src/models/skills";
 import styles from "./ability-scores.module.css";
 
 function modifierColorClass(mod: number): string {

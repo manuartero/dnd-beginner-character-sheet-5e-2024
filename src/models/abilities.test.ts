@@ -1,4 +1,4 @@
-import { computeModifier } from "src/data/abilities";
+import { computeModifier } from "src/models/abilities";
 
 describe("computeModifier()", () => {
   [
