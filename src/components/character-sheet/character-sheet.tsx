@@ -1,6 +1,6 @@
+import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
-import { WIZARD_CANTRIPS, WIZARD_SPELLS_LEVEL_1 } from "src/models/spells";
-import type { Character } from "src/models/types";
+import { WIZARD_SPELLS_LEVEL_0, WIZARD_SPELLS_LEVEL_1 } from "src/models/spells";
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
@@ -25,7 +25,7 @@ export function CharacterSheet({
 
   const spells =
     character.characterClass === "wizard"
-      ? [...WIZARD_CANTRIPS, ...WIZARD_SPELLS_LEVEL_1]
+      ? [...WIZARD_SPELLS_LEVEL_0, ...WIZARD_SPELLS_LEVEL_1]
       : [];
 
   return (

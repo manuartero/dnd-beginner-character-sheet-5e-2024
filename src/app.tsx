@@ -3,9 +3,14 @@ import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
 import { TopMenu } from "src/components/top-menu";
+import type { Character } from "src/models/character";
 import { deleteCharacter, loadCharacters } from "src/models/character-storage";
-import type { AppView, Character } from "src/models/types";
 import styles from "./app.module.css";
+
+type AppView =
+  | { kind: "character-list" }
+  | { kind: "character-view"; characterId: string }
+  | { kind: "character-creation" };
 
 export function App() {
   const [view, setView] = useState<AppView>({ kind: "character-list" });

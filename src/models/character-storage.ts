@@ -1,6 +1,6 @@
+import type { Character } from "src/models/character";
 import type { Species } from "src/models/species";
 import { SPECIES_LIST } from "src/models/species";
-import type { Character } from "src/models/types";
 
 const STORAGE_KEY = "dnd-characters";
 

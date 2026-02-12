@@ -1,0 +1,54 @@
+{
+  "fire-bolt": {
+    "id": "fire-bolt",
+    "name": "Fire Bolt",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack. On a hit, the target takes 1d10 fire damage.",
+    "damage": {
+      "dice": "1d10",
+      "type": "fire"
+    }
+  },
+  "ray-of-frost": {
+    "id": "ray-of-frost",
+    "name": "Ray of Frost",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.",
+    "damage": {
+      "dice": "1d8",
+      "type": "cold"
+    }
+  },
+  "mage-hand": {
+    "id": "mage-hand",
+    "name": "Mage Hand",
+    "level": 0,
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S",
+    "duration": "1 minute",
+    "description": "A spectral, floating hand appears at a point you choose within range. You can use the hand to manipulate objects, open unlocked doors, or pour out a vial."
+  },
+  "light": {
+    "id": "light",
+    "name": "Light",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, M",
+    "duration": "1 hour",
+    "description": "You touch one object that is no larger than 10 feet in any dimension. It sheds bright light in a 20-foot radius and dim light for an additional 20 feet."
+  }
+}

@@ -1,9 +1,9 @@
+import type { Character } from "src/models/character";
 import {
   deleteCharacter,
   loadCharacters,
   saveCharacter,
 } from "src/models/character-storage";
-import type { Character } from "src/models/types";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 function makeCharacter(overrides: Partial<Character> = {}): Character {

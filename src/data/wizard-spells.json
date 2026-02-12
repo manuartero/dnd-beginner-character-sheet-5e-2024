@@ -1,0 +1,10 @@
+{
+  "cantrips": ["fire-bolt", "ray-of-frost", "mage-hand", "light"],
+  "level1": [
+    "magic-missile",
+    "shield",
+    "burning-hands",
+    "thunderwave",
+    "detect-magic"
+  ]
+}
