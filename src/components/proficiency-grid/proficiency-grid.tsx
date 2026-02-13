@@ -1,4 +1,5 @@
 import c from "classnames";
+import { Section } from "src/components/section";
 import proficiencyDetailsData from "src/data/proficiency-details.json";
 import {
   getProficiencyRestriction,
@@ -86,34 +87,36 @@ export function ProficiencyGrid({ proficiencies }: ProficiencyGridProps) {
   const footnotes = collectFootnotes(allKeys, proficiencies);
 
   return (
-    <div className={styles.grid}>
-      <div className={styles.row}>
-        {ARMOR_ROW.map((key) => (
-          <ProficiencyCell
-            key={key}
-            proficiencyKey={key}
-            proficiencies={proficiencies}
-          />
-        ))}
-      </div>
-      <div className={styles.row}>
-        {WEAPON_ROW.map((key) => (
-          <ProficiencyCell
-            key={key}
-            proficiencyKey={key}
-            proficiencies={proficiencies}
-          />
-        ))}
-      </div>
-      {footnotes.length > 0 && (
-        <div className={styles.footnotes}>
-          {footnotes.map((note) => (
-            <p key={note} className={styles.footnote}>
-              {note}
-            </p>
+    <Section title="Weapon Proficiencies">
+      <div className={styles.grid}>
+        <div className={styles.row}>
+          {ARMOR_ROW.map((key) => (
+            <ProficiencyCell
+              key={key}
+              proficiencyKey={key}
+              proficiencies={proficiencies}
+            />
           ))}
         </div>
-      )}
-    </div>
+        <div className={styles.row}>
+          {WEAPON_ROW.map((key) => (
+            <ProficiencyCell
+              key={key}
+              proficiencyKey={key}
+              proficiencies={proficiencies}
+            />
+          ))}
+        </div>
+        {footnotes.length > 0 && (
+          <div className={styles.footnotes}>
+            {footnotes.map((note) => (
+              <p key={note} className={styles.footnote}>
+                {note}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
+    </Section>
   );
 }
