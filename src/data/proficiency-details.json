@@ -1,0 +1,26 @@
+{
+  "light-armor": {
+    "label": "Light Armor",
+    "icon": "vol9/icon-vol9_317"
+  },
+  "medium-armor": {
+    "label": "Medium Armor",
+    "icon": "vol9/icon-vol9_322"
+  },
+  "heavy-armor": {
+    "label": "Heavy Armor",
+    "icon": "vol9/icon-vol9_08"
+  },
+  "simple-weapons": {
+    "label": "Simple Weapons",
+    "icon": "vol8/icon-vol8_12"
+  },
+  "martial-weapons": {
+    "label": "Martial Weapons",
+    "icon": "vol8/icon-vol8_06"
+  },
+  "shields": {
+    "label": "Shields",
+    "icon": "vol8/icon-vol8_120"
+  }
+}

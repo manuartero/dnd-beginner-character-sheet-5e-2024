@@ -5,7 +5,35 @@
     "hitDie": "d12",
     "primaryAbilities": ["str"],
     "saves": "Strength & Constitution",
-    "description": "A fierce warrior of primal rage"
+    "description": "A fierce warrior of primal rage",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": true,
+      "heavy-armor": false,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": true,
+      "skills": {
+        "n": 2,
+        "options": [
+          "animal-handling",
+          "athletics",
+          "intimidation",
+          "nature",
+          "perception",
+          "survival"
+        ]
+      }
+    },
+    "startingEquipment": [
+      [
+        { "item": "greataxe", "quantity": 1 },
+        { "item": "handaxe", "quantity": 4 },
+        { "item": "explorers-pack", "quantity": 1 },
+        { "item": "gp", "quantity": 15 }
+      ],
+      [{ "item": "gp", "quantity": 75 }]
+    ]
   },
   "bard": {
     "label": "Bard",
@@ -13,7 +41,34 @@
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Dexterity & Charisma",
-    "description": "An inspiring performer of music, dance, and magic"
+    "description": "An inspiring performer of music, dance, and magic",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 3,
+        "options": [
+          "acrobatics",
+          "animal-handling",
+          "arcana",
+          "athletics",
+          "deception",
+          "history",
+          "insight",
+          "intimidation",
+          "investigation",
+          "medicine",
+          "nature",
+          "perception",
+          "performance"
+        ]
+      },
+      "tools": ["musical-instruments"]
+    }
   },
   "cleric": {
     "label": "Cleric",
@@ -21,7 +76,19 @@
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Wisdom & Charisma",
-    "description": "A miraculous priest of divine power"
+    "description": "A miraculous priest of divine power",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": true,
+      "heavy-armor": false,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 2,
+        "options": ["history", "insight", "medicine", "persuasion", "religion"]
+      }
+    }
   },
   "druid": {
     "label": "Druid",
@@ -29,7 +96,29 @@
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Intelligence & Wisdom",
-    "description": "A nature priest of primal power"
+    "description": "A nature priest of primal power",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 2,
+        "options": [
+          "arcana",
+          "animal-handling",
+          "insight",
+          "medicine",
+          "nature",
+          "perception",
+          "religion",
+          "survival"
+        ]
+      },
+      "tools": ["herbalism-kit"]
+    }
   },
   "fighter": {
     "label": "Fighter",
@@ -37,7 +126,28 @@
     "hitDie": "d10",
     "primaryAbilities": ["str", "dex"],
     "saves": "Strength & Constitution",
-    "description": "A master of all arms and armor"
+    "description": "A master of all arms and armor",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": true,
+      "heavy-armor": true,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": true,
+      "skills": {
+        "n": 2,
+        "options": [
+          "acrobatics",
+          "animal-handling",
+          "athletics",
+          "history",
+          "insight",
+          "intimidation",
+          "perception",
+          "survival"
+        ]
+      }
+    }
   },
   "monk": {
     "label": "Monk",
@@ -45,7 +155,28 @@
     "hitDie": "d8",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
-    "description": "A martial artist of supernatural focus"
+    "description": "A martial artist of supernatural focus",
+    "proficiencies": {
+      "light-armor": false,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": {
+        "property": ["light"]
+      },
+      "skills": {
+        "n": 2,
+        "options": [
+          "acrobatics",
+          "athletics",
+          "history",
+          "insight",
+          "religion",
+          "stealth"
+        ]
+      }
+    }
   },
   "paladin": {
     "label": "Paladin",
@@ -53,7 +184,26 @@
     "hitDie": "d10",
     "primaryAbilities": ["str", "cha"],
     "saves": "Wisdom & Charisma",
-    "description": "A devout warrior of sacred oaths"
+    "description": "A devout warrior of sacred oaths",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": true,
+      "heavy-armor": true,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": true,
+      "skills": {
+        "n": 2,
+        "options": [
+          "athletics",
+          "insight",
+          "intimidation",
+          "medicine",
+          "persuasion",
+          "religion"
+        ]
+      }
+    }
   },
   "ranger": {
     "label": "Ranger",
@@ -61,7 +211,28 @@
     "hitDie": "d10",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
-    "description": "A wandering warrior imbued with primal magic"
+    "description": "A wandering warrior imbued with primal magic",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": true,
+      "heavy-armor": false,
+      "shields": true,
+      "simple-weapons": true,
+      "martial-weapons": true,
+      "skills": {
+        "n": 3,
+        "options": [
+          "animal-handling",
+          "athletics",
+          "insight",
+          "investigation",
+          "nature",
+          "perception",
+          "stealth",
+          "survival"
+        ]
+      }
+    }
   },
   "rogue": {
     "label": "Rogue",
@@ -69,7 +240,34 @@
     "hitDie": "d8",
     "primaryAbilities": ["dex"],
     "saves": "Dexterity & Intelligence",
-    "description": "A dexterous expert in stealth and subterfuge"
+    "description": "A dexterous expert in stealth and subterfuge",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": {
+        "property": ["finesse", "light"]
+      },
+      "skills": {
+        "n": 4,
+        "options": [
+          "acrobatics",
+          "athletics",
+          "deception",
+          "insight",
+          "intimidation",
+          "investigation",
+          "perception",
+          "performance",
+          "persuasion",
+          "sleight-of-hand",
+          "stealth"
+        ]
+      }
+    },
+    "tools": ["thieves-tools"]
   },
   "sorcerer": {
     "label": "Sorcerer",
@@ -77,7 +275,26 @@
     "hitDie": "d6",
     "primaryAbilities": ["cha"],
     "saves": "Constitution & Charisma",
-    "description": "A dazzling mage filled with innate magic"
+    "description": "A dazzling mage filled with innate magic",
+    "proficiencies": {
+      "light-armor": false,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 2,
+        "options": [
+          "arcana",
+          "deception",
+          "insight",
+          "intimidation",
+          "persuasion",
+          "religion"
+        ]
+      }
+    }
   },
   "warlock": {
     "label": "Warlock",
@@ -85,7 +302,27 @@
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Wisdom & Charisma",
-    "description": "An occultist empowered by otherworldly pacts"
+    "description": "An occultist empowered by otherworldly pacts",
+    "proficiencies": {
+      "light-armor": true,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 2,
+        "options": [
+          "arcana",
+          "deception",
+          "history",
+          "intimidation",
+          "investigation",
+          "nature",
+          "religion"
+        ]
+      }
+    }
   },
   "wizard": {
     "label": "Wizard",
@@ -93,6 +330,25 @@
     "hitDie": "d6",
     "primaryAbilities": ["int"],
     "saves": "Intelligence & Wisdom",
-    "description": "A scholarly magic-user of arcane power"
+    "description": "A scholarly magic-user of arcane power",
+    "proficiencies": {
+      "light-armor": false,
+      "medium-armor": false,
+      "heavy-armor": false,
+      "shields": false,
+      "simple-weapons": true,
+      "martial-weapons": false,
+      "skills": {
+        "n": 2,
+        "options": [
+          "arcana",
+          "history",
+          "insight",
+          "investigation",
+          "medicine",
+          "religion"
+        ]
+      }
+    }
   }
 }

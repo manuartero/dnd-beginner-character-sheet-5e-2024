@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { Stepper } from "src/components/stepper/stepper";
 import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
+import { CLASS_DETAILS } from "src/models/classes";
 import {
   WIZARD_SPELLS_LEVEL_0,
   WIZARD_SPELLS_LEVEL_1,
@@ -71,10 +73,17 @@ export function CharacterSheet({
       )}
 
       {step === 3 && (
-        <EquipmentList
-          equipment={character.equipment}
-          onEquipmentChange={(equipment) => updateCharacter({ equipment })}
-        />
+        <>
+          <ProficiencyGrid
+            proficiencies={
+              CLASS_DETAILS[character.characterClass].proficiencies
+            }
+          />
+          <EquipmentList
+            equipment={character.equipment}
+            onEquipmentChange={(equipment) => updateCharacter({ equipment })}
+          />
+        </>
       )}
     </>
   );

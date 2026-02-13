@@ -1,4 +1,5 @@
 import c from "classnames";
+import { ProficiencyGrid } from "src/components/proficiency-grid";
 import {
   type CharacterClass,
   CLASS_DETAILS,
@@ -23,7 +24,7 @@ function HitDieOptions({ selected }: { selected: string }) {
           key={die}
           className={c(
             styles.hitDieOption,
-            die === selected ? styles.hitDieSelected : styles.hitDieDisabled
+            die === selected ? styles.hitDieSelected : styles.hitDieDisabled,
           )}
         >
           {die}
@@ -74,6 +75,12 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
             <div className={styles.detailsRow}>
               <dt className={styles.detailsLabel}>Saves</dt>
               <dd className={styles.detailsValue}>{details.saves}</dd>
+            </div>
+            <div className={styles.detailsRowBlock}>
+              <dt className={styles.detailsLabel}>Proficiencies</dt>
+              <dd>
+                <ProficiencyGrid proficiencies={details.proficiencies} />
+              </dd>
             </div>
           </dl>
         </div>
