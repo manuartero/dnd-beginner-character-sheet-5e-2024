@@ -24,9 +24,9 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
           items={SPECIES_LIST}
           selectedKey={race}
           onSelect={(key) => onRaceChange(key as Species)}
-          columns={2}
+          columns={3}
           getIcon={(key) => getSpeciesIcon(key as Species)}
-          iconSize={96}
+          iconSize="large"
         />
       </Section>
 

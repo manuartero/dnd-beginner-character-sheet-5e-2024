@@ -1,13 +1,20 @@
 import c from "classnames";
 import cardStyles from "../card.module.css";
 
+type IconSize = "default" | "large";
+
+const ICON_SIZES: Record<IconSize, number> = {
+  default: 64,
+  large: 96,
+};
+
 type SelectionGridProps = {
   items: { key: string; label: string }[];
   selectedKey: string | null;
   onSelect: (key: string) => void;
   columns: number;
   getIcon: (key: string) => string;
-  iconSize?: number;
+  iconSize?: IconSize;
 };
 
 export function SelectionGrid({
@@ -16,7 +23,7 @@ export function SelectionGrid({
   onSelect,
   columns,
   getIcon,
-  iconSize,
+  iconSize = "default",
 }: SelectionGridProps) {
   return (
     <div
@@ -40,7 +47,11 @@ export function SelectionGrid({
             src={getIcon(key)}
             alt={label}
             className={cardStyles.cardIcon}
-            style={iconSize ? { width: iconSize, height: iconSize } : undefined}
+            style={
+              iconSize
+                ? { width: ICON_SIZES[iconSize], height: ICON_SIZES[iconSize] }
+                : undefined
+            }
           />
           <span className={cardStyles.cardLabel}>{label}</span>
         </button>
