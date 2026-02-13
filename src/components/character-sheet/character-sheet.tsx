@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Stepper } from "src/components/stepper/stepper";
 import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
 import {
@@ -20,6 +22,8 @@ export function CharacterSheet({
   character,
   onCharacterUpdate,
 }: CharacterSheetProps) {
+  const [step, setStep] = useState(1);
+
   function updateCharacter(patch: Partial<Character>) {
     const updated = { ...character, ...patch };
     saveCharacter(updated);
@@ -33,35 +37,45 @@ export function CharacterSheet({
 
   return (
     <>
-      <CharacterHeader
-        name={character.name}
-        race={character.race}
-        characterClass={character.characterClass}
-        level={character.level}
-      />
+      <Stepper current={step} total={3} onStepChange={setStep} />
 
-      <AbilityScores
-        scores={character.abilityScores}
-        proficiencyBonus={character.proficiencyBonus}
-      />
+      {step === 1 && (
+        <>
+          <CharacterHeader
+            name={character.name}
+            race={character.race}
+            characterClass={character.characterClass}
+            level={character.level}
+          />
+          <HpTracker
+            current={character.hp.current}
+            max={character.hp.max}
+            editable={false}
+            onCurrentChange={(value) =>
+              updateCharacter({ hp: { ...character.hp, current: value } })
+            }
+          />
+          <AbilityScores
+            scores={character.abilityScores}
+            proficiencyBonus={character.proficiencyBonus}
+          />
+        </>
+      )}
 
-      <HpTracker
-        current={character.hp.current}
-        max={character.hp.max}
-        editable={false}
-        onCurrentChange={(value) =>
-          updateCharacter({ hp: { ...character.hp, current: value } })
-        }
-      />
+      {step === 2 && (
+        <>
+          <ActionBar characterClass={character.characterClass} />
 
-      <ActionBar characterClass={character.characterClass} />
+          {spells.length > 0 && <SpellCards spells={spells} />}
+        </>
+      )}
 
-      {spells.length > 0 && <SpellCards spells={spells} />}
-
-      <EquipmentList
-        equipment={character.equipment}
-        onEquipmentChange={(equipment) => updateCharacter({ equipment })}
-      />
+      {step === 3 && (
+        <EquipmentList
+          equipment={character.equipment}
+          onEquipmentChange={(equipment) => updateCharacter({ equipment })}
+        />
+      )}
     </>
   );
 }
