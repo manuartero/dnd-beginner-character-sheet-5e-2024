@@ -3,7 +3,7 @@
 .abilityCard {
   position: relative;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 2fr;
   align-items: center;
   justify-items: center;
   background: var(--color-bg-elevated);
@@ -45,13 +45,14 @@ button.abilityCard {
   text-align: center;
   color: var(--color-bg);
   background: var(--color-border);
+  margin-bottom: var(--space-sm);
 }
 
 /* Display mode: large modifier */
 
 .modifier {
   align-self: center;
-  font-size: 2.25rem;
+  font-size: var(--font-size-xxl);
   font-weight: 700;
   line-height: 1;
 }
