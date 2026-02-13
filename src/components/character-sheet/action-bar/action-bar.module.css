@@ -3,7 +3,7 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--font-size-xs);
-  color: var(--color-accent);
+  color: var(--color-highlight);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -107,16 +107,16 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-sm);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
   min-height: 72px;
   justify-content: center;
 }
 
 .highlighted {
-  background: var(--color-bg);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  background: var(--shade-0);
+  border-color: var(--color-highlight);
+  color: var(--color-highlight);
 }
 
 .actionLabel {
@@ -130,11 +130,11 @@
   align-items: center;
   justify-content: center;
   min-height: 72px;
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  border: 2px dashed var(--color-border);
+  border: 2px dashed var(--shade-3);
 }
 
 .descriptionRow {
@@ -150,24 +150,24 @@
   display: block;
   width: 2px;
   height: 2px;
-  background: var(--color-border);
+  background: var(--shade-3);
   box-shadow:
-    -2px 2px 0 var(--color-border),
-    0px 2px 0 var(--color-border),
-    2px 2px 0 var(--color-border),
-    -4px 4px 0 var(--color-border),
-    -2px 4px 0 var(--color-border),
-    0px 4px 0 var(--color-border),
-    2px 4px 0 var(--color-border),
-    4px 4px 0 var(--color-border);
+    -2px 2px 0 var(--shade-3),
+    0px 2px 0 var(--shade-3),
+    2px 2px 0 var(--shade-3),
+    -4px 4px 0 var(--shade-3),
+    -2px 4px 0 var(--shade-3),
+    0px 4px 0 var(--shade-3),
+    2px 4px 0 var(--shade-3),
+    4px 4px 0 var(--shade-3);
 }
 
 .description {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   padding: var(--space-sm);
-  background: var(--color-bg);
-  border: 2px solid var(--color-border);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
   line-height: 1.4;
   margin: 0;
 }

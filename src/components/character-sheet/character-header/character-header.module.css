@@ -32,8 +32,8 @@
 
 .levelBadge {
   font-size: var(--font-size-sm);
-  color: var(--color-accent);
-  background: var(--color-bg-elevated);
+  color: var(--color-highlight);
+  background: var(--shade-1);
   padding: var(--space-xs) var(--space-sm);
   font-weight: 600;
 }

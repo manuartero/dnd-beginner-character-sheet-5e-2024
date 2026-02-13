@@ -6,7 +6,7 @@
 
 .bonusHint {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   margin-bottom: var(--space-sm);
 }
 
@@ -22,8 +22,8 @@
   align-items: center;
   gap: 2px;
   padding: var(--space-sm);
-  background: var(--color-bg-surface);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
   opacity: 0.4;
   cursor: not-allowed;
 }
@@ -31,17 +31,17 @@
 .bonusCellEligible {
   opacity: 1;
   cursor: pointer;
-  background: var(--color-bg-elevated);
-  border-color: var(--color-accent);
+  background: var(--shade-1);
+  border-color: var(--color-highlight);
 }
 
 .bonusCellEligible:hover {
-  background: var(--color-bg-surface);
+  background: var(--shade-1);
 }
 
 .bonusCellActive {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: var(--color-highlight);
+  color: var(--shade-0);
 }
 
 .bonusAbility {
@@ -70,12 +70,12 @@
   width: 50px;
   text-align: center;
   font-size: var(--font-size-md);
-  background: var(--color-bg-surface);
+  background: var(--shade-1);
   padding: var(--space-xs) var(--space-sm);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--shade-3);
 }
 
 .hpInputError {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: var(--color-highlight);
+  color: var(--color-highlight);
 }

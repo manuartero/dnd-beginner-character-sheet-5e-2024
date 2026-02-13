@@ -16,8 +16,8 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
 }
 
 .itemInfo {
@@ -33,20 +33,20 @@
 
 .itemMeta {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
 
 .attackBonus {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-highlight);
 }
 
 .removeButton {
   width: 24px;
   height: 24px;
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,9 +56,9 @@
   width: 100%;
   padding: var(--space-sm);
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  background: var(--color-bg-elevated);
-  border: 2px dashed var(--color-border);
+  color: var(--shade-2);
+  background: var(--shade-1);
+  border: 2px dashed var(--shade-3);
   text-align: center;
 }
 
@@ -71,21 +71,21 @@
   flex: 1;
   padding: var(--space-sm);
   font-size: var(--font-size-sm);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
 }
 
 .formSubmit {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--font-size-sm);
   font-weight: 600;
-  background: var(--color-accent-dim);
-  color: var(--color-bg);
-  border: 2px solid var(--color-border);
+  background: var(--shade-3);
+  color: var(--shade-0);
+  border: 2px solid var(--shade-3);
 }
 
 .formCancel {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }

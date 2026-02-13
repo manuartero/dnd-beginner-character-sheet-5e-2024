@@ -1,8 +1,8 @@
 .panel {
-  background: var(--color-bg-surface);
-  border: 3px solid var(--color-border);
+  background: var(--shade-1);
+  border: 3px solid var(--shade-3);
   padding: var(--space-md);
-  box-shadow: 4px 4px 0 var(--color-border);
+  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
 .header {
@@ -15,7 +15,7 @@
 .icon {
   width: 56px;
   height: 56px;
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--shade-3);
   flex-shrink: 0;
 }
 
@@ -27,7 +27,7 @@
 
 .description {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   font-style: italic;
 }
 
@@ -35,6 +35,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  border-top: 2px solid var(--color-border);
+  border-top: 2px solid var(--shade-3);
   padding-top: var(--space-sm);
 }

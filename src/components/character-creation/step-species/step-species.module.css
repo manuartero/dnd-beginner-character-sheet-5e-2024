@@ -6,7 +6,7 @@
 
 .detailsLabel {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -17,14 +17,14 @@
 }
 
 .traitsSection {
-  border-top: 2px solid var(--color-border);
+  border-top: 2px solid var(--shade-3);
   padding-top: var(--space-sm);
   margin-top: var(--space-sm);
 }
 
 .traitsTitle {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-sm);
@@ -40,6 +40,6 @@
   font-size: var(--font-size-xs);
   font-weight: 600;
   padding: var(--space-xs) var(--space-sm);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
 }

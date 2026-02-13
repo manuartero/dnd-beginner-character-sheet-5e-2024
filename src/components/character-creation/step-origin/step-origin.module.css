@@ -7,8 +7,8 @@
 
 .infoBox {
   padding: var(--space-sm) var(--space-md);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
   font-size: var(--font-size-sm);
 }
 
@@ -23,7 +23,7 @@
 
 .skillItem {
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-highlight);
 }
 
 .skillItem::before {
@@ -38,20 +38,20 @@
 
 .abilityBadge {
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-highlight);
   padding: 2px var(--space-sm);
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-highlight);
 }
 
 .featLabel {
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-highlight);
 }
 
 .featDescription {
   margin-top: var(--space-md);
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);

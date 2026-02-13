@@ -1,32 +1,15 @@
 :root {
-  /* Retro warm palette */
-  --color-bg: #f5e6c8;
-  --color-bg-surface: #ecdbb0;
-  --color-bg-elevated: #e2cf9e;
-  --color-border: #8b7355;
-  --color-text: #3d2b1f;
-  --color-text-muted: #7a6652;
-  --color-accent: #c84c09;
-  --color-accent-dim: #a33d07;
+  /* === Base 5 (warm monochrome) === */
+  --shade-0: #f7ecd3; /* lightest - parchment bg */
+  --shade-1: #e1bf84; /* gold - surfaces */
+  --shade-2: #b47125; /* leather - mid tone */
+  --shade-3: #5c3517; /* dark brown - borders/frames */
+  --shade-4: #1d1109; /* near-black - text/darkest */
 
-  /* Modifier */
-  --color-modifier-high: #2e7d32;
-
-  /* HP */
-  --color-hp: #4caf50;
-  --color-hp-missing: #d4bfa2;
-
-  /* Damage types */
-  --color-fire: #d03000;
-  --color-cold: #2266aa;
-  --color-lightning: #bba830;
-  --color-necrotic: #552288;
-  --color-radiant: #cc9900;
-  --color-force: #883dcc;
-  --color-poison: #338833;
-  --color-psychic: #663388;
-  --color-thunder: #887722;
-  --color-acid: #558822;
+  /* === Accent 3 (gameplay colors) === */
+  --color-hp-full: #5a8a28; /* chunky green - health */
+  --color-highlight: #db8138; /* warm orange - highlights/XP */
+  --color-hp-low: #8b2020; /* dark red - danger/low HP */
 
   /* Spacing */
   --space-xs: 4px;

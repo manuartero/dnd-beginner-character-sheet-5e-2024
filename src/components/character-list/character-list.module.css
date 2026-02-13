@@ -1,8 +1,8 @@
 .cardSurface {
-  background: var(--color-bg-surface);
-  border: 3px solid var(--color-border);
+  background: var(--shade-1);
+  border: 3px solid var(--shade-3);
   padding: var(--space-md);
-  box-shadow: 4px 4px 0 var(--color-border);
+  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
 .classIcon {
@@ -34,7 +34,7 @@
   width: 24px;
   height: 24px;
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,14 +61,14 @@
 .confirmYes {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-highlight);
   padding: var(--space-xs) var(--space-sm);
 }
 
 .confirmNo {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   padding: var(--space-xs) var(--space-sm);
 }
 
@@ -101,7 +101,7 @@
 
 .cardLevel {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
 
 .newCard {
@@ -109,7 +109,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
-  border: 3px dashed var(--color-border);
+  border: 3px dashed var(--shade-3);
   background: transparent;
   min-height: 120px;
 }
@@ -117,5 +117,5 @@
 .newLabel {
   font-size: var(--font-size-md);
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
