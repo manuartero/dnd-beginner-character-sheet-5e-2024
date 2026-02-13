@@ -1,3 +1,4 @@
+import c from "classnames";
 import { useState } from "react";
 import type { Character } from "src/models/character";
 import { getClassIcon } from "src/models/classes";
@@ -47,7 +48,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
 
   if (confirming) {
     return (
-      <div className={`${styles.section} ${styles.card}`}>
+      <div className={c(styles.section, styles.card)}>
         <div className={styles.confirmContent}>
           <span className={styles.confirmText}>Delete?</span>
           <div className={styles.confirmActions}>
@@ -75,7 +76,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
   }
 
   return (
-    <div className={`${styles.section} ${styles.card}`}>
+    <div className={c(styles.section, styles.card)}>
       <button
         type="button"
         className={styles.deleteButton}
@@ -91,7 +92,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
         <img
           src={getClassIcon(character.characterClass)}
           alt={character.characterClass}
-          className={`${styles.classIcon} ${styles.cardIcon}`}
+          className={c(styles.classIcon, styles.cardIcon)}
         />
         <span className={styles.cardName}>{character.name || "Unnamed"}</span>
         <span className={styles.cardLevel}>Lvl {character.level}</span>

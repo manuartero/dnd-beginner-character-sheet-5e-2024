@@ -1,3 +1,4 @@
+import c from "classnames";
 import type { AbilityName } from "src/models/abilities";
 import { computeModifier, formatModifier } from "src/models/abilities";
 import {
@@ -39,13 +40,12 @@ export function AbilityCard(props: AbilityCardProps) {
   const skills = skillsForAbility(abilityKey);
   const hasSkills = skills.length > 0;
 
-  const cardClasses = [styles.abilityCard];
-  if (hasSkills) cardClasses.push(styles.abilityCardClickable);
-  if (isFlipped) cardClasses.push(styles.abilityCardActive);
-  if (props.mode === "creation" && props.isPrimary) {
-    cardClasses.push(styles.abilityCardPrimary);
-  }
-  const cardClass = cardClasses.join(" ");
+  const cardClass = c(
+    styles.abilityCard,
+    hasSkills && styles.abilityCardClickable,
+    isFlipped && styles.abilityCardActive,
+    props.mode === "creation" && props.isPrimary && styles.abilityCardPrimary,
+  );
 
   const content = (
     <>
@@ -119,7 +119,7 @@ function DisplayFront({ score, mod }: DisplayFrontProps) {
   return (
     <>
       <span className={styles.score}>Score: {score}</span>
-      <span className={`${styles.modifier} ${modifierColorClass(mod)}`}>
+      <span className={c(styles.modifier, modifierColorClass(mod))}>
         {formatModifier(mod)}
       </span>
     </>
@@ -158,7 +158,7 @@ function CreationFront({
         onBlur={() => onBlur(abilityKey)}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}
-        className={`${styles.scoreInput} ${showError ? styles.scoreInputError : ""}`}
+        className={c(styles.scoreInput, showError && styles.scoreInputError)}
       />
     </>
   );
@@ -189,7 +189,10 @@ function SkillList({
         return (
           <div
             key={skill.name}
-            className={`${styles.skillRow} ${isProficient ? styles.skillProficient : ""}`}
+            className={c(
+              styles.skillRow,
+              isProficient && styles.skillProficient,
+            )}
           >
             <span className={styles.skillName}>{skill.label}</span>
             <span className={styles.skillModifier}>

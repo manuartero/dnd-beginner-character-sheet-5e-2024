@@ -1,3 +1,4 @@
+import c from "classnames";
 import cardStyles from "../card.module.css";
 
 type SelectionGridProps = {
@@ -29,7 +30,10 @@ export function SelectionGrid({
         <button
           key={key}
           type="button"
-          className={`${cardStyles.card} ${selectedKey === key ? cardStyles.cardSelected : ""}`}
+          className={c(
+            cardStyles.card,
+            selectedKey === key && cardStyles.cardSelected,
+          )}
           onClick={() => onSelect(key)}
         >
           <img
