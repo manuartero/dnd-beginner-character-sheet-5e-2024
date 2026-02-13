@@ -10,7 +10,7 @@
   border: 2px solid var(--shade-3);
   box-shadow: 3px 3px 0 var(--shade-3);
   overflow: hidden;
-  min-height: 120px;
+  min-height: 130px;
 }
 
 button.abilityCard {
