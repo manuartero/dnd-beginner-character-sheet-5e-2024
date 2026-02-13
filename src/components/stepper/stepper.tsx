@@ -1,3 +1,4 @@
+import c from "classnames";
 import styles from "./stepper.module.css";
 
 type StepperProps = {
@@ -13,7 +14,7 @@ export function Stepper({ current, total, onStepChange }: StepperProps) {
         <button
           key={n}
           type="button"
-          className={`${styles.dot} ${current >= n ? styles.dotActive : ""}`}
+          className={c(styles.dot, current === n && styles.dotActive)}
           onClick={() => onStepChange(n)}
         />
       ))}
