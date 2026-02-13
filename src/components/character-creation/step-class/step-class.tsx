@@ -1,5 +1,7 @@
 import c from "classnames";
+import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
+import { Section } from "src/components/section";
 import {
   type CharacterClass,
   CLASS_DETAILS,
@@ -39,8 +41,7 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
 
   return (
     <>
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Class</h2>
+      <Section title="Class">
         <SelectionGrid
           items={CLASS_LIST}
           selectedKey={characterClass}
@@ -48,42 +49,35 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
           columns={3}
           getIcon={(key) => getClassIcon(key as CharacterClass)}
         />
-      </div>
+      </Section>
 
       {details && characterClass && (
-        <div className={styles.detailsSection}>
-          <div className={styles.detailsHeader}>
-            <img
-              src={getClassIcon(characterClass)}
-              alt={characterClass}
-              className={styles.detailsIcon}
-            />
-            <div>
-              <h3 className={styles.detailsName}>
-                {CLASS_LIST.find((c) => c.key === characterClass)?.label}
-              </h3>
-              <p className={styles.detailsDescription}>{details.description}</p>
-            </div>
+        <DetailsPanel
+          icon={getClassIcon(characterClass)}
+          iconAlt={characterClass}
+          name={
+            CLASS_LIST.find((c) => c.key === characterClass)?.label ??
+            characterClass
+          }
+          description={details.description}
+        >
+          <div className={styles.detailsRow}>
+            <dt className={styles.detailsLabel}>Hit Die</dt>
+            <dd className={styles.detailsValue}>
+              <HitDieOptions selected={details.hitDie} />
+            </dd>
           </div>
-          <dl className={styles.detailsList}>
-            <div className={styles.detailsRow}>
-              <dt className={styles.detailsLabel}>Hit Die</dt>
-              <dd className={styles.detailsValue}>
-                <HitDieOptions selected={details.hitDie} />
-              </dd>
-            </div>
-            <div className={styles.detailsRow}>
-              <dt className={styles.detailsLabel}>Saves</dt>
-              <dd className={styles.detailsValue}>{details.saves}</dd>
-            </div>
-            <div className={styles.detailsRowBlock}>
-              <dt className={styles.detailsLabel}>Proficiencies</dt>
-              <dd>
-                <ProficiencyGrid proficiencies={details.proficiencies} />
-              </dd>
-            </div>
-          </dl>
-        </div>
+          <div className={styles.detailsRow}>
+            <dt className={styles.detailsLabel}>Saves</dt>
+            <dd className={styles.detailsValue}>{details.saves}</dd>
+          </div>
+          <div className={styles.detailsRowBlock}>
+            <dt className={styles.detailsLabel}>Proficiencies</dt>
+            <dd>
+              <ProficiencyGrid proficiencies={details.proficiencies} />
+            </dd>
+          </div>
+        </DetailsPanel>
       )}
     </>
   );

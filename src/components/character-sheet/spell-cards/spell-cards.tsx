@@ -1,3 +1,4 @@
+import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
@@ -29,9 +30,7 @@ export function SpellCards({ spells }: SpellCardsProps) {
   const levelSpells = spells.filter((s) => s.level > 0);
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Spells</h2>
-
+    <Section title="Spells">
       {cantrips.length > 0 && (
         <div className={styles.spellGroup}>
           <h3 className={styles.groupLabel}>Cantrips</h3>
@@ -63,7 +62,7 @@ export function SpellCards({ spells }: SpellCardsProps) {
           </div>
         </div>
       )}
-    </div>
+    </Section>
   );
 }
 

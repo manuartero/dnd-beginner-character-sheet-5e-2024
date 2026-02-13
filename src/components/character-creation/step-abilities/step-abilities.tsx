@@ -1,6 +1,7 @@
 import c from "classnames";
 import { useState } from "react";
 import { AbilityCard } from "src/components/ability-card";
+import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
@@ -70,8 +71,7 @@ export function StepAbilities({
 
   return (
     <>
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Ability Scores</h2>
+      <Section title="Ability Scores">
         <div className={styles.grid}>
           {ABILITY_LIST.map(({ key, short }) => {
             const raw = rawScores[key];
@@ -98,7 +98,7 @@ export function StepAbilities({
             );
           })}
         </div>
-      </div>
+      </Section>
 
       {abilityOptions && (
         <OriginBonusPicker
@@ -108,8 +108,7 @@ export function StepAbilities({
         />
       )}
 
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Hit Points</h2>
+      <Section title="Hit Points">
         <div className={styles.hpRow}>
           <span className={styles.hpLabel}>HP Max</span>
           <input
@@ -124,7 +123,7 @@ export function StepAbilities({
             )}
           />
         </div>
-      </div>
+      </Section>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import c from "classnames";
 import { useState } from "react";
+import { Section } from "src/components/section";
 import type { Character } from "src/models/character";
 import { getClassIcon } from "src/models/classes";
 import styles from "./character-list.module.css";
@@ -18,8 +19,7 @@ export function CharacterList({
   onDelete,
 }: CharacterListProps) {
   return (
-    <div className={styles.container}>
-      <h2 className={styles.sectionTitle}>Characters</h2>
+    <Section title="Characters">
       <div className={styles.grid}>
         {characters.map((char) => (
           <CharacterCard
@@ -33,7 +33,7 @@ export function CharacterList({
           <span className={styles.newLabel}>+ New</span>
         </button>
       </div>
-    </div>
+    </Section>
   );
 }
 
@@ -48,7 +48,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
 
   if (confirming) {
     return (
-      <div className={c(styles.section, styles.card)}>
+      <div className={c(styles.cardSurface, styles.card)}>
         <div className={styles.confirmContent}>
           <span className={styles.confirmText}>Delete?</span>
           <div className={styles.confirmActions}>
@@ -76,7 +76,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
   }
 
   return (
-    <div className={c(styles.section, styles.card)}>
+    <div className={c(styles.cardSurface, styles.card)}>
       <button
         type="button"
         className={styles.deleteButton}

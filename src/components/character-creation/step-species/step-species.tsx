@@ -1,3 +1,5 @@
+import { DetailsPanel } from "src/components/details-panel";
+import { Section } from "src/components/section";
 import type { Species } from "src/models/species";
 import {
   getSpeciesIcon,
@@ -17,8 +19,7 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
 
   return (
     <>
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Species</h2>
+      <Section title="Species">
         <SelectionGrid
           items={SPECIES_LIST}
           selectedKey={race}
@@ -27,33 +28,23 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
           getIcon={(key) => getSpeciesIcon(key as Species)}
           iconSize={96}
         />
-      </div>
+      </Section>
 
       {details && race && (
-        <div className={styles.detailsSection}>
-          <div className={styles.detailsHeader}>
-            <img
-              src={getSpeciesIcon(race)}
-              alt={race}
-              className={styles.detailsIcon}
-            />
-            <div>
-              <h3 className={styles.detailsName}>
-                {SPECIES_LIST.find((r) => r.key === race)?.label}
-              </h3>
-              <p className={styles.detailsDescription}>{details.description}</p>
-            </div>
+        <DetailsPanel
+          icon={getSpeciesIcon(race)}
+          iconAlt={race}
+          name={SPECIES_LIST.find((r) => r.key === race)?.label ?? race}
+          description={details.description}
+        >
+          <div className={styles.detailsRow}>
+            <dt className={styles.detailsLabel}>Size</dt>
+            <dd className={styles.detailsValue}>{details.size}</dd>
           </div>
-          <dl className={styles.detailsList}>
-            <div className={styles.detailsRow}>
-              <dt className={styles.detailsLabel}>Size</dt>
-              <dd className={styles.detailsValue}>{details.size}</dd>
-            </div>
-            <div className={styles.detailsRow}>
-              <dt className={styles.detailsLabel}>Speed</dt>
-              <dd className={styles.detailsValue}>{details.speed}</dd>
-            </div>
-          </dl>
+          <div className={styles.detailsRow}>
+            <dt className={styles.detailsLabel}>Speed</dt>
+            <dd className={styles.detailsValue}>{details.speed}</dd>
+          </div>
           <div className={styles.traitsSection}>
             <h4 className={styles.traitsTitle}>Traits</h4>
             <div className={styles.traitsList}>
@@ -64,7 +55,7 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
               ))}
             </div>
           </div>
-        </div>
+        </DetailsPanel>
       )}
     </>
   );

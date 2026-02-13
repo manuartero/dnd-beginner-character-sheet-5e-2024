@@ -1,20 +1,3 @@
-.section {
-  background: var(--color-bg-surface);
-  border: 3px solid var(--color-border);
-  padding: var(--space-md);
-  box-shadow: 4px 4px 0 var(--color-border);
-}
-
-.sectionTitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: var(--space-xs);
-}
-
 .groupLabel {
   display: flex;
   align-items: center;
