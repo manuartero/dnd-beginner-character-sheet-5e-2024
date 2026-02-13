@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Search",
+    "category": "exploration",
+    "icon": "exploration.search",
+    "description": "Make a Wisdom (Perception) or Intelligence (Investigation) check to find something hidden nearby."
+  },
+  {
+    "name": "Study",
+    "category": "exploration",
+    "icon": "exploration.study",
+    "description": "Make an Intelligence (Arcana, History, Nature, or Religion) check to recall or deduce information about something."
+  },
+  {
+    "name": "Utilize",
+    "category": "exploration",
+    "icon": "exploration.utilize",
+    "description": "Use a non-magical object or interact with something in the environment, such as opening a door or drinking a potion."
+  },
+  {
+    "name": "Influence",
+    "category": "social",
+    "icon": "exploration.influence",
+    "description": "Make a Charisma (Deception, Intimidation, Performance, or Persuasion) check to alter a creature's attitude."
+  }
+]

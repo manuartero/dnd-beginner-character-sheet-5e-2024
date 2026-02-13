@@ -1,6 +1,7 @@
+import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
-import type { Action, ActionTiming } from "src/models/actions";
+import type { ActionTiming } from "src/models/actions";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
 import type { IconName } from "src/models/icons";
@@ -28,6 +29,19 @@ const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 export function ActionBar({ characterClass }: ActionBarProps) {
   const { expandedKey: expandedAction, toggle: toggleAction } =
     useExpandable<string>();
+  const buttonRefs = useRef(new Map<string, HTMLButtonElement>());
+  const [arrowOffset, setArrowOffset] = useState(0);
+
+  useLayoutEffect(() => {
+    if (!expandedAction) return;
+    const button = buttonRefs.current.get(expandedAction);
+    if (!button) return;
+    const grid = button.parentElement;
+    if (!grid) return;
+    const btnRect = button.getBoundingClientRect();
+    const gridRect = grid.getBoundingClientRect();
+    setArrowOffset(btnRect.left + btnRect.width / 2 - gridRect.left);
+  }, [expandedAction]);
 
   const availableActions = [
     ...UNIVERSAL_ACTIONS,
@@ -54,12 +68,37 @@ export function ActionBar({ characterClass }: ActionBarProps) {
             {group.actions.length > 0 ? (
               <div className={styles.actionsGrid}>
                 {group.actions.map((action) => (
-                  <ActionButton
-                    key={action.name}
-                    action={action}
-                    isExpanded={expandedAction === action.name}
-                    onToggle={() => toggleAction(action.name)}
-                  />
+                  <Fragment key={action.name}>
+                    <button
+                      ref={(el) => {
+                        if (el) buttonRefs.current.set(action.name, el);
+                        else buttonRefs.current.delete(action.name);
+                      }}
+                      type="button"
+                      onClick={() => toggleAction(action.name)}
+                      className={`${styles.actionButton}${expandedAction === action.name ? ` ${styles.highlighted}` : ""}`}
+                    >
+                      {action.icon && (
+                        <img
+                          src={getIconPath(action.icon as IconName)}
+                          alt={action.name}
+                          className={styles.icon}
+                        />
+                      )}
+                      <span className={styles.actionLabel}>{action.name}</span>
+                    </button>
+                    {expandedAction === action.name && (
+                      <div className={styles.descriptionRow}>
+                        <span
+                          className={styles.descriptionArrow}
+                          style={{ left: `${arrowOffset}px` }}
+                        />
+                        <p className={styles.description}>
+                          {action.description}
+                        </p>
+                      </div>
+                    )}
+                  </Fragment>
                 ))}
               </div>
             ) : (
@@ -69,31 +108,5 @@ export function ActionBar({ characterClass }: ActionBarProps) {
         ))}
       </div>
     </Section>
-  );
-}
-
-type ActionButtonProps = {
-  action: Action;
-  isExpanded: boolean;
-  onToggle: () => void;
-};
-
-function ActionButton({ action, isExpanded, onToggle }: ActionButtonProps) {
-  return (
-    <div className={styles.actionWrapper}>
-      <button type="button" onClick={onToggle} className={styles.actionButton}>
-        {action.icon && (
-          <img
-            src={getIconPath(action.icon as IconName)}
-            alt={action.name}
-            className={styles.icon}
-          />
-        )}
-        <span className={styles.actionLabel}>{action.name}</span>
-      </button>
-      {isExpanded && (
-        <div className={styles.description}>{action.description}</div>
-      )}
-    </div>
   );
 }

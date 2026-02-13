@@ -12,6 +12,7 @@ import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
 import { EquipmentList } from "./equipment-list";
+import { ExplorationBar } from "./exploration-bar";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
 
@@ -67,6 +68,7 @@ export function CharacterSheet({
       {step === 2 && (
         <>
           <ActionBar characterClass={character.characterClass} />
+          <ExplorationBar />
 
           {spells.length > 0 && <SpellCards spells={spells} />}
         </>
