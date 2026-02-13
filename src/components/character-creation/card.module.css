@@ -19,8 +19,8 @@
 }
 
 .cardIcon {
-  width: 48px;
-  height: 48px;
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .cardLabel {

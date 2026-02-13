@@ -62,6 +62,12 @@
   align-items: baseline;
 }
 
+.detailsRowBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
 .detailsLabel {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);

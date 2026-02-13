@@ -1,4 +1,5 @@
 import type { AbilityName } from "src/models/abilities";
+import { resolveIconPath } from "src/models/icons";
 import type { SkillName } from "src/models/skills";
 import { SKILLS } from "src/models/skills";
 import backgroundListData from "../data/background-list.json";
@@ -74,6 +75,5 @@ export function getBackgroundIcon(
   if (!entry?.icon) {
     return "/race-icons/placeholder.png";
   }
-  const [vol, file] = entry.icon.split("/");
-  return `/assets/${vol}/${variant}/${file}.svg`;
+  return resolveIconPath(entry.icon, { variant });
 }

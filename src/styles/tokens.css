@@ -43,6 +43,9 @@
   /* Layout */
   --menu-height: 48px;
 
+  /* Icons */
+  --icon-size: 64px;
+
   /* Typography */
   --font-body: "Press Start 2P", monospace;
   --font-size-xs: 0.5rem;

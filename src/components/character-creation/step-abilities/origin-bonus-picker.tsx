@@ -66,7 +66,7 @@ export function OriginBonusPicker({
               className={c(
                 styles.bonusCell,
                 eligible && styles.bonusCellEligible,
-                allocated > 0 && styles.bonusCellActive
+                allocated > 0 && styles.bonusCellActive,
               )}
               onClick={() => eligible && handleClick(key)}
               onContextMenu={(e) => eligible && handleRightClick(e, key)}
