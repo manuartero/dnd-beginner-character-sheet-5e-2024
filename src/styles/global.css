@@ -58,4 +58,5 @@ button:active {
 img {
   display: block;
   max-width: 100%;
+  filter: sepia(1) saturate(0.6) contrast(1.1);
 }
