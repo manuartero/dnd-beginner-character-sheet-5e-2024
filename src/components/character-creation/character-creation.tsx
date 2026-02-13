@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
+import { Stepper } from "src/components/stepper/stepper";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
 import type { Background } from "src/models/backgrounds";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
@@ -7,7 +8,6 @@ import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
 import type { CharacterClass } from "src/models/classes";
 import type { Species } from "src/models/species";
-import styles from "./character-creation.module.css";
 import { CreationActions } from "./creation-actions";
 import { isValidHp, isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
@@ -30,7 +30,7 @@ type DraftState = {
 };
 
 export function CharacterCreation({ onSave }: CharacterCreationProps) {
-  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<DraftState>({
     name: "",
     characterClass: null,
@@ -95,33 +95,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   return (
     <>
-      <div className={styles.stepIndicator}>
-        <button
-          type="button"
-          className={`${styles.dot} ${step >= 1 ? styles.dotActive : ""}`}
-          onClick={() => setStep(1)}
-        />
-        <button
-          type="button"
-          className={`${styles.dot} ${step >= 2 ? styles.dotActive : ""}`}
-          onClick={() => setStep(2)}
-        />
-        <button
-          type="button"
-          className={`${styles.dot} ${step >= 3 ? styles.dotActive : ""}`}
-          onClick={() => setStep(3)}
-        />
-        <button
-          type="button"
-          className={`${styles.dot} ${step >= 4 ? styles.dotActive : ""}`}
-          onClick={() => setStep(4)}
-        />
-        <button
-          type="button"
-          className={`${styles.dot} ${step >= 5 ? styles.dotActive : ""}`}
-          onClick={() => setStep(5)}
-        />
-      </div>
+      <Stepper current={step} total={5} onStepChange={setStep} />
 
       {step === 1 && (
         <>
