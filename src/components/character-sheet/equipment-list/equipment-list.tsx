@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Section } from "src/components/section";
 import type { Equipment } from "src/models/equipment";
 import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
@@ -25,9 +26,7 @@ export function EquipmentList({
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Equipment</h2>
-
+    <Section title="Equipment">
       <div className={styles.list}>
         {equipment.map((item, index) => (
           <div key={`${item.name}-${index}`} className={styles.itemRow}>
@@ -76,7 +75,7 @@ export function EquipmentList({
           + Add item
         </button>
       )}
-    </div>
+    </Section>
   );
 }
 

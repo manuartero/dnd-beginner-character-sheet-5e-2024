@@ -1,4 +1,5 @@
 import { AbilityCard } from "src/components/ability-card";
+import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import type {
   AbilityName,
@@ -20,8 +21,7 @@ export function AbilityScores({
     useExpandable<AbilityName>();
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Abilities</h2>
+    <Section title="Abilities">
       <div className={styles.grid}>
         {ABILITY_LIST.map(({ key, short }) => (
           <AbilityCard
@@ -36,6 +36,6 @@ export function AbilityScores({
           />
         ))}
       </div>
-    </div>
+    </Section>
   );
 }

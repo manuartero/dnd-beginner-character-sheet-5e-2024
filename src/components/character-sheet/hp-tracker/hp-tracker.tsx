@@ -1,3 +1,4 @@
+import { Section } from "src/components/section";
 import styles from "./hp-tracker.module.css";
 
 type HpTrackerProps = {
@@ -19,9 +20,7 @@ export function HpTracker({
   const barColor = ratio > 0.5 ? "var(--color-hp)" : "var(--color-accent)";
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Hit Points</h2>
-
+    <Section title="Hit Points">
       {!editable && (
         <div className={styles.barContainer}>
           <div
@@ -83,6 +82,6 @@ export function HpTracker({
           +
         </button>
       </div>
-    </div>
+    </Section>
   );
 }

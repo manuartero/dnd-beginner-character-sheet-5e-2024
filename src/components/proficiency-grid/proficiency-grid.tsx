@@ -1,10 +1,10 @@
 import c from "classnames";
 import proficiencyDetailsData from "src/data/proficiency-details.json";
 import {
-  type ProficiencyKey,
-  type ProficiencySet,
   getProficiencyRestriction,
   hasProficiency,
+  type ProficiencyKey,
+  type ProficiencySet,
 } from "src/models/classes";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./proficiency-grid.module.css";

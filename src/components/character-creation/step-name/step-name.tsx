@@ -1,3 +1,4 @@
+import { Section } from "src/components/section";
 import styles from "./step-name.module.css";
 
 type StepNameProps = {
@@ -7,8 +8,7 @@ type StepNameProps = {
 
 export function StepName({ name, onNameChange }: StepNameProps) {
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Name</h2>
+    <Section title="Name">
       <input
         type="text"
         value={name}
@@ -16,6 +16,6 @@ export function StepName({ name, onNameChange }: StepNameProps) {
         placeholder="Character name"
         className={styles.nameInput}
       />
-    </div>
+    </Section>
   );
 }

@@ -1,3 +1,4 @@
+import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { Action, ActionTiming } from "src/models/actions";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
@@ -42,8 +43,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
   }));
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Combat</h2>
+    <Section title="Combat">
       <div className={styles.groupsContainer}>
         {grouped.map((group) => (
           <div key={group.timing}>
@@ -68,7 +68,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
           </div>
         ))}
       </div>
-    </div>
+    </Section>
   );
 }
 

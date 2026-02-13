@@ -1,3 +1,4 @@
+import { Section } from "src/components/section";
 import type { AbilityName } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
 import type { Background } from "src/models/backgrounds";
@@ -26,8 +27,7 @@ export function StepOrigin({
   const selected = BACKGROUND_LIST.find((b) => b.key === background);
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Background</h2>
+    <Section title="Background">
       <SelectionGrid
         items={BACKGROUND_LIST}
         selectedKey={background}
@@ -73,6 +73,6 @@ export function StepOrigin({
           </div>
         </div>
       )}
-    </div>
+    </Section>
   );
 }
