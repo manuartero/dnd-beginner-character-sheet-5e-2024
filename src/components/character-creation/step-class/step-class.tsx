@@ -1,3 +1,4 @@
+import c from "classnames";
 import {
   type CharacterClass,
   CLASS_DETAILS,
@@ -20,7 +21,10 @@ function HitDieOptions({ selected }: { selected: string }) {
       {HIT_DIE_OPTIONS.map((die) => (
         <span
           key={die}
-          className={`${styles.hitDieOption} ${die === selected ? styles.hitDieSelected : styles.hitDieDisabled}`}
+          className={c(
+            styles.hitDieOption,
+            die === selected ? styles.hitDieSelected : styles.hitDieDisabled
+          )}
         >
           {die}
         </span>

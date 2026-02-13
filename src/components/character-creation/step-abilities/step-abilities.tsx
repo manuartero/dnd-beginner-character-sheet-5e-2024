@@ -1,3 +1,4 @@
+import c from "classnames";
 import { useState } from "react";
 import { AbilityCard } from "src/components/ability-card";
 import { useExpandable } from "src/hooks/use-expandable";
@@ -117,7 +118,7 @@ export function StepAbilities({
             value={rawHp}
             onChange={(e) => handleHpChange(e.target.value)}
             onBlur={() => handleBlur("hp")}
-            className={`${styles.hpInput} ${touched.hp && !isValidHp(rawHp) ? styles.hpInputError : ""}`}
+            className={c(styles.hpInput, touched.hp && !isValidHp(rawHp) && styles.hpInputError)}
           />
         </div>
       </div>

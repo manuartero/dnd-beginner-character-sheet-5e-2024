@@ -1,3 +1,4 @@
+import c from "classnames";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import type { AbilityName } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
@@ -62,7 +63,11 @@ export function OriginBonusPicker({
               key={key}
               type="button"
               disabled={!eligible}
-              className={`${styles.bonusCell} ${eligible ? styles.bonusCellEligible : ""} ${allocated > 0 ? styles.bonusCellActive : ""}`}
+              className={c(
+                styles.bonusCell,
+                eligible && styles.bonusCellEligible,
+                allocated > 0 && styles.bonusCellActive
+              )}
               onClick={() => eligible && handleClick(key)}
               onContextMenu={(e) => eligible && handleRightClick(e, key)}
             >
