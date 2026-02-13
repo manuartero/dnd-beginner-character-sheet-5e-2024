@@ -9,12 +9,12 @@
   width: 12px;
   height: 12px;
   padding: 0;
-  background: var(--color-border);
-  border: 2px solid var(--color-border);
+  background: var(--shade-3);
+  border: 2px solid var(--shade-3);
   cursor: pointer;
 }
 
 .dotActive {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--color-highlight);
+  border-color: var(--color-highlight);
 }

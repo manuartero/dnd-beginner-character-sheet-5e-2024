@@ -12,8 +12,8 @@
 html {
   font-family: var(--font-body);
   font-size: 16px;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--shade-4);
+  background-color: var(--shade-0);
   /* Pixel font: disable antialiasing for crisp rendering */
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
@@ -42,7 +42,7 @@ button {
 input:focus,
 select:focus,
 button:focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-highlight);
   outline-offset: 0;
 }
 

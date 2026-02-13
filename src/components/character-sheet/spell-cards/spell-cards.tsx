@@ -9,18 +9,7 @@ type SpellCardsProps = {
   spells: Spell[];
 };
 
-const DAMAGE_COLORS: Record<string, string> = {
-  fire: "var(--color-fire)",
-  cold: "var(--color-cold)",
-  lightning: "var(--color-lightning)",
-  necrotic: "var(--color-necrotic)",
-  radiant: "var(--color-radiant)",
-  force: "var(--color-force)",
-  poison: "var(--color-poison)",
-  thunder: "var(--color-lightning)",
-  acid: "var(--color-poison)",
-  psychic: "var(--color-necrotic)",
-};
+const DAMAGE_COLOR = "var(--color-highlight)";
 
 export function SpellCards({ spells }: SpellCardsProps) {
   const { expandedKey: expandedSpell, toggle: toggleSpell } =
@@ -73,9 +62,7 @@ type SpellCardProps = {
 };
 
 function SpellCard({ spell, isExpanded, onToggle }: SpellCardProps) {
-  const damageColor = spell.damage
-    ? (DAMAGE_COLORS[spell.damage.type] ?? "var(--color-text)")
-    : undefined;
+  const damageColor = spell.damage ? DAMAGE_COLOR : undefined;
 
   return (
     <button type="button" onClick={onToggle} className={styles.card}>

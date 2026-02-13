@@ -4,18 +4,18 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-sm);
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
   cursor: pointer;
 }
 
 .card:hover {
-  background: var(--color-bg-surface);
+  background: var(--shade-1);
 }
 
 .cardSelected {
-  border-color: var(--color-accent);
-  box-shadow: 3px 3px 0 var(--color-accent);
+  border-color: var(--color-highlight);
+  box-shadow: 3px 3px 0 var(--color-highlight);
 }
 
 .cardIcon {

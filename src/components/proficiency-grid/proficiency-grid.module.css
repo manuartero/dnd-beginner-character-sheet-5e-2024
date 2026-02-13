@@ -16,11 +16,11 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-sm);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--shade-3);
 }
 
 .cellEnabled {
-  border-color: var(--color-accent);
+  border-color: var(--color-highlight);
 }
 
 .cellDisabled {
@@ -40,7 +40,7 @@
 }
 
 .asterisk {
-  color: var(--color-accent);
+  color: var(--color-highlight);
   font-weight: 700;
 }
 
@@ -52,7 +52,7 @@
 
 .footnote {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   font-style: italic;
   line-height: 1.4;
 }

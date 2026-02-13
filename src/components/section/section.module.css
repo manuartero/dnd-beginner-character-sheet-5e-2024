@@ -1,16 +1,16 @@
 .section {
-  background: var(--color-bg-surface);
-  border: 3px solid var(--color-border);
+  background: var(--shade-1);
+  border: 3px solid var(--shade-3);
   padding: var(--space-md);
-  box-shadow: 4px 4px 0 var(--color-border);
+  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
 .sectionTitle {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--shade-3);
   padding-bottom: var(--space-xs);
 }

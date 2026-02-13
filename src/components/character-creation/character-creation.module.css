@@ -9,9 +9,9 @@
   padding: var(--space-md);
   font-size: var(--font-size-md);
   font-weight: 600;
-  background: var(--color-bg-elevated);
-  border: 3px solid var(--color-border);
-  box-shadow: 4px 4px 0 var(--color-border);
+  background: var(--shade-1);
+  border: 3px solid var(--shade-3);
+  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
 .primaryButton {
@@ -19,10 +19,10 @@
   padding: var(--space-md);
   font-size: var(--font-size-md);
   font-weight: 600;
-  color: var(--color-bg);
-  background: var(--color-accent);
-  border: 3px solid var(--color-border);
-  box-shadow: 4px 4px 0 var(--color-border);
+  color: var(--shade-0);
+  background: var(--color-highlight);
+  border: 3px solid var(--shade-3);
+  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
 .primaryButton:disabled {

@@ -6,9 +6,9 @@
   grid-template-rows: auto auto 2fr;
   align-items: center;
   justify-items: center;
-  background: var(--color-bg-elevated);
-  border: 2px solid var(--color-border);
-  box-shadow: 3px 3px 0 var(--color-border);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+  box-shadow: 3px 3px 0 var(--shade-3);
   overflow: hidden;
   min-height: 120px;
 }
@@ -25,13 +25,13 @@ button.abilityCard {
 }
 
 .abilityCardActive {
-  border-color: var(--color-accent);
-  box-shadow: 3px 3px 0 var(--color-accent);
+  border-color: var(--color-highlight);
+  box-shadow: 3px 3px 0 var(--color-highlight);
 }
 
 .abilityCardPrimary {
-  border-color: var(--color-accent);
-  box-shadow: 3px 3px 0 var(--color-accent);
+  border-color: var(--color-highlight);
+  box-shadow: 3px 3px 0 var(--color-highlight);
 }
 
 /* Label banner */
@@ -43,8 +43,8 @@ button.abilityCard {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: center;
-  color: var(--color-bg);
-  background: var(--color-border);
+  color: var(--shade-0);
+  background: var(--shade-3);
   margin-bottom: var(--space-sm);
 }
 
@@ -58,19 +58,19 @@ button.abilityCard {
 }
 
 .modifierNegative {
-  color: var(--color-accent);
+  color: var(--color-highlight);
 }
 
 .modifierNeutral {
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
 
 .modifierPositive {
-  color: var(--color-accent);
+  color: var(--color-highlight);
 }
 
 .modifierHigh {
-  color: var(--color-modifier-high);
+  color: var(--color-hp-full);
 }
 
 /* Display mode: score text */
@@ -79,7 +79,7 @@ button.abilityCard {
   padding: var(--space-xs) 0 0;
   font-size: var(--font-size-md);
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
 
 /* Creation mode: small modifier (top-right corner) */
@@ -90,7 +90,7 @@ button.abilityCard {
   right: 6px;
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-highlight);
   z-index: 1;
 }
 
@@ -102,7 +102,7 @@ button.abilityCard {
   left: 6px;
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-highlight);
   z-index: 1;
 }
 
@@ -113,15 +113,15 @@ button.abilityCard {
   text-align: center;
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--shade-4);
   background: transparent;
   border: none;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--shade-3);
 }
 
 .scoreInputError {
-  border-bottom-color: var(--color-accent);
-  color: var(--color-accent);
+  border-bottom-color: var(--color-highlight);
+  color: var(--color-highlight);
 }
 
 /* Skill list (back face) */
@@ -137,12 +137,12 @@ button.abilityCard {
   align-items: center;
   padding: 2px 0;
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--shade-2);
 }
 
 .skillProficient {
   font-weight: 700;
-  color: var(--color-modifier-high);
+  color: var(--color-hp-full);
 }
 
 .skillName {
