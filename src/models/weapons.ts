@@ -18,6 +18,7 @@ export type WeaponMasteryName =
   | "vex";
 
 export type Weapon = {
+  id: string;
   name: string;
   proficiency: WeaponProficiency;
   range: WeaponRange;
@@ -46,6 +47,10 @@ export function getWeaponsByProficiency(
 
 export function getWeaponsByRange(range: WeaponRange): Weapon[] {
   return WEAPONS.filter((w) => w.range === range);
+}
+
+export function getWeaponById(id: string): Weapon | undefined {
+  return WEAPONS.find((w) => w.id === id);
 }
 
 export function getWeaponByName(name: string): Weapon | undefined {

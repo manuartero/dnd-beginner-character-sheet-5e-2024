@@ -1,5 +1,6 @@
 [
   {
+    "id": "club",
     "name": "Club",
     "proficiency": "simple",
     "range": "melee",
@@ -9,6 +10,7 @@
     "icon": "vol8/icon-vol8_10"
   },
   {
+    "id": "dagger",
     "name": "Dagger",
     "proficiency": "simple",
     "range": "melee",
@@ -18,6 +20,7 @@
     "icon": "vol8/icon-vol8_30"
   },
   {
+    "id": "greatclub",
     "name": "Greatclub",
     "proficiency": "simple",
     "range": "melee",
@@ -27,6 +30,7 @@
     "icon": "vol8/icon-vol8_11"
   },
   {
+    "id": "handaxe",
     "name": "Handaxe",
     "proficiency": "simple",
     "range": "melee",
@@ -36,6 +40,7 @@
     "icon": "vol8/icon-vol8_05"
   },
   {
+    "id": "javelin",
     "name": "Javelin",
     "proficiency": "simple",
     "range": "melee",
@@ -45,6 +50,7 @@
     "icon": "vol8/icon-vol8_40"
   },
   {
+    "id": "light-hammer",
     "name": "Light Hammer",
     "proficiency": "simple",
     "range": "melee",
@@ -54,6 +60,7 @@
     "icon": "vol8/icon-vol8_15"
   },
   {
+    "id": "mace",
     "name": "Mace",
     "proficiency": "simple",
     "range": "melee",
@@ -63,6 +70,7 @@
     "icon": "vol8/icon-vol8_20"
   },
   {
+    "id": "quarterstaff",
     "name": "Quarterstaff",
     "proficiency": "simple",
     "range": "melee",
@@ -72,6 +80,7 @@
     "icon": "vol8/icon-vol8_45"
   },
   {
+    "id": "sickle",
     "name": "Sickle",
     "proficiency": "simple",
     "range": "melee",
@@ -81,6 +90,7 @@
     "icon": "vol8/icon-vol8_55"
   },
   {
+    "id": "spear",
     "name": "Spear",
     "proficiency": "simple",
     "range": "melee",
@@ -90,6 +100,7 @@
     "icon": "vol8/icon-vol8_60"
   },
   {
+    "id": "dart",
     "name": "Dart",
     "proficiency": "simple",
     "range": "ranged",
@@ -99,6 +110,7 @@
     "icon": "vol8/icon-vol8_35"
   },
   {
+    "id": "light-crossbow",
     "name": "Light Crossbow",
     "proficiency": "simple",
     "range": "ranged",
@@ -108,6 +120,7 @@
     "icon": "vol8/icon-vol8_70"
   },
   {
+    "id": "shortbow",
     "name": "Shortbow",
     "proficiency": "simple",
     "range": "ranged",
@@ -117,6 +130,7 @@
     "icon": "vol8/icon-vol8_75"
   },
   {
+    "id": "sling",
     "name": "Sling",
     "proficiency": "simple",
     "range": "ranged",
@@ -126,6 +140,7 @@
     "icon": "vol8/icon-vol8_80"
   },
   {
+    "id": "battleaxe",
     "name": "Battleaxe",
     "proficiency": "martial",
     "range": "melee",
@@ -135,6 +150,7 @@
     "icon": "vol8/icon-vol8_02"
   },
   {
+    "id": "flail",
     "name": "Flail",
     "proficiency": "martial",
     "range": "melee",
@@ -144,6 +160,7 @@
     "icon": "vol8/icon-vol8_85"
   },
   {
+    "id": "glaive",
     "name": "Glaive",
     "proficiency": "martial",
     "range": "melee",
@@ -153,6 +170,7 @@
     "icon": "vol8/icon-vol8_90"
   },
   {
+    "id": "greataxe",
     "name": "Greataxe",
     "proficiency": "martial",
     "range": "melee",
@@ -162,6 +180,7 @@
     "icon": "vol8/icon-vol8_03"
   },
   {
+    "id": "greatsword",
     "name": "Greatsword",
     "proficiency": "martial",
     "range": "melee",
@@ -171,6 +190,7 @@
     "icon": "vol8/icon-vol8_95"
   },
   {
+    "id": "halberd",
     "name": "Halberd",
     "proficiency": "martial",
     "range": "melee",
@@ -180,6 +200,7 @@
     "icon": "vol8/icon-vol8_100"
   },
   {
+    "id": "lance",
     "name": "Lance",
     "proficiency": "martial",
     "range": "melee",
@@ -189,6 +210,7 @@
     "icon": "vol8/icon-vol8_105"
   },
   {
+    "id": "longsword",
     "name": "Longsword",
     "proficiency": "martial",
     "range": "melee",
@@ -198,6 +220,7 @@
     "icon": "vol8/icon-vol8_110"
   },
   {
+    "id": "maul",
     "name": "Maul",
     "proficiency": "martial",
     "range": "melee",
@@ -207,6 +230,7 @@
     "icon": "vol8/icon-vol8_115"
   },
   {
+    "id": "morningstar",
     "name": "Morningstar",
     "proficiency": "martial",
     "range": "melee",
@@ -216,6 +240,7 @@
     "icon": "vol8/icon-vol8_120"
   },
   {
+    "id": "pike",
     "name": "Pike",
     "proficiency": "martial",
     "range": "melee",
@@ -225,6 +250,7 @@
     "icon": "vol8/icon-vol8_125"
   },
   {
+    "id": "rapier",
     "name": "Rapier",
     "proficiency": "martial",
     "range": "melee",
@@ -234,6 +260,7 @@
     "icon": "vol8/icon-vol8_130"
   },
   {
+    "id": "scimitar",
     "name": "Scimitar",
     "proficiency": "martial",
     "range": "melee",
@@ -243,6 +270,7 @@
     "icon": "vol8/icon-vol8_135"
   },
   {
+    "id": "shortsword",
     "name": "Shortsword",
     "proficiency": "martial",
     "range": "melee",
@@ -252,6 +280,7 @@
     "icon": "vol8/icon-vol8_140"
   },
   {
+    "id": "trident",
     "name": "Trident",
     "proficiency": "martial",
     "range": "melee",
@@ -261,6 +290,7 @@
     "icon": "vol8/icon-vol8_145"
   },
   {
+    "id": "warhammer",
     "name": "Warhammer",
     "proficiency": "martial",
     "range": "melee",
@@ -270,6 +300,7 @@
     "icon": "vol8/icon-vol8_150"
   },
   {
+    "id": "war-pick",
     "name": "War Pick",
     "proficiency": "martial",
     "range": "melee",
@@ -279,6 +310,7 @@
     "icon": "vol8/icon-vol8_155"
   },
   {
+    "id": "whip",
     "name": "Whip",
     "proficiency": "martial",
     "range": "melee",
@@ -288,6 +320,7 @@
     "icon": "vol8/icon-vol8_160"
   },
   {
+    "id": "blowgun",
     "name": "Blowgun",
     "proficiency": "martial",
     "range": "ranged",
@@ -297,6 +330,7 @@
     "icon": "vol8/icon-vol8_165"
   },
   {
+    "id": "hand-crossbow",
     "name": "Hand Crossbow",
     "proficiency": "martial",
     "range": "ranged",
@@ -306,6 +340,7 @@
     "icon": "vol8/icon-vol8_170"
   },
   {
+    "id": "heavy-crossbow",
     "name": "Heavy Crossbow",
     "proficiency": "martial",
     "range": "ranged",
@@ -320,6 +355,7 @@
     "icon": "vol8/icon-vol8_175"
   },
   {
+    "id": "longbow",
     "name": "Longbow",
     "proficiency": "martial",
     "range": "ranged",
@@ -329,6 +365,7 @@
     "icon": "vol8/icon-vol8_180"
   },
   {
+    "id": "musket",
     "name": "Musket",
     "proficiency": "martial",
     "range": "ranged",
@@ -338,6 +375,7 @@
     "icon": "vol8/icon-vol8_185"
   },
   {
+    "id": "pistol",
     "name": "Pistol",
     "proficiency": "martial",
     "range": "ranged",
