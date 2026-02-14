@@ -11,6 +11,7 @@ import type { Species } from "src/models/species";
 import { CreationActions } from "./creation-actions";
 import { isValidHp, isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
+import { StepEquipment } from "./step-equipment";
 import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
@@ -59,7 +60,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
     isValidHp(String(draft.hpMax)) &&
     totalBonuses(draft.abilityBonuses) === 3;
 
-  const step5Complete = draft.name.trim() !== "";
+  const step6Complete = draft.name.trim() !== "";
 
   const backgroundEntry = draft.background
     ? BACKGROUND_LIST.find((b) => b.key === draft.background)
@@ -95,7 +96,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   return (
     <>
-      <Stepper current={step} total={5} onStepChange={setStep} />
+      <Stepper current={step} total={6} onStepChange={setStep} />
 
       {step === 1 && (
         <>
@@ -173,17 +174,27 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
         </>
       )}
 
-      {step === 5 && (
+      {step === 5 && draft.characterClass && (
+        <>
+          <StepEquipment characterClass={draft.characterClass} />
+          <CreationActions
+            onBack={() => setStep(4)}
+            onNext={() => setStep(6)}
+          />
+        </>
+      )}
+
+      {step === 6 && (
         <>
           <StepName
             name={draft.name}
             onNameChange={(name) => setDraft((prev) => ({ ...prev, name }))}
           />
           <CreationActions
-            onBack={() => setStep(4)}
+            onBack={() => setStep(5)}
             onNext={handleCreate}
             nextLabel="Create"
-            nextDisabled={!step5Complete}
+            nextDisabled={!step6Complete}
           />
         </>
       )}

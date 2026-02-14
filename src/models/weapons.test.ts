@@ -1,4 +1,5 @@
 import {
+  getWeaponById,
   getWeaponByName,
   getWeaponsByProficiency,
   getWeaponsByRange,
@@ -42,6 +43,18 @@ describe("getWeaponsByRange()", () => {
 
   it("returns 10 ranged weapons", () => {
     expect(getWeaponsByRange("ranged")).toHaveLength(10);
+  });
+});
+
+describe("getWeaponById()", () => {
+  it("finds a weapon by id", () => {
+    const weapon = getWeaponById("longsword");
+    expect(weapon).toBeDefined();
+    expect(weapon?.name).toBe("Longsword");
+  });
+
+  it("returns undefined for unknown id", () => {
+    expect(getWeaponById("lightsaber")).toBeUndefined();
   });
 });
 
