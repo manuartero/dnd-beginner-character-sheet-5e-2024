@@ -7,7 +7,7 @@
     "damage": { "dice": "1d4", "type": "bludgeoning" },
     "properties": [],
     "mastery": "slow",
-    "icon": "vol8/icon-vol8_10"
+    "icon": "vol8/icon-vol8_50"
   },
   {
     "id": "dagger",
@@ -17,7 +17,7 @@
     "damage": { "dice": "1d4", "type": "piercing" },
     "properties": ["finesse", "light", "thrown (20/60)"],
     "mastery": "nick",
-    "icon": "vol8/icon-vol8_30"
+    "icon": "vol8/icon-vol8_16"
   },
   {
     "id": "greatclub",
@@ -27,7 +27,7 @@
     "damage": { "dice": "1d8", "type": "bludgeoning" },
     "properties": ["two-handed"],
     "mastery": "push",
-    "icon": "vol8/icon-vol8_11"
+    "icon": "vol8/icon-vol8_159"
   },
   {
     "id": "handaxe",
@@ -37,7 +37,7 @@
     "damage": { "dice": "1d6", "type": "slashing" },
     "properties": ["light", "thrown (20/60)"],
     "mastery": "vex",
-    "icon": "vol8/icon-vol8_05"
+    "icon": "vol8/icon-vol8_172"
   },
   {
     "id": "javelin",
@@ -47,7 +47,7 @@
     "damage": { "dice": "1d6", "type": "piercing" },
     "properties": ["thrown (30/120)"],
     "mastery": "slow",
-    "icon": "vol8/icon-vol8_40"
+    "icon": "vol8/icon-vol8_60"
   },
   {
     "id": "light-hammer",
@@ -67,7 +67,7 @@
     "damage": { "dice": "1d6", "type": "bludgeoning" },
     "properties": [],
     "mastery": "sap",
-    "icon": "vol8/icon-vol8_20"
+    "icon": "vol8/icon-vol8_48"
   },
   {
     "id": "quarterstaff",
@@ -77,7 +77,7 @@
     "damage": { "dice": "1d6", "type": "bludgeoning" },
     "properties": ["versatile (1d8)"],
     "mastery": "topple",
-    "icon": "vol8/icon-vol8_45"
+    "icon": "vol8/icon-vol8_05"
   },
   {
     "id": "sickle",
@@ -117,7 +117,7 @@
     "damage": { "dice": "1d8", "type": "piercing" },
     "properties": ["ammunition (80/320; bolt)", "loading", "two-handed"],
     "mastery": "slow",
-    "icon": "vol8/icon-vol8_70"
+    "icon": "vol8/icon-vol8_154"
   },
   {
     "id": "shortbow",
@@ -157,7 +157,7 @@
     "damage": { "dice": "1d8", "type": "bludgeoning" },
     "properties": [],
     "mastery": "sap",
-    "icon": "vol8/icon-vol8_85"
+    "icon": "vol8/icon-vol8_49"
   },
   {
     "id": "glaive",
@@ -177,7 +177,7 @@
     "damage": { "dice": "1d12", "type": "slashing" },
     "properties": ["heavy", "two-handed"],
     "mastery": "cleave",
-    "icon": "vol8/icon-vol8_03"
+    "icon": "vol8/icon-vol8_53"
   },
   {
     "id": "greatsword",
@@ -187,7 +187,7 @@
     "damage": { "dice": "2d6", "type": "slashing" },
     "properties": ["heavy", "two-handed"],
     "mastery": "graze",
-    "icon": "vol8/icon-vol8_95"
+    "icon": "vol8/icon-vol8_10"
   },
   {
     "id": "halberd",
@@ -237,7 +237,7 @@
     "damage": { "dice": "1d8", "type": "piercing" },
     "properties": [],
     "mastery": "sap",
-    "icon": "vol8/icon-vol8_120"
+    "icon": "vol8/icon-vol8_162"
   },
   {
     "id": "pike",
@@ -247,7 +247,7 @@
     "damage": { "dice": "1d10", "type": "piercing" },
     "properties": ["heavy", "reach", "two-handed"],
     "mastery": "push",
-    "icon": "vol8/icon-vol8_125"
+    "icon": "vol8/icon-vol8_08"
   },
   {
     "id": "rapier",
@@ -257,7 +257,7 @@
     "damage": { "dice": "1d8", "type": "piercing" },
     "properties": ["finesse"],
     "mastery": "vex",
-    "icon": "vol8/icon-vol8_130"
+    "icon": "vol8/icon-vol8_33"
   },
   {
     "id": "scimitar",
@@ -267,7 +267,7 @@
     "damage": { "dice": "1d6", "type": "slashing" },
     "properties": ["finesse", "light"],
     "mastery": "nick",
-    "icon": "vol8/icon-vol8_135"
+    "icon": "vol8/icon-vol8_40"
   },
   {
     "id": "shortsword",
@@ -277,7 +277,7 @@
     "damage": { "dice": "1d6", "type": "piercing" },
     "properties": ["finesse", "light"],
     "mastery": "vex",
-    "icon": "vol8/icon-vol8_140"
+    "icon": "vol8/icon-vol8_198"
   },
   {
     "id": "trident",
@@ -297,7 +297,7 @@
     "damage": { "dice": "1d8", "type": "bludgeoning" },
     "properties": ["versatile (1d10)"],
     "mastery": "push",
-    "icon": "vol8/icon-vol8_150"
+    "icon": "vol8/icon-vol8_157"
   },
   {
     "id": "war-pick",
