@@ -36,6 +36,11 @@ export type ProficiencySet = {
   tools?: string[];
 };
 
+export type StartingEquipmentItem = {
+  item: string;
+  quantity: number;
+};
+
 export type ClassDetails = {
   label: string;
   icon: string;
@@ -44,6 +49,7 @@ export type ClassDetails = {
   saves: string;
   description: string;
   proficiencies: ProficiencySet;
+  startingEquipment: [StartingEquipmentItem[], StartingEquipmentItem[]];
 };
 
 export function hasProficiency(
