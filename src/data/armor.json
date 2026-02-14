@@ -1,0 +1,145 @@
+[
+  {
+    "id": "padded-armor",
+    "name": "Padded Armor",
+    "category": "light",
+    "baseAc": 11,
+    "dexModifier": true,
+    "maxDexModifier": null,
+    "requiredStr": null,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_309"
+  },
+  {
+    "id": "leather-armor",
+    "name": "Leather Armor",
+    "category": "light",
+    "baseAc": 11,
+    "dexModifier": true,
+    "maxDexModifier": null,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol9_317"
+  },
+  {
+    "id": "studded-leather-armor",
+    "name": "Studded Leather Armor",
+    "category": "light",
+    "baseAc": 12,
+    "dexModifier": true,
+    "maxDexModifier": null,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol9_321"
+  },
+  {
+    "id": "hide-armor",
+    "name": "Hide Armor",
+    "category": "medium",
+    "baseAc": 12,
+    "dexModifier": true,
+    "maxDexModifier": 2,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol9_322"
+  },
+  {
+    "id": "chain-shirt",
+    "name": "Chain Shirt",
+    "category": "medium",
+    "baseAc": 13,
+    "dexModifier": true,
+    "maxDexModifier": 2,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol9_323"
+  },
+  {
+    "id": "scale-mail",
+    "name": "Scale Mail",
+    "category": "medium",
+    "baseAc": 14,
+    "dexModifier": true,
+    "maxDexModifier": 2,
+    "requiredStr": null,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_324"
+  },
+  {
+    "id": "breastplate",
+    "name": "Breastplate",
+    "category": "medium",
+    "baseAc": 14,
+    "dexModifier": true,
+    "maxDexModifier": 2,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol9_310"
+  },
+  {
+    "id": "half-plate-armor",
+    "name": "Half Plate Armor",
+    "category": "medium",
+    "baseAc": 15,
+    "dexModifier": true,
+    "maxDexModifier": 2,
+    "requiredStr": null,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_322"
+  },
+  {
+    "id": "ring-mail",
+    "name": "Ring Mail",
+    "category": "heavy",
+    "baseAc": 14,
+    "dexModifier": false,
+    "maxDexModifier": null,
+    "requiredStr": null,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_319"
+  },
+  {
+    "id": "chain-mail",
+    "name": "Chain Mail",
+    "category": "heavy",
+    "baseAc": 16,
+    "dexModifier": false,
+    "maxDexModifier": null,
+    "requiredStr": 13,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_329"
+  },
+  {
+    "id": "splint-armor",
+    "name": "Splint Armor",
+    "category": "heavy",
+    "baseAc": 17,
+    "dexModifier": false,
+    "maxDexModifier": null,
+    "requiredStr": 15,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_334"
+  },
+  {
+    "id": "plate-armor",
+    "name": "Plate Armor",
+    "category": "heavy",
+    "baseAc": 18,
+    "dexModifier": false,
+    "maxDexModifier": null,
+    "requiredStr": 15,
+    "stealthDisadvantage": true,
+    "icon": "vol9/icon-vol9_08"
+  },
+  {
+    "id": "shield",
+    "name": "Shield",
+    "category": "shield",
+    "baseAc": 2,
+    "dexModifier": false,
+    "maxDexModifier": null,
+    "requiredStr": null,
+    "stealthDisadvantage": false,
+    "icon": "vol9/icon-vol8_120"
+  }
+]

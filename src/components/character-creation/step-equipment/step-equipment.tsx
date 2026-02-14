@@ -1,4 +1,5 @@
 import { Section } from "src/components/section";
+import { getArmorById } from "src/models/armor";
 import type { CharacterClass } from "src/models/classes";
 import { CLASS_DETAILS } from "src/models/classes";
 import { resolveIconPath } from "src/models/icons";
@@ -16,6 +17,30 @@ function formatItemName(id: string): string {
     .join(" ");
 }
 
+function resolveItem(id: string): {
+  name: string;
+  icon: string | null;
+  meta: string | null;
+} {
+  const weapon = getWeaponById(id);
+  if (weapon) {
+    return {
+      name: weapon.name,
+      icon: weapon.icon,
+      meta: `${weapon.damage.dice} ${weapon.damage.type}`,
+    };
+  }
+  const armor = getArmorById(id);
+  if (armor) {
+    return {
+      name: armor.name,
+      icon: armor.icon,
+      meta: `AC ${armor.baseAc}${armor.dexModifier ? " + Dex" : ""}`,
+    };
+  }
+  return { name: formatItemName(id), icon: null, meta: null };
+}
+
 export function StepEquipment({ characterClass }: StepEquipmentProps) {
   const equipment = CLASS_DETAILS[characterClass].startingEquipment[0];
 
@@ -23,25 +48,20 @@ export function StepEquipment({ characterClass }: StepEquipmentProps) {
     <Section title="Starting Equipment">
       <div className={styles.list}>
         {equipment.map(({ item, quantity }) => {
-          const weapon = getWeaponById(item);
-          const name = weapon ? weapon.name : formatItemName(item);
+          const { name, icon, meta } = resolveItem(item);
 
           return (
             <div key={item} className={styles.itemRow}>
-              {weapon && (
+              {icon && (
                 <img
-                  src={resolveIconPath(weapon.icon)}
+                  src={resolveIconPath(icon)}
                   alt={name}
                   className={styles.icon}
                 />
               )}
               <div className={styles.itemInfo}>
                 <span className={styles.itemName}>{name}</span>
-                {weapon && (
-                  <span className={styles.itemMeta}>
-                    {weapon.damage.dice} {weapon.damage.type}
-                  </span>
-                )}
+                {meta && <span className={styles.itemMeta}>{meta}</span>}
               </div>
               {quantity > 1 && (
                 <span className={styles.quantity}>x{quantity}</span>
