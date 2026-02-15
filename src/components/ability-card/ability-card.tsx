@@ -1,4 +1,5 @@
 import c from "classnames";
+import { ScorePicker } from "src/components/character-creation/score-picker";
 import type { AbilityName } from "src/models/abilities";
 import { computeModifier, formatModifier } from "src/models/abilities";
 import {
@@ -269,29 +270,15 @@ function AssignFront({
   selectedValue,
   onAssign,
 }: AssignFrontProps) {
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    e.stopPropagation();
-    const val = e.target.value;
-    onAssign(abilityKey, val === "" ? null : Number(val));
-  }
-
   return (
     <>
       <span className={styles.modifierSmall}>{formatModifier(mod)}</span>
       {bonus > 0 && <span className={styles.bonusBadge}>+{bonus}</span>}
-      <select
-        value={selectedValue ?? ""}
-        onChange={handleChange}
-        onClick={(e) => e.stopPropagation()}
-        className={styles.scoreSelect}
-      >
-        <option value="">--</option>
-        {availableValues.map((v) => (
-          <option key={v} value={v}>
-            {v}
-          </option>
-        ))}
-      </select>
+      <ScorePicker
+        availableValues={availableValues}
+        selectedValue={selectedValue}
+        onPick={(value) => onAssign(abilityKey, value)}
+      />
     </>
   );
 }
