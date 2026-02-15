@@ -1,14 +1,22 @@
+/* HP bar - flexbox health blocks, 8-bit style */
+
 .barContainer {
-  height: 12px;
-  background: var(--shade-1);
+  display: flex;
+  gap: 2px;
+  height: 16px;
+  padding: 2px;
+  background: var(--shade-4);
   border: 2px solid var(--shade-3);
-  overflow: hidden;
   margin-bottom: var(--space-sm);
 }
 
-.barFill {
-  height: 100%;
+.barBlock {
+  flex: 1;
+  min-width: 0;
+  background: var(--shade-3);
 }
+
+/* Sheet mode controls */
 
 .controls {
   display: flex;
@@ -52,4 +60,28 @@
 .separator {
   font-size: var(--font-size-lg);
   color: var(--shade-2);
+}
+
+/* Creation mode */
+
+.creationDisplay {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.hpUnit {
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  font-weight: 700;
+}
+
+.creationDescription {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  text-align: center;
+  line-height: 1.6;
+  margin: var(--space-sm) 0 0;
 }
