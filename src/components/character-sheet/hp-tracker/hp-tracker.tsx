@@ -1,7 +1,8 @@
 import { Section } from "src/components/section";
 import styles from "./hp-tracker.module.css";
 
-type HpTrackerProps = {
+type HpTrackerSheetProps = {
+  mode?: "sheet";
   current: number;
   max: number;
   editable: boolean;
@@ -9,29 +10,68 @@ type HpTrackerProps = {
   onMaxChange?: (value: number) => void;
 };
 
-export function HpTracker({
+type HpTrackerCreationProps = {
+  mode: "creation";
+  max: number;
+  description?: string;
+};
+
+type HpTrackerProps = HpTrackerSheetProps | HpTrackerCreationProps;
+
+function blockColor(ratio: number, dynamicColor: boolean): string {
+  if (!dynamicColor) return "var(--color-hp-full)";
+  if (ratio > 0.5) return "var(--color-hp-full)";
+  if (ratio > 0.25) return "var(--color-highlight)";
+  return "var(--color-hp-low)";
+}
+
+function HpBar({
   current,
   max,
-  editable,
-  onCurrentChange,
-  onMaxChange,
-}: HpTrackerProps) {
+  dynamicColor,
+}: {
+  current: number;
+  max: number;
+  dynamicColor: boolean;
+}) {
   const ratio = max > 0 ? current / max : 0;
-  const barColor = ratio > 0.5 ? "var(--color-hp-full)" : "var(--color-hp-low)";
+  const color = blockColor(ratio, dynamicColor);
+  const blocks = Array.from({ length: max }, (_, i) => i + 1);
+
+  return (
+    <div className={styles.barContainer}>
+      {blocks.map((hp) => (
+        <span
+          key={hp}
+          className={styles.barBlock}
+          style={hp <= current ? { backgroundColor: color } : undefined}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function HpTracker(props: HpTrackerProps) {
+  if (props.mode === "creation") {
+    return (
+      <Section title="Hit Points">
+        <HpBar current={props.max} max={props.max} dynamicColor={false} />
+        <div className={styles.creationDisplay}>
+          <span className={styles.hpStatic}>{props.max}</span>
+          <span className={styles.hpUnit}>HP</span>
+        </div>
+        {props.description && (
+          <p className={styles.creationDescription}>{props.description}</p>
+        )}
+      </Section>
+    );
+  }
+
+  const { current, max, editable, onCurrentChange, onMaxChange } = props;
 
   return (
     <Section title="Hit Points">
-      {!editable && (
-        <div className={styles.barContainer}>
-          <div
-            className={styles.barFill}
-            style={{
-              width: `${Math.max(0, Math.min(100, ratio * 100))}%`,
-              backgroundColor: barColor,
-            }}
-          />
-        </div>
-      )}
+      <HpBar current={current} max={max} dynamicColor />
 
       <div className={styles.controls}>
         <button

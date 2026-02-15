@@ -57,29 +57,3 @@
   font-size: var(--font-size-sm);
   font-weight: 700;
 }
-
-.hpRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-top: var(--space-sm);
-}
-
-.hpLabel {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-}
-
-.hpInput {
-  width: 50px;
-  text-align: center;
-  font-size: var(--font-size-md);
-  background: var(--shade-1);
-  padding: var(--space-xs) var(--space-sm);
-  border: 2px solid var(--shade-3);
-}
-
-.hpInputError {
-  border-color: var(--color-highlight);
-  color: var(--color-highlight);
-}

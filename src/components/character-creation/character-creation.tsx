@@ -9,7 +9,7 @@ import { saveCharacter } from "src/models/character-storage";
 import type { CharacterClass } from "src/models/classes";
 import type { Species } from "src/models/species";
 import { CreationActions } from "./creation-actions";
-import { isValidHp, isValidScore, StepAbilities } from "./step-abilities";
+import { isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
 import { StepEquipment } from "./step-equipment";
 import { StepName } from "./step-name";
@@ -57,7 +57,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   const step4Complete =
     Object.values(draft.abilityScores).every((v) => isValidScore(String(v))) &&
-    isValidHp(String(draft.hpMax)) &&
+    draft.hpMax > 0 &&
     totalBonuses(draft.abilityBonuses) === 3;
 
   const step6Complete = draft.name.trim() !== "";
@@ -149,7 +149,6 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
           <StepAbilities
             characterClass={draft.characterClass}
             scores={draft.abilityScores}
-            hpMax={draft.hpMax}
             onScoresChange={(abilityScores) =>
               setDraft((prev) => ({
                 ...prev,

@@ -1,16 +1,20 @@
-import c from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { AbilityCard } from "src/components/ability-card";
 import { RetroRadio } from "src/components/character-creation/retro-radio";
+import { HpTracker } from "src/components/character-sheet/hp-tracker";
 import { Section } from "src/components/section";
 import recommendedData from "src/data/recommended-scores.json";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
-import { ABILITY_LIST } from "src/models/abilities";
+import {
+  ABILITY_LIST,
+  computeModifier,
+  formatModifier,
+} from "src/models/abilities";
 import { type CharacterClass, CLASS_DETAILS } from "src/models/classes";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
-import { isValidHp, isValidScore } from "./validation";
+import { isValidScore } from "./validation";
 
 type AbilityScoreMode = "quick-start" | "customize" | "advanced";
 
@@ -41,6 +45,10 @@ const MODE_OPTIONS: {
   },
 ];
 
+function parseHitDieMax(hitDie: string): number {
+  return Number.parseInt(hitDie.replace("d", ""), 10);
+}
+
 const EMPTY_SCORES: AbilityScores = {
   str: 0,
   dex: 0,
@@ -62,7 +70,6 @@ const DEFAULT_SCORES: AbilityScores = {
 type StepAbilitiesProps = {
   characterClass: CharacterClass | null;
   scores: AbilityScores;
-  hpMax: number;
   onScoresChange: (scores: AbilityScores) => void;
   onHpMaxChange: (hpMax: number) => void;
   abilityOptions: [AbilityName, AbilityName, AbilityName] | null;
@@ -75,7 +82,6 @@ type StepAbilitiesProps = {
 export function StepAbilities({
   characterClass,
   scores,
-  hpMax,
   onScoresChange,
   onHpMaxChange,
   abilityOptions,
@@ -96,7 +102,6 @@ export function StepAbilities({
       ) as Record<AbilityName, string>;
     },
   );
-  const [rawHp, setRawHp] = useState(String(hpMax));
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const { expandedKey: flippedAbility, toggle: toggleFlip } =
     useExpandable<AbilityName>();
@@ -117,6 +122,24 @@ export function StepAbilities({
       );
     }
   }, [mode, characterClass]);
+
+  const onHpMaxChangeRef = useRef(onHpMaxChange);
+  onHpMaxChangeRef.current = onHpMaxChange;
+
+  const conScore = scores.con + (abilityBonuses.con ?? 0);
+  const conModifier = computeModifier(conScore);
+  const hitDieMax = characterClass
+    ? parseHitDieMax(CLASS_DETAILS[characterClass].hitDie)
+    : 0;
+  const calculatedHp = characterClass
+    ? Math.max(1, hitDieMax + conModifier)
+    : 0;
+
+  useEffect(() => {
+    if (calculatedHp > 0) {
+      onHpMaxChangeRef.current(calculatedHp);
+    }
+  }, [calculatedHp]);
 
   const [assignments, setAssignments] = useState<
     Record<AbilityName, number | null>
@@ -182,16 +205,8 @@ export function StepAbilities({
     syncRawScores(nextScores);
   }
 
-  function handleHpChange(value: string) {
-    setRawHp(value);
-    const parsed = Number.parseInt(value, 10);
-    if (!Number.isNaN(parsed)) {
-      onHpMaxChange(parsed);
-    }
-  }
-
-  function handleBlur(field: AbilityName | "hp") {
-    setTouched((prev) => ({ ...prev, [field]: true }));
+  function handleBlur(ability: AbilityName) {
+    setTouched((prev) => ({ ...prev, [ability]: true }));
   }
 
   function computeAvailableValues(ability: AbilityName): number[] {
@@ -304,22 +319,13 @@ export function StepAbilities({
         />
       )}
 
-      <Section title="Hit Points">
-        <div className={styles.hpRow}>
-          <span className={styles.hpLabel}>HP Max</span>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={rawHp}
-            onChange={(e) => handleHpChange(e.target.value)}
-            onBlur={() => handleBlur("hp")}
-            className={c(
-              styles.hpInput,
-              touched.hp && !isValidHp(rawHp) && styles.hpInputError,
-            )}
-          />
-        </div>
-      </Section>
+      {characterClass && calculatedHp > 0 && (
+        <HpTracker
+          mode="creation"
+          max={calculatedHp}
+          description={`Hit Die: ${CLASS_DETAILS[characterClass].hitDie} (from ${CLASS_DETAILS[characterClass].label}) + CON modifier (${formatModifier(conModifier)})`}
+        />
+      )}
     </>
   );
 }
