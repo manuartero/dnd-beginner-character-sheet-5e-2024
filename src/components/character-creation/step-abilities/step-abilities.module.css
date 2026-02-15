@@ -1,3 +1,7 @@
+.modeSelector {
+  margin-bottom: var(--space-md);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

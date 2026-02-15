@@ -1,0 +1,74 @@
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.option:hover {
+  background: var(--shade-1);
+}
+
+.optionSelected {
+  border-color: var(--color-highlight);
+  background: var(--shade-1);
+  box-shadow: 3px 3px 0 var(--color-highlight);
+}
+
+.box {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  border: 2px solid var(--shade-3);
+  background: var(--shade-0);
+  margin-top: 1px;
+}
+
+.boxChecked {
+  background: var(--color-highlight);
+  border-color: var(--color-highlight);
+  box-shadow:
+    inset 2px 2px 0 var(--shade-0),
+    inset -2px -2px 0 var(--shade-0);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.description {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  line-height: 1.4;
+}
