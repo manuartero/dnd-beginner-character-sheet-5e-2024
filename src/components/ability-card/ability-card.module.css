@@ -133,29 +133,6 @@ button.abilityCard {
   line-height: 1;
 }
 
-/* Customize: score select dropdown */
-
-.scoreSelect {
-  width: 64px;
-  text-align: center;
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  font-family: inherit;
-  color: var(--shade-4);
-  background: var(--shade-0);
-  border: 2px solid var(--shade-3);
-  padding: var(--space-xs);
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.scoreSelect:focus {
-  border-color: var(--color-highlight);
-  outline: none;
-}
-
 /* Skill list (back face) */
 
 .skillList {

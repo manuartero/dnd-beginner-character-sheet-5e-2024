@@ -1,0 +1,53 @@
+/* 8-bit tile grid for picking a score value */
+
+.picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  width: 100%;
+  padding: 0 var(--space-xs);
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--shade-3);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+  cursor: pointer;
+  transition: none;
+}
+
+.tile:hover {
+  background: var(--shade-1);
+  color: var(--shade-4);
+}
+
+.tile:active {
+  transform: translate(1px, 1px);
+}
+
+.tileSelected {
+  background: var(--color-highlight);
+  border-color: var(--color-highlight);
+  color: var(--shade-0);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tileSelected:hover {
+  background: var(--color-highlight);
+  color: var(--shade-0);
+}
+
+.placeholder {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  padding: var(--space-xs) 0;
+}
