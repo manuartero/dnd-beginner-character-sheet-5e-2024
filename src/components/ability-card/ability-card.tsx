@@ -27,11 +27,24 @@ type AbilityCardCreationProps = _BaseProps & {
   isPrimary: boolean;
   bonus: number;
   showError: boolean;
+  readOnly?: boolean;
   onScoreChange: (ability: AbilityName, value: string) => void;
   onBlur: (ability: AbilityName) => void;
 };
 
-type AbilityCardProps = AbilityCardDisplayProps | AbilityCardCreationProps;
+type AbilityCardAssignProps = _BaseProps & {
+  mode: "assign";
+  isPrimary: boolean;
+  bonus: number;
+  availableValues: number[];
+  selectedValue: number | null;
+  onAssign: (ability: AbilityName, value: number | null) => void;
+};
+
+type AbilityCardProps =
+  | AbilityCardDisplayProps
+  | AbilityCardCreationProps
+  | AbilityCardAssignProps;
 
 export function AbilityCard(props: AbilityCardProps) {
   const { abilityKey, short, score, isFlipped, proficiencyBonus, onToggle } =
@@ -40,11 +53,14 @@ export function AbilityCard(props: AbilityCardProps) {
   const skills = skillsForAbility(abilityKey);
   const hasSkills = skills.length > 0;
 
+  const isPrimary =
+    (props.mode === "creation" || props.mode === "assign") && props.isPrimary;
+
   const cardClass = c(
     styles.abilityCard,
     hasSkills && styles.abilityCardClickable,
     isFlipped && styles.abilityCardActive,
-    props.mode === "creation" && props.isPrimary && styles.abilityCardPrimary,
+    isPrimary && styles.abilityCardPrimary,
   );
 
   const content = (
@@ -58,6 +74,21 @@ export function AbilityCard(props: AbilityCardProps) {
         />
       ) : props.mode === "display" ? (
         <DisplayFront score={score} mod={mod} />
+      ) : props.mode === "assign" ? (
+        <AssignFront
+          abilityKey={abilityKey}
+          mod={mod}
+          bonus={props.bonus}
+          availableValues={props.availableValues}
+          selectedValue={props.selectedValue}
+          onAssign={props.onAssign}
+        />
+      ) : props.readOnly ? (
+        <ReadOnlyFront
+          rawScore={props.rawScore}
+          mod={mod}
+          bonus={props.bonus}
+        />
       ) : (
         <CreationFront
           abilityKey={abilityKey}
@@ -84,7 +115,7 @@ export function AbilityCard(props: AbilityCardProps) {
     );
   }
 
-  if (props.mode === "creation") {
+  if (props.mode === "creation" || props.mode === "assign") {
     return (
       <button
         className={cardClass}
@@ -202,6 +233,66 @@ function SkillList({
         );
       })}
     </div>
+  );
+}
+
+type ReadOnlyFrontProps = {
+  rawScore: string;
+  mod: number;
+  bonus: number;
+};
+
+function ReadOnlyFront({ rawScore, mod, bonus }: ReadOnlyFrontProps) {
+  return (
+    <>
+      <span className={styles.modifierSmall}>{formatModifier(mod)}</span>
+      {bonus > 0 && <span className={styles.bonusBadge}>+{bonus}</span>}
+      <span className={styles.scoreReadOnly}>{rawScore}</span>
+    </>
+  );
+}
+
+type AssignFrontProps = {
+  abilityKey: AbilityName;
+  mod: number;
+  bonus: number;
+  availableValues: number[];
+  selectedValue: number | null;
+  onAssign: (ability: AbilityName, value: number | null) => void;
+};
+
+function AssignFront({
+  abilityKey,
+  mod,
+  bonus,
+  availableValues,
+  selectedValue,
+  onAssign,
+}: AssignFrontProps) {
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    e.stopPropagation();
+    const val = e.target.value;
+    onAssign(abilityKey, val === "" ? null : Number(val));
+  }
+
+  return (
+    <>
+      <span className={styles.modifierSmall}>{formatModifier(mod)}</span>
+      {bonus > 0 && <span className={styles.bonusBadge}>+{bonus}</span>}
+      <select
+        value={selectedValue ?? ""}
+        onChange={handleChange}
+        onClick={(e) => e.stopPropagation()}
+        className={styles.scoreSelect}
+      >
+        <option value="">--</option>
+        {availableValues.map((v) => (
+          <option key={v} value={v}>
+            {v}
+          </option>
+        ))}
+      </select>
+    </>
   );
 }
 
