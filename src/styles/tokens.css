@@ -10,6 +10,7 @@
   --color-hp-full: #5a8a28; /* chunky green - health */
   --color-highlight: #db8138; /* warm orange - highlights/XP */
   --color-hp-low: #8b2020; /* dark red - danger/low HP */
+  --color-scanline: #5f433118; /* shade-4 at ~4% - CRT scanline tint */
 
   /* Spacing */
   --space-xs: 4px;

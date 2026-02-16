@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
+import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
 import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
@@ -40,6 +41,7 @@ export function CharacterSheet({
 
   return (
     <>
+      <ScreenFlash trigger={step} />
       <Stepper current={step} total={3} onStepChange={setStep} />
 
       {step === 1 && (
