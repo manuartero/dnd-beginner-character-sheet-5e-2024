@@ -62,6 +62,17 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   const step6Complete = draft.name.trim() !== "";
 
+  const step5Complete = true;
+
+  const completedSteps = [
+    step1Complete && 1,
+    step2Complete && 2,
+    step3Complete && 3,
+    step4Complete && 4,
+    step5Complete && 5,
+    step6Complete && 6,
+  ].filter((n): n is number => n !== false);
+
   const backgroundEntry = draft.background
     ? BACKGROUND_LIST.find((b) => b.key === draft.background)
     : null;
@@ -96,7 +107,12 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   return (
     <>
-      <Stepper current={step} total={6} onStepChange={setStep} />
+      <Stepper
+        current={step}
+        total={6}
+        completedSteps={completedSteps}
+        onStepChange={setStep}
+      />
 
       {step === 1 && (
         <>

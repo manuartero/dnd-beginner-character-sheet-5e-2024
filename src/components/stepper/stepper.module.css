@@ -1,3 +1,6 @@
+:root {
+  --dot-size: 16px;
+}
 .stepIndicator {
   display: flex;
   justify-content: center;
@@ -6,15 +9,21 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   padding: 0;
   background: var(--shade-3);
-  border: 2px solid var(--shade-3);
+
   cursor: pointer;
 }
 
 .dotActive {
   background: var(--color-highlight);
   border-color: var(--color-highlight);
+  box-shadow: 3px 3px 0 var(--shade-3);
+}
+
+.dotCompleted {
+  background: var(--color-hp-full);
+  border-color: var(--color-hp-full);
 }
