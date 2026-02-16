@@ -5,6 +5,7 @@ type CreationActionsProps = {
   onNext: () => void;
   nextLabel?: string;
   nextDisabled?: boolean;
+  nextSound?: string;
 };
 
 export function CreationActions({
@@ -12,6 +13,7 @@ export function CreationActions({
   onNext,
   nextLabel = "Next",
   nextDisabled,
+  nextSound,
 }: CreationActionsProps) {
   return (
     <div className={styles.actions}>
@@ -25,6 +27,7 @@ export function CreationActions({
         className={styles.primaryButton}
         disabled={nextDisabled}
         onClick={onNext}
+        data-sound={nextSound}
       >
         {nextLabel}
       </button>

@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { playClick } from "src/audio/play-click";
+import { playFanfare } from "src/audio/play-fanfare";
+import { playSelect } from "src/audio/play-select";
 import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
@@ -19,6 +22,23 @@ export function App() {
 
   useEffect(() => {
     setCharacters(loadCharacters());
+  }, []);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      const button = (e.target as HTMLElement).closest("button");
+      if (!button) return;
+      const sound = button.dataset.sound;
+      if (sound === "fanfare") {
+        playFanfare();
+      } else if (sound === "select") {
+        playSelect();
+      } else {
+        playClick();
+      }
+    }
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
   }, []);
 
   function goToList() {

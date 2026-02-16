@@ -86,6 +86,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
       </button>
       <button
         type="button"
+        data-sound="fanfare"
         className={styles.cardBody}
         onClick={() => onSelect(character.id)}
       >
