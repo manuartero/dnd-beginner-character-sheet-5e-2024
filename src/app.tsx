@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
+import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { TopMenu } from "src/components/top-menu";
 import type { Character } from "src/models/character";
 import { deleteCharacter, loadCharacters } from "src/models/character-storage";
@@ -66,6 +67,9 @@ export function App() {
 
   return (
     <div className={styles.layout}>
+      <ScreenFlash
+        trigger={view.kind === "character-view" ? view.characterId : view.kind}
+      />
       <TopMenu
         title={getMenuTitle()}
         showBack={view.kind !== "character-list"}

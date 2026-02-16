@@ -58,5 +58,64 @@ button:active {
 img {
   display: block;
   max-width: 100%;
-  filter: sepia(1) saturate(0.6) contrast(1.1);
+  filter: grayscale(100%) sepia(100%) brightness(0.75) hue-rotate(-5deg)
+    saturate(2.5) contrast(1.5);
+  image-rendering: pixelated;
+}
+
+/* Game Boy boot animation */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  animation: screen-boot 1.8s ease-out forwards;
+}
+
+@keyframes screen-boot {
+  0% {
+    background-color: var(--shade-4);
+  }
+  12% {
+    background-color: var(--shade-4);
+  }
+  18% {
+    background-color: var(--shade-0);
+  }
+  24% {
+    background-color: var(--shade-4);
+    opacity: 0.8;
+  }
+  35% {
+    background-color: var(--shade-0);
+    opacity: 0.5;
+  }
+  42% {
+    background-color: var(--shade-4);
+    opacity: 0.3;
+  }
+  55% {
+    background-color: var(--shade-0);
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Scanline overlay - subtle full-screen CRT effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    var(--color-scanline) 3px,
+    var(--color-scanline) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
 }

@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  animation: screen-refresh 1s ease-out forwards;
+}
+
+@keyframes screen-refresh {
+  0% {
+    background-color: var(--shade-4);
+    opacity: 0.5;
+  }
+  40% { 
+    background-color: var(--shade-4);
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+  }
+}
