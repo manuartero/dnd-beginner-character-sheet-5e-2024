@@ -6,6 +6,8 @@
     "primaryAbilities": ["str"],
     "saves": "Strength & Constitution",
     "description": "A fierce warrior of primal rage",
+    "manualClassification": "martial",
+    "recommendedBackgrounds": ["farmer", "soldier"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": true,
@@ -42,6 +44,8 @@
     "primaryAbilities": ["cha"],
     "saves": "Dexterity & Charisma",
     "description": "An inspiring performer of music, dance, and magic",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["entertainer", "charlatan"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": false,
@@ -87,6 +91,8 @@
     "primaryAbilities": ["wis"],
     "saves": "Wisdom & Charisma",
     "description": "A miraculous priest of divine power",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["acolyte", "sage"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": true,
@@ -118,6 +124,8 @@
     "primaryAbilities": ["wis"],
     "saves": "Intelligence & Wisdom",
     "description": "A nature priest of primal power",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["hermit", "guide"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": false,
@@ -160,6 +168,8 @@
     "primaryAbilities": ["str", "dex"],
     "saves": "Strength & Constitution",
     "description": "A master of all arms and armor",
+    "manualClassification": "martial",
+    "recommendedBackgrounds": ["soldier", "guard"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": true,
@@ -209,6 +219,8 @@
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
     "description": "A martial artist of supernatural focus",
+    "manualClassification": "martial",
+    "recommendedBackgrounds": ["hermit", "acolyte"],
     "proficiencies": {
       "light-armor": false,
       "medium-armor": false,
@@ -248,6 +260,8 @@
     "primaryAbilities": ["str", "cha"],
     "saves": "Wisdom & Charisma",
     "description": "A devout warrior of sacred oaths",
+    "manualClassification": "versatile",
+    "recommendedBackgrounds": ["noble", "soldier"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": true,
@@ -287,6 +301,8 @@
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
     "description": "A wandering warrior imbued with primal magic",
+    "manualClassification": "versatile",
+    "recommendedBackgrounds": ["guide", "wayfarer"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": true,
@@ -330,6 +346,8 @@
     "primaryAbilities": ["dex"],
     "saves": "Dexterity & Intelligence",
     "description": "A dexterous expert in stealth and subterfuge",
+    "manualClassification": "martial",
+    "recommendedBackgrounds": ["criminal", "charlatan"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": false,
@@ -379,6 +397,8 @@
     "primaryAbilities": ["cha"],
     "saves": "Constitution & Charisma",
     "description": "A dazzling mage filled with innate magic",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["sage", "hermit"],
     "proficiencies": {
       "light-armor": false,
       "medium-armor": false,
@@ -416,6 +436,8 @@
     "primaryAbilities": ["cha"],
     "saves": "Wisdom & Charisma",
     "description": "An occultist empowered by otherworldly pacts",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["charlatan", "sage"],
     "proficiencies": {
       "light-armor": true,
       "medium-armor": false,
@@ -456,6 +478,8 @@
     "primaryAbilities": ["int"],
     "saves": "Intelligence & Wisdom",
     "description": "A scholarly magic-user of arcane power",
+    "manualClassification": "spell-caster",
+    "recommendedBackgrounds": ["sage", "scribe"],
     "proficiencies": {
       "light-armor": false,
       "medium-armor": false,

@@ -49,7 +49,10 @@ export function SelectionGrid({
             className={cardStyles.cardIcon}
             style={
               iconSize
-                ? { width: ICON_SIZES[iconSize], height: ICON_SIZES[iconSize] }
+                ? {
+                    width: ICON_SIZES[iconSize],
+                    height: ICON_SIZES[iconSize],
+                  }
                 : undefined
             }
           />

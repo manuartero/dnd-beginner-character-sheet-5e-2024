@@ -6,6 +6,7 @@ import {
   type CharacterClass,
   CLASS_DETAILS,
   CLASS_LIST,
+  CLASSES_BY_CATEGORY,
   getClassIcon,
 } from "src/models/classes";
 import { SelectionGrid } from "../selection-grid";
@@ -42,13 +43,18 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
   return (
     <>
       <Section title="Class">
-        <SelectionGrid
-          items={CLASS_LIST}
-          selectedKey={characterClass}
-          onSelect={(key) => onClassChange(key as CharacterClass)}
-          columns={3}
-          getIcon={(key) => getClassIcon(key as CharacterClass)}
-        />
+        {CLASSES_BY_CATEGORY.map((group) => (
+          <div key={group.classification} className={styles.group}>
+            <h3 className={styles.groupLabel}>{group.label}</h3>
+            <SelectionGrid
+              items={group.classes}
+              selectedKey={characterClass}
+              onSelect={(key) => onClassChange(key as CharacterClass)}
+              columns={4}
+              getIcon={(key) => getClassIcon(key as CharacterClass)}
+            />
+          </div>
+        ))}
       </Section>
 
       {details && characterClass && (

@@ -1,5 +1,6 @@
 import classDetailsData from "src/data/class-details.json";
 import type { AbilityName } from "src/models/abilities";
+import type { Background } from "src/models/backgrounds";
 
 export type CharacterClass =
   | "barbarian"
@@ -41,6 +42,8 @@ export type StartingEquipmentItem = {
   quantity: number;
 };
 
+export type ManualClassification = "martial" | "spell-caster" | "versatile";
+
 export type ClassDetails = {
   label: string;
   icon: string;
@@ -48,6 +51,8 @@ export type ClassDetails = {
   primaryAbilities: AbilityName[];
   saves: string;
   description: string;
+  manualClassification: ManualClassification;
+  recommendedBackgrounds: Background[];
   proficiencies: ProficiencySet;
   startingEquipment: [StartingEquipmentItem[], StartingEquipmentItem[]];
 };
@@ -82,6 +87,23 @@ export const CLASS_LIST: { key: CharacterClass; label: string }[] =
     key: key as CharacterClass,
     label: value.label,
   }));
+
+type ClassListEntry = { key: CharacterClass; label: string };
+
+export const CLASSES_BY_CATEGORY: {
+  classification: ManualClassification;
+  label: string;
+  classes: ClassListEntry[];
+}[] = [
+  { classification: "martial", label: "Martial", classes: [] },
+  { classification: "spell-caster", label: "Spell Casters", classes: [] },
+  { classification: "versatile", label: "Versatile", classes: [] },
+].map((group) => ({
+  ...group,
+  classes: CLASS_LIST.filter(
+    (c) => CLASS_DETAILS[c.key].manualClassification === group.classification,
+  ),
+}));
 
 export function getClassIcon(characterClass: CharacterClass): string {
   return CLASS_DETAILS[characterClass].icon;

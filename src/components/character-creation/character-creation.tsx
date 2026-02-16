@@ -34,9 +34,9 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<DraftState>({
     name: "",
-    characterClass: null,
-    race: null,
-    background: null,
+    characterClass: "fighter",
+    race: "human",
+    background: "soldier",
     abilityScores: {
       str: 10,
       dex: 10,
