@@ -4,20 +4,36 @@ import styles from "./stepper.module.css";
 type StepperProps = {
   current: number;
   total: number;
+  completedSteps?: number[];
   onStepChange: (step: number) => void;
 };
 
-export function Stepper({ current, total, onStepChange }: StepperProps) {
+export function Stepper({
+  current,
+  total,
+  completedSteps = [],
+  onStepChange,
+}: StepperProps) {
   return (
     <div className={styles.stepIndicator}>
-      {Array.from({ length: total }, (_, i) => i + 1).map((n) => (
-        <button
-          key={n}
-          type="button"
-          className={c(styles.dot, current === n && styles.dotActive)}
-          onClick={() => onStepChange(n)}
-        />
-      ))}
+      {Array.from({ length: total }, (_, i) => i + 1).map((n) => {
+        const isActive = current === n;
+        const isCompleted = !isActive && completedSteps.includes(n);
+        return (
+          <button
+            key={n}
+            type="button"
+            className={c(
+              styles.dot,
+              isActive && styles.dotActive,
+              isCompleted && styles.dotCompleted,
+            )}
+            onClick={() => onStepChange(n)}
+          >
+            {null}
+          </button>
+        );
+      })}
     </div>
   );
 }
