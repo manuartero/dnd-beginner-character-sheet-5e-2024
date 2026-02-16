@@ -9,7 +9,7 @@ describe("<Stepper />", () => {
     expect(buttons).toHaveLength(3);
   });
 
-  it("applies completed class to completed steps but not active step", () => {
+  it("applies completed class to all completed steps including active", () => {
     render(
       <Stepper
         current={1}
@@ -19,7 +19,8 @@ describe("<Stepper />", () => {
       />,
     );
     const buttons = screen.getAllByRole("button");
-    expect(buttons[0].className).not.toMatch(/dotCompleted/);
+    expect(buttons[0].className).toMatch(/dotActive/);
+    expect(buttons[0].className).toMatch(/dotCompleted/);
     expect(buttons[1].className).toMatch(/dotCompleted/);
     expect(buttons[2].className).not.toMatch(/dotCompleted/);
   });

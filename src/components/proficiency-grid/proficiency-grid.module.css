@@ -20,7 +20,7 @@
 }
 
 .cellEnabled {
-  border-color: var(--color-highlight);
+  border-color: var(--color-hp-full);
 }
 
 .cellDisabled {

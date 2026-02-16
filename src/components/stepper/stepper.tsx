@@ -18,7 +18,7 @@ export function Stepper({
     <div className={styles.stepIndicator}>
       {Array.from({ length: total }, (_, i) => i + 1).map((n) => {
         const isActive = current === n;
-        const isCompleted = !isActive && completedSteps.includes(n);
+        const isCompleted = completedSteps.includes(n);
         return (
           <button
             key={n}

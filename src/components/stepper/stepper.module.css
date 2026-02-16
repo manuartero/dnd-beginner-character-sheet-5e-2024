@@ -13,7 +13,6 @@
   height: var(--dot-size);
   padding: 0;
   background: var(--shade-3);
-
   cursor: pointer;
 }
 
