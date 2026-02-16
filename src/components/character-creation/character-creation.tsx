@@ -212,6 +212,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
             onNext={handleCreate}
             nextLabel="Create"
             nextDisabled={!step6Complete}
+            nextSound="fanfare"
           />
         </>
       )}

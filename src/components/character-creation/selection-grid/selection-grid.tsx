@@ -37,6 +37,7 @@ export function SelectionGrid({
         <button
           key={key}
           type="button"
+          data-sound="select"
           className={c(
             cardStyles.card,
             selectedKey === key && cardStyles.cardSelected,
