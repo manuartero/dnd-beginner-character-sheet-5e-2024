@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { playClick } from "src/audio/play-click";
-import { playFanfare } from "src/audio/play-fanfare";
-import { playSelect } from "src/audio/play-select";
+import { type SoundVariant, play8BitSound } from "src/audio/play-sound";
 import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
@@ -28,14 +26,8 @@ export function App() {
     function handleClick(e: MouseEvent) {
       const button = (e.target as HTMLElement).closest("button");
       if (!button) return;
-      const sound = button.dataset.sound;
-      if (sound === "fanfare") {
-        playFanfare();
-      } else if (sound === "select") {
-        playSelect();
-      } else {
-        playClick();
-      }
+      const variant = (button.dataset.sound ?? "click") as SoundVariant;
+      play8BitSound(variant);
     }
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
