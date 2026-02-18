@@ -17,6 +17,8 @@ import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
 
+const BACKGROUND_MAP = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
+
 type CharacterCreationProps = {
   onSave: (character: Character) => void;
 };
@@ -75,7 +77,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
   ].filter((n): n is number => n !== false);
 
   const backgroundEntry = draft.background
-    ? BACKGROUND_LIST.find((b) => b.key === draft.background)
+    ? BACKGROUND_MAP.get(draft.background)
     : null;
 
   function handleBackgroundChange(background: Background) {
