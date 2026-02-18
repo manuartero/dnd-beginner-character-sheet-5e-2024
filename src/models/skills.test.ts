@@ -1,3 +1,4 @@
+import type { AbilityName } from "src/models/abilities";
 import { computeSkillModifier, skillsForAbility } from "src/models/skills";
 
 describe("skillsForAbility()", () => {
@@ -25,7 +26,7 @@ describe("skillsForAbility()", () => {
     },
   ].forEach(({ ability, expected }) => {
     it(`returns correct skills for ${ability}`, () => {
-      const skills = skillsForAbility(ability as any);
+      const skills = skillsForAbility(ability as AbilityName);
       expect(skills.map((s) => s.name)).toEqual(expected);
     });
   });

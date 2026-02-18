@@ -7,10 +7,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "biome check .",
+    "lint": "biome check .",
     "format": "biome format . --write",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "blue-ball": "pnpm lint && pnpm test && pnpm build"
   },
   "dependencies": {
     "@astrojs/react": "4.4.2",
