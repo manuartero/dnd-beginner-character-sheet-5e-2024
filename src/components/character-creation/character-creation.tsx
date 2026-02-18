@@ -5,7 +5,7 @@ import { Stepper } from "src/components/stepper/stepper";
 import recommendedData from "src/data/recommended-scores.json";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
 import { saveCharacter } from "src/models/character-storage";
-import { computeHpMax } from "src/models/compute-hp";
+import { computeHpMax } from "src/models/character-stats";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
