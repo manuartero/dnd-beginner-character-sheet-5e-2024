@@ -19,10 +19,6 @@
   border: 2px solid var(--shade-3);
 }
 
-.cellEnabled {
-  border-color: var(--color-hp-full);
-}
-
 .cellDisabled {
   opacity: 0.3;
 }
