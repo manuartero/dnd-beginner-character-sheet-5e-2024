@@ -7,8 +7,11 @@
   "combat.common.actions.help": "vol2/icon-vol2_136",
   "combat.common.actions.hide": "vol1/icon-vol1_57",
   "combat.common.reactions.opportunity-attack": "vol2/icon-vol2_91",
-  "exploration.search": "vol1/icon-vol1_30",
+  "exploration.search": "vol7/icon-vol7_255",
   "exploration.study": "vol1/icon-vol1_34",
   "exploration.utilize": "vol1/icon-vol1_38",
-  "exploration.influence": "vol1/icon-vol1_42"
+  "exploration.influence": "vol1/icon-vol1_78",
+  "combat.common.actions.cast-spell": "vol3/icon-vol3_01",
+  "exploration.cast-ritual": "vol7/icon-vol7_63",
+  "combat.fighter.second-wind": "vol5/icon-vol5_29"
 }

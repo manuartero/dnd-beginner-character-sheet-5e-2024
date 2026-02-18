@@ -3,6 +3,7 @@ import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
+import { CLASS_DETAILS } from "src/models/classes";
 import { getIconPath } from "src/models/icons";
 import styles from "./action-bar.module.css";
 
@@ -28,11 +29,19 @@ export function ActionBar({ characterClass }: ActionBarProps) {
   const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
 
   const grouped = useMemo(() => {
+    const classification = CLASS_DETAILS[characterClass].manualClassification;
     const availableActions = [
       ...UNIVERSAL_ACTIONS,
-      ...CLASS_ACTIONS.filter(
-        (a) => !a.classRestriction || a.classRestriction === characterClass,
-      ),
+      ...CLASS_ACTIONS.filter((a) => {
+        if (a.classRestriction && a.classRestriction !== characterClass)
+          return false;
+        if (
+          a.classificationRestriction &&
+          !a.classificationRestriction.includes(classification)
+        )
+          return false;
+        return true;
+      }),
     ];
     return TIMING_ORDER.map((timing) => ({
       timing,

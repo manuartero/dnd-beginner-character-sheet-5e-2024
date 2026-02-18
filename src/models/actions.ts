@@ -1,7 +1,7 @@
 import classActionsData from "src/data/class-actions.json";
 import universalActionsData from "src/data/universal-actions.json";
 
-import type { CharacterClass } from "./classes";
+import type { CharacterClass, ManualClassification } from "./classes";
 
 export type ActionTiming = "action" | "bonus-action" | "reaction";
 
@@ -11,6 +11,7 @@ export type Action = {
   icon?: string;
   description: string;
   classRestriction?: CharacterClass;
+  classificationRestriction?: ManualClassification[];
 };
 
 export const UNIVERSAL_ACTIONS: Action[] = universalActionsData as Action[];

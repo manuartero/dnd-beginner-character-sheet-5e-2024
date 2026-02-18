@@ -26,3 +26,20 @@
   background: var(--color-hp-full);
   border-color: var(--color-hp-full);
 }
+
+.tab {
+  padding: 4px 10px;
+  background: var(--shade-3);
+  color: var(--shade-0);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-family: inherit;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.activeTab {
+  background: var(--shade-2);
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-3);
+}
