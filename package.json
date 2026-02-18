@@ -1,8 +1,24 @@
 {
-  "name": "dnd-beginner-sheet-5e",
+  "name": "dnd-beginner-sheet-5e-2024",
+  "description": "A simple, interactive D&D 5e character sheet built for new players and the 2024 rules revision",
   "type": "module",
   "version": "0.0.1",
   "private": false,
+  "license": "MIT",
+  "author": "Manu Artero <manutero.developer@gmail.com>",
+  "keywords": [
+    "dnd",
+    "d&d",
+    "dungeons-and-dragons",
+    "character-sheet",
+    "5e",
+    "5th-edition",
+    "2024",
+    "beginner",
+    "ttrpg",
+    "tabletop",
+    "rpg"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
