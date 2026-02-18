@@ -33,6 +33,14 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
       ...(quantity > 1 ? { quantity } : {}),
     };
   }
+  if (item === "gp") {
+    return {
+      name: "Gold",
+      type: "money",
+      icon: "vol1/icon-vol1_63",
+      quantity,
+    };
+  }
   return {
     name: formatItemName(item),
     type: "gear",

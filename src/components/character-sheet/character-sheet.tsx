@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EquipmentList } from "src/components/equipment-list/equipment-list";
+import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
@@ -82,7 +82,7 @@ export function CharacterSheet({
               CLASS_DETAILS[character.characterClass].proficiencies
             }
           />
-          <EquipmentList
+          <Inventory
             mode="editable"
             equipment={character.equipment}
             onEquipmentChange={(equipment) => updateCharacter({ equipment })}
