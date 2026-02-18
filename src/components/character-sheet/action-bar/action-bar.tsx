@@ -1,15 +1,14 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
+import { ActionButton } from "src/components/action-button/action-button";
 import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
-import { getIconPath } from "src/models/icons";
 import styles from "./action-bar.module.css";
 
 import type { ActionTiming } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
-import type { IconName } from "src/models/icons";
 
 type ActionBarProps = {
   characterClass: CharacterClass;
@@ -59,38 +58,19 @@ export function ActionBar({ characterClass }: ActionBarProps) {
             {group.actions.length > 0 ? (
               <div className={styles.actionsGrid}>
                 {group.actions.map((action) => (
-                  <Fragment key={action.name}>
-                    <button
-                      ref={(el) => {
-                        if (el) buttonRefs.current.set(action.name, el);
-                        else buttonRefs.current.delete(action.name);
-                      }}
-                      type="button"
-                      aria-expanded={expandedAction === action.name}
-                      onClick={() => toggleAction(action.name)}
-                      className={`${styles.actionButton}${expandedAction === action.name ? ` ${styles.highlighted}` : ""}`}
-                    >
-                      {action.icon && (
-                        <img
-                          src={getIconPath(action.icon as IconName)}
-                          alt={action.name}
-                          className={styles.icon}
-                        />
-                      )}
-                      <span className={styles.actionLabel}>{action.name}</span>
-                    </button>
-                    {expandedAction === action.name && (
-                      <div className={styles.descriptionRow}>
-                        <span
-                          className={styles.descriptionArrow}
-                          style={{ left: `${arrowOffset}px` }}
-                        />
-                        <p className={styles.description}>
-                          {action.description}
-                        </p>
-                      </div>
-                    )}
-                  </Fragment>
+                  <ActionButton
+                    key={action.name}
+                    name={action.name}
+                    description={action.description}
+                    icon={action.icon}
+                    isExpanded={expandedAction === action.name}
+                    arrowOffset={arrowOffset}
+                    buttonRef={(el) => {
+                      if (el) buttonRefs.current.set(action.name, el);
+                      else buttonRefs.current.delete(action.name);
+                    }}
+                    onClick={() => toggleAction(action.name)}
+                  />
                 ))}
               </div>
             ) : (

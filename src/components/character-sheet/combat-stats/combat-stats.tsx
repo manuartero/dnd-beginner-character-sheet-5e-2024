@@ -1,8 +1,8 @@
+import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { formatModifier } from "src/models/abilities";
 import { resolveIconPath } from "src/models/icons";
-import { Section } from "src/components/section";
 import styles from "./combat-stats.module.css";
 
 import type { StatResult } from "src/models/character-stats";
