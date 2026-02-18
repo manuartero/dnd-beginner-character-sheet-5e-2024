@@ -8,11 +8,11 @@
 
 @keyframes screen-refresh {
   0% {
-    background-color: var(--shade-4);
+    background-color: var(--shade-3);
     opacity: 0.5;
   }
   40% {
-    background-color: var(--shade-4);
+    background-color: var(--shade-3);
     opacity: 0.15;
   }
   100% {

@@ -14,8 +14,8 @@
 }
 
 .cardSelected {
-  border-color: var(--color-highlight);
-  box-shadow: 3px 3px 0 var(--color-highlight);
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
 }
 
 .cardIcon {

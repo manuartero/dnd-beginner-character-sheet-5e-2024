@@ -3,7 +3,7 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--font-size-xs);
-  color: var(--color-highlight);
+  color: var(--shade-2);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;

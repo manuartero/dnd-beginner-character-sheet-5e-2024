@@ -1,9 +1,6 @@
 .groupLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
   font-size: var(--font-size-xs);
-  color: var(--color-highlight);
+  color: var(--shade-2);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -20,78 +17,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-}
-
-/* 8-bit pixel art symbols (3px per pixel, box-shadow technique) */
-
-/* Action: green circle (5x5 grid, corners removed) */
-.timingSymbol_action {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: #3c3;
-  margin: 6px;
-  box-shadow:
-    -3px -6px 0 #3c3,
-    0px -6px 0 #3c3,
-    3px -6px 0 #3c3,
-    -6px -3px 0 #3c3,
-    -3px -3px 0 #3c3,
-    0px -3px 0 #3c3,
-    3px -3px 0 #3c3,
-    6px -3px 0 #3c3,
-    -6px 0px 0 #3c3,
-    -3px 0px 0 #3c3,
-    3px 0px 0 #3c3,
-    6px 0px 0 #3c3,
-    -6px 3px 0 #3c3,
-    -3px 3px 0 #3c3,
-    0px 3px 0 #3c3,
-    3px 3px 0 #3c3,
-    6px 3px 0 #3c3,
-    -3px 6px 0 #3c3,
-    0px 6px 0 #3c3,
-    3px 6px 0 #3c3;
-}
-
-/* Bonus Action: orange triangle pointing up (3 rows) */
-.timingSymbol_bonusAction {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: #f80;
-  margin: 3px 6px 6px;
-  box-shadow:
-    -3px 3px 0 #f80,
-    0px 3px 0 #f80,
-    3px 3px 0 #f80,
-    -6px 6px 0 #f80,
-    -3px 6px 0 #f80,
-    0px 6px 0 #f80,
-    3px 6px 0 #f80,
-    6px 6px 0 #f80;
-}
-
-/* Reaction: blue diamond (5x5 grid, diamond shape) */
-.timingSymbol_reaction {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: #48f;
-  margin: 6px;
-  box-shadow:
-    0px -6px 0 #48f,
-    -3px -3px 0 #48f,
-    0px -3px 0 #48f,
-    3px -3px 0 #48f,
-    -6px 0px 0 #48f,
-    -3px 0px 0 #48f,
-    3px 0px 0 #48f,
-    6px 0px 0 #48f,
-    -3px 3px 0 #48f,
-    0px 3px 0 #48f,
-    3px 3px 0 #48f,
-    0px 6px 0 #48f;
 }
 
 .actionsGrid {
@@ -115,8 +40,8 @@
 
 .highlighted {
   background: var(--shade-0);
-  border-color: var(--color-highlight);
-  color: var(--color-highlight);
+  border-color: var(--shade-2);
+  color: var(--shade-2);
 }
 
 .actionLabel {

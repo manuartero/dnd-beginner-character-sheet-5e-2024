@@ -24,7 +24,7 @@
 .yes {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-highlight);
+  color: var(--shade-2);
   padding: var(--space-xs) var(--space-sm);
 }
 

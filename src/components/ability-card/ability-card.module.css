@@ -25,13 +25,13 @@ button.abilityCard {
 }
 
 .abilityCardActive {
-  border-color: var(--color-highlight);
-  box-shadow: 3px 3px 0 var(--color-highlight);
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
 }
 
 .abilityCardPrimary {
-  border-color: var(--color-highlight);
-  box-shadow: 3px 3px 0 var(--color-highlight);
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
 }
 
 /* Label banner */
@@ -58,7 +58,7 @@ button.abilityCard {
 }
 
 .modifierNegative {
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .modifierNeutral {
@@ -66,7 +66,7 @@ button.abilityCard {
 }
 
 .modifierPositive {
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .modifierHigh {
@@ -90,7 +90,7 @@ button.abilityCard {
   right: 6px;
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
   z-index: 1;
 }
 
@@ -102,7 +102,7 @@ button.abilityCard {
   left: 6px;
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
   z-index: 1;
 }
 
@@ -113,15 +113,15 @@ button.abilityCard {
   text-align: center;
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--shade-4);
+  color: var(--shade-3);
   background: transparent;
   border: none;
   border-bottom: 2px solid var(--shade-3);
 }
 
 .scoreInputError {
-  border-bottom-color: var(--color-highlight);
-  color: var(--color-highlight);
+  border-bottom-color: var(--shade-2);
+  color: var(--shade-2);
 }
 
 /* Quick Start: read-only score display */
@@ -129,7 +129,7 @@ button.abilityCard {
 .scoreReadOnly {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--shade-4);
+  color: var(--shade-3);
   line-height: 1;
 }
 

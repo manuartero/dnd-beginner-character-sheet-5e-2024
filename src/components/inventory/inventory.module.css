@@ -61,7 +61,7 @@
 .attackBonus {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .removeButton {
@@ -131,7 +131,7 @@
 .moneyAmount {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .moneyLabel {

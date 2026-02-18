@@ -20,12 +20,6 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
   reaction: "Reactions",
 };
 
-const TIMING_SYMBOL_CLASS: Record<ActionTiming, string> = {
-  action: styles.timingSymbol_action,
-  "bonus-action": styles.timingSymbol_bonusAction,
-  reaction: styles.timingSymbol_reaction,
-};
-
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
 export function ActionBar({ characterClass }: ActionBarProps) {
@@ -52,10 +46,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
       <div className={styles.groupsContainer}>
         {grouped.map((group) => (
           <div key={group.timing}>
-            <h3 className={styles.groupLabel}>
-              {group.label}
-              <span className={TIMING_SYMBOL_CLASS[group.timing]} />
-            </h3>
+            <h3 className={styles.groupLabel}>{group.label}</h3>
             {group.actions.length > 0 ? (
               <div className={styles.actionsGrid}>
                 {group.actions.map((action) => (
