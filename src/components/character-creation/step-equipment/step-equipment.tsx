@@ -1,4 +1,4 @@
-import { EquipmentList } from "src/components/equipment-list/equipment-list";
+import { Inventory } from "src/components/inventory/inventory";
 import type { CharacterClass } from "src/models/classes";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
 
@@ -10,7 +10,7 @@ export function StepEquipment({ characterClass }: StepEquipmentProps) {
   const equipment = resolveStartingEquipment(characterClass);
 
   return (
-    <EquipmentList
+    <Inventory
       mode="readonly"
       title="Starting Equipment"
       equipment={equipment}

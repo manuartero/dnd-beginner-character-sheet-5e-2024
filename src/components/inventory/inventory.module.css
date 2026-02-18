@@ -1,8 +1,23 @@
-.list {
+.subsection {
+  margin-bottom: var(--space-md);
+}
+
+.subsectionLabel {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-xs);
+}
+
+.itemList {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  margin-bottom: var(--space-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .itemRow {
@@ -95,4 +110,49 @@
   padding: var(--space-sm) var(--space-md);
   font-size: var(--font-size-sm);
   color: var(--shade-2);
+}
+
+.moneyTag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  margin: 0;
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+}
+
+.moneyIcon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+}
+
+.moneyAmount {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-highlight);
+}
+
+.moneyLabel {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+}
+
+.moneyControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.moneyButton {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

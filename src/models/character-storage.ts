@@ -1,4 +1,5 @@
 import type { Character } from "src/models/character";
+import type { Equipment } from "src/models/equipment";
 import type { Species } from "src/models/species";
 import { SPECIES_LIST } from "src/models/species";
 
@@ -14,11 +15,29 @@ function migrateRace(raw: string): Species {
   return "human";
 }
 
+function migrateEquipment(equipment: Equipment[]): Equipment[] {
+  return equipment.map((item) => {
+    if (item.name === "Gp" && item.type === "gear") {
+      return {
+        name: "Gold",
+        type: "money",
+        icon: "vol1/icon-vol1_63",
+        quantity: item.quantity ?? 0,
+      };
+    }
+    return item;
+  });
+}
+
 function migrateCharacter(raw: Record<string, unknown>): Character {
-  return {
+  const character = {
     ...(raw as unknown as Character),
     race: migrateRace(String(raw.race ?? "human")),
   };
+  if (Array.isArray(character.equipment)) {
+    character.equipment = migrateEquipment(character.equipment);
+  }
+  return character;
 }
 
 export function loadCharacters(): Character[] {

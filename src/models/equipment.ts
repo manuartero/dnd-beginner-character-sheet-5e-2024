@@ -2,7 +2,7 @@ import type { DamageType } from "./damage-types";
 
 export type Equipment = {
   name: string;
-  type: "weapon" | "armor" | "shield" | "gear";
+  type: "weapon" | "armor" | "shield" | "gear" | "money";
   attackBonus?: number;
   damage?: {
     dice: string;
