@@ -1,9 +1,10 @@
 import { getArmorById } from "./armor";
-import type { CharacterClass, StartingEquipmentItem } from "./classes";
 import { CLASS_DETAILS } from "./classes";
-import type { Equipment } from "./equipment";
 import { GOLD_ICON } from "./equipment";
 import { getWeaponById } from "./weapons";
+
+import type { CharacterClass, StartingEquipmentItem } from "./classes";
+import type { Equipment } from "./equipment";
 
 function formatItemName(id: string): string {
   return id

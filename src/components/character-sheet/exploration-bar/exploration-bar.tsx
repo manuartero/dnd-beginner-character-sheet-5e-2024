@@ -2,11 +2,12 @@ import { Fragment } from "react";
 import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import type { ExplorationCategory } from "src/models/exploration-actions";
 import { EXPLORATION_ACTIONS } from "src/models/exploration-actions";
-import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
 import styles from "./exploration-bar.module.css";
+
+import type { ExplorationCategory } from "src/models/exploration-actions";
+import type { IconName } from "src/models/icons";
 
 const CATEGORY_LABELS: Record<ExplorationCategory, string> = {
   exploration: "Exploration",

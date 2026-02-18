@@ -2,12 +2,13 @@ import { Fragment, useMemo } from "react";
 import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import type { ActionTiming } from "src/models/actions";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
-import type { CharacterClass } from "src/models/classes";
-import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
 import styles from "./action-bar.module.css";
+
+import type { ActionTiming } from "src/models/actions";
+import type { CharacterClass } from "src/models/classes";
+import type { IconName } from "src/models/icons";
 
 type ActionBarProps = {
   characterClass: CharacterClass;

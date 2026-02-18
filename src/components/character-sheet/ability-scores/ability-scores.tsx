@@ -1,12 +1,13 @@
 import { AbilityCard } from "src/components/ability-card";
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
+import { ABILITY_LIST } from "src/models/abilities";
+import styles from "./ability-scores.module.css";
+
 import type {
   AbilityName,
   AbilityScores as Scores,
 } from "src/models/abilities";
-import { ABILITY_LIST } from "src/models/abilities";
-import styles from "./ability-scores.module.css";
 
 type AbilityScoresProps = {
   scores: Scores;

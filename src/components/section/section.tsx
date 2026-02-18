@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
 import { useId } from "react";
 import styles from "./section.module.css";
+
+import type { ReactNode } from "react";
 
 type SectionProps = {
   title: string;

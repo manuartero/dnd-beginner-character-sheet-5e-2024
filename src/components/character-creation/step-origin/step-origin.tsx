@@ -1,7 +1,5 @@
 import { Section } from "src/components/section";
-import type { AbilityName } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
-import type { Background } from "src/models/backgrounds";
 import {
   BACKGROUND_LIST,
   getBackgroundIcon,
@@ -10,6 +8,9 @@ import {
 } from "src/models/backgrounds";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-origin.module.css";
+
+import type { AbilityName } from "src/models/abilities";
+import type { Background } from "src/models/backgrounds";
 
 function abilityShortLabel(key: AbilityName): string {
   return ABILITY_LIST.find((a) => a.key === key)?.short ?? key;

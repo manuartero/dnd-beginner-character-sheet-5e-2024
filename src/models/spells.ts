@@ -1,6 +1,7 @@
 import cantripsData from "src/data/spells-level-0.json";
 import spellsLevel1Data from "src/data/spells-level-1.json";
 import wizardSpellsData from "src/data/wizard-spells.json";
+
 import type { DamageType } from "./damage-types";
 
 type SpellId = string;

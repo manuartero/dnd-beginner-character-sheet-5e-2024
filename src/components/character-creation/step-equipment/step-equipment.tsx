@@ -1,6 +1,7 @@
 import { Inventory } from "src/components/inventory/inventory";
-import type { CharacterClass } from "src/models/classes";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
+
+import type { CharacterClass } from "src/models/classes";
 
 type StepEquipmentProps = {
   characterClass: CharacterClass;

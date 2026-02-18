@@ -1,6 +1,7 @@
 import weaponMasteryData from "src/data/weapon-mastery.json";
 import weaponPropertiesData from "src/data/weapon-properties.json";
 import weaponsData from "src/data/weapons.json";
+
 import type { DamageType } from "./damage-types";
 
 export type WeaponProficiency = "simple" | "martial";

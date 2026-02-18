@@ -1,6 +1,7 @@
 import { computeModifier } from "./abilities";
-import type { CharacterClass } from "./classes";
 import { CLASS_DETAILS } from "./classes";
+
+import type { CharacterClass } from "./classes";
 
 export function computeHpMax({
   characterClass,
