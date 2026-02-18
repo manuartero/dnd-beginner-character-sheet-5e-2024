@@ -1,8 +1,9 @@
-import { getArmorById } from "src/models/armor";
-import type { CharacterClass, StartingEquipmentItem } from "src/models/classes";
-import { CLASS_DETAILS } from "src/models/classes";
-import type { Equipment } from "src/models/equipment";
-import { getWeaponById } from "src/models/weapons";
+import { getArmorById } from "./armor";
+import type { CharacterClass, StartingEquipmentItem } from "./classes";
+import { CLASS_DETAILS } from "./classes";
+import type { Equipment } from "./equipment";
+import { GOLD_ICON } from "./equipment";
+import { getWeaponById } from "./weapons";
 
 function formatItemName(id: string): string {
   return id
@@ -27,7 +28,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
   if (armor) {
     return {
       name: armor.name,
-      type: "armor",
+      type: armor.category === "shield" ? "shield" : "armor",
       icon: armor.icon,
       ac: armor.baseAc,
       ...(quantity > 1 ? { quantity } : {}),
@@ -37,7 +38,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
     return {
       name: "Gold",
       type: "money",
-      icon: "vol1/icon-vol1_63",
+      icon: GOLD_ICON,
       quantity,
     };
   }

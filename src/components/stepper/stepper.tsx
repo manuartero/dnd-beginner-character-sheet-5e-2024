@@ -23,6 +23,8 @@ export function Stepper({
           <button
             key={n}
             type="button"
+            aria-label={`Step ${n}${isCompleted ? ", completed" : ""}${isActive ? ", current" : ""}`}
+            aria-current={isActive ? "step" : undefined}
             className={c(
               styles.dot,
               isActive && styles.dotActive,

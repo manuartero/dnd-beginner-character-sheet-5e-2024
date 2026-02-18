@@ -1,4 +1,4 @@
-import explorationActionsData from "../data/exploration-actions.json";
+import explorationActionsData from "src/data/exploration-actions.json";
 
 export type ExplorationCategory = "exploration" | "social";
 

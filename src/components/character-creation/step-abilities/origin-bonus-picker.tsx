@@ -1,5 +1,6 @@
 import c from "classnames";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
+import { Section } from "src/components/section";
 import type { AbilityName } from "src/models/abilities";
 import { ABILITY_LIST } from "src/models/abilities";
 import styles from "./step-abilities.module.css";
@@ -49,8 +50,7 @@ export function OriginBonusPicker({
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Origin Bonus</h2>
+    <Section title="Origin Bonus">
       <p className={styles.bonusHint}>
         {remaining} bonus {remaining === 1 ? "point" : "points"} remaining
       </p>
@@ -79,6 +79,6 @@ export function OriginBonusPicker({
           );
         })}
       </div>
-    </div>
+    </Section>
   );
 }

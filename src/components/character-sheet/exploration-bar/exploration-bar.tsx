@@ -1,5 +1,6 @@
-import { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { Section } from "src/components/section";
+import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { ExplorationCategory } from "src/models/exploration-actions";
 import { EXPLORATION_ACTIONS } from "src/models/exploration-actions";
@@ -22,19 +23,7 @@ const CATEGORY_ORDER: ExplorationCategory[] = ["exploration", "social"];
 export function ExplorationBar() {
   const { expandedKey: expandedAction, toggle: toggleAction } =
     useExpandable<string>();
-  const buttonRefs = useRef(new Map<string, HTMLButtonElement>());
-  const [arrowOffset, setArrowOffset] = useState(0);
-
-  useLayoutEffect(() => {
-    if (!expandedAction) return;
-    const button = buttonRefs.current.get(expandedAction);
-    if (!button) return;
-    const grid = button.parentElement;
-    if (!grid) return;
-    const btnRect = button.getBoundingClientRect();
-    const gridRect = grid.getBoundingClientRect();
-    setArrowOffset(btnRect.left + btnRect.width / 2 - gridRect.left);
-  }, [expandedAction]);
+  const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
 
   const grouped = CATEGORY_ORDER.map((category) => ({
     category,
@@ -60,6 +49,7 @@ export function ExplorationBar() {
                       else buttonRefs.current.delete(action.name);
                     }}
                     type="button"
+                    aria-expanded={expandedAction === action.name}
                     onClick={() => toggleAction(action.name)}
                     className={`${styles.actionButton}${expandedAction === action.name ? ` ${styles.highlighted}` : ""}`}
                   >
