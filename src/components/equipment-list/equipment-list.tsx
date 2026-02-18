@@ -1,38 +1,47 @@
 import { useState } from "react";
 import { Section } from "src/components/section";
 import type { Equipment } from "src/models/equipment";
-import type { IconName } from "src/models/icons";
-import { getIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/icons";
 import styles from "./equipment-list.module.css";
 
-type EquipmentListProps = {
+type ReadonlyProps = {
+  mode: "readonly";
+  title?: string;
+  equipment: Equipment[];
+};
+
+type EditableProps = {
+  mode: "editable";
+  title?: string;
   equipment: Equipment[];
   onEquipmentChange: (equipment: Equipment[]) => void;
 };
 
-export function EquipmentList({
-  equipment,
-  onEquipmentChange,
-}: EquipmentListProps) {
+type EquipmentListProps = ReadonlyProps | EditableProps;
+
+export function EquipmentList(props: EquipmentListProps) {
+  const { equipment, mode, title = "Equipment" } = props;
   const [isAdding, setIsAdding] = useState(false);
 
   function handleRemove(index: number) {
-    onEquipmentChange(equipment.filter((_, i) => i !== index));
+    if (props.mode !== "editable") return;
+    props.onEquipmentChange(equipment.filter((_, i) => i !== index));
   }
 
   function handleAdd(item: Equipment) {
-    onEquipmentChange([...equipment, item]);
+    if (props.mode !== "editable") return;
+    props.onEquipmentChange([...equipment, item]);
     setIsAdding(false);
   }
 
   return (
-    <Section title="Equipment">
+    <Section title={title}>
       <div className={styles.list}>
         {equipment.map((item, index) => (
           <div key={`${item.name}-${index}`} className={styles.itemRow}>
             {item.icon && (
               <img
-                src={getIconPath(item.icon as IconName)}
+                src={resolveIconPath(item.icon)}
                 alt={item.name}
                 className={styles.icon}
               />
@@ -50,31 +59,36 @@ export function EquipmentList({
             {item.attackBonus !== undefined && (
               <span className={styles.attackBonus}>+{item.attackBonus}</span>
             )}
-            <button
-              type="button"
-              onClick={() => handleRemove(index)}
-              className={styles.removeButton}
-            >
-              x
-            </button>
+            {item.quantity !== undefined && item.quantity > 1 && (
+              <span className={styles.quantity}>x{item.quantity}</span>
+            )}
+            {mode === "editable" && (
+              <button
+                type="button"
+                onClick={() => handleRemove(index)}
+                className={styles.removeButton}
+              >
+                x
+              </button>
+            )}
           </div>
         ))}
       </div>
-
-      {isAdding ? (
-        <AddEquipmentForm
-          onAdd={handleAdd}
-          onCancel={() => setIsAdding(false)}
-        />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setIsAdding(true)}
-          className={styles.addButton}
-        >
-          + Add item
-        </button>
-      )}
+      {mode === "editable" &&
+        (isAdding ? (
+          <AddEquipmentForm
+            onAdd={handleAdd}
+            onCancel={() => setIsAdding(false)}
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsAdding(true)}
+            className={styles.addButton}
+          >
+            + Add item
+          </button>
+        ))}
     </Section>
   );
 }
