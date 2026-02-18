@@ -7,17 +7,19 @@ type ScreenFlashProps = {
 
 export function ScreenFlash({ trigger }: ScreenFlashProps) {
   const [flashing, setFlashing] = useState(false);
-  const isFirstRender = useRef(true);
+  const prevTrigger = useRef(trigger);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
+    if (prevTrigger.current === trigger) {
       return;
     }
+    prevTrigger.current = trigger;
     setFlashing(true);
   }, [trigger]);
 
-  if (!flashing) return null;
+  if (!flashing) {
+    return null;
+  }
 
   return (
     <div className={styles.overlay} onAnimationEnd={() => setFlashing(false)} />
