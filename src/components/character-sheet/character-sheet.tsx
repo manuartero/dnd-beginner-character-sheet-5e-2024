@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EquipmentList } from "src/components/equipment-list/equipment-list";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
@@ -12,7 +13,6 @@ import {
 import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
 import { CharacterHeader } from "./character-header";
-import { EquipmentList } from "./equipment-list";
 import { ExplorationBar } from "./exploration-bar";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
@@ -83,6 +83,7 @@ export function CharacterSheet({
             }
           />
           <EquipmentList
+            mode="editable"
             equipment={character.equipment}
             onEquipmentChange={(equipment) => updateCharacter({ equipment })}
           />

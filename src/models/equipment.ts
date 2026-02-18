@@ -11,4 +11,5 @@ export type Equipment = {
   ac?: number;
   icon?: string;
   properties?: string[];
+  quantity?: number;
 };

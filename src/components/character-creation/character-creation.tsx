@@ -9,6 +9,7 @@ import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
 import type { CharacterClass } from "src/models/classes";
 import type { Species } from "src/models/species";
+import { resolveStartingEquipment } from "src/models/starting-equipment";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
@@ -102,7 +103,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       ac: 10,
       proficiencyBonus: 2,
       spells: [],
-      equipment: [],
+      equipment: resolveStartingEquipment(draft.characterClass),
     };
     saveCharacter(character);
     onSave(character);

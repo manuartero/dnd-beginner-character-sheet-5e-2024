@@ -1,9 +1,3 @@
-.icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  image-rendering: pixelated;
-}
-
 .list {
   display: flex;
   flex-direction: column;
@@ -20,6 +14,12 @@
   border: 2px solid var(--shade-3);
 }
 
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+}
+
 .itemInfo {
   flex: 1;
   display: flex;
@@ -34,6 +34,13 @@
 .itemMeta {
   font-size: var(--font-size-xs);
   color: var(--shade-2);
+}
+
+.quantity {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  min-width: 24px;
+  text-align: right;
 }
 
 .attackBonus {
