@@ -2,6 +2,7 @@
   {
     "name": "Second Wind",
     "timing": "bonus-action",
+    "icon": "combat.fighter.second-wind",
     "description": "Regain hit points equal to 1d10 + your Fighter level. Once per short or long rest.",
     "classRestriction": "fighter"
   },
@@ -32,7 +33,8 @@
   {
     "name": "Cast a Spell",
     "timing": "action",
+    "icon": "combat.common.actions.cast-spell",
     "description": "Cast one of your prepared spells using the appropriate casting time.",
-    "classRestriction": "wizard"
+    "classificationRestriction": ["spell-caster", "versatile"]
   }
 ]

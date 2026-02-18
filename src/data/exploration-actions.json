@@ -1,5 +1,11 @@
 [
   {
+    "name": "Hide",
+    "category": "exploration",
+    "icon": "combat.common.actions.hide",
+    "description": "Make a Dexterity (Stealth) check to try to become hidden from enemies."
+  },
+  {
     "name": "Search",
     "category": "exploration",
     "icon": "exploration.search",
@@ -22,5 +28,12 @@
     "category": "social",
     "icon": "exploration.influence",
     "description": "Make a Charisma (Deception, Intimidation, Performance, or Persuasion) check to alter a creature's attitude."
+  },
+  {
+    "name": "Cast Ritual Spell",
+    "category": "exploration",
+    "icon": "exploration.cast-ritual",
+    "description": "Cast a spell with the Ritual tag. This takes 10 minutes longer than normal but does not expend a spell slot.",
+    "classificationRestriction": ["spell-caster", "versatile"]
   }
 ]

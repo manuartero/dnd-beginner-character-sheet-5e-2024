@@ -17,11 +17,11 @@ describe("resolveIconPath()", () => {
 describe("getIconPath()", () => {
   it("resolves a known icon name", () => {
     const path = getIconPath("exploration.influence");
-    expect(path).toBe("/assets/vol1/BLACK/icon-vol1_42.svg");
+    expect(path).toBe("/assets/vol1/BLACK/icon-vol1_78.svg");
   });
 
   it("supports the WHITE variant", () => {
     const path = getIconPath("exploration.influence", { variant: "WHITE" });
-    expect(path).toBe("/assets/vol1/WHITE/icon-vol1_42.svg");
+    expect(path).toBe("/assets/vol1/WHITE/icon-vol1_78.svg");
   });
 });

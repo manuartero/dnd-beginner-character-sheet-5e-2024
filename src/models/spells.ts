@@ -15,6 +15,8 @@ export type Spell = {
   range: string;
   components: string;
   duration: string;
+  concentration: boolean;
+  ritual: boolean;
   description: string;
   damage?: {
     dice: string;

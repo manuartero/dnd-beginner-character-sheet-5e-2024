@@ -5,6 +5,7 @@ type StepperProps = {
   current: number;
   total: number;
   completedSteps?: number[];
+  labels?: string[];
   onStepChange: (step: number) => void;
 };
 
@@ -12,6 +13,7 @@ export function Stepper({
   current,
   total,
   completedSteps = [],
+  labels,
   onStepChange,
 }: StepperProps) {
   return (
@@ -19,6 +21,7 @@ export function Stepper({
       {Array.from({ length: total }, (_, i) => i + 1).map((n) => {
         const isActive = current === n;
         const isCompleted = completedSteps.includes(n);
+        const label = labels?.[n - 1];
         return (
           <button
             key={n}
@@ -26,13 +29,13 @@ export function Stepper({
             aria-label={`Step ${n}${isCompleted ? ", completed" : ""}${isActive ? ", current" : ""}`}
             aria-current={isActive ? "step" : undefined}
             className={c(
-              styles.dot,
-              isActive && styles.dotActive,
+              label ? styles.tab : styles.dot,
+              isActive && (label ? styles.activeTab : styles.dotActive),
               isCompleted && styles.dotCompleted,
             )}
             onClick={() => onStepChange(n)}
           >
-            {null}
+            {label ?? null}
           </button>
         );
       })}
