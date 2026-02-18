@@ -48,12 +48,7 @@ function ProficiencyCell({
   const details = PROFICIENCY_DETAILS[proficiencyKey];
 
   return (
-    <div
-      className={c(
-        styles.cell,
-        enabled ? styles.cellEnabled : styles.cellDisabled,
-      )}
-    >
+    <div className={c(styles.cell, !enabled && styles.cellDisabled)}>
       <img
         src={resolveIconPath(details.icon)}
         alt={details.label}

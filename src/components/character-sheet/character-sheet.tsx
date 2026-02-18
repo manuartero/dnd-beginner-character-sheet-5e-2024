@@ -77,15 +77,15 @@ export function CharacterSheet({
 
       {step === 3 && (
         <>
-          <ProficiencyGrid
-            proficiencies={
-              CLASS_DETAILS[character.characterClass].proficiencies
-            }
-          />
           <Inventory
             mode="editable"
             equipment={character.equipment}
             onEquipmentChange={(equipment) => updateCharacter({ equipment })}
+          />
+          <ProficiencyGrid
+            proficiencies={
+              CLASS_DETAILS[character.characterClass].proficiencies
+            }
           />
         </>
       )}
