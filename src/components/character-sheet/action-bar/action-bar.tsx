@@ -1,5 +1,6 @@
-import { Fragment, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useMemo } from "react";
 import { Section } from "src/components/section";
+import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { ActionTiming } from "src/models/actions";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
@@ -29,19 +30,7 @@ const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 export function ActionBar({ characterClass }: ActionBarProps) {
   const { expandedKey: expandedAction, toggle: toggleAction } =
     useExpandable<string>();
-  const buttonRefs = useRef(new Map<string, HTMLButtonElement>());
-  const [arrowOffset, setArrowOffset] = useState(0);
-
-  useLayoutEffect(() => {
-    if (!expandedAction) return;
-    const button = buttonRefs.current.get(expandedAction);
-    if (!button) return;
-    const grid = button.parentElement;
-    if (!grid) return;
-    const btnRect = button.getBoundingClientRect();
-    const gridRect = grid.getBoundingClientRect();
-    setArrowOffset(btnRect.left + btnRect.width / 2 - gridRect.left);
-  }, [expandedAction]);
+  const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
 
   const grouped = useMemo(() => {
     const availableActions = [
@@ -76,6 +65,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
                         else buttonRefs.current.delete(action.name);
                       }}
                       type="button"
+                      aria-expanded={expandedAction === action.name}
                       onClick={() => toggleAction(action.name)}
                       className={`${styles.actionButton}${expandedAction === action.name ? ` ${styles.highlighted}` : ""}`}
                     >

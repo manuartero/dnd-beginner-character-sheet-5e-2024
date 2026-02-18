@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
 import { Section } from "src/components/section";
 import type { Equipment } from "src/models/equipment";
+import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./inventory.module.css";
 
@@ -218,7 +219,7 @@ function MoneyTag({ gold, mode, onGoldChange }: MoneyTagProps) {
   return (
     <fieldset className={styles.moneyTag} aria-label="Gold pieces">
       <img
-        src={resolveIconPath("vol1/icon-vol1_63")}
+        src={resolveIconPath(GOLD_ICON)}
         alt="Gold"
         className={styles.moneyIcon}
       />

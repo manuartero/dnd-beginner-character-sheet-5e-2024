@@ -1,6 +1,6 @@
 import classDetailsData from "src/data/class-details.json";
-import type { AbilityName } from "src/models/abilities";
-import type { Background } from "src/models/backgrounds";
+import type { AbilityName } from "./abilities";
+import type { Background } from "./backgrounds";
 
 export type CharacterClass =
   | "barbarian"

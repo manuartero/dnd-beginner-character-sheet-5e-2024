@@ -1,7 +1,8 @@
-import type { Character } from "src/models/character";
-import type { Equipment } from "src/models/equipment";
-import type { Species } from "src/models/species";
-import { SPECIES_LIST } from "src/models/species";
+import type { Character } from "./character";
+import type { Equipment } from "./equipment";
+import { GOLD_ICON } from "./equipment";
+import type { Species } from "./species";
+import { SPECIES_LIST } from "./species";
 
 const STORAGE_KEY = "dnd-characters";
 
@@ -21,7 +22,7 @@ function migrateEquipment(equipment: Equipment[]): Equipment[] {
       return {
         name: "Gold",
         type: "money",
-        icon: "vol1/icon-vol1_63",
+        icon: GOLD_ICON,
         quantity: item.quantity ?? 0,
       };
     }

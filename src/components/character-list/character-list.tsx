@@ -67,6 +67,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
       <button
         type="button"
         className={styles.deleteButton}
+        aria-label={`Delete ${character.name || "Unnamed"}`}
         onClick={() => setConfirming(true)}
       >
         x

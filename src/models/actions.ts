@@ -1,5 +1,5 @@
-import classActionsData from "../data/class-actions.json";
-import universalActionsData from "../data/universal-actions.json";
+import classActionsData from "src/data/class-actions.json";
+import universalActionsData from "src/data/universal-actions.json";
 import type { CharacterClass } from "./classes";
 
 export type ActionTiming = "action" | "bonus-action" | "reaction";

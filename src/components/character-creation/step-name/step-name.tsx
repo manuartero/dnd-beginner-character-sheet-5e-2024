@@ -14,6 +14,7 @@ export function StepName({ name, onNameChange }: StepNameProps) {
         value={name}
         onChange={(e) => onNameChange(e.target.value)}
         placeholder="Character name"
+        aria-label="Character name"
         className={styles.nameInput}
       />
     </Section>
