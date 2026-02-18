@@ -19,14 +19,14 @@
 .backButton {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
   white-space: nowrap;
 }
 
 .title {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--shade-4);
+  color: var(--shade-3);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

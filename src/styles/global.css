@@ -12,7 +12,7 @@
 html {
   font-family: var(--font-body);
   font-size: 16px;
-  color: var(--shade-4);
+  color: var(--shade-3);
   background-color: var(--shade-0);
   /* Pixel font: disable antialiasing for crisp rendering */
   -webkit-font-smoothing: none;
@@ -42,7 +42,7 @@ button {
 input:focus,
 select:focus,
 button:focus-visible {
-  outline: 3px solid var(--color-highlight);
+  outline: 3px solid var(--shade-2);
   outline-offset: 0;
 }
 
@@ -58,8 +58,6 @@ button:active {
 img {
   display: block;
   max-width: 100%;
-  filter: grayscale(100%) sepia(100%) brightness(0.75) hue-rotate(-5deg)
-    saturate(2.5) contrast(1.5);
   image-rendering: pixelated;
 }
 
@@ -75,14 +73,14 @@ body::before {
 
 @keyframes screen-boot {
   0% {
-    background-color: var(--shade-4);
+    background-color: var(--shade-3);
   }
   18% {
     background-color: var(--shade-0);
     opacity: 0.8;
   }
   24% {
-    background-color: var(--shade-4);
+    background-color: var(--shade-3);
     opacity: 0.8;
   }
   35% {
@@ -90,7 +88,7 @@ body::before {
     opacity: 0.5;
   }
   42% {
-    background-color: var(--shade-4);
+    background-color: var(--shade-3);
     opacity: 0.3;
   }
   55% {

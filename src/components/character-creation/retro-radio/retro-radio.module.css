@@ -34,9 +34,9 @@
 }
 
 .optionSelected {
-  border-color: var(--color-highlight);
+  border-color: var(--shade-2);
   background: var(--shade-1);
-  box-shadow: 3px 3px 0 var(--color-highlight);
+  box-shadow: 3px 3px 0 var(--shade-2);
 }
 
 .box {
@@ -49,8 +49,8 @@
 }
 
 .boxChecked {
-  background: var(--color-highlight);
-  border-color: var(--color-highlight);
+  background: var(--shade-2);
+  border-color: var(--shade-2);
   box-shadow:
     inset 2px 2px 0 var(--shade-0),
     inset -2px -2px 0 var(--shade-0);

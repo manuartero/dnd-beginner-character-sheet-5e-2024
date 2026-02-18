@@ -5,7 +5,7 @@
   gap: 2px;
   height: 16px;
   padding: 2px;
-  background: var(--shade-4);
+  background: var(--shade-3);
   border: 2px solid var(--shade-3);
   margin-bottom: var(--space-sm);
 }

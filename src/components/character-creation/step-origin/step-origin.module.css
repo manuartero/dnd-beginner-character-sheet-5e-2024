@@ -23,7 +23,7 @@
 
 .skillItem {
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .skillItem::before {
@@ -38,14 +38,14 @@
 
 .abilityBadge {
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
   padding: 2px var(--space-sm);
-  border: 1px solid var(--color-highlight);
+  border: 1px solid var(--shade-2);
 }
 
 .featLabel {
   font-weight: 600;
-  color: var(--color-highlight);
+  color: var(--shade-2);
 }
 
 .featDescription {

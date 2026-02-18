@@ -1,9 +1,6 @@
 .groupLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
   font-size: var(--font-size-xs);
-  color: var(--color-highlight);
+  color: var(--shade-2);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -20,60 +17,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-}
-
-/* 8-bit pixel art symbols (3px per pixel, box-shadow technique) */
-
-/* Exploration: teal compass (5x5 grid, diamond with center) */
-.categorySymbol_exploration {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: #2a9;
-  margin: 6px;
-  box-shadow:
-    0px -6px 0 #2a9,
-    -3px -3px 0 #2a9,
-    0px -3px 0 #2a9,
-    3px -3px 0 #2a9,
-    -6px 0px 0 #2a9,
-    -3px 0px 0 #2a9,
-    3px 0px 0 #2a9,
-    6px 0px 0 #2a9,
-    -3px 3px 0 #2a9,
-    0px 3px 0 #2a9,
-    3px 3px 0 #2a9,
-    0px 6px 0 #2a9;
-}
-
-/* Social: warm gold square (5x5 solid block) */
-.categorySymbol_social {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: #da5;
-  margin: 6px;
-  box-shadow:
-    -3px -6px 0 #da5,
-    0px -6px 0 #da5,
-    3px -6px 0 #da5,
-    -6px -3px 0 #da5,
-    -3px -3px 0 #da5,
-    0px -3px 0 #da5,
-    3px -3px 0 #da5,
-    6px -3px 0 #da5,
-    -6px 0px 0 #da5,
-    -3px 0px 0 #da5,
-    3px 0px 0 #da5,
-    6px 0px 0 #da5,
-    -6px 3px 0 #da5,
-    -3px 3px 0 #da5,
-    0px 3px 0 #da5,
-    3px 3px 0 #da5,
-    6px 3px 0 #da5,
-    -3px 6px 0 #da5,
-    0px 6px 0 #da5,
-    3px 6px 0 #da5;
 }
 
 .actionsGrid {
@@ -97,8 +40,8 @@
 
 .highlighted {
   background: var(--shade-0);
-  border-color: var(--color-highlight);
-  color: var(--color-highlight);
+  border-color: var(--shade-2);
+  color: var(--shade-2);
 }
 
 .actionLabel {

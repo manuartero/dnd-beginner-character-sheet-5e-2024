@@ -14,11 +14,6 @@ const CATEGORY_LABELS: Record<ExplorationCategory, string> = {
   social: "Social",
 };
 
-const CATEGORY_SYMBOL_CLASS: Record<ExplorationCategory, string> = {
-  exploration: styles.categorySymbol_exploration,
-  social: styles.categorySymbol_social,
-};
-
 const CATEGORY_ORDER: ExplorationCategory[] = ["exploration", "social"];
 
 export function ExplorationBar() {
@@ -37,10 +32,7 @@ export function ExplorationBar() {
       <div className={styles.groupsContainer}>
         {grouped.map((group) => (
           <div key={group.category}>
-            <h3 className={styles.groupLabel}>
-              {group.label}
-              <span className={CATEGORY_SYMBOL_CLASS[group.category]} />
-            </h3>
+            <h3 className={styles.groupLabel}>{group.label}</h3>
             <div className={styles.actionsGrid}>
               {group.actions.map((action) => (
                 <Fragment key={action.name}>

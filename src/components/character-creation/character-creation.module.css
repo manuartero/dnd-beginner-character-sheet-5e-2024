@@ -20,7 +20,7 @@
   font-size: var(--font-size-md);
   font-weight: 600;
   color: var(--shade-0);
-  background: var(--color-highlight);
+  background: var(--shade-2);
   border: 3px solid var(--shade-3);
   box-shadow: 4px 4px 0 var(--shade-3);
 }

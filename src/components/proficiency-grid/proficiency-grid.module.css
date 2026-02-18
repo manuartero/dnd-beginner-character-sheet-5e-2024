@@ -36,7 +36,7 @@
 }
 
 .asterisk {
-  color: var(--color-highlight);
+  color: var(--shade-2);
   font-weight: 700;
 }
 

@@ -25,7 +25,7 @@
 
 .tile:hover {
   background: var(--shade-1);
-  color: var(--shade-4);
+  color: var(--shade-3);
 }
 
 .tile:active {
@@ -33,14 +33,14 @@
 }
 
 .tileSelected {
-  background: var(--color-highlight);
-  border-color: var(--color-highlight);
+  background: var(--shade-2);
+  border-color: var(--shade-2);
   color: var(--shade-0);
   box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .tileSelected:hover {
-  background: var(--color-highlight);
+  background: var(--shade-2);
   color: var(--shade-0);
 }
 

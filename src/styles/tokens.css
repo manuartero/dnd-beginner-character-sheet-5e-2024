@@ -1,16 +1,15 @@
 :root {
-  /* === Base 5 (warm monochrome) === */
+  /* === Base 4 (warm monochrome) === */
   --shade-0: #f7ecd3; /* lightest - parchment bg */
   --shade-1: #e1bf84; /* gold - surfaces */
   --shade-2: #b47125; /* leather - mid tone */
-  --shade-3: #5c3517; /* dark brown - borders/frames */
-  --shade-4: #1d1109; /* near-black - text/darkest */
+  --shade-3: #5c3517; /* dark brown - text/borders/frames */
 
-  /* === Accent 3 (gameplay colors) === */
-  --color-hp-full: #5a8a28; /* chunky green - health */
-  --color-highlight: #db8138; /* warm orange - highlights/XP */
-  --color-hp-low: #8b2020; /* dark red - danger/low HP */
-  --color-scanline: #5f433118; /* shade-4 at ~4% - CRT scanline tint */
+  /* === Accent 2 (gameplay colors) === */
+  --color-hp-full: #4e7a10; /* olive green - health */
+  --color-hp-low: #8b2510; /* rust red - danger/low HP */
+
+  --color-scanline: #5f433118; /* shade-3 at ~9% - CRT scanline tint */
 
   /* Spacing */
   --space-xs: 4px;
