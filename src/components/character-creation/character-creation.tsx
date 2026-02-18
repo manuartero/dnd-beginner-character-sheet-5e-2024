@@ -2,12 +2,14 @@ import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
+import recommendedData from "src/data/recommended-scores.json";
 import type { AbilityName, AbilityScores } from "src/models/abilities";
 import type { Background } from "src/models/backgrounds";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
 import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
 import type { CharacterClass } from "src/models/classes";
+import { computeHpMax } from "src/models/compute-hp";
 import type { Species } from "src/models/species";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
 import { CreationActions } from "./creation-actions";
@@ -17,6 +19,11 @@ import { StepEquipment } from "./step-equipment";
 import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
+
+const RECOMMENDED_SCORES = recommendedData.recommended as Record<
+  string,
+  AbilityScores
+>;
 
 const BACKGROUND_MAP = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
 
@@ -31,7 +38,6 @@ type DraftState = {
   background: Background | null;
   abilityScores: AbilityScores;
   abilityBonuses: Partial<Record<AbilityName, number>>;
-  hpMax: number;
 };
 
 export function CharacterCreation({ onSave }: CharacterCreationProps) {
@@ -50,8 +56,12 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       cha: 10,
     },
     abilityBonuses: {},
-    hpMax: 10,
   });
+
+  const conScore = draft.abilityScores.con + (draft.abilityBonuses.con ?? 0);
+  const hpMax = draft.characterClass
+    ? computeHpMax(draft.characterClass, conScore)
+    : 0;
 
   const step1Complete = draft.characterClass !== null;
 
@@ -61,7 +71,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   const step4Complete =
     Object.values(draft.abilityScores).every((v) => isValidScore(String(v))) &&
-    draft.hpMax > 0 &&
+    hpMax > 0 &&
     totalBonuses(draft.abilityBonuses) === 3;
 
   const step6Complete = draft.name.trim() !== "";
@@ -99,7 +109,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       background: draft.background ?? undefined,
       level: 1,
       abilityScores: draft.abilityScores,
-      hp: { current: draft.hpMax, max: draft.hpMax },
+      hp: { current: hpMax, max: hpMax },
       ac: 10,
       proficiencyBonus: 2,
       spells: [],
@@ -127,6 +137,8 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
               setDraft((prev) => ({
                 ...prev,
                 characterClass,
+                abilityScores:
+                  RECOMMENDED_SCORES[characterClass] ?? prev.abilityScores,
               }))
             }
           />
@@ -176,7 +188,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
                 abilityScores,
               }))
             }
-            onHpMaxChange={(hpMax) => setDraft((prev) => ({ ...prev, hpMax }))}
+            hpMax={hpMax}
             abilityOptions={backgroundEntry?.abilityOptions ?? null}
             abilityBonuses={draft.abilityBonuses}
             onAbilityBonusesChange={(abilityBonuses) =>
