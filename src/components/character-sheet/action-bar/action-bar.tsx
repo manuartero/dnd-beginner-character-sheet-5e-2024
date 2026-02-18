@@ -1,4 +1,4 @@
-import { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import type { ActionTiming } from "src/models/actions";
@@ -43,18 +43,19 @@ export function ActionBar({ characterClass }: ActionBarProps) {
     setArrowOffset(btnRect.left + btnRect.width / 2 - gridRect.left);
   }, [expandedAction]);
 
-  const availableActions = [
-    ...UNIVERSAL_ACTIONS,
-    ...CLASS_ACTIONS.filter(
-      (a) => !a.classRestriction || a.classRestriction === characterClass,
-    ),
-  ];
-
-  const grouped = TIMING_ORDER.map((timing) => ({
-    timing,
-    label: TIMING_LABELS[timing],
-    actions: availableActions.filter((a) => a.timing === timing),
-  }));
+  const grouped = useMemo(() => {
+    const availableActions = [
+      ...UNIVERSAL_ACTIONS,
+      ...CLASS_ACTIONS.filter(
+        (a) => !a.classRestriction || a.classRestriction === characterClass,
+      ),
+    ];
+    return TIMING_ORDER.map((timing) => ({
+      timing,
+      label: TIMING_LABELS[timing],
+      actions: availableActions.filter((a) => a.timing === timing),
+    }));
+  }, [characterClass]);
 
   return (
     <Section title="Combat">

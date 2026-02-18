@@ -17,6 +17,8 @@ import { ExplorationBar } from "./exploration-bar";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
 
+const WIZARD_SPELLS = [...WIZARD_SPELLS_LEVEL_0, ...WIZARD_SPELLS_LEVEL_1];
+
 type CharacterSheetProps = {
   character: Character;
   onCharacterUpdate: (character: Character) => void;
@@ -34,10 +36,7 @@ export function CharacterSheet({
     onCharacterUpdate(updated);
   }
 
-  const spells =
-    character.characterClass === "wizard"
-      ? [...WIZARD_SPELLS_LEVEL_0, ...WIZARD_SPELLS_LEVEL_1]
-      : [];
+  const spells = character.characterClass === "wizard" ? WIZARD_SPELLS : [];
 
   return (
     <>

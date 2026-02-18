@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { type SoundVariant, play8BitSound } from "src/audio/play-sound";
+import { play8BitSound, type SoundVariant } from "src/audio/play-sound";
 import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
@@ -16,11 +16,9 @@ type AppView =
 
 export function App() {
   const [view, setView] = useState<AppView>({ kind: "character-list" });
-  const [characters, setCharacters] = useState<Character[]>([]);
-
-  useEffect(() => {
-    setCharacters(loadCharacters());
-  }, []);
+  const [characters, setCharacters] = useState<Character[]>(() =>
+    loadCharacters(),
+  );
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
