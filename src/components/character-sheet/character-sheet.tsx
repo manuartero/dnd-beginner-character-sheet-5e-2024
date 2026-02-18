@@ -9,11 +9,9 @@ import {
   WIZARD_SPELLS_LEVEL_0,
   WIZARD_SPELLS_LEVEL_1,
 } from "src/models/spells";
-import { AbilityScores } from "./ability-scores";
 import { ActionBar } from "./action-bar";
-import { CharacterHeader } from "./character-header";
+import { CharacterOverview } from "./character-overview";
 import { ExplorationBar } from "./exploration-bar";
-import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
 
 import type { Character } from "src/models/character";
@@ -45,26 +43,12 @@ export function CharacterSheet({
       <Stepper current={step} total={3} onStepChange={setStep} />
 
       {step === 1 && (
-        <>
-          <CharacterHeader
-            name={character.name}
-            race={character.race}
-            characterClass={character.characterClass}
-            level={character.level}
-          />
-          <HpTracker
-            current={character.hp.current}
-            max={character.hp.max}
-            editable={false}
-            onCurrentChange={(value) =>
-              updateCharacter({ hp: { ...character.hp, current: value } })
-            }
-          />
-          <AbilityScores
-            scores={character.abilityScores}
-            proficiencyBonus={character.proficiencyBonus}
-          />
-        </>
+        <CharacterOverview
+          character={character}
+          onHpChange={(value) =>
+            updateCharacter({ hp: { ...character.hp, current: value } })
+          }
+        />
       )}
 
       {step === 2 && (
