@@ -1,5 +1,6 @@
 import c from "classnames";
 import { useState } from "react";
+import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
 import { Section } from "src/components/section";
 import type { Character } from "src/models/character";
 import { getClassIcon } from "src/models/classes";
@@ -49,28 +50,14 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
   if (confirming) {
     return (
       <div className={c(styles.cardSurface, styles.card)}>
-        <div className={styles.confirmContent}>
-          <span className={styles.confirmText}>Delete?</span>
-          <div className={styles.confirmActions}>
-            <button
-              type="button"
-              className={styles.confirmYes}
-              onClick={() => {
-                onDelete(character.id);
-                setConfirming(false);
-              }}
-            >
-              Yes
-            </button>
-            <button
-              type="button"
-              className={styles.confirmNo}
-              onClick={() => setConfirming(false)}
-            >
-              No
-            </button>
-          </div>
-        </div>
+        <InlineConfirm
+          label="Delete?"
+          onConfirm={() => {
+            onDelete(character.id);
+            setConfirming(false);
+          }}
+          onCancel={() => setConfirming(false)}
+        />
       </div>
     );
   }
