@@ -61,7 +61,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
 
   const conScore = draft.abilityScores.con + (draft.abilityBonuses.con ?? 0);
   const hpMax = draft.characterClass
-    ? computeHpMax(draft.characterClass, conScore)
+    ? computeHpMax({ characterClass: draft.characterClass, conScore })
     : 0;
 
   const step1Complete = draft.characterClass !== null;
