@@ -1,5 +1,6 @@
-import type { AbilityName } from "src/models/abilities";
 import { computeSkillModifier, skillsForAbility } from "src/models/skills";
+
+import type { AbilityName } from "src/models/abilities";
 
 describe("skillsForAbility()", () => {
   [

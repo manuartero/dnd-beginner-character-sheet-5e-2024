@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
 import { Section } from "src/components/section";
-import type { Equipment } from "src/models/equipment";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./inventory.module.css";
+
+import type { Equipment } from "src/models/equipment";
 
 type ReadonlyProps = {
   mode: "readonly";

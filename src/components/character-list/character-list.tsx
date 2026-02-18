@@ -2,9 +2,10 @@ import c from "classnames";
 import { useState } from "react";
 import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
 import { Section } from "src/components/section";
-import type { Character } from "src/models/character";
 import { getClassIcon } from "src/models/classes";
 import styles from "./character-list.module.css";
+
+import type { Character } from "src/models/character";
 
 type CharacterListProps = {
   characters: Character[];

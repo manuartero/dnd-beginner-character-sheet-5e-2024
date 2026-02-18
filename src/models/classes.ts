@@ -1,4 +1,5 @@
 import classDetailsData from "src/data/class-details.json";
+
 import type { AbilityName } from "./abilities";
 import type { Background } from "./backgrounds";
 

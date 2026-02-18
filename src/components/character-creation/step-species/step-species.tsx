@@ -1,6 +1,5 @@
 import { DetailsPanel } from "src/components/details-panel";
 import { Section } from "src/components/section";
-import type { Species } from "src/models/species";
 import {
   getSpeciesIcon,
   SPECIES_DETAILS,
@@ -8,6 +7,8 @@ import {
 } from "src/models/species";
 import { SelectionGrid } from "../selection-grid";
 import styles from "./step-species.module.css";
+
+import type { Species } from "src/models/species";
 
 type StepSpeciesProps = {
   race: Species | null;

@@ -3,7 +3,6 @@ import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
-import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
 import { CLASS_DETAILS } from "src/models/classes";
 import {
@@ -16,6 +15,8 @@ import { CharacterHeader } from "./character-header";
 import { ExplorationBar } from "./exploration-bar";
 import { HpTracker } from "./hp-tracker";
 import { SpellCards } from "./spell-cards";
+
+import type { Character } from "src/models/character";
 
 const WIZARD_SPELLS = [...WIZARD_SPELLS_LEVEL_0, ...WIZARD_SPELLS_LEVEL_1];
 

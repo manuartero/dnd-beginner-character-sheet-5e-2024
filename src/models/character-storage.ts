@@ -1,8 +1,9 @@
+import { GOLD_ICON } from "./equipment";
+import { SPECIES_LIST } from "./species";
+
 import type { Character } from "./character";
 import type { Equipment } from "./equipment";
-import { GOLD_ICON } from "./equipment";
 import type { Species } from "./species";
-import { SPECIES_LIST } from "./species";
 
 const STORAGE_KEY = "dnd-characters";
 

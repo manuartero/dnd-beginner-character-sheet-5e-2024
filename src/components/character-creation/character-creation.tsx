@@ -3,14 +3,9 @@ import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
 import recommendedData from "src/data/recommended-scores.json";
-import type { AbilityName, AbilityScores } from "src/models/abilities";
-import type { Background } from "src/models/backgrounds";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
-import type { Character } from "src/models/character";
 import { saveCharacter } from "src/models/character-storage";
-import type { CharacterClass } from "src/models/classes";
 import { computeHpMax } from "src/models/compute-hp";
-import type { Species } from "src/models/species";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
@@ -19,6 +14,12 @@ import { StepEquipment } from "./step-equipment";
 import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
+
+import type { AbilityName, AbilityScores } from "src/models/abilities";
+import type { Background } from "src/models/backgrounds";
+import type { Character } from "src/models/character";
+import type { CharacterClass } from "src/models/classes";
+import type { Species } from "src/models/species";
 
 const RECOMMENDED_SCORES = recommendedData.recommended as Record<
   string,

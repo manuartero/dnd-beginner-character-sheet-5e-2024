@@ -3,18 +3,19 @@ import { RetroRadio } from "src/components/character-creation/retro-radio";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
-import type { AbilityName, AbilityScores } from "src/models/abilities";
 import {
   ABILITY_LIST,
   computeModifier,
   formatModifier,
 } from "src/models/abilities";
-import type { CharacterClass } from "src/models/classes";
 import { CLASS_DETAILS } from "src/models/classes";
 import { isValidScore } from "./is-valid-score";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
 import { MODE_OPTIONS, useAbilityScores } from "./use-ability-scores";
+
+import type { AbilityName, AbilityScores } from "src/models/abilities";
+import type { CharacterClass } from "src/models/classes";
 
 type StepAbilitiesProps = {
   characterClass: CharacterClass | null;

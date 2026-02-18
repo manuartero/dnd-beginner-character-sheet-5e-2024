@@ -1,9 +1,10 @@
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
-import type { IconName } from "src/models/icons";
 import { getIconPath } from "src/models/icons";
-import type { Spell } from "src/models/spells";
 import styles from "./spell-cards.module.css";
+
+import type { IconName } from "src/models/icons";
+import type { Spell } from "src/models/spells";
 
 type SpellCardsProps = {
   spells: Spell[];

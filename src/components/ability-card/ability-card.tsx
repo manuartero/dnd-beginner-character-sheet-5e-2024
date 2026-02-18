@@ -1,6 +1,5 @@
 import c from "classnames";
 import { ScorePicker } from "src/components/character-creation/score-picker";
-import type { AbilityName } from "src/models/abilities";
 import { computeModifier, formatModifier } from "src/models/abilities";
 import {
   computeSkillModifier,
@@ -8,6 +7,8 @@ import {
   skillsForAbility,
 } from "src/models/skills";
 import styles from "./ability-card.module.css";
+
+import type { AbilityName } from "src/models/abilities";
 
 type _BaseProps = {
   abilityKey: AbilityName;

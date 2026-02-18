@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
 import styles from "./details-panel.module.css";
+
+import type { ReactNode } from "react";
 
 type DetailsPanelProps = {
   icon: string;
