@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  padding: 0;
+}
+
+.actions {
+  display: flex;
+  margin-top: var(--space-sm);
+  gap: var(--space-sm);
+}
+
+.yes {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-highlight);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.no {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--shade-2);
+  padding: var(--space-xs) var(--space-sm);
+}

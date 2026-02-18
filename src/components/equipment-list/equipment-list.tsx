@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
 import { Section } from "src/components/section";
 import type { Equipment } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
@@ -22,10 +23,14 @@ type EquipmentListProps = ReadonlyProps | EditableProps;
 export function EquipmentList(props: EquipmentListProps) {
   const { equipment, mode, title = "Equipment" } = props;
   const [isAdding, setIsAdding] = useState(false);
+  const [removingItemIndex, setRemovingItemIndex] = useState<number | null>(
+    null,
+  );
 
   function handleRemove(index: number) {
     if (props.mode !== "editable") return;
     props.onEquipmentChange(equipment.filter((_, i) => i !== index));
+    setRemovingItemIndex(null);
   }
 
   function handleAdd(item: Equipment) {
@@ -39,37 +44,50 @@ export function EquipmentList(props: EquipmentListProps) {
       <div className={styles.list}>
         {equipment.map((item, index) => (
           <div key={`${item.name}-${index}`} className={styles.itemRow}>
-            {item.icon && (
-              <img
-                src={resolveIconPath(item.icon)}
-                alt={item.name}
-                className={styles.icon}
+            {removingItemIndex === index && (
+              <InlineConfirm
+                label={`Remove ${item.name} from Inventory?`}
+                onConfirm={() => handleRemove(index)}
+                onCancel={() => setRemovingItemIndex(null)}
               />
             )}
-            <div className={styles.itemInfo}>
-              <span className={styles.itemName}>{item.name}</span>
-              <span className={styles.itemMeta}>
-                {item.damage && `${item.damage.dice} ${item.damage.type}`}
-                {item.ac && `AC ${item.ac}`}
-                {item.properties && item.properties.length > 0 && (
-                  <> | {item.properties.join(", ")}</>
+            {removingItemIndex !== index && (
+              <>
+                {item.icon && (
+                  <img
+                    src={resolveIconPath(item.icon)}
+                    alt={item.name}
+                    className={styles.icon}
+                  />
                 )}
-              </span>
-            </div>
-            {item.attackBonus !== undefined && (
-              <span className={styles.attackBonus}>+{item.attackBonus}</span>
-            )}
-            {item.quantity !== undefined && item.quantity > 1 && (
-              <span className={styles.quantity}>x{item.quantity}</span>
-            )}
-            {mode === "editable" && (
-              <button
-                type="button"
-                onClick={() => handleRemove(index)}
-                className={styles.removeButton}
-              >
-                x
-              </button>
+                <div className={styles.itemInfo}>
+                  <span className={styles.itemName}>{item.name}</span>
+                  <span className={styles.itemMeta}>
+                    {item.damage && `${item.damage.dice} ${item.damage.type}`}
+                    {item.ac && `AC ${item.ac}`}
+                    {item.properties && item.properties.length > 0 && (
+                      <> | {item.properties.join(", ")}</>
+                    )}
+                  </span>
+                </div>
+                {item.attackBonus !== undefined && (
+                  <span className={styles.attackBonus}>
+                    +{item.attackBonus}
+                  </span>
+                )}
+                {item.quantity !== undefined && item.quantity > 1 && (
+                  <span className={styles.quantity}>x{item.quantity}</span>
+                )}
+                {mode === "editable" && (
+                  <button
+                    type="button"
+                    onClick={() => setRemovingItemIndex(index)}
+                    className={styles.removeButton}
+                  >
+                    x
+                  </button>
+                )}
+              </>
             )}
           </div>
         ))}
