@@ -1,4 +1,6 @@
+import { useId } from "react";
 import { Section } from "src/components/section";
+import { CombatChip } from "src/components/combat-chip/combat-chip";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { formatModifier } from "src/models/abilities";
@@ -22,6 +24,7 @@ const SPELL_ICON = resolveIconPath("vol10/icon-vol10_113");
 export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
   const { expandedKey, toggle } = useExpandable<CombatStatsKey>();
   const { buttonRefs, arrowOffset } = useArrowOffset(expandedKey);
+  const breakdownId = useId();
 
   function setRef(key: CombatStatsKey) {
     return (el: HTMLButtonElement | null) => {
@@ -38,56 +41,60 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
         : expandedKey === "spell" && spellAttack
           ? spellAttack.lines
           : null;
+  const expandedLabel =
+    expandedKey === "initiative"
+      ? "Initiative"
+      : expandedKey === "ac"
+        ? "AC"
+        : expandedKey === "spell"
+          ? "Spell Attack"
+          : null;
 
   return (
     <Section title="Combat Stats">
       <div className={styles.row}>
-        <button
-          ref={setRef("initiative")}
-          type="button"
-          className={`${styles.chip}${expandedKey === "initiative" ? ` ${styles.highlighted}` : ""}`}
+        <CombatChip
+          label="Initiative"
+          iconSrc={INITIATIVE_ICON}
+          iconAlt="Initiative"
+          value={formatModifier(initiative.total)}
+          isExpanded={expandedKey === "initiative"}
+          controlsId={breakdownId}
+          buttonRef={setRef("initiative")}
           onClick={() => toggle("initiative")}
-          aria-expanded={expandedKey === "initiative"}
-        >
-          <span className={styles.chipLabel}>Initiative</span>
-          <img src={INITIATIVE_ICON} alt="Initiative" className={styles.icon} />
-          <span className={styles.value}>
-            {formatModifier(initiative.total)}
-          </span>
-        </button>
-
-        <button
-          ref={setRef("ac")}
-          type="button"
-          className={`${styles.chip}${expandedKey === "ac" ? ` ${styles.highlighted}` : ""}`}
+        />
+        <CombatChip
+          label="AC"
+          iconSrc={AC_ICON}
+          iconAlt="Armor Class"
+          value={String(ac.total)}
+          isExpanded={expandedKey === "ac"}
+          controlsId={breakdownId}
+          buttonRef={setRef("ac")}
           onClick={() => toggle("ac")}
-          aria-expanded={expandedKey === "ac"}
-        >
-          <span className={styles.chipLabel}>AC</span>
-          <img src={AC_ICON} alt="Armor Class" className={styles.icon} />
-          <span className={styles.value}>{ac.total}</span>
-        </button>
-
-        <button
-          ref={setRef("spell")}
-          type="button"
-          className={`${styles.chip}${expandedKey === "spell" ? ` ${styles.highlighted}` : ""}${!spellAttack ? ` ${styles.inactive}` : ""}`}
+        />
+        <CombatChip
+          label="Spell Attack"
+          iconSrc={SPELL_ICON}
+          iconAlt="Spell Attack"
+          value={spellAttack ? formatModifier(spellAttack.total) : "—"}
+          isExpanded={expandedKey === "spell"}
+          isInactive={!spellAttack}
+          controlsId={breakdownId}
+          buttonRef={setRef("spell")}
           onClick={() => {
             if (spellAttack) toggle("spell");
           }}
-          aria-expanded={expandedKey === "spell"}
-          aria-disabled={!spellAttack}
-        >
-          <span className={styles.chipLabel}>Spell Attack</span>
-          <img src={SPELL_ICON} alt="Spell Attack" className={styles.icon} />
-          <span className={styles.value}>
-            {spellAttack ? formatModifier(spellAttack.total) : "—"}
-          </span>
-        </button>
+        />
       </div>
 
       {expandedLines && (
-        <div className={styles.breakdown}>
+        <div
+          id={breakdownId}
+          role="region"
+          aria-label={`${expandedLabel} breakdown`}
+          className={styles.breakdown}
+        >
           <span
             className={styles.breakdownArrow}
             style={{ left: `${arrowOffset}px` }}
