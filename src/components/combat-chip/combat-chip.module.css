@@ -1,0 +1,55 @@
+.chip {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+  box-shadow: 3px 3px 0 var(--shade-3);
+  overflow: hidden;
+  min-height: 130px;
+  /* button resets */
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  text-align: inherit;
+}
+
+.chipLabel {
+  width: 100%;
+  padding: var(--space-xs) 0;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--shade-0);
+  background: var(--shade-3);
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+  align-self: center;
+}
+
+.value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  padding-bottom: var(--space-sm);
+}
+
+.highlighted {
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
+}
+
+.highlighted .chipLabel {
+  background: var(--shade-2);
+}
+
+.inactive {
+  cursor: default;
+  opacity: 0.5;
+}
