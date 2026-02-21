@@ -37,6 +37,12 @@
   width: 100%;
 }
 
+.cardStaged {
+  background: var(--shade-0);
+  border-color: var(--shade-2);
+  opacity: 0.72;
+}
+
 .cardHeader {
   display: flex;
   align-items: center;
@@ -56,6 +62,15 @@
 
 .spellMeta {
   font-size: var(--font-size-xs);
+  color: var(--shade-2);
+}
+
+.stagedTag {
+  margin-left: auto;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--shade-2);
 }
 

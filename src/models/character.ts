@@ -17,5 +17,6 @@ export type Character = {
   ac: number;
   proficiencyBonus: number;
   spells: Spell[];
+  weaponMasteries?: string[];
   equipment: Equipment[];
 };

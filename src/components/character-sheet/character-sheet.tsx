@@ -11,6 +11,8 @@ import {
 import { saveCharacter } from "src/models/character-storage";
 import { CLASS_DETAILS } from "src/models/classes";
 import {
+  WIZARD_CANTRIP_SELECTION,
+  WIZARD_LEVEL1_SELECTION,
   WIZARD_SPELLS_LEVEL_0,
   WIZARD_SPELLS_LEVEL_1,
 } from "src/models/spells";
@@ -18,13 +20,20 @@ import { ActionBar } from "./action-bar";
 import { CharacterOverview } from "./character-overview";
 import { CombatStats } from "./combat-stats";
 import { ExplorationBar } from "./exploration-bar";
+import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
+import { WeaponMastery } from "./weapon-mastery";
 
 import type { Character } from "src/models/character";
 
-const WIZARD_SPELLS = [...WIZARD_SPELLS_LEVEL_0, ...WIZARD_SPELLS_LEVEL_1];
+const STEP_LABELS = ["Stats", "Combat", "Explore", "Spells & Skills", "Gear"];
 
-const STEP_LABELS = ["Stats", "Combat", "Explore", "Gear"];
+const WEAPON_MASTERY_CLASSES = new Set([
+  "fighter",
+  "paladin",
+  "ranger",
+  "rogue",
+]);
 
 type CharacterSheetProps = {
   character: Character;
@@ -43,12 +52,14 @@ export function CharacterSheet({
     onCharacterUpdate(updated);
   }
 
-  const allSpells = character.characterClass === "wizard" ? WIZARD_SPELLS : [];
-  const combatSpells = allSpells.filter((s) => !s.ritual);
-  const ritualSpells = allSpells.filter((s) => s.ritual);
-
   const classDetails = CLASS_DETAILS[character.characterClass];
   const isSpellcaster = classDetails.manualClassification !== "martial";
+  const needsWeaponMastery = WEAPON_MASTERY_CLASSES.has(
+    character.characterClass,
+  );
+
+  const combatSpells = character.spells.filter((s) => !s.ritual);
+  const ritualSpells = character.spells.filter((s) => s.ritual);
 
   const ac = computeArmorClass({
     equipment: character.equipment,
@@ -61,13 +72,22 @@ export function CharacterSheet({
     proficiencyBonus: character.proficiencyBonus,
   });
 
+  const spellsReady =
+    !isSpellcaster ||
+    (character.spells.filter((s) => s.level === 0).length >=
+      WIZARD_CANTRIP_SELECTION &&
+      character.spells.filter((s) => s.level > 0).length >=
+        WIZARD_LEVEL1_SELECTION);
+  const warnedSteps = spellsReady ? [] : [4];
+
   return (
     <>
       <ScreenFlash trigger={step} />
       <Stepper
         current={step}
-        total={4}
+        total={5}
         labels={STEP_LABELS}
+        warnedSteps={warnedSteps}
         onStepChange={setStep}
       />
 
@@ -103,7 +123,22 @@ export function CharacterSheet({
         </>
       )}
 
-      {step === 4 && (
+      {step === 4 && isSpellcaster && (
+        <SpellBook
+          availableCantrips={WIZARD_SPELLS_LEVEL_0}
+          availableLevel1={WIZARD_SPELLS_LEVEL_1}
+          selectedSpells={character.spells}
+          cantripLimit={WIZARD_CANTRIP_SELECTION}
+          level1Limit={WIZARD_LEVEL1_SELECTION}
+          onSpellsChange={(spells) => updateCharacter({ spells })}
+        />
+      )}
+
+      {step === 4 && needsWeaponMastery && (
+        <WeaponMastery characterClass={character.characterClass} />
+      )}
+
+      {step === 5 && (
         <>
           <Inventory
             mode="editable"
