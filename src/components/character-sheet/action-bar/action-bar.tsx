@@ -1,8 +1,6 @@
 import { useMemo } from "react";
-import { ActionButton } from "src/components/action-button/action-button";
+import { ActionButtonGrid } from "src/components/action-button-grid/action-button-grid";
 import { Section } from "src/components/section";
-import { useArrowOffset } from "src/hooks/use-arrow-offset";
-import { useExpandable } from "src/hooks/use-expandable";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
 import styles from "./action-bar.module.css";
@@ -23,10 +21,6 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
 export function ActionBar({ characterClass }: ActionBarProps) {
-  const { expandedKey: expandedAction, toggle: toggleAction } =
-    useExpandable<string>();
-  const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
-
   const grouped = useMemo(() => {
     const classification = CLASS_DETAILS[characterClass].manualClassification;
     const availableActions = [
@@ -56,23 +50,7 @@ export function ActionBar({ characterClass }: ActionBarProps) {
           <div key={group.timing}>
             <h3 className={styles.groupLabel}>{group.label}</h3>
             {group.actions.length > 0 ? (
-              <div className={styles.actionsGrid}>
-                {group.actions.map((action) => (
-                  <ActionButton
-                    key={action.name}
-                    name={action.name}
-                    description={action.description}
-                    icon={action.icon}
-                    isExpanded={expandedAction === action.name}
-                    arrowOffset={arrowOffset}
-                    buttonRef={(el) => {
-                      if (el) buttonRefs.current.set(action.name, el);
-                      else buttonRefs.current.delete(action.name);
-                    }}
-                    onClick={() => toggleAction(action.name)}
-                  />
-                ))}
-              </div>
+              <ActionButtonGrid actions={group.actions} />
             ) : (
               <div className={styles.emptyState}>Empty</div>
             )}
