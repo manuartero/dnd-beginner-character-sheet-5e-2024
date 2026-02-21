@@ -1,0 +1,5 @@
+.placeholder {
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  font-style: italic;
+}
