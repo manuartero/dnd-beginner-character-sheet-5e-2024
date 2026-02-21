@@ -1,4 +1,5 @@
 import c from "classnames";
+import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { Section } from "src/components/section";
@@ -9,7 +10,6 @@ import {
   CLASSES_BY_CATEGORY,
   getClassIcon,
 } from "src/models/classes";
-import { SelectionGrid } from "../selection-grid";
 import styles from "./step-class.module.css";
 
 type StepClassProps = {

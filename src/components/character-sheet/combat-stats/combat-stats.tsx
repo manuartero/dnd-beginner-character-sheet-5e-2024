@@ -1,6 +1,6 @@
 import { useId } from "react";
-import { Section } from "src/components/section";
 import { CombatChip } from "src/components/combat-chip/combat-chip";
+import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { formatModifier } from "src/models/abilities";
@@ -89,9 +89,8 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
       </div>
 
       {expandedLines && (
-        <div
+        <section
           id={breakdownId}
-          role="region"
           aria-label={`${expandedLabel} breakdown`}
           className={styles.breakdown}
         >
@@ -107,7 +106,7 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
               </div>
             ))}
           </dl>
-        </div>
+        </section>
       )}
     </Section>
   );

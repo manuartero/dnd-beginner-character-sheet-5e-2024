@@ -1,3 +1,4 @@
+import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { Section } from "src/components/section";
 import { ABILITY_LIST } from "src/models/abilities";
 import {
@@ -6,7 +7,6 @@ import {
   getOriginFeatDescription,
   getSkillLabel,
 } from "src/models/backgrounds";
-import { SelectionGrid } from "../selection-grid";
 import styles from "./step-origin.module.css";
 
 import type { AbilityName } from "src/models/abilities";
