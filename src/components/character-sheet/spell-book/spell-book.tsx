@@ -1,6 +1,7 @@
 import c from "classnames";
 import { Fragment, useState } from "react";
 import { SpellCards } from "src/components/character-sheet/spell-cards/spell-cards";
+import descriptionPopoverStyles from "src/components/description-popover/description-popover.module.css";
 import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
@@ -252,9 +253,9 @@ function SpellSelectionGrid({
               </button>
 
               {expandedSpell && index === expandedRowEndIndex && (
-                <div className={styles.descriptionRow}>
+                <div className={descriptionPopoverStyles.descriptionRow}>
                   <span
-                    className={styles.descriptionArrow}
+                    className={descriptionPopoverStyles.descriptionArrow}
                     style={{ left: `${arrowOffset}px` }}
                   />
                   <div className={styles.descriptionPanel}>

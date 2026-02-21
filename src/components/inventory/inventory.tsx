@@ -4,6 +4,7 @@ import { Section } from "src/components/section";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./inventory.module.css";
+import { InventoryGroupList } from "./inventory-group-list";
 
 import type { Equipment } from "src/models/equipment";
 
@@ -22,18 +23,23 @@ type EditableProps = {
 
 type InventoryProps = ReadonlyProps | EditableProps;
 
+type IndexedEquipment = {
+  index: number;
+  item: Equipment;
+};
+
 type GroupedInventory = {
-  armsAndArmor: Equipment[];
-  adventureGear: Equipment[];
+  armsAndArmor: IndexedEquipment[];
+  adventureGear: IndexedEquipment[];
   money: Equipment | null;
 };
 
 function groupEquipment(equipment: Equipment[]): GroupedInventory {
-  const armsAndArmor: Equipment[] = [];
-  const adventureGear: Equipment[] = [];
+  const armsAndArmor: IndexedEquipment[] = [];
+  const adventureGear: IndexedEquipment[] = [];
   let money: Equipment | null = null;
 
-  for (const item of equipment) {
+  for (const [index, item] of equipment.entries()) {
     if (item.type === "money") {
       money = item;
     } else if (
@@ -41,9 +47,9 @@ function groupEquipment(equipment: Equipment[]): GroupedInventory {
       item.type === "armor" ||
       item.type === "shield"
     ) {
-      armsAndArmor.push(item);
+      armsAndArmor.push({ index, item });
     } else {
-      adventureGear.push(item);
+      adventureGear.push({ index, item });
     }
   }
 
@@ -81,61 +87,47 @@ export function Inventory(props: InventoryProps) {
 
   return (
     <Section title={title}>
-      {armsAndArmor.length > 0 && (
-        <div className={styles.subsection}>
-          <h3 className={styles.subsectionLabel}>Arms & Armor</h3>
-          <ul className={styles.itemList} aria-label="Arms and armor">
-            {armsAndArmor.map((item) => {
-              const idx = equipment.indexOf(item);
-              return (
-                <li key={`${item.name}-${idx}`} className={styles.itemRow}>
-                  {removingItemIndex === idx ? (
-                    <InlineConfirm
-                      label={`Remove ${item.name} from Inventory?`}
-                      onConfirm={() => handleRemove(idx)}
-                      onCancel={() => setRemovingItemIndex(null)}
-                    />
-                  ) : (
-                    <ItemContent
-                      item={item}
-                      mode={mode}
-                      onRemoveRequest={() => setRemovingItemIndex(idx)}
-                    />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <InventoryGroupList
+        title="Arms & Armor"
+        ariaLabel="Arms and armor"
+        items={armsAndArmor}
+        renderItem={(item, index) =>
+          removingItemIndex === index ? (
+            <InlineConfirm
+              label={`Remove ${item.name} from Inventory?`}
+              onConfirm={() => handleRemove(index)}
+              onCancel={() => setRemovingItemIndex(null)}
+            />
+          ) : (
+            <ItemContent
+              item={item}
+              mode={mode}
+              onRemoveRequest={() => setRemovingItemIndex(index)}
+            />
+          )
+        }
+      />
 
-      {adventureGear.length > 0 && (
-        <div className={styles.subsection}>
-          <h3 className={styles.subsectionLabel}>Adventure Gear</h3>
-          <ul className={styles.itemList} aria-label="Adventure gear">
-            {adventureGear.map((item) => {
-              const idx = equipment.indexOf(item);
-              return (
-                <li key={`${item.name}-${idx}`} className={styles.itemRow}>
-                  {removingItemIndex === idx ? (
-                    <InlineConfirm
-                      label={`Remove ${item.name} from Inventory?`}
-                      onConfirm={() => handleRemove(idx)}
-                      onCancel={() => setRemovingItemIndex(null)}
-                    />
-                  ) : (
-                    <ItemContent
-                      item={item}
-                      mode={mode}
-                      onRemoveRequest={() => setRemovingItemIndex(idx)}
-                    />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <InventoryGroupList
+        title="Adventure Gear"
+        ariaLabel="Adventure gear"
+        items={adventureGear}
+        renderItem={(item, index) =>
+          removingItemIndex === index ? (
+            <InlineConfirm
+              label={`Remove ${item.name} from Inventory?`}
+              onConfirm={() => handleRemove(index)}
+              onCancel={() => setRemovingItemIndex(null)}
+            />
+          ) : (
+            <ItemContent
+              item={item}
+              mode={mode}
+              onRemoveRequest={() => setRemovingItemIndex(index)}
+            />
+          )
+        }
+      />
 
       {money && (
         <div className={styles.subsection}>

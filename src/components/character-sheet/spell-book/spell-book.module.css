@@ -120,33 +120,6 @@
   color: var(--shade-2);
 }
 
-/* Detail panel — mirrors action-button descriptionRow pattern */
-
-.descriptionRow {
-  grid-column: 1 / -1;
-  position: relative;
-}
-
-/* 8-bit upward arrow (matches action-button.module.css) */
-.descriptionArrow {
-  position: absolute;
-  top: -6px;
-  transform: translateX(-50%);
-  display: block;
-  width: 2px;
-  height: 2px;
-  background: var(--shade-3);
-  box-shadow:
-    -2px 2px 0 var(--shade-3),
-    0px 2px 0 var(--shade-3),
-    2px 2px 0 var(--shade-3),
-    -4px 4px 0 var(--shade-3),
-    -2px 4px 0 var(--shade-3),
-    0px 4px 0 var(--shade-3),
-    2px 4px 0 var(--shade-3),
-    4px 4px 0 var(--shade-3);
-}
-
 .descriptionPanel {
   display: flex;
   flex-direction: column;

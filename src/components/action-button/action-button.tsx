@@ -1,3 +1,4 @@
+import descriptionPopoverStyles from "src/components/description-popover/description-popover.module.css";
 import { getIconPath } from "src/models/icons";
 import styles from "./action-button.module.css";
 
@@ -41,9 +42,9 @@ export function ActionButton({
         <span className={styles.actionLabel}>{name}</span>
       </button>
       {isExpanded && (
-        <div className={styles.descriptionRow}>
+        <div className={descriptionPopoverStyles.descriptionRow}>
           <span
-            className={styles.descriptionArrow}
+            className={descriptionPopoverStyles.descriptionArrow}
             style={{ left: `${arrowOffset}px` }}
           />
           <p className={styles.description}>{description}</p>
