@@ -92,7 +92,10 @@ type SpellCardProps = {
 };
 
 function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
-  const damageColor = spell.damage ? DAMAGE_COLOR : undefined;
+  const simplifiedComponents = simplifyComponents(spell.components);
+  const formattedDescription = formatDescription(spell.description);
+  const spellResult = formatSpellResult(spell);
+  const resultColor = spell.damage ? DAMAGE_COLOR : undefined;
 
   return (
     <button
@@ -110,19 +113,26 @@ function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
         )}
         <div className={styles.cardInfo}>
           <span className={styles.spellName}>{spell.name}</span>
-          <span className={styles.spellMeta}>{spell.range}</span>
+          <span className={styles.spellMeta}>{spell.castingTime}</span>
         </div>
+        {spellResult && (
+          <span className={styles.resultBadge} style={{ color: resultColor }}>
+            {spellResult}
+          </span>
+        )}
         {isStaged && <span className={styles.stagedTag}>Staged</span>}
       </div>
 
-      {spell.damage && (
-        <div className={styles.damageBadge} style={{ color: damageColor }}>
-          {spell.damage.dice} {spell.damage.type}
-        </div>
-      )}
-
       {isExpanded && (
         <div className={styles.expanded}>
+          <div className={styles.detailRow}>
+            <span className={styles.detailLabel}>School</span>
+            <span>{spell.school}</span>
+          </div>
+          <div className={styles.detailRow}>
+            <span className={styles.detailLabel}>Range</span>
+            <span>{spell.range}</span>
+          </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Casting</span>
             <span>{spell.castingTime}</span>
@@ -133,11 +143,31 @@ function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
           </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Components</span>
-            <span>{spell.components}</span>
+            <span>{simplifiedComponents}</span>
           </div>
-          <p className={styles.descriptionText}>{spell.description}</p>
+          <p className={styles.descriptionText}>{formattedDescription}</p>
         </div>
       )}
     </button>
   );
+}
+
+function simplifyComponents(components: string): string {
+  return components.replace(/\s*\([^)]*\)/g, "").trim();
+}
+
+function formatDescription(description: string): string {
+  return description.replace(/\. (?=[A-Z])/g, ".\n\n");
+}
+
+function formatSpellResult(spell: Spell): string {
+  const damagePart = spell.damage
+    ? `${spell.damage.dice} ${spell.damage.type}`
+    : "";
+  const savePart = spell.save ? spell.save.replace(/\+/g, "").trim() : "";
+
+  if (damagePart && savePart) {
+    return `${damagePart} • ${savePart}`;
+  }
+  return damagePart || savePart;
 }
