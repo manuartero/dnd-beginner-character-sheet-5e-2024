@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm);
   background: var(--shade-1);
   border: 2px solid var(--shade-3);
   text-align: left;
@@ -52,17 +52,22 @@
 .cardInfo {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 4px;
   flex: 1;
+  min-width: 0;
 }
 
 .spellName {
   font-weight: 600;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
 }
 
 .spellMeta {
   font-size: var(--font-size-xs);
   color: var(--shade-2);
+  line-height: 1.35;
 }
 
 .stagedTag {
@@ -74,16 +79,28 @@
   color: var(--shade-2);
 }
 
-.damageBadge {
-  font-size: var(--font-size-sm);
+.resultBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 110px;
+  margin-left: auto;
+  font-size: var(--font-size-xs);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-align: right;
+  white-space: normal;
 }
 
 .expanded {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  border-top: 1px solid var(--shade-3);
+  gap: var(--space-sm);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+  padding: var(--space-sm);
   padding-top: var(--space-sm);
   margin-top: var(--space-xs);
 }
@@ -101,6 +118,7 @@
 .descriptionText {
   font-size: var(--font-size-sm);
   color: var(--shade-2);
-  line-height: 1.4;
-  margin-top: var(--space-xs);
+  line-height: 1.7;
+  margin-top: 0;
+  white-space: pre-line;
 }

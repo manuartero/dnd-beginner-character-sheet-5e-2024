@@ -93,6 +93,14 @@ export function SpellBook({
             Prepare spells below to add them to your spell book.
           </p>
         )}
+        <button
+          type="button"
+          className={styles.commitButton}
+          disabled={stagedSpells.length === 0}
+          onClick={commitStagedSpells}
+        >
+          Commit to Spell Book ({stagedSpells.length})
+        </button>
       </Section>
 
       <Section title="Prepare Spells">
@@ -154,15 +162,6 @@ export function SpellBook({
             }
           />
         )}
-
-        <button
-          type="button"
-          className={styles.commitButton}
-          disabled={stagedSpells.length === 0}
-          onClick={commitStagedSpells}
-        >
-          Commit to Spell Book ({stagedSpells.length})
-        </button>
       </Section>
     </>
   );
