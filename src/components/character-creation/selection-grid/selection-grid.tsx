@@ -1,5 +1,5 @@
 import c from "classnames";
-import cardStyles from "../card.module.css";
+import cardStyles from "src/components/character-creation/card.module.css";
 
 type IconSize = "default" | "large";
 

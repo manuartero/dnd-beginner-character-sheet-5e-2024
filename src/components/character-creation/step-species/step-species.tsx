@@ -1,3 +1,4 @@
+import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { DetailsPanel } from "src/components/details-panel";
 import { Section } from "src/components/section";
 import {
@@ -5,7 +6,6 @@ import {
   SPECIES_DETAILS,
   SPECIES_LIST,
 } from "src/models/species";
-import { SelectionGrid } from "../selection-grid";
 import styles from "./step-species.module.css";
 
 import type { Species } from "src/models/species";

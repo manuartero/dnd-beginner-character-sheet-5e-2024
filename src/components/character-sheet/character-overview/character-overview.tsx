@@ -1,6 +1,6 @@
-import { AbilityScores } from "../ability-scores";
-import { CharacterHeader } from "../character-header";
-import { HpTracker } from "../hp-tracker";
+import { AbilityScores } from "src/components/character-sheet/ability-scores";
+import { CharacterHeader } from "src/components/character-sheet/character-header";
+import { HpTracker } from "src/components/character-sheet/hp-tracker";
 
 import type { Character } from "src/models/character";
 

@@ -1,4 +1,4 @@
-import styles from "../character-creation.module.css";
+import styles from "src/components/character-creation/character-creation.module.css";
 
 type CreationActionsProps = {
   onBack?: () => void;
