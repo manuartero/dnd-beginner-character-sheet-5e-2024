@@ -3,6 +3,7 @@ import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { Stepper } from "src/components/stepper/stepper";
 import recommendedData from "src/data/recommended-scores.json";
+import { computeProficiencyBonus } from "src/models/abilities";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
 import { computeHpMax } from "src/models/character-stats";
 import { saveCharacter } from "src/models/character-storage";
@@ -112,7 +113,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       abilityScores: draft.abilityScores,
       hp: { current: hpMax, max: hpMax },
       ac: 10,
-      proficiencyBonus: 2,
+      proficiencyBonus: computeProficiencyBonus(1),
       spells: [],
       equipment: resolveStartingEquipment(draft.characterClass),
     };

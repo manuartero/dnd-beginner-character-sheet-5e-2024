@@ -73,7 +73,7 @@ export function StepAbilities({
         </div>
 
         <div className={styles.grid}>
-          {ABILITY_LIST.map(({ key, short }) => {
+          {ABILITY_LIST.map(({ key }) => {
             const bonus = abilityBonuses[key] ?? 0;
 
             if (mode === "quick-start") {
@@ -85,15 +85,12 @@ export function StepAbilities({
                   mode="creation"
                   readOnly
                   abilityKey={key}
-                  short={short}
                   score={baseScore + bonus}
                   isFlipped={flippedAbility === key}
-                  proficiencyBonus={2}
                   onToggle={toggleFlip}
                   rawScore={raw}
                   isPrimary={primaryAbilities.includes(key)}
                   bonus={bonus}
-                  showError={false}
                   onScoreChange={handleScoreChange}
                   onBlur={handleBlur}
                 />
@@ -108,10 +105,8 @@ export function StepAbilities({
                   key={key}
                   mode="assign"
                   abilityKey={key}
-                  short={short}
                   score={baseScore + bonus}
                   isFlipped={flippedAbility === key}
-                  proficiencyBonus={2}
                   onToggle={toggleFlip}
                   isPrimary={primaryAbilities.includes(key)}
                   bonus={bonus}
@@ -130,7 +125,6 @@ export function StepAbilities({
                 key={key}
                 mode="creation"
                 abilityKey={key}
-                short={short}
                 score={baseScore + bonus}
                 isFlipped={flippedAbility === key}
                 proficiencyBonus={2}

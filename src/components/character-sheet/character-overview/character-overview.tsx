@@ -27,10 +27,7 @@ export function CharacterOverview({
         editable={false}
         onCurrentChange={onHpChange}
       />
-      <AbilityScores
-        scores={character.abilityScores}
-        proficiencyBonus={character.proficiencyBonus}
-      />
+      <AbilityScores scores={character.abilityScores} />
     </>
   );
 }

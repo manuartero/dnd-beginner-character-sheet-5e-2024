@@ -14,6 +14,10 @@ export const ABILITY_LIST: {
   { key: "cha", label: "Charisma", short: "CHA" },
 ];
 
+export function computeProficiencyBonus(level: number): number {
+  return Math.ceil(level / 4) + 1;
+}
+
 export function computeModifier(score: number): number {
   return Math.floor((score - 10) / 2);
 }
