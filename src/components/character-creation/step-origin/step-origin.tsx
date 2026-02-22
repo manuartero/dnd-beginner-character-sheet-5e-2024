@@ -1,5 +1,5 @@
-import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { Section } from "src/components/section";
+import { SelectionGrid } from "src/components/selection-grid";
 import { ABILITY_LIST } from "src/models/abilities";
 import {
   BACKGROUND_LIST,
@@ -30,11 +30,13 @@ export function StepOrigin({
   return (
     <Section title="Background">
       <SelectionGrid
-        items={BACKGROUND_LIST}
+        items={BACKGROUND_LIST.map(({ key, label }) => ({
+          key,
+          label,
+          icon: getBackgroundIcon(key as Background),
+        }))}
         selectedKey={background}
         onSelect={(key) => onBackgroundChange(key as Background)}
-        columns={4}
-        getIcon={(key) => getBackgroundIcon(key as Background)}
       />
       {selected && (
         <div className={styles.originInfo}>

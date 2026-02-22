@@ -1,3 +1,13 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--space-sm);
+}
+
+.gridLarge {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -19,8 +29,13 @@
 }
 
 .cardIcon {
-  width: var(--icon-size);
-  height: var(--icon-size);
+  width: 64px;
+  height: 64px;
+}
+
+.cardIconLarge {
+  width: 96px;
+  height: 96px;
 }
 
 .cardLabel {
