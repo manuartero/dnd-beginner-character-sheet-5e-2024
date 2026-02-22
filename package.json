@@ -1,16 +1,27 @@
 {
-  "name": "dnd-beginner-sheet-5e-2024",
-  "description": "A simple, interactive D&D 5e character sheet built for new players and the 2024 rules revision",
+  "name": "dnd-beginner-character-sheet-5e-2024",
+  "description": "A simple, interactive D&D 5e character sheet built for new players and the 2024 rules",
   "type": "module",
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
   "author": "Manu Artero <manutero.developer@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manuartero/dnd-beginner-character-sheet-5e-2024.git"
+  },
+  "homepage": "https://github.com/manuartero/dnd-beginner-character-sheet-5e-2024#readme",
+  "bugs": {
+    "url": "https://github.com/manuartero/dnd-beginner-character-sheet-5e-2024/issues"
+  },
   "keywords": [
     "dnd",
     "d&d",
     "dungeons-and-dragons",
     "character-sheet",
+    "character-sheet-builder",
+    "character-sheet-generator",
+    "simple-character-sheet",
     "5e",
     "5th-edition",
     "2024",
