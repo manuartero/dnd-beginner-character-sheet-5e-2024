@@ -3,6 +3,7 @@ import { play8BitSound, type SoundVariant } from "src/audio/play-sound";
 import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
+import { ScreenFlashProvider } from "src/components/screen-flash/screen-flash-context";
 import { ScreenFlash } from "src/components/screen-flash/screen-flash";
 import { TopMenu } from "src/components/top-menu";
 import { deleteCharacter, loadCharacters } from "src/models/character-storage";
@@ -77,34 +78,38 @@ export function App() {
   }
 
   return (
-    <div className={styles.layout}>
-      <ScreenFlash
-        trigger={view.kind === "character-view" ? view.characterId : view.kind}
-      />
-      <TopMenu
-        title={getMenuTitle()}
-        showBack={view.kind !== "character-list"}
-        onBack={goToList}
-      />
-      <div className={styles.content}>
-        {view.kind === "character-list" && (
-          <CharacterList
-            characters={characters}
-            onSelect={handleSelect}
-            onNew={handleNew}
-            onDelete={handleDelete}
-          />
-        )}
-        {view.kind === "character-creation" && (
-          <CharacterCreation onSave={handleSave} />
-        )}
-        {view.kind === "character-view" && activeCharacter && (
-          <CharacterSheet
-            character={activeCharacter}
-            onCharacterUpdate={handleCharacterUpdate}
-          />
-        )}
+    <ScreenFlashProvider>
+      <div className={styles.layout}>
+        <ScreenFlash
+          trigger={
+            view.kind === "character-view" ? view.characterId : view.kind
+          }
+        />
+        <TopMenu
+          title={getMenuTitle()}
+          showBack={view.kind !== "character-list"}
+          onBack={goToList}
+        />
+        <div className={styles.content}>
+          {view.kind === "character-list" && (
+            <CharacterList
+              characters={characters}
+              onSelect={handleSelect}
+              onNew={handleNew}
+              onDelete={handleDelete}
+            />
+          )}
+          {view.kind === "character-creation" && (
+            <CharacterCreation onSave={handleSave} />
+          )}
+          {view.kind === "character-view" && activeCharacter && (
+            <CharacterSheet
+              character={activeCharacter}
+              onCharacterUpdate={handleCharacterUpdate}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </ScreenFlashProvider>
   );
 }
