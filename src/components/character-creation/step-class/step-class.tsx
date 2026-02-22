@@ -1,8 +1,8 @@
 import c from "classnames";
-import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid";
 import { Section } from "src/components/section";
+import { SelectionGrid } from "src/components/selection-grid";
 import {
   type CharacterClass,
   CLASS_DETAILS,
@@ -47,11 +47,13 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
           <div key={group.classification} className={styles.group}>
             <h3 className={styles.groupLabel}>{group.label}</h3>
             <SelectionGrid
-              items={group.classes}
+              items={group.classes.map(({ key, label }) => ({
+                key,
+                label,
+                icon: getClassIcon(key as CharacterClass),
+              }))}
               selectedKey={characterClass}
               onSelect={(key) => onClassChange(key as CharacterClass)}
-              columns={4}
-              getIcon={(key) => getClassIcon(key as CharacterClass)}
             />
           </div>
         ))}

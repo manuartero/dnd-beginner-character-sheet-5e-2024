@@ -1,6 +1,6 @@
 import { AbilityCard } from "src/components/ability-card";
-import { RetroRadio } from "src/components/character-creation/retro-radio";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
+import { RetroRadio } from "src/components/retro-radio";
 import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import {

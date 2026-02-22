@@ -1,6 +1,6 @@
-import { SelectionGrid } from "src/components/character-creation/selection-grid";
 import { DetailsPanel } from "src/components/details-panel";
 import { Section } from "src/components/section";
+import { SelectionGrid } from "src/components/selection-grid";
 import {
   getSpeciesIcon,
   SPECIES_DETAILS,
@@ -22,11 +22,13 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
     <>
       <Section title="Species">
         <SelectionGrid
-          items={SPECIES_LIST}
+          items={SPECIES_LIST.map(({ key, label }) => ({
+            key,
+            label,
+            icon: getSpeciesIcon(key as Species),
+          }))}
           selectedKey={race}
           onSelect={(key) => onRaceChange(key as Species)}
-          columns={3}
-          getIcon={(key) => getSpeciesIcon(key as Species)}
           iconSize="large"
         />
       </Section>
