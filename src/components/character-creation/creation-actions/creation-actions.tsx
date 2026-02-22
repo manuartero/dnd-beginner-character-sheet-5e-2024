@@ -1,19 +1,19 @@
 import styles from "src/components/character-creation/character-creation.module.css";
 
 type CreationActionsProps = {
+  nextLabel?: string;
+  nextSound?: string;
+  nextDisabled?: boolean;
   onBack?: () => void;
   onNext: () => void;
-  nextLabel?: string;
-  nextDisabled?: boolean;
-  nextSound?: string;
 };
 
 export function CreationActions({
+  nextLabel = "Next",
+  nextSound,
+  nextDisabled,
   onBack,
   onNext,
-  nextLabel = "Next",
-  nextDisabled,
-  nextSound,
 }: CreationActionsProps) {
   return (
     <div className={styles.actions}>
