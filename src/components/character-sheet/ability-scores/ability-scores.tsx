@@ -11,28 +11,22 @@ import type {
 
 type AbilityScoresProps = {
   scores: Scores;
-  proficiencyBonus?: number;
 };
 
-export function AbilityScores({
-  scores,
-  proficiencyBonus = 2,
-}: AbilityScoresProps) {
+export function AbilityScores({ scores }: AbilityScoresProps) {
   const { expandedKey: flippedAbility, toggle: toggleFlip } =
     useExpandable<AbilityName>();
 
   return (
     <Section title="Abilities">
       <div className={styles.grid}>
-        {ABILITY_LIST.map(({ key, short }) => (
+        {ABILITY_LIST.map(({ key }) => (
           <AbilityCard
             key={key}
             mode="display"
             abilityKey={key}
-            short={short}
             score={scores[key]}
             isFlipped={flippedAbility === key}
-            proficiencyBonus={proficiencyBonus}
             onToggle={toggleFlip}
           />
         ))}

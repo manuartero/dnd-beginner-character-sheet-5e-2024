@@ -1,6 +1,11 @@
 import c from "classnames";
 import { ScorePicker } from "src/components/character-creation/score-picker";
-import { computeModifier, formatModifier } from "src/models/abilities";
+import {
+  ABILITY_LIST,
+  computeModifier,
+  computeProficiencyBonus,
+  formatModifier,
+} from "src/models/abilities";
 import {
   computeSkillModifier,
   DEFAULT_PROFICIENCIES,
@@ -10,12 +15,14 @@ import styles from "./ability-card.module.css";
 
 import type { AbilityName } from "src/models/abilities";
 
+const ABILITY_SHORTS = Object.fromEntries(
+  ABILITY_LIST.map(({ key, short }) => [key, short]),
+) as Record<AbilityName, string>;
+
 type _BaseProps = {
   abilityKey: AbilityName;
-  short: string;
   score: number;
-  isFlipped: boolean;
-  proficiencyBonus: number;
+  isFlipped?: boolean;
   onToggle: (key: AbilityName) => void;
 };
 
@@ -26,9 +33,9 @@ type AbilityCardDisplayProps = _BaseProps & {
 type AbilityCardCreationProps = _BaseProps & {
   mode: "creation";
   rawScore: string;
-  isPrimary: boolean;
+  isPrimary?: boolean;
   bonus: number;
-  showError: boolean;
+  showError?: boolean;
   readOnly?: boolean;
   onScoreChange: (ability: AbilityName, value: string) => void;
   onBlur: (ability: AbilityName) => void;
@@ -36,7 +43,7 @@ type AbilityCardCreationProps = _BaseProps & {
 
 type AbilityCardAssignProps = _BaseProps & {
   mode: "assign";
-  isPrimary: boolean;
+  isPrimary?: boolean;
   bonus: number;
   availableValues: number[];
   selectedValue: number | null;
@@ -48,15 +55,30 @@ type AbilityCardProps =
   | AbilityCardCreationProps
   | AbilityCardAssignProps;
 
+/**
+ * AbilityCard — ability score box / toggle button
+ *
+ *  [ STR ]          [ DEX ]
+ *  +2               +1
+ *                   (expanded)
+ *                   +-----------+
+ *                   | Acrobatics|  +3
+ *                   | Stealth   |  +1
+ *                   +-----------+
+ *
+ *  modes: "display" | "creation" | "assign"
+ *  flips open to show linked skill modifiers
+ */
 export function AbilityCard(props: AbilityCardProps) {
-  const { abilityKey, short, score, isFlipped, proficiencyBonus, onToggle } =
-    props;
+  const { abilityKey, score, isFlipped = false, onToggle } = props;
+  const short = ABILITY_SHORTS[abilityKey];
   const mod = computeModifier(score);
+  const proficiencyBonus = computeProficiencyBonus(1);
   const skills = skillsForAbility(abilityKey);
   const hasSkills = skills.length > 0;
 
   const isPrimary =
-    (props.mode === "creation" || props.mode === "assign") && props.isPrimary;
+    (props.mode === "creation" || props.mode === "assign") && !!props.isPrimary;
 
   const cardClass = c(
     styles.abilityCard,
@@ -65,9 +87,88 @@ export function AbilityCard(props: AbilityCardProps) {
     isPrimary && styles.abilityCardPrimary,
   );
 
-  const content = (
+  // assign mode has interactive inner buttons (ScorePicker tiles) — the outer
+  // wrapper must be a div; the label itself becomes the toggle button instead.
+  if (hasSkills && props.mode === "assign") {
+    return (
+      <div className={cardClass}>
+        <AbilityCardContent
+          {...props}
+          mod={mod}
+          proficiencyBonus={proficiencyBonus}
+          skills={skills}
+          short={short}
+          labelIsToggle
+        />
+      </div>
+    );
+  }
+
+  if (hasSkills) {
+    return (
+      <button
+        type="button"
+        className={cardClass}
+        aria-label={short}
+        aria-expanded={isFlipped}
+        onClick={() => onToggle(abilityKey)}
+      >
+        <AbilityCardContent
+          {...props}
+          mod={mod}
+          proficiencyBonus={proficiencyBonus}
+          skills={skills}
+          short={short}
+        />
+      </button>
+    );
+  }
+
+  return (
+    <div className={cardClass}>
+      <AbilityCardContent
+        {...props}
+        mod={mod}
+        proficiencyBonus={proficiencyBonus}
+        skills={skills}
+        short={short}
+      />
+    </div>
+  );
+}
+
+type AbilityCardContentProps = AbilityCardProps & {
+  mod: number;
+  proficiencyBonus: number;
+  skills: { name: string; label: string }[];
+  short: string;
+  labelIsToggle?: boolean;
+};
+
+function AbilityCardContent({
+  mod,
+  proficiencyBonus,
+  skills,
+  short,
+  labelIsToggle = false,
+  ...props
+}: AbilityCardContentProps) {
+  const { isFlipped = false, abilityKey, onToggle } = props;
+  return (
     <>
-      <span className={styles.label}>{short}</span>
+      {labelIsToggle ? (
+        <button
+          type="button"
+          className={styles.label}
+          aria-label={short}
+          aria-expanded={isFlipped}
+          onClick={() => onToggle(abilityKey)}
+        >
+          {short}
+        </button>
+      ) : (
+        <span className={styles.label}>{short}</span>
+      )}
       {isFlipped ? (
         <SkillList
           skills={skills}
@@ -75,7 +176,7 @@ export function AbilityCard(props: AbilityCardProps) {
           proficiencyBonus={proficiencyBonus}
         />
       ) : props.mode === "display" ? (
-        <DisplayFront score={score} mod={mod} />
+        <DisplayFront score={props.score} mod={mod} />
       ) : props.mode === "assign" ? (
         <AssignFront
           abilityKey={abilityKey}
@@ -97,50 +198,13 @@ export function AbilityCard(props: AbilityCardProps) {
           rawScore={props.rawScore}
           mod={mod}
           bonus={props.bonus}
-          showError={props.showError}
+          showError={props.showError ?? false}
           onScoreChange={props.onScoreChange}
           onBlur={props.onBlur}
         />
       )}
     </>
   );
-
-  if (props.mode === "display" && hasSkills) {
-    return (
-      <button
-        type="button"
-        className={cardClass}
-        onClick={() => onToggle(abilityKey)}
-      >
-        {content}
-      </button>
-    );
-  }
-
-  if (props.mode === "creation" || props.mode === "assign") {
-    return (
-      <button
-        className={cardClass}
-        type="button"
-        onClick={hasSkills ? () => onToggle(abilityKey) : undefined}
-        onKeyDown={
-          hasSkills
-            ? (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onToggle(abilityKey);
-                }
-              }
-            : undefined
-        }
-        tabIndex={hasSkills ? 0 : undefined}
-      >
-        {content}
-      </button>
-    );
-  }
-
-  return <div className={cardClass}>{content}</div>;
 }
 
 type DisplayFrontProps = {
@@ -209,7 +273,7 @@ function SkillList({
   proficiencyBonus,
 }: SkillListProps) {
   return (
-    <div className={styles.skillList}>
+    <ul className={styles.skillList}>
       {skills.map((skill) => {
         const isProficient = DEFAULT_PROFICIENCIES.includes(
           skill.name as Parameters<typeof DEFAULT_PROFICIENCIES.includes>[0],
@@ -220,7 +284,7 @@ function SkillList({
           isProficient,
         });
         return (
-          <div
+          <li
             key={skill.name}
             className={c(
               styles.skillRow,
@@ -231,10 +295,10 @@ function SkillList({
             <span className={styles.skillModifier}>
               {formatModifier(skillMod)}
             </span>
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
 
