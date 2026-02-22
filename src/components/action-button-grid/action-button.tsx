@@ -8,17 +8,30 @@ type ActionButtonProps = {
   name: string;
   description: string;
   icon?: string;
-  isExpanded: boolean;
+  isExpanded?: boolean;
   arrowOffset: number;
   buttonRef: (el: HTMLButtonElement | null) => void;
   onClick: () => void;
 };
 
+/**
+ * ActionButton — labelled button that expands an inline description popover
+ *
+ *  [attack] [dodge] [help]
+ *      |
+ *      +--- arrow points to the expanded button (arrowOffset px from grid left)
+ *
+ *  +--------------------------------+
+ *  | Make one melee or ranged attack.|
+ *  +--------------------------------+
+ *
+ *  buttonRef + arrowOffset are wired by useArrowOffset in the parent
+ */
 export function ActionButton({
   name,
   description,
   icon,
-  isExpanded,
+  isExpanded = false,
   arrowOffset,
   buttonRef,
   onClick,
