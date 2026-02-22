@@ -1,6 +1,6 @@
-import { ActionButton } from "src/components/action-button/action-button";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
+import { ActionButton } from "./action-button";
 import styles from "./action-button-grid.module.css";
 
 type GridAction = {
