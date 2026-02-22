@@ -39,3 +39,35 @@
   width: 60px;
   flex-shrink: 0;
 }
+
+.actions {
+  width: 60px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.pixelIcon {
+  fill: currentColor;
+  display: block;
+}
+
+.iconButtonActive {
+  color: var(--shade-3);
+}
+
+.iconButtonInactive {
+  color: var(--shade-2);
+  opacity: 0.4;
+}
