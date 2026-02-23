@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useScreenFlash } from "./screen-flash-context";
 import styles from "./screen-flash.module.css";
+import { useScreenFlash } from "./screen-flash-context";
 
 type ScreenFlashProps = {
   trigger: number | string;

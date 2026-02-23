@@ -22,6 +22,11 @@
   color: var(--shade-2);
 }
 
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .actionLabel {
   font-size: var(--font-size-xs);
   text-align: center;

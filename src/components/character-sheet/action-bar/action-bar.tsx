@@ -1,15 +1,20 @@
 import { useMemo } from "react";
 import { ActionButtonGrid } from "src/components/action-button-grid/action-button-grid";
+import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { Section } from "src/components/section";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
+import { groupSpellsByTiming } from "src/models/spell-timing";
 import styles from "./action-bar.module.css";
 
+import type { GridAction } from "src/components/action-button-grid/action-button-grid";
 import type { ActionTiming } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
+import type { Spell } from "src/models/spells";
 
 type ActionBarProps = {
   characterClass: CharacterClass;
+  spells: Spell[];
 };
 
 const TIMING_LABELS: Record<ActionTiming, string> = {
@@ -20,9 +25,18 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
 
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
-export function ActionBar({ characterClass }: ActionBarProps) {
+const CAST_SPELL_ICON = "combat.common.actions.cast-spell";
+const CAST_SPELL_DESCRIPTION =
+  "Cast one of your prepared spells using the appropriate casting time.";
+
+export function ActionBar({ characterClass, spells }: ActionBarProps) {
+  const classification = CLASS_DETAILS[characterClass].manualClassification;
+  const isSpellcaster =
+    classification === "spell-caster" || classification === "versatile";
+
+  const spellsByTiming = useMemo(() => groupSpellsByTiming(spells), [spells]);
+
   const grouped = useMemo(() => {
-    const classification = CLASS_DETAILS[characterClass].manualClassification;
     const availableActions = [
       ...UNIVERSAL_ACTIONS,
       ...CLASS_ACTIONS.filter((a) => {
@@ -36,12 +50,38 @@ export function ActionBar({ characterClass }: ActionBarProps) {
         return true;
       }),
     ];
-    return TIMING_ORDER.map((timing) => ({
-      timing,
-      label: TIMING_LABELS[timing],
-      actions: availableActions.filter((a) => a.timing === timing),
-    }));
-  }, [characterClass]);
+
+    return TIMING_ORDER.map((timing) => {
+      const baseActions: GridAction[] = availableActions
+        .filter((a) => a.timing === timing)
+        .map((a) => ({
+          name: a.name,
+          description: a.description,
+          icon: a.icon,
+        }));
+
+      if (isSpellcaster) {
+        const timingSpells = spellsByTiming[timing];
+        const hasSpells = timingSpells.length > 0;
+
+        baseActions.push({
+          name: "Cast a Spell",
+          description: CAST_SPELL_DESCRIPTION,
+          icon: CAST_SPELL_ICON,
+          disabled: !hasSpells,
+          renderExpanded: hasSpells
+            ? () => <CastSpellGrid spells={timingSpells} />
+            : undefined,
+        });
+      }
+
+      return {
+        timing,
+        label: TIMING_LABELS[timing],
+        actions: baseActions,
+      };
+    });
+  }, [characterClass, classification, isSpellcaster, spellsByTiming]);
 
   return (
     <Section title="Combat">

@@ -29,12 +29,5 @@
     "timing": "action",
     "description": "Once per turn, deal extra 1d6 damage when you hit with a finesse or ranged weapon and have advantage, or an ally is within 5 ft of the target.",
     "classRestriction": "rogue"
-  },
-  {
-    "name": "Cast a Spell",
-    "timing": "action",
-    "icon": "combat.common.actions.cast-spell",
-    "description": "Cast one of your prepared spells using the appropriate casting time.",
-    "classificationRestriction": ["spell-caster", "versatile"]
   }
 ]

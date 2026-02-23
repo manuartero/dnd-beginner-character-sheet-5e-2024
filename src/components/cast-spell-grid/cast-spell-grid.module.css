@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.groupLabel {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.spellList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+  text-align: left;
+  width: 100%;
+}
+
+.entryExpanded {
+  border-color: var(--shade-2);
+}
+
+.entryHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+}
+
+.spellName {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
+  flex: 1;
+  min-width: 0;
+}
+
+.resultBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 110px;
+  margin-left: auto;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-align: right;
+  white-space: normal;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--shade-3);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.detailLabel {
+  color: var(--shade-2);
+}
+
+.keyword {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--shade-2);
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  line-height: 1.7;
+  margin: 0;
+}
