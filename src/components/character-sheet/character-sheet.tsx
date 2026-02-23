@@ -58,7 +58,6 @@ export function CharacterSheet({
     character.characterClass,
   );
 
-  const combatSpells = character.spells.filter((s) => !s.ritual);
   const ritualSpells = character.spells.filter((s) => s.ritual);
 
   const ac = computeArmorClass({
@@ -107,10 +106,10 @@ export function CharacterSheet({
             ac={ac}
             spellAttack={spellAttack}
           />
-          <ActionBar characterClass={character.characterClass} />
-          {isSpellcaster && combatSpells.length > 0 && (
-            <SpellCards spells={combatSpells} />
-          )}
+          <ActionBar
+            characterClass={character.characterClass}
+            spells={character.spells}
+          />
         </>
       )}
 

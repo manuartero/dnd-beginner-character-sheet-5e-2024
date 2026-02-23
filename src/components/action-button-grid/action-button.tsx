@@ -1,3 +1,4 @@
+import c from "classnames";
 import descriptionPopoverStyles from "src/components/description-popover/description-popover.module.css";
 import { getIconPath } from "src/models/icons";
 import styles from "./action-button.module.css";
@@ -8,6 +9,8 @@ type ActionButtonProps = {
   name: string;
   description: string;
   icon?: string;
+  disabled?: boolean;
+  renderExpanded?: () => React.ReactNode;
   isExpanded?: boolean;
   arrowOffset: number;
   buttonRef: (el: HTMLButtonElement | null) => void;
@@ -25,12 +28,15 @@ type ActionButtonProps = {
  *  | Make one melee or ranged attack.|
  *  +--------------------------------+
  *
- *  buttonRef + arrowOffset are wired by useArrowOffset in the parent
+ *  When `renderExpanded` is provided, it replaces the default description text.
+ *  buttonRef + arrowOffset are wired by useArrowOffset in the parent.
  */
 export function ActionButton({
   name,
   description,
   icon,
+  disabled = false,
+  renderExpanded,
   isExpanded = false,
   arrowOffset,
   buttonRef,
@@ -41,9 +47,14 @@ export function ActionButton({
       <button
         ref={buttonRef}
         type="button"
+        disabled={disabled}
         aria-expanded={isExpanded}
         onClick={onClick}
-        className={`${styles.actionButton}${isExpanded ? ` ${styles.highlighted}` : ""}`}
+        className={c(
+          styles.actionButton,
+          isExpanded && styles.highlighted,
+          disabled && styles.disabled,
+        )}
       >
         {icon && (
           <img
@@ -60,7 +71,10 @@ export function ActionButton({
             className={descriptionPopoverStyles.descriptionArrow}
             style={{ left: `${arrowOffset}px` }}
           />
-          <p className={styles.description}>{description}</p>
+          {renderExpanded?.()}
+          {!renderExpanded && (
+            <p className={styles.description}>{description}</p>
+          )}
         </div>
       )}
     </>

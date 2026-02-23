@@ -7,11 +7,15 @@ type GridAction = {
   name: string;
   description: string;
   icon?: string;
+  disabled?: boolean;
+  renderExpanded?: () => React.ReactNode;
 };
 
 type ActionButtonGridProps = {
   actions: GridAction[];
 };
+
+export type { GridAction };
 
 export function ActionButtonGrid({ actions }: ActionButtonGridProps) {
   const { expandedKey: expandedAction, toggle: toggleAction } =
@@ -26,6 +30,8 @@ export function ActionButtonGrid({ actions }: ActionButtonGridProps) {
           name={action.name}
           description={action.description}
           icon={action.icon}
+          disabled={action.disabled}
+          renderExpanded={action.renderExpanded}
           isExpanded={expandedAction === action.name}
           arrowOffset={arrowOffset}
           buttonRef={(el) => {
