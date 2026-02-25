@@ -27,9 +27,9 @@ export function SpellBook({
   level1Limit,
   onSpellsChange,
 }: SpellBookProps) {
-  const [preparationMode, setPreparationMode] = useState<"cantrip" | "level1">(
-    "cantrip",
-  );
+  const [preparationMode, setPreparationMode] = useState<
+    "cantrip" | "level1" | null
+  >(null);
   const [stagedSpells, setStagedSpells] = useState<Spell[]>([]);
 
   const committedCantrips = selectedSpells.filter((s) => s.level === 0);
@@ -113,7 +113,9 @@ export function SpellBook({
               preparationMode === "cantrip" && styles.modeButtonActive,
             )}
             aria-pressed={preparationMode === "cantrip"}
-            onClick={() => setPreparationMode("cantrip")}
+            onClick={() =>
+              setPreparationMode((prev) => (prev === "cantrip" ? null : "cantrip"))
+            }
           >
             Prepare Cantrips ({committedCantrips.length + stagedCantrips.length}
             /{cantripLimit})
@@ -125,43 +127,49 @@ export function SpellBook({
               preparationMode === "level1" && styles.modeButtonActive,
             )}
             aria-pressed={preparationMode === "level1"}
-            onClick={() => setPreparationMode("level1")}
+            onClick={() =>
+              setPreparationMode((prev) => (prev === "level1" ? null : "level1"))
+            }
           >
             Prepare Level 1 ({committedLevel1.length + stagedLevel1.length}/
             {level1Limit})
           </button>
         </div>
 
-        {preparationMode === "cantrip" ? (
-          <SpellSelectionGrid
-            spells={availableCantrips}
-            committedGroup={committedCantrips}
-            stagedGroup={stagedCantrips}
-            limit={cantripLimit}
-            onToggle={(spell) =>
-              toggleStagedSpell(
-                spell,
-                committedCantrips,
-                stagedCantrips,
-                cantripLimit,
-              )
-            }
-          />
-        ) : (
-          <SpellSelectionGrid
-            spells={availableLevel1}
-            committedGroup={committedLevel1}
-            stagedGroup={stagedLevel1}
-            limit={level1Limit}
-            onToggle={(spell) =>
-              toggleStagedSpell(
-                spell,
-                committedLevel1,
-                stagedLevel1,
-                level1Limit,
-              )
-            }
-          />
+        {preparationMode !== null && (
+          <div key={preparationMode} className={styles.gridRollOut}>
+            {preparationMode === "cantrip" ? (
+              <SpellSelectionGrid
+                spells={availableCantrips}
+                committedGroup={committedCantrips}
+                stagedGroup={stagedCantrips}
+                limit={cantripLimit}
+                onToggle={(spell) =>
+                  toggleStagedSpell(
+                    spell,
+                    committedCantrips,
+                    stagedCantrips,
+                    cantripLimit,
+                  )
+                }
+              />
+            ) : (
+              <SpellSelectionGrid
+                spells={availableLevel1}
+                committedGroup={committedLevel1}
+                stagedGroup={stagedLevel1}
+                limit={level1Limit}
+                onToggle={(spell) =>
+                  toggleStagedSpell(
+                    spell,
+                    committedLevel1,
+                    stagedLevel1,
+                    level1Limit,
+                  )
+                }
+              />
+            )}
+          </div>
         )}
       </Section>
     </>

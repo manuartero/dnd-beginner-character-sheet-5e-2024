@@ -31,7 +31,7 @@ function createSpell({
 }
 
 describe("<SpellBook />", () => {
-  it("starts focused on cantrip preparation and does not nest a Spells heading", () => {
+  it("shows only mode buttons initially, then shows grid on button click", () => {
     const cantrip = createSpell({
       id: "cantrip-1",
       name: "Cantrip 1",
@@ -61,15 +61,24 @@ describe("<SpellBook />", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /Prepare Cantrips/i }),
-    ).toHaveAttribute("aria-pressed", "true");
+    ).toHaveAttribute("aria-pressed", "false");
     expect(
-      screen.getByRole("button", { name: /Cantrip 1/i }),
-    ).toBeInTheDocument();
+      screen.queryByRole("button", { name: /Cantrip 1/i }),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Level 1 Spell" }),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "Spells" }),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /Prepare Cantrips/i }));
+
+    expect(
+      screen.getByRole("button", { name: /Cantrip 1/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Level 1 Spell" }),
     ).not.toBeInTheDocument();
   });
 
@@ -147,6 +156,7 @@ describe("<SpellBook />", () => {
       />,
     );
 
+    fireEvent.click(screen.getByRole("button", { name: /Prepare Cantrips/i }));
     fireEvent.click(screen.getByRole("button", { name: /Cantrip 1/i }));
 
     const description = screen.getByText("Description 1");
@@ -178,6 +188,7 @@ describe("<SpellBook />", () => {
       />,
     );
 
+    fireEvent.click(screen.getByRole("button", { name: /Prepare Cantrips/i }));
     fireEvent.click(screen.getByRole("button", { name: /Cantrip 1/i }));
 
     expect(screen.getByText("Staged")).toBeInTheDocument();
@@ -209,6 +220,12 @@ describe("<SpellBook />", () => {
       />,
     );
 
+    fireEvent.click(
+      within(screen.getByRole("region", { name: "Prepare Spells" })).getByRole(
+        "button",
+        { name: /Prepare Cantrips/i },
+      ),
+    );
     fireEvent.click(
       within(screen.getByRole("region", { name: "Prepare Spells" })).getByRole(
         "button",
