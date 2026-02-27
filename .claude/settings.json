@@ -1,8 +1,24 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm biome check:*)",
-      "Bash(npx skills find:*)"
+      "Bash(chmod:*)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status:*)",
+      "Bash(ls:*)",
+      "Bash(npx skills find:*)",
+      "Bash(pnpm:*)",
+      "Bash(python3:*)",
+      "Bash(xargs:*)",
+      "WebFetch(domain:bg3.wiki)",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "WebFetch(domain:www.dndbeyond.com)",
+      "WebSearch"
     ]
   },
   "hooks": {
