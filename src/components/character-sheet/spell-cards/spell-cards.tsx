@@ -10,6 +10,8 @@ type SpellCardsProps = {
   title?: string;
   stagedSpellIds?: string[];
   onStagedSpellClick?: (spell: Spell) => void;
+  cantripLimit?: number;
+  level1Limit?: number;
 };
 
 const DAMAGE_COLOR = "var(--color-highlight)";
@@ -19,6 +21,8 @@ export function SpellCards({
   title = "Spells",
   stagedSpellIds = [],
   onStagedSpellClick,
+  cantripLimit,
+  level1Limit,
 }: SpellCardsProps) {
   const { expandedKey: expandedSpell, toggle: toggleSpell } =
     useExpandable<string>();
@@ -27,9 +31,23 @@ export function SpellCards({
   const cantrips = spells.filter((s) => s.level === 0);
   const levelSpells = spells.filter((s) => s.level > 0);
 
+  const effectiveCantripLimit = cantripLimit ?? cantrips.length;
+  const effectiveLevel1Limit = level1Limit ?? levelSpells.length;
+  const emptyCantripCount = Math.max(
+    0,
+    effectiveCantripLimit - cantrips.length,
+  );
+  const emptyLevel1Count = Math.max(
+    0,
+    effectiveLevel1Limit - levelSpells.length,
+  );
+
+  const showCantrips = cantrips.length > 0 || effectiveCantripLimit > 0;
+  const showLevel1 = levelSpells.length > 0 || effectiveLevel1Limit > 0;
+
   const content = (
     <>
-      {cantrips.length > 0 && (
+      {showCantrips && (
         <div className={styles.spellGroup}>
           <h3 className={styles.groupLabel}>Cantrips</h3>
           <div className={styles.cardsGrid}>
@@ -48,11 +66,17 @@ export function SpellCards({
                 }}
               />
             ))}
+            {Array.from(
+              { length: emptyCantripCount },
+              (_, i) => `cantrip-slot-${cantrips.length + i}`,
+            ).map((slotKey) => (
+              <EmptySpellCard key={slotKey} type="cantrip" />
+            ))}
           </div>
         </div>
       )}
 
-      {levelSpells.length > 0 && (
+      {showLevel1 && (
         <div className={styles.spellGroup}>
           <h3 className={styles.groupLabel}>Level 1</h3>
           <div className={styles.cardsGrid}>
@@ -70,6 +94,12 @@ export function SpellCards({
                   toggleSpell(spell.name);
                 }}
               />
+            ))}
+            {Array.from(
+              { length: emptyLevel1Count },
+              (_, i) => `level1-slot-${levelSpells.length + i}`,
+            ).map((slotKey) => (
+              <EmptySpellCard key={slotKey} type="level1" />
             ))}
           </div>
         </div>
@@ -149,6 +179,20 @@ function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
         </div>
       )}
     </button>
+  );
+}
+
+type EmptySpellCardProps = {
+  type: "cantrip" | "level1";
+};
+
+function EmptySpellCard({ type }: EmptySpellCardProps) {
+  return (
+    <div className={styles.emptyCard}>
+      <span className={styles.emptyCardLabel}>
+        {type === "cantrip" ? "cantrip space" : "spell space"}
+      </span>
+    </div>
   );
 }
 

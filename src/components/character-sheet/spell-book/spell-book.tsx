@@ -75,23 +75,17 @@ export function SpellBook({
   return (
     <>
       <Section title="Spell Book">
-        {spellBookSpells.length > 0 ? (
-          <>
-            <SpellCards
-              spells={spellBookSpells}
-              title=""
-              stagedSpellIds={stagedSpellIds}
-              onStagedSpellClick={unstageSpell}
-            />
-            {stagedSpells.length > 0 && (
-              <p className={styles.stagedHint}>
-                Staged spells are grey. Click a staged spell to unstage it.
-              </p>
-            )}
-          </>
-        ) : (
-          <p className={styles.emptySpellBook}>
-            Prepare spells below to add them to your spell book.
+        <SpellCards
+          spells={spellBookSpells}
+          title=""
+          stagedSpellIds={stagedSpellIds}
+          onStagedSpellClick={unstageSpell}
+          cantripLimit={cantripLimit}
+          level1Limit={level1Limit}
+        />
+        {stagedSpells.length > 0 && (
+          <p className={styles.stagedHint}>
+            Staged spells are grey. Click a staged spell to unstage it.
           </p>
         )}
         <button
@@ -114,7 +108,9 @@ export function SpellBook({
             )}
             aria-pressed={preparationMode === "cantrip"}
             onClick={() =>
-              setPreparationMode((prev) => (prev === "cantrip" ? null : "cantrip"))
+              setPreparationMode((prev) =>
+                prev === "cantrip" ? null : "cantrip",
+              )
             }
           >
             Prepare Cantrips ({committedCantrips.length + stagedCantrips.length}
@@ -128,7 +124,9 @@ export function SpellBook({
             )}
             aria-pressed={preparationMode === "level1"}
             onClick={() =>
-              setPreparationMode((prev) => (prev === "level1" ? null : "level1"))
+              setPreparationMode((prev) =>
+                prev === "level1" ? null : "level1",
+              )
             }
           >
             Prepare Level 1 ({committedLevel1.length + stagedLevel1.length}/
