@@ -115,6 +115,24 @@
   color: var(--shade-2);
 }
 
+.emptyCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  border: 2px dashed var(--shade-2);
+  opacity: 0.45;
+  min-height: 44px;
+}
+
+.emptyCardLabel {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
 .descriptionText {
   font-size: var(--font-size-sm);
   color: var(--shade-2);

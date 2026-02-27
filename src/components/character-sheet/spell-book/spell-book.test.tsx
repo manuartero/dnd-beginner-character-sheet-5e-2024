@@ -56,9 +56,8 @@ describe("<SpellBook />", () => {
       />,
     );
 
-    expect(
-      screen.getByText("Prepare spells below to add them to your spell book."),
-    ).toBeInTheDocument();
+    expect(screen.getAllByText("cantrip space").length).toBe(3);
+    expect(screen.getAllByText("spell space").length).toBe(6);
     expect(
       screen.getByRole("button", { name: /Prepare Cantrips/i }),
     ).toHaveAttribute("aria-pressed", "false");
