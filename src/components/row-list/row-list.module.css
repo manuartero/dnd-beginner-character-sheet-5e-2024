@@ -1,8 +1,8 @@
-.subsection {
+.container {
   margin-bottom: var(--space-md);
 }
 
-.subsectionLabel {
+.title {
   font-size: var(--font-size-xs);
   color: var(--shade-2);
   text-transform: uppercase;
@@ -10,13 +10,13 @@
   margin-bottom: var(--space-xs);
 }
 
-.itemList {
+.list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.itemRow {
+.row {
   display: flex;
   align-items: center;
   gap: var(--space-sm);

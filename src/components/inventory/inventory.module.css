@@ -11,24 +11,6 @@
   margin-bottom: var(--space-xs);
 }
 
-.itemList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.itemRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  background: var(--shade-1);
-  border: 2px solid var(--shade-3);
-}
-
 .icon {
   width: var(--icon-size);
   height: var(--icon-size);
