@@ -25,10 +25,14 @@ export function CharacterHeader({
   return (
     <Section title="Character Info">
       <header className={styles.header}>
-        <img
-          src={getClassIcon(characterClass)}
-          alt={characterClass}
+        <span
+          role="img"
+          aria-label={characterClass}
           className={styles.classIcon}
+          style={{
+            maskImage: `url(${getClassIcon(characterClass)})`,
+            WebkitMaskImage: `url(${getClassIcon(characterClass)})`,
+          }}
         />
         <div className={styles.details}>
           <div className={styles.topRow}>

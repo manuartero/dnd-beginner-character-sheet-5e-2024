@@ -33,14 +33,17 @@ export function SelectionGrid({
           className={c(styles.card, selectedKey === key && styles.cardSelected)}
           onClick={() => onSelect(key)}
         >
-          <img
-            src={icon}
-            alt=""
+          <span
+            role="img"
             aria-hidden
             className={c(
               styles.cardIcon,
               iconSize === "large" && styles.cardIconLarge,
             )}
+            style={{
+              maskImage: `url(${icon})`,
+              WebkitMaskImage: `url(${icon})`,
+            }}
           />
           <span className={styles.cardLabel}>{label}</span>
         </button>
