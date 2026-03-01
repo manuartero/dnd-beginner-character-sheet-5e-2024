@@ -122,6 +122,7 @@
 }
 
 .spellName {
+  position: relative;
   width: 100%;
   padding: var(--space-xs);
   font-size: var(--font-size-xs);
@@ -137,6 +138,19 @@
 
 .spellCardExpanded .spellName {
   background: var(--shade-2);
+}
+
+.spellCardExpanded .spellName::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  margin-top: -5px;
+  width: 2px;
+  height: 2px;
+  background: var(--shade-0);
+  box-shadow: var(--pixel-cursor);
+  animation: cursor-blink 1s step-end infinite;
 }
 
 .spellIcon {

@@ -11,6 +11,13 @@
 
   --color-scanline: #5f433118; /* shade-3 at ~9% - CRT scanline tint */
 
+  /* Pixel cursor — right-pointing 5-row triangle (6×10 px at 2px grid) */
+  --pixel-cursor:
+    0px 2px 0 var(--shade-0), 2px 2px 0 var(--shade-0),
+    0px 4px 0 var(--shade-0), 2px 4px 0 var(--shade-0),
+    4px 4px 0 var(--shade-0), 0px 6px 0 var(--shade-0),
+    2px 6px 0 var(--shade-0), 0px 8px 0 var(--shade-0);
+
   /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;

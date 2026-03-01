@@ -22,6 +22,7 @@
 }
 
 .actionLabel {
+  position: relative;
   width: 100%;
   padding: var(--space-xs);
   font-size: var(--font-size-xs);
@@ -34,6 +35,19 @@
 
 .highlighted .actionLabel {
   background: var(--shade-2);
+}
+
+.highlighted .actionLabel::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  margin-top: -5px;
+  width: 2px;
+  height: 2px;
+  background: var(--shade-0);
+  box-shadow: var(--pixel-cursor);
+  animation: cursor-blink 1s step-end infinite;
 }
 
 .icon {
