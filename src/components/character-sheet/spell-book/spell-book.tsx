@@ -247,6 +247,7 @@ function SpellSelectionGrid({
                   toggleExpanded(spell.id);
                 }}
               >
+                <span className={styles.spellName}>{spell.name}</span>
                 {spell.icon && (
                   <img
                     src={resolveIconPath(spell.icon)}
@@ -254,7 +255,6 @@ function SpellSelectionGrid({
                     className={styles.spellIcon}
                   />
                 )}
-                <span className={styles.spellName}>{spell.name}</span>
                 <span className={styles.spellSchool}>{spell.school}</span>
               </button>
 

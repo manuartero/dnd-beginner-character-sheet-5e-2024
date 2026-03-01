@@ -33,6 +33,7 @@ export function SelectionGrid({
           className={c(styles.card, selectedKey === key && styles.cardSelected)}
           onClick={() => onSelect(key)}
         >
+          <span className={styles.cardLabel}>{label}</span>
           <span
             role="img"
             aria-hidden
@@ -45,7 +46,6 @@ export function SelectionGrid({
               WebkitMaskImage: `url(${icon})`,
             }}
           />
-          <span className={styles.cardLabel}>{label}</span>
         </button>
       ))}
     </div>

@@ -1,25 +1,19 @@
-.icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  image-rendering: pixelated;
-}
+/* Ability-card pattern: dark banner header + centered icon content */
 
 .actionButton {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-sm);
+  justify-items: center;
   background: var(--shade-1);
   border: 2px solid var(--shade-3);
+  overflow: hidden;
   min-height: 72px;
-  justify-content: center;
 }
 
 .highlighted {
-  background: var(--shade-0);
   border-color: var(--shade-2);
-  color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
 }
 
 .disabled {
@@ -28,9 +22,25 @@
 }
 
 .actionLabel {
+  width: 100%;
+  padding: var(--space-xs);
   font-size: var(--font-size-xs);
+  font-weight: 700;
   text-align: center;
   line-height: 1.2;
+  color: var(--shade-0);
+  background: var(--shade-3);
+}
+
+.highlighted .actionLabel {
+  background: var(--shade-2);
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+  padding: var(--space-xs) 0;
 }
 
 .description {
