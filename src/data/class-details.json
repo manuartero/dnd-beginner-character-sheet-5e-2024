@@ -1,7 +1,7 @@
 {
   "barbarian": {
     "label": "Barbarian",
-    "icon": "/class-icons/barbarian.jpeg",
+    "icon": "/class-icons/barbarian.svg",
     "hitDie": "d12",
     "primaryAbilities": ["str"],
     "saves": "Strength & Constitution",
@@ -39,7 +39,7 @@
   },
   "bard": {
     "label": "Bard",
-    "icon": "/class-icons/bard.jpeg",
+    "icon": "/class-icons/bard.svg",
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Dexterity & Charisma",
@@ -86,7 +86,7 @@
   },
   "cleric": {
     "label": "Cleric",
-    "icon": "/class-icons/cleric.jpeg",
+    "icon": "/class-icons/cleric.svg",
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Wisdom & Charisma",
@@ -119,7 +119,7 @@
   },
   "druid": {
     "label": "Druid",
-    "icon": "/class-icons/druid.jpeg",
+    "icon": "/class-icons/druid.svg",
     "hitDie": "d8",
     "primaryAbilities": ["wis"],
     "saves": "Intelligence & Wisdom",
@@ -163,7 +163,7 @@
   },
   "fighter": {
     "label": "Fighter",
-    "icon": "/class-icons/fighter.jpeg",
+    "icon": "/class-icons/fighter.svg",
     "hitDie": "d10",
     "primaryAbilities": ["str", "dex"],
     "saves": "Strength & Constitution",
@@ -214,7 +214,7 @@
   },
   "monk": {
     "label": "Monk",
-    "icon": "/class-icons/monk.jpeg",
+    "icon": "/class-icons/monk.svg",
     "hitDie": "d8",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
@@ -255,7 +255,7 @@
   },
   "paladin": {
     "label": "Paladin",
-    "icon": "/class-icons/paladin.jpeg",
+    "icon": "/class-icons/paladin.svg",
     "hitDie": "d10",
     "primaryAbilities": ["str", "cha"],
     "saves": "Wisdom & Charisma",
@@ -296,7 +296,7 @@
   },
   "ranger": {
     "label": "Ranger",
-    "icon": "/class-icons/ranger.jpeg",
+    "icon": "/class-icons/ranger.svg",
     "hitDie": "d10",
     "primaryAbilities": ["dex", "wis"],
     "saves": "Strength & Dexterity",
@@ -341,7 +341,7 @@
   },
   "rogue": {
     "label": "Rogue",
-    "icon": "/class-icons/rogue.jpeg",
+    "icon": "/class-icons/rogue.svg",
     "hitDie": "d8",
     "primaryAbilities": ["dex"],
     "saves": "Dexterity & Intelligence",
@@ -392,7 +392,7 @@
   },
   "sorcerer": {
     "label": "Sorcerer",
-    "icon": "/class-icons/sorcerer.jpeg",
+    "icon": "/class-icons/sorcerer.svg",
     "hitDie": "d6",
     "primaryAbilities": ["cha"],
     "saves": "Constitution & Charisma",
@@ -431,7 +431,7 @@
   },
   "warlock": {
     "label": "Warlock",
-    "icon": "/class-icons/warlock.jpeg",
+    "icon": "/class-icons/warlock.svg",
     "hitDie": "d8",
     "primaryAbilities": ["cha"],
     "saves": "Wisdom & Charisma",
@@ -473,7 +473,7 @@
   },
   "wizard": {
     "label": "Wizard",
-    "icon": "/class-icons/wizard.jpeg",
+    "icon": "/class-icons/wizard.svg",
     "hitDie": "d6",
     "primaryAbilities": ["int"],
     "saves": "Intelligence & Wisdom",
