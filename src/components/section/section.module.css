@@ -1,16 +1,24 @@
+/*
+ * Pokemon-style double-line window frame:
+ * shade-3 outer frame > shade-0 inner gap > shade-1 content
+ */
 .section {
   background: var(--shade-1);
-  border: 3px solid var(--shade-3);
+  border: 3px solid var(--shade-0);
+  box-shadow: 0 0 0 3px var(--shade-3);
   padding: var(--space-md);
-  box-shadow: 4px 4px 0 var(--shade-3);
 }
 
+/*
+ * Full-bleed dark banner title — extends to the inner border edge,
+ * matching the ability-card label pattern (shade-3 bg, shade-0 text).
+ */
 .sectionTitle {
   font-size: var(--font-size-sm);
-  color: var(--shade-2);
+  color: var(--shade-0);
+  background: var(--shade-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--shade-3);
-  padding-bottom: var(--space-xs);
+  margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-md)) var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
 }
