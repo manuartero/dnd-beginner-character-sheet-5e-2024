@@ -28,6 +28,7 @@
 }
 
 .tab {
+  position: relative;
   padding: 4px 10px;
   background: var(--shade-3);
   color: var(--shade-0);
@@ -42,6 +43,20 @@
   background: var(--shade-2);
   border-color: var(--shade-2);
   box-shadow: 3px 3px 0 var(--shade-3);
+  padding-left: 16px;
+}
+
+.activeTab::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  margin-top: -5px;
+  width: 2px;
+  height: 2px;
+  background: var(--shade-0);
+  box-shadow: var(--pixel-cursor);
+  animation: cursor-blink 1s step-end infinite;
 }
 
 .tabWarned {

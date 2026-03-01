@@ -17,6 +17,7 @@
 }
 
 .chipLabel {
+  position: relative;
   width: 100%;
   padding: var(--space-xs) 0;
   font-size: var(--font-size-xs);
@@ -47,6 +48,19 @@
 
 .highlighted .chipLabel {
   background: var(--shade-2);
+}
+
+.highlighted .chipLabel::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  margin-top: -5px;
+  width: 2px;
+  height: 2px;
+  background: var(--shade-0);
+  box-shadow: var(--pixel-cursor);
+  animation: cursor-blink 1s step-end infinite;
 }
 
 .inactive {
