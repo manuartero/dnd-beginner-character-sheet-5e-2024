@@ -56,6 +56,7 @@ export function ActionButton({
           disabled && styles.disabled,
         )}
       >
+        <span className={styles.actionLabel}>{name}</span>
         {icon && (
           <img
             src={getIconPath(icon as IconName)}
@@ -63,7 +64,6 @@ export function ActionButton({
             className={styles.icon}
           />
         )}
-        <span className={styles.actionLabel}>{name}</span>
       </button>
       {isExpanded && (
         <div className={descriptionPopoverStyles.descriptionRow}>

@@ -8,24 +8,37 @@
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
 }
 
+/* Ability-card pattern: dark banner header + centered icon content */
+
 .card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-sm);
+  justify-items: center;
   background: var(--shade-1);
   border: 2px solid var(--shade-3);
+  overflow: hidden;
   cursor: pointer;
-}
-
-.card:hover {
-  background: var(--shade-1);
 }
 
 .cardSelected {
   border-color: var(--shade-2);
   box-shadow: 3px 3px 0 var(--shade-2);
+}
+
+.cardLabel {
+  width: 100%;
+  padding: var(--space-xs);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--shade-0);
+  background: var(--shade-3);
+}
+
+.cardSelected .cardLabel {
+  background: var(--shade-2);
 }
 
 .cardIcon {
@@ -38,14 +51,10 @@
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
+  margin: var(--space-sm) 0;
 }
 
 .cardIconLarge {
   width: 96px;
   height: 96px;
-}
-
-.cardLabel {
-  font-size: var(--font-size-xs);
-  text-align: center;
 }
