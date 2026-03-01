@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { InventoryGroupList } from "./inventory-group-list";
+import { RowList } from "./row-list";
 
-describe("<InventoryGroupList />", () => {
-  it("renders group heading, list, and rows", () => {
+describe("<RowList />", () => {
+  it("renders heading, list, and rows", () => {
     render(
-      <InventoryGroupList
+      <RowList
         title="Arms & Armor"
         ariaLabel="Arms and armor"
         items={[
@@ -32,7 +32,7 @@ describe("<InventoryGroupList />", () => {
 
   it("renders nothing when items are empty", () => {
     render(
-      <InventoryGroupList
+      <RowList
         title="Arms & Armor"
         ariaLabel="Arms and armor"
         items={[]}

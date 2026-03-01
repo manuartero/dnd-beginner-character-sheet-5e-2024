@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
+import { RowList } from "src/components/row-list";
 import { Section } from "src/components/section";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./inventory.module.css";
-import { InventoryGroupList } from "./inventory-group-list";
 
 import type { Equipment } from "src/models/equipment";
 
@@ -87,7 +87,7 @@ export function Inventory(props: InventoryProps) {
 
   return (
     <Section title={title}>
-      <InventoryGroupList
+      <RowList
         title="Arms & Armor"
         ariaLabel="Arms and armor"
         items={armsAndArmor}
@@ -108,7 +108,7 @@ export function Inventory(props: InventoryProps) {
         }
       />
 
-      <InventoryGroupList
+      <RowList
         title="Adventure Gear"
         ariaLabel="Adventure gear"
         items={adventureGear}
