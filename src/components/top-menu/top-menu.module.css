@@ -56,18 +56,10 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  color: var(--shade-3);
 }
 
 .pixelIcon {
   fill: currentColor;
   display: block;
-}
-
-.iconButtonActive {
-  color: var(--shade-3);
-}
-
-.iconButtonInactive {
-  color: var(--shade-2);
-  opacity: 0.4;
 }
