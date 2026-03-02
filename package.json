@@ -38,7 +38,9 @@
     "format": "biome format . --write",
     "test": "vitest run",
     "test:watch": "vitest",
-    "blue-ball": "pnpm lint && pnpm test && pnpm build"
+    "test:coverage": "vitest run --coverage",
+    "blue-ball": "pnpm lint && pnpm test && pnpm build",
+    "blue-ball:release": "pnpm blue-ball && pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },
   "dependencies": {
     "@astrojs/react": "4.4.2",
@@ -54,6 +56,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
     "@types/jest": "30.0.0",
+    "@vitest/coverage-v8": "4.0.18",
     "jsdom": "28.0.0",
     "vitest": "4.0.18"
   }
