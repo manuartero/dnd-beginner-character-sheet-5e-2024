@@ -11,10 +11,16 @@ export default defineConfig({
         classNameStrategy: "non-scoped",
       },
     },
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json-summary"],
+      reportsDirectory: "./coverage",
+    },
   },
   resolve: {
     alias: {
       src: "/src",
+      "@pkg": "/package.json",
     },
   },
 });
