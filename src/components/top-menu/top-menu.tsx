@@ -1,4 +1,6 @@
-import { useScreenFlash } from "src/components/screen-flash/screen-flash-context";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { SettingsMenu } from "src/components/settings-menu/settings-menu";
 import styles from "./top-menu.module.css";
 
 type TopMenuProps = {
@@ -7,50 +9,65 @@ type TopMenuProps = {
   onBack: () => void;
 };
 
-function FlashIcon() {
+function GearIcon() {
   return (
     <svg
-      viewBox="0 0 7 7"
-      width="12"
-      height="12"
+      viewBox="0 0 14 14"
+      width="14"
+      height="14"
       shapeRendering="crispEdges"
       aria-hidden="true"
       className={styles.pixelIcon}
     >
-      {/* 4-pointed pixel star */}
-      <rect x="3" y="0" width="1" height="1" />
-      <rect x="2" y="1" width="3" height="1" />
-      <rect x="1" y="2" width="5" height="1" />
-      <rect x="0" y="3" width="7" height="1" />
-      <rect x="1" y="4" width="5" height="1" />
-      <rect x="2" y="5" width="3" height="1" />
-      <rect x="3" y="6" width="1" height="1" />
+      {/* Teeth */}
+      <rect x="6" y="0" width="2" height="2" />
+      <rect x="6" y="12" width="2" height="2" />
+      <rect x="0" y="6" width="2" height="2" />
+      <rect x="12" y="6" width="2" height="2" />
+      {/* Diagonal teeth */}
+      <rect x="2" y="2" width="2" height="2" />
+      <rect x="10" y="2" width="2" height="2" />
+      <rect x="2" y="10" width="2" height="2" />
+      <rect x="10" y="10" width="2" height="2" />
+      {/* Outer ring */}
+      <rect x="2" y="4" width="10" height="6" />
+      <rect x="4" y="2" width="6" height="10" />
+      {/* Center hole */}
+      <rect x="5" y="5" width="4" height="4" fill="transparent" />
     </svg>
   );
 }
 
 export function TopMenu({ title, showBack, onBack }: TopMenuProps) {
-  const { flashEnabled, toggleFlash } = useScreenFlash();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   return (
-    <nav className={styles.menu}>
-      {showBack ? (
-        <button type="button" onClick={onBack} className={styles.backButton}>
-          &lt; Back
-        </button>
-      ) : (
-        <span className={styles.spacer} />
-      )}
-      <span className={styles.title}>{title}</span>
-      <div className={styles.actions}>
-        <button
-          type="button"
-          onClick={toggleFlash}
-          className={`${styles.iconButton} ${flashEnabled ? styles.iconButtonActive : styles.iconButtonInactive}`}
-          title={flashEnabled ? "Disable screen flash" : "Enable screen flash"}
-        >
-          <FlashIcon />
-        </button>
-      </div>
-    </nav>
+    <>
+      <nav className={styles.menu}>
+        {showBack ? (
+          <button type="button" onClick={onBack} className={styles.backButton}>
+            &lt; Back
+          </button>
+        ) : (
+          <span className={styles.spacer} />
+        )}
+        <span className={styles.title}>{title}</span>
+        <div className={styles.actions}>
+          <button
+            type="button"
+            onClick={() => setIsSettingsOpen((v) => !v)}
+            className={styles.iconButton}
+            title="Options"
+          >
+            <GearIcon />
+          </button>
+        </div>
+      </nav>
+      {isSettingsOpen &&
+        createPortal(
+          <SettingsMenu onClose={() => setIsSettingsOpen(false)} />,
+          document.body,
+        )}
+    </>
   );
 }
