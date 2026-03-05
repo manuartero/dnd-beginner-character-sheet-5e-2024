@@ -9,7 +9,7 @@ export { ActionChip } from "./action-chip/action-chip";
 export { ChipGrid } from "./chip-grid/chip-grid";
 export { InlineConfirm } from "./inline-confirm/inline-confirm";
 export { RetroRadio } from "./retro-radio/retro-radio";
-export { RowList } from "./row-list/row-list";
+export { RowList, rowListStyles } from "./row-list/row-list";
 export { ScreenFlash } from "./screen-flash/screen-flash";
 export {
   ScreenFlashProvider,

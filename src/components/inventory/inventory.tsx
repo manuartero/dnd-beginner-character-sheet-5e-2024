@@ -1,4 +1,4 @@
-import { InlineConfirm, RowList, Section } from "elements";
+import { InlineConfirm, RowList, rowListStyles, Section } from "elements";
 import { useState } from "react";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
@@ -167,12 +167,12 @@ function ItemContent({ item, mode, onRemoveRequest }: ItemContentProps) {
         <img
           src={resolveIconPath(item.icon)}
           alt={item.name}
-          className={styles.icon}
+          className={rowListStyles.icon}
         />
       )}
-      <div className={styles.itemInfo}>
-        <span className={styles.itemName}>{item.name}</span>
-        <span className={styles.itemMeta}>
+      <div className={rowListStyles.info}>
+        <span className={rowListStyles.name}>{item.name}</span>
+        <span className={rowListStyles.meta}>
           {item.damage && `${item.damage.dice} ${item.damage.type}`}
           {item.ac && `AC ${item.ac}`}
           {item.properties && item.properties.length > 0 && (
@@ -181,16 +181,16 @@ function ItemContent({ item, mode, onRemoveRequest }: ItemContentProps) {
         </span>
       </div>
       {item.attackBonus !== undefined && (
-        <span className={styles.attackBonus}>+{item.attackBonus}</span>
+        <span className={rowListStyles.badge}>+{item.attackBonus}</span>
       )}
       {item.quantity !== undefined && item.quantity > 1 && (
-        <span className={styles.quantity}>x{item.quantity}</span>
+        <span className={rowListStyles.trailing}>x{item.quantity}</span>
       )}
       {mode === "editable" && (
         <button
           type="button"
           onClick={onRemoveRequest}
-          className={styles.removeButton}
+          className={rowListStyles.removeButton}
           aria-label={`Remove ${item.name}`}
         >
           x
