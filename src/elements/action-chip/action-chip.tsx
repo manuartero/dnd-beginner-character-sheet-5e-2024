@@ -34,6 +34,7 @@ export function ActionChip({
   children,
 }: ActionChipProps) {
   const hasPopover = !!children;
+  const isSvgIcon = iconSrc?.toLowerCase().endsWith(".svg") ?? false;
   const chipClass = c(
     styles.actionChip,
     !value && styles.compact,
@@ -55,17 +56,31 @@ export function ActionChip({
         data-sound="select"
       >
         <span className={styles.label}>{label}</span>
-        {iconSrc && (
-          <span
-            role="img"
-            aria-hidden
-            className={c(styles.icon, iconSize === "large" && styles.iconLarge)}
-            style={{
-              maskImage: `url(${iconSrc})`,
-              WebkitMaskImage: `url(${iconSrc})`,
-            }}
-          />
-        )}
+        {iconSrc &&
+          (isSvgIcon ? (
+            <span
+              role="img"
+              aria-hidden
+              className={c(
+                styles.icon,
+                iconSize === "large" && styles.iconLarge,
+              )}
+              style={{
+                maskImage: `url(${iconSrc})`,
+                WebkitMaskImage: `url(${iconSrc})`,
+              }}
+            />
+          ) : (
+            <img
+              src={iconSrc}
+              alt=""
+              aria-hidden
+              className={c(
+                styles.iconImage,
+                iconSize === "large" && styles.iconImageLarge,
+              )}
+            />
+          ))}
         {value && <span className={styles.value}>{value}</span>}
       </button>
       {isSelected && children && (

@@ -63,6 +63,19 @@
   height: 96px;
 }
 
+.iconImage {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  object-fit: cover;
+  border: 2px solid var(--shade-3);
+  align-self: center;
+}
+
+.iconImageLarge {
+  width: 96px;
+  height: 96px;
+}
+
 /* Value (tall variant only) */
 
 .value {
