@@ -13,8 +13,8 @@ type ActionChipProps = {
   value?: string;
   isSelected?: boolean;
   isInactive?: boolean;
-  buttonRef: (el: HTMLButtonElement | null) => void;
-  onClick: () => void;
+  buttonRef?: (el: HTMLButtonElement | null) => void;
+  onClick?: () => void;
   arrowOffset?: number;
   children?: ReactNode;
 };

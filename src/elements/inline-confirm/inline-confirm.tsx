@@ -2,8 +2,8 @@ import styles from "./inline-confirm.module.css";
 
 type InlineConfirmProps = {
   label?: string;
-  onConfirm: () => void;
-  onCancel: () => void;
+  onConfirm?: () => void;
+  onCancel?: () => void;
 };
 
 export function InlineConfirm({

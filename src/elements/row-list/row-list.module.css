@@ -23,3 +23,50 @@
   padding: var(--space-sm);
   border-bottom: 1px dashed var(--shade-3);
 }
+
+/* Content utilities for renderItem */
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.meta {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+}
+
+.badge {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--shade-2);
+}
+
+.trailing {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  min-width: 24px;
+  text-align: right;
+}
+
+.removeButton {
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

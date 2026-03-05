@@ -8,6 +8,7 @@ import {
   InlineConfirm,
   RetroRadio,
   RowList,
+  rowListStyles,
   ScreenFlash,
   ScreenFlashProvider,
   Section,
@@ -142,30 +143,18 @@ export function ElementsShowcase() {
 
         <ShowcaseBlock name="ActionChip">
           <div style={{ display: "flex", gap: "0.5rem" }}>
-            <ActionChip
-              label="AC"
-              iconSrc={SAMPLE_ICON}
-              value="15"
-              buttonRef={() => {}}
-              onClick={() => {}}
-            />
+            <ActionChip label="AC" iconSrc={SAMPLE_ICON} value="15" />
             <ActionChip
               label="Init"
               iconSrc={SAMPLE_ICON}
               value="+2"
               isInactive
-              buttonRef={() => {}}
-              onClick={() => {}}
             />
           </div>
         </ShowcaseBlock>
 
         <ShowcaseBlock name="InlineConfirm">
-          <InlineConfirm
-            label="Delete this item?"
-            onConfirm={() => alert("Confirmed")}
-            onCancel={() => alert("Cancelled")}
-          />
+          <InlineConfirm label="Delete this item?" />
         </ShowcaseBlock>
 
         <ShowcaseBlock name="RetroRadio">
@@ -209,46 +198,14 @@ export function ElementsShowcase() {
             ]}
             renderItem={(item) => (
               <>
-                <img
-                  src={item.icon}
-                  alt=""
-                  style={{
-                    width: "var(--icon-size)",
-                    height: "var(--icon-size)",
-                    imageRendering: "pixelated" as const,
-                  }}
-                />
-                <span
-                  style={{ flex: 1, display: "flex", flexDirection: "column" }}
-                >
-                  <span
-                    style={{
-                      fontWeight: 600,
-                      fontSize: "var(--font-size-sm)",
-                    }}
-                  >
-                    {item.name}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "var(--font-size-xs)",
-                      color: "var(--shade-2)",
-                    }}
-                  >
-                    {item.meta}
-                  </span>
+                <img src={item.icon} alt="" className={rowListStyles.icon} />
+                <span className={rowListStyles.info}>
+                  <span className={rowListStyles.name}>{item.name}</span>
+                  <span className={rowListStyles.meta}>{item.meta}</span>
                 </span>
                 <button
                   type="button"
-                  style={{
-                    width: 24,
-                    height: 24,
-                    fontSize: "var(--font-size-sm)",
-                    color: "var(--shade-2)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className={rowListStyles.removeButton}
                   aria-label={`Remove ${item.name}`}
                 >
                   x
