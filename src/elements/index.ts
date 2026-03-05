@@ -11,7 +11,6 @@ export {
   useScreenFlash,
 } from "./screen-flash/screen-flash-context";
 export { Section } from "./section/section";
-export { SelectionGrid } from "./selection-grid/selection-grid";
 export { Stepper } from "./stepper/stepper";
 
 export type { ActionChipProps } from "./action-chip/action-chip";

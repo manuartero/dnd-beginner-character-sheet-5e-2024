@@ -4,14 +4,15 @@ import styles from "./action-chip.module.css";
 
 import type { ReactNode } from "react";
 
+type IconSize = "default" | "large";
+
 type ActionChipProps = {
   label: string;
   iconSrc?: string;
-  iconAlt?: string;
+  iconSize?: IconSize;
   value?: string;
-  isExpanded?: boolean;
+  isSelected?: boolean;
   isInactive?: boolean;
-  controlsId?: string;
   buttonRef: (el: HTMLButtonElement | null) => void;
   onClick: () => void;
   arrowOffset?: number;
@@ -23,20 +24,20 @@ export type { ActionChipProps };
 export function ActionChip({
   label,
   iconSrc,
-  iconAlt,
+  iconSize = "default",
   value,
-  isExpanded = false,
+  isSelected = false,
   isInactive = false,
-  controlsId,
   buttonRef,
   onClick,
   arrowOffset = 0,
   children,
 }: ActionChipProps) {
+  const hasPopover = !!children;
   const chipClass = c(
     styles.actionChip,
     !value && styles.compact,
-    isExpanded && styles.highlighted,
+    isSelected && styles.highlighted,
     isInactive && styles.inactive,
   );
 
@@ -49,16 +50,25 @@ export function ActionChip({
         onClick={onClick}
         disabled={isInactive}
         aria-label={value ? `${label}: ${value}` : undefined}
-        aria-expanded={isExpanded}
-        aria-controls={controlsId}
+        aria-expanded={hasPopover ? isSelected : undefined}
+        aria-pressed={!hasPopover ? isSelected : undefined}
+        data-sound="select"
       >
         <span className={styles.label}>{label}</span>
         {iconSrc && (
-          <img src={iconSrc} alt={iconAlt ?? label} className={styles.icon} />
+          <span
+            role="img"
+            aria-hidden
+            className={c(styles.icon, iconSize === "large" && styles.iconLarge)}
+            style={{
+              maskImage: `url(${iconSrc})`,
+              WebkitMaskImage: `url(${iconSrc})`,
+            }}
+          />
         )}
         {value && <span className={styles.value}>{value}</span>}
       </button>
-      {isExpanded && children && (
+      {isSelected && children && (
         <div className={descriptionPopoverStyles.descriptionRow}>
           <span
             className={descriptionPopoverStyles.descriptionArrow}

@@ -7,8 +7,16 @@ describe("<ChipGrid />", () => {
     render(
       <ChipGrid
         actions={[
-          { name: "Attack", description: "Strike with a weapon." },
-          { name: "Dash", description: "Move farther this turn." },
+          {
+            key: "attack",
+            label: "Attack",
+            description: "Strike with a weapon.",
+          },
+          {
+            key: "dash",
+            label: "Dash",
+            description: "Move farther this turn.",
+          },
         ]}
       />,
     );
@@ -21,8 +29,16 @@ describe("<ChipGrid />", () => {
     render(
       <ChipGrid
         actions={[
-          { name: "Attack", description: "Strike with a weapon." },
-          { name: "Dash", description: "Move farther this turn." },
+          {
+            key: "attack",
+            label: "Attack",
+            description: "Strike with a weapon.",
+          },
+          {
+            key: "dash",
+            label: "Dash",
+            description: "Move farther this turn.",
+          },
         ]}
       />,
     );

@@ -1,54 +1,78 @@
+import c from "classnames";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { getIconPath } from "src/models/icons";
 import { ActionChip } from "../action-chip/action-chip";
 import actionChipStyles from "../action-chip/action-chip.module.css";
 import styles from "./chip-grid.module.css";
 
-import type { IconName } from "src/models/icons";
-
 type GridAction = {
-  name: string;
-  description: string;
+  key: string;
+  label: string;
+  description?: string;
   icon?: string;
   disabled?: boolean;
   renderExpanded?: () => React.ReactNode;
 };
 
+type IconSize = "default" | "large";
+
 type ChipGridProps = {
   actions: GridAction[];
+  selectedKey?: string | null;
+  onSelect?: (key: string) => void;
+  iconSize?: IconSize;
 };
 
 export type { GridAction };
 
-export function ChipGrid({ actions }: ChipGridProps) {
-  const { expandedKey: expandedAction, toggle: toggleAction } =
+export function ChipGrid({
+  actions,
+  selectedKey: controlledKey,
+  onSelect,
+  iconSize,
+}: ChipGridProps) {
+  const { expandedKey: internalKey, toggle: toggleInternal } =
     useExpandable<string>();
-  const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
+
+  const selectedKey = onSelect ? (controlledKey ?? null) : internalKey;
+  const handleSelect = onSelect ?? toggleInternal;
+
+  const { buttonRefs, arrowOffset } = useArrowOffset(selectedKey);
+
+  const gridClass = c(
+    styles.actionsGrid,
+    iconSize === "large" && styles.actionsGridLarge,
+  );
 
   return (
-    <div className={styles.actionsGrid}>
-      {actions.map((action) => (
-        <ActionChip
-          key={action.name}
-          label={action.name}
-          iconSrc={
-            action.icon ? getIconPath(action.icon as IconName) : undefined
-          }
-          isInactive={action.disabled}
-          isExpanded={expandedAction === action.name}
-          arrowOffset={arrowOffset}
-          buttonRef={(el) => {
-            if (el) buttonRefs.current.set(action.name, el);
-            else buttonRefs.current.delete(action.name);
-          }}
-          onClick={() => toggleAction(action.name)}
-        >
-          {action.renderExpanded?.() ?? (
-            <p className={actionChipStyles.description}>{action.description}</p>
-          )}
-        </ActionChip>
-      ))}
+    <div className={gridClass}>
+      {actions.map((action) => {
+        const hasContent = !!(action.renderExpanded || action.description);
+
+        return (
+          <ActionChip
+            key={action.key}
+            label={action.label}
+            iconSrc={action.icon}
+            iconSize={iconSize}
+            isInactive={action.disabled}
+            isSelected={selectedKey === action.key}
+            arrowOffset={arrowOffset}
+            buttonRef={(el) => {
+              if (el) buttonRefs.current.set(action.key, el);
+              else buttonRefs.current.delete(action.key);
+            }}
+            onClick={() => handleSelect(action.key)}
+          >
+            {hasContent &&
+              (action.renderExpanded?.() ?? (
+                <p className={actionChipStyles.description}>
+                  {action.description}
+                </p>
+              ))}
+          </ActionChip>
+        );
+      })}
     </div>
   );
 }

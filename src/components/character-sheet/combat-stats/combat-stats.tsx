@@ -55,31 +55,25 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
         <ActionChip
           label="Initiative"
           iconSrc={INITIATIVE_ICON}
-          iconAlt="Initiative"
           value={formatModifier(initiative.total)}
-          isExpanded={expandedKey === "initiative"}
-          controlsId={breakdownId}
+          isSelected={expandedKey === "initiative"}
           buttonRef={setRef("initiative")}
           onClick={() => toggle("initiative")}
         />
         <ActionChip
           label="AC"
           iconSrc={AC_ICON}
-          iconAlt="Armor Class"
           value={String(ac.total)}
-          isExpanded={expandedKey === "ac"}
-          controlsId={breakdownId}
+          isSelected={expandedKey === "ac"}
           buttonRef={setRef("ac")}
           onClick={() => toggle("ac")}
         />
         <ActionChip
           label="Spell Attack"
           iconSrc={SPELL_ICON}
-          iconAlt="Spell Attack"
           value={spellAttack ? formatModifier(spellAttack.total) : "—"}
-          isExpanded={expandedKey === "spell"}
+          isSelected={expandedKey === "spell"}
           isInactive={!spellAttack}
-          controlsId={breakdownId}
           buttonRef={setRef("spell")}
           onClick={() => {
             if (spellAttack) toggle("spell");

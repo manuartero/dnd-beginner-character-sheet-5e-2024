@@ -17,26 +17,28 @@ describe("<ActionChip />", () => {
       render(
         <ActionChip
           label="Attack"
-          iconSrc="/icons/sword.png"
+          iconSrc="/icons/sword.svg"
           buttonRef={vi.fn()}
           onClick={vi.fn()}
         />,
       );
-      expect(screen.getByRole("img", { name: "Attack" })).toBeInTheDocument();
+      expect(screen.getByRole("img", { hidden: true })).toBeInTheDocument();
     });
 
     it("does not render an icon when omitted", () => {
       render(
         <ActionChip label="Attack" buttonRef={vi.fn()} onClick={vi.fn()} />,
       );
-      expect(screen.queryByRole("img")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("img", { hidden: true }),
+      ).not.toBeInTheDocument();
     });
 
     it("hides children when not expanded", () => {
       render(
         <ActionChip
           label="Attack"
-          isExpanded={false}
+          isSelected={false}
           buttonRef={vi.fn()}
           onClick={vi.fn()}
         >
@@ -52,7 +54,7 @@ describe("<ActionChip />", () => {
       render(
         <ActionChip
           label="Attack"
-          isExpanded
+          isSelected
           buttonRef={vi.fn()}
           onClick={vi.fn()}
         >
@@ -64,17 +66,34 @@ describe("<ActionChip />", () => {
       ).toBeInTheDocument();
     });
 
-    it("sets aria-expanded correctly", () => {
+    it("sets aria-expanded when selected with children", () => {
       render(
         <ActionChip
           label="Attack"
-          isExpanded
+          isSelected
+          buttonRef={vi.fn()}
+          onClick={vi.fn()}
+        >
+          <p>Description</p>
+        </ActionChip>,
+      );
+      expect(screen.getByRole("button", { name: "Attack" })).toHaveAttribute(
+        "aria-expanded",
+        "true",
+      );
+    });
+
+    it("sets aria-pressed when selected without children", () => {
+      render(
+        <ActionChip
+          label="Attack"
+          isSelected
           buttonRef={vi.fn()}
           onClick={vi.fn()}
         />,
       );
       expect(screen.getByRole("button", { name: "Attack" })).toHaveAttribute(
-        "aria-expanded",
+        "aria-pressed",
         "true",
       );
     });
@@ -95,7 +114,6 @@ describe("<ActionChip />", () => {
         <ActionChip
           label="AC"
           iconSrc="/shield.svg"
-          iconAlt="Shield"
           value="13"
           buttonRef={vi.fn()}
           onClick={vi.fn()}
