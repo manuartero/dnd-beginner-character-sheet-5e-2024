@@ -1,4 +1,4 @@
-import { Section, SelectionGrid } from "elements";
+import { ChipGrid, Section } from "elements";
 import { ABILITY_LIST } from "src/models/abilities";
 import {
   BACKGROUND_LIST,
@@ -28,8 +28,8 @@ export function StepOrigin({
 
   return (
     <Section title="Background">
-      <SelectionGrid
-        items={BACKGROUND_LIST.map(({ key, label }) => ({
+      <ChipGrid
+        actions={BACKGROUND_LIST.map(({ key, label }) => ({
           key,
           label,
           icon: getBackgroundIcon(key as Background),

@@ -38,17 +38,28 @@
   background: var(--shade-3);
 }
 
-/* Icon */
+/* Icon (CSS mask for SVGs) */
 
 .icon {
   width: var(--icon-size);
   height: var(--icon-size);
-  image-rendering: pixelated;
+  background-color: var(--shade-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
   align-self: center;
 }
 
 .compact .icon {
   padding: var(--space-xs) 0;
+}
+
+.iconLarge {
+  width: 96px;
+  height: 96px;
 }
 
 /* Value (tall variant only) */

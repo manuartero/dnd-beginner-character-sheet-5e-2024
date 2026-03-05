@@ -9,7 +9,6 @@ import {
   ScreenFlash,
   ScreenFlashProvider,
   Section,
-  SelectionGrid,
   Stepper,
 } from "elements";
 import { useState } from "react";
@@ -121,12 +120,28 @@ export function ElementsShowcase() {
           <ChipGrid
             actions={[
               {
-                name: "Attack",
-                description: "Make one melee or ranged attack.",
+                key: "opt1",
+                label: "Fighter",
+                icon: SAMPLE_ICON,
+                description: "A versatile warrior skilled in combat.",
               },
-              { name: "Dodge", description: "Focus on avoiding attacks." },
-              { name: "Help", description: "Aid an ally.", disabled: true },
+              {
+                key: "opt2",
+                label: "Wizard",
+                icon: SAMPLE_ICON,
+                description:
+                  "A master of arcane magic with a wide range of spells.",
+              },
+              {
+                key: "opt3",
+                label: "Rogue",
+                icon: SAMPLE_ICON,
+                description:
+                  "A stealthy and dexterous character, skilled in sneaking and thievery.",
+              },
             ]}
+            selectedKey={selectedGrid}
+            onSelect={setSelectedGrid}
           />
         </ShowcaseBlock>
 
@@ -135,7 +150,6 @@ export function ElementsShowcase() {
             <ActionChip
               label="AC"
               iconSrc={SAMPLE_ICON}
-              iconAlt="Armor Class"
               value="15"
               buttonRef={() => {}}
               onClick={() => {}}
@@ -143,7 +157,6 @@ export function ElementsShowcase() {
             <ActionChip
               label="Init"
               iconSrc={SAMPLE_ICON}
-              iconAlt="Initiative"
               value="+2"
               isInactive
               buttonRef={() => {}}
@@ -170,18 +183,6 @@ export function ElementsShowcase() {
             selected={radioValue}
             name="showcase-radio"
             onSelect={setRadioValue}
-          />
-        </ShowcaseBlock>
-
-        <ShowcaseBlock name="SelectionGrid">
-          <SelectionGrid
-            items={[
-              { key: "opt1", label: "Fighter", icon: SAMPLE_ICON },
-              { key: "opt2", label: "Wizard", icon: SAMPLE_ICON },
-              { key: "opt3", label: "Rogue", icon: SAMPLE_ICON },
-            ]}
-            selectedKey={selectedGrid}
-            onSelect={setSelectedGrid}
           />
         </ShowcaseBlock>
 

@@ -2,12 +2,14 @@ import { CastSpellGrid, ChipGrid, Section } from "elements";
 import { useMemo } from "react";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
+import { getIconPath } from "src/models/icons";
 import { groupSpellsByTiming } from "src/models/spell-timing";
 import styles from "./action-bar.module.css";
 
 import type { GridAction } from "elements";
 import type { ActionTiming } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
+import type { IconName } from "src/models/icons";
 import type { Spell } from "src/models/spells";
 
 type ActionBarProps = {
@@ -23,7 +25,7 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
 
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
-const CAST_SPELL_ICON = "combat.common.actions.cast-spell";
+const CAST_SPELL_ICON = getIconPath("combat.common.actions.cast-spell");
 const CAST_SPELL_DESCRIPTION =
   "Cast one of your prepared spells using the appropriate casting time.";
 
@@ -53,9 +55,10 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
       const baseActions: GridAction[] = availableActions
         .filter((a) => a.timing === timing)
         .map((a) => ({
-          name: a.name,
+          key: a.name,
+          label: a.name,
           description: a.description,
-          icon: a.icon,
+          icon: a.icon ? getIconPath(a.icon as IconName) : undefined,
         }));
 
       if (isSpellcaster) {
@@ -63,7 +66,8 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
         const hasSpells = timingSpells.length > 0;
 
         baseActions.push({
-          name: "Cast a Spell",
+          key: "Cast a Spell",
+          label: "Cast a Spell",
           description: CAST_SPELL_DESCRIPTION,
           icon: CAST_SPELL_ICON,
           disabled: !hasSpells,

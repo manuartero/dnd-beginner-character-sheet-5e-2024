@@ -21,8 +21,7 @@ function makeSpell(overrides: Partial<Spell> = {}): Spell {
   };
 }
 
-/** Icon alt + label text produces "Cast a SpellCast a Spell" as the accessible name. */
-const CAST_SPELL_ACCESSIBLE_NAME = "Cast a SpellCast a Spell";
+const CAST_SPELL_ACCESSIBLE_NAME = "Cast a Spell";
 
 describe("<ActionBar />", () => {
   it("renders the Combat section", () => {
