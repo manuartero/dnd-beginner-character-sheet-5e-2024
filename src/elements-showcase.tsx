@@ -77,21 +77,32 @@ export function ElementsShowcase() {
         </ShowcaseBlock>
 
         <ShowcaseBlock name="AbilityCard">
-          <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "0.5rem",
+            }}
+          >
+            <AbilityCard mode="display" abilityKey="str" score={16} />
+
             <AbilityCard
-              mode="display"
-              abilityKey="str"
-              score={16}
-              isFlipped={false}
-              onToggle={() => {}}
+              mode="creation"
+              abilityKey="con"
+              score={14}
+              rawScore="14"
+              bonus={1}
+              onScoreChange={() => {}}
             />
             <AbilityCard
-              mode="display"
-              abilityKey="dex"
-              score={12}
-              isFlipped={false}
-              onToggle={() => {}}
+              mode="creation"
+              abilityKey="wis"
+              score={10}
+              rawScore="10"
+              bonus={0}
+              readOnly
             />
+            <AbilityCard mode="display" abilityKey="dex" score={12} isFlipped />
           </div>
         </ShowcaseBlock>
 
