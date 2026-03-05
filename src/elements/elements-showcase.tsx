@@ -1,7 +1,9 @@
 import {
   AbilityCard,
+  AccordionGroup,
+  AccordionItem,
+  AccordionList,
   ActionChip,
-  CastSpellGrid,
   ChipGrid,
   InlineConfirm,
   RetroRadio,
@@ -12,6 +14,7 @@ import {
   Stepper,
 } from "elements";
 import { useState } from "react";
+import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { resolveIconPath } from "src/models/icons";
 
 function ShowcaseBlock({
@@ -93,14 +96,7 @@ export function ElementsShowcase() {
               bonus={1}
               onScoreChange={() => {}}
             />
-            <AbilityCard
-              mode="creation"
-              abilityKey="wis"
-              score={10}
-              rawScore="10"
-              bonus={0}
-              readOnly
-            />
+
             <AbilityCard mode="display" abilityKey="dex" score={12} isFlipped />
           </div>
         </ShowcaseBlock>
@@ -199,39 +195,28 @@ export function ElementsShowcase() {
           />
         </ShowcaseBlock>
 
-        <ShowcaseBlock name="CastSpellGrid">
-          <CastSpellGrid
-            spells={[
-              {
-                id: "demo-1",
-                name: "Fire Bolt",
-                level: 0,
-                school: "Evocation",
-                castingTime: "1 action",
-                range: "120 feet",
-                duration: "Instantaneous",
-                components: "V, S",
-                description: "A beam of fire shoots from your hand.",
-                damage: { dice: "1d10", type: "fire" },
-                concentration: false,
-                ritual: false,
-              },
-              {
-                id: "demo-2",
-                name: "Shield",
-                level: 1,
-                school: "Abjuration",
-                castingTime: "1 reaction",
-                range: "Self",
-                duration: "1 round",
-                components: "V, S",
-                description:
-                  "An invisible barrier of magical force appears and protects you.",
-                concentration: false,
-                ritual: false,
-              },
-            ]}
-          />
+        <ShowcaseBlock name="AccordionList">
+          <AccordionList>
+            <AccordionGroup label="Weapons">
+              <AccordionItem
+                itemKey="longsword"
+                header={<span>Longsword</span>}
+              >
+                <p>1d8 slashing — Versatile (1d10)</p>
+              </AccordionItem>
+              <AccordionItem itemKey="shortbow" header={<span>Shortbow</span>}>
+                <p>1d6 piercing — Range 80/320</p>
+              </AccordionItem>
+            </AccordionGroup>
+            <AccordionGroup label="Armor">
+              <AccordionItem
+                itemKey="chain-mail"
+                header={<span>Chain Mail</span>}
+              >
+                <p>AC 16 — Heavy, Stealth disadvantage</p>
+              </AccordionItem>
+            </AccordionGroup>
+          </AccordionList>
         </ShowcaseBlock>
 
         <ShowcaseBlock name="ScreenFlash">
