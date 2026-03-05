@@ -1,14 +1,22 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ActionButtonGrid } from "./action-button-grid";
+import { ChipGrid } from "./chip-grid";
 
-describe("<ActionButtonGrid />", () => {
+describe("<ChipGrid />", () => {
   it("renders each action as a button", () => {
     render(
-      <ActionButtonGrid
+      <ChipGrid
         actions={[
-          { name: "Attack", description: "Strike with a weapon." },
-          { name: "Dash", description: "Move farther this turn." },
+          {
+            key: "attack",
+            label: "Attack",
+            description: "Strike with a weapon.",
+          },
+          {
+            key: "dash",
+            label: "Dash",
+            description: "Move farther this turn.",
+          },
         ]}
       />,
     );
@@ -19,10 +27,18 @@ describe("<ActionButtonGrid />", () => {
 
   it("toggles expanded state per selected action button", () => {
     render(
-      <ActionButtonGrid
+      <ChipGrid
         actions={[
-          { name: "Attack", description: "Strike with a weapon." },
-          { name: "Dash", description: "Move farther this turn." },
+          {
+            key: "attack",
+            label: "Attack",
+            description: "Strike with a weapon.",
+          },
+          {
+            key: "dash",
+            label: "Dash",
+            description: "Move farther this turn.",
+          },
         ]}
       />,
     );

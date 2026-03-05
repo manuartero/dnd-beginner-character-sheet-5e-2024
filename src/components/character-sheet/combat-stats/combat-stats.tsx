@@ -1,6 +1,5 @@
+import { ActionChip, Section } from "elements";
 import { useId } from "react";
-import { CombatChip } from "src/components/combat-chip/combat-chip";
-import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { formatModifier } from "src/models/abilities";
@@ -53,34 +52,28 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
   return (
     <Section title="Combat Stats">
       <div className={styles.row}>
-        <CombatChip
+        <ActionChip
           label="Initiative"
           iconSrc={INITIATIVE_ICON}
-          iconAlt="Initiative"
           value={formatModifier(initiative.total)}
-          isExpanded={expandedKey === "initiative"}
-          controlsId={breakdownId}
+          isSelected={expandedKey === "initiative"}
           buttonRef={setRef("initiative")}
           onClick={() => toggle("initiative")}
         />
-        <CombatChip
+        <ActionChip
           label="AC"
           iconSrc={AC_ICON}
-          iconAlt="Armor Class"
           value={String(ac.total)}
-          isExpanded={expandedKey === "ac"}
-          controlsId={breakdownId}
+          isSelected={expandedKey === "ac"}
           buttonRef={setRef("ac")}
           onClick={() => toggle("ac")}
         />
-        <CombatChip
+        <ActionChip
           label="Spell Attack"
           iconSrc={SPELL_ICON}
-          iconAlt="Spell Attack"
           value={spellAttack ? formatModifier(spellAttack.total) : "—"}
-          isExpanded={expandedKey === "spell"}
+          isSelected={expandedKey === "spell"}
           isInactive={!spellAttack}
-          controlsId={breakdownId}
           buttonRef={setRef("spell")}
           onClick={() => {
             if (spellAttack) toggle("spell");

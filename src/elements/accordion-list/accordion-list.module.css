@@ -22,7 +22,7 @@
   margin: 0;
 }
 
-.spellList {
+.itemList {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -37,6 +37,8 @@
   border: 2px solid var(--shade-3);
   text-align: left;
   width: 100%;
+  font: inherit;
+  color: inherit;
 }
 
 .entryExpanded {
@@ -47,7 +49,20 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.25;
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--shade-3);
+}
+
+/* Content utilities for header and details */
 
 .icon {
   width: var(--icon-size);
@@ -55,15 +70,12 @@
   image-rendering: pixelated;
 }
 
-.spellName {
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  line-height: 1.25;
+.title {
   flex: 1;
   min-width: 0;
 }
 
-.resultBadge {
+.badge {
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
@@ -76,14 +88,6 @@
   line-height: 1.5;
   text-align: right;
   white-space: normal;
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding-top: var(--space-xs);
-  border-top: 1px solid var(--shade-3);
 }
 
 .detailRow {

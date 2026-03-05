@@ -1,4 +1,4 @@
-import { Section } from "src/components/section";
+import { Section } from "elements";
 import styles from "./weapon-mastery.module.css";
 
 import type { CharacterClass } from "src/models/classes";

@@ -1,0 +1,128 @@
+/* ActionChip — shared button chip for actions and combat stats */
+
+.actionChip {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  background: var(--shade-1);
+  border: 2px solid var(--shade-3);
+  box-shadow: 3px 3px 0 var(--shade-3);
+  overflow: hidden;
+  min-width: 100px;
+  min-height: 130px;
+  /* button resets */
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  text-align: inherit;
+}
+
+.compact {
+  grid-template-rows: auto 1fr;
+  min-height: 72px;
+}
+
+/* Label banner */
+
+.label {
+  position: relative;
+  width: 100%;
+  padding: var(--space-xs);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--shade-0);
+  background: var(--shade-3);
+}
+
+/* Icon (CSS mask for SVGs) */
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-color: var(--shade-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  align-self: center;
+}
+
+.compact .icon {
+  padding: var(--space-xs) 0;
+}
+
+.iconLarge {
+  width: 96px;
+  height: 96px;
+}
+
+.iconImage {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  object-fit: cover;
+  border: 2px solid var(--shade-3);
+  align-self: center;
+}
+
+.iconImageLarge {
+  width: 96px;
+  height: 96px;
+}
+
+/* Value (tall variant only) */
+
+.value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  padding-bottom: var(--space-sm);
+}
+
+/* Highlighted (expanded) state */
+
+.highlighted {
+  border-color: var(--shade-2);
+  box-shadow: 3px 3px 0 var(--shade-2);
+}
+
+.highlighted .label {
+  background: var(--shade-2);
+}
+
+.highlighted .label::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  margin-top: -5px;
+  width: 2px;
+  height: 2px;
+  background: var(--shade-0);
+  box-shadow: var(--pixel-cursor);
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Inactive / disabled */
+
+.inactive {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* Description popover text (used by children content) */
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  padding: var(--space-sm);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+  line-height: 1.4;
+  margin: 0;
+}

@@ -1,5 +1,5 @@
 import c from "classnames";
-import { Section } from "src/components/section";
+import { Section } from "elements";
 import proficiencyDetailsData from "src/data/proficiency-details.json";
 import {
   getProficiencyRestriction,

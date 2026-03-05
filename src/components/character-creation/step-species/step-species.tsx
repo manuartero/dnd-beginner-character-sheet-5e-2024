@@ -1,6 +1,5 @@
+import { ChipGrid, Section } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
-import { Section } from "src/components/section";
-import { SelectionGrid } from "src/components/selection-grid";
 import {
   getSpeciesIcon,
   SPECIES_DETAILS,
@@ -21,8 +20,8 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
   return (
     <>
       <Section title="Species">
-        <SelectionGrid
-          items={SPECIES_LIST.map(({ key, label }) => ({
+        <ChipGrid
+          actions={SPECIES_LIST.map(({ key, label }) => ({
             key,
             label,
             icon: getSpeciesIcon(key as Species),

@@ -11,6 +11,7 @@ type RetroRadioProps<T extends string> = {
   options: RetroRadioOption<T>[];
   selected: T;
   name: string;
+  legend?: string;
   onSelect: (value: T) => void;
 };
 
@@ -18,10 +19,11 @@ export function RetroRadio<T extends string>({
   options,
   selected,
   name,
+  legend,
   onSelect,
 }: RetroRadioProps<T>) {
   return (
-    <fieldset className={styles.radioGroup}>
+    <fieldset className={styles.radioGroup} aria-label={legend}>
       {options.map((opt) => {
         const isSelected = opt.value === selected;
         return (

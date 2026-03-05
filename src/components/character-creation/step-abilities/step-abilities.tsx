@@ -1,7 +1,5 @@
-import { AbilityCard } from "src/components/ability-card";
+import { AbilityCard, RetroRadio, Section } from "elements";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
-import { RetroRadio } from "src/components/retro-radio";
-import { Section } from "src/components/section";
 import { useExpandable } from "src/hooks/use-expandable";
 import {
   ABILITY_LIST,
