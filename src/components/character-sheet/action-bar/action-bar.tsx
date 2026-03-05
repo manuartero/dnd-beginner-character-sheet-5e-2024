@@ -1,4 +1,4 @@
-import { ActionButtonGrid, CastSpellGrid, Section } from "elements";
+import { CastSpellGrid, ChipGrid, Section } from "elements";
 import { useMemo } from "react";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
@@ -88,7 +88,7 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
           <div key={group.timing}>
             <h3 className={styles.groupLabel}>{group.label}</h3>
             {group.actions.length > 0 ? (
-              <ActionButtonGrid actions={group.actions} />
+              <ChipGrid actions={group.actions} />
             ) : (
               <div className={styles.emptyState}>Empty</div>
             )}

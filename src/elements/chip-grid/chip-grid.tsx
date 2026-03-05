@@ -1,7 +1,11 @@
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { ActionButton } from "./action-button";
-import styles from "./action-button-grid.module.css";
+import { getIconPath } from "src/models/icons";
+import { ActionChip } from "../action-chip/action-chip";
+import actionChipStyles from "../action-chip/action-chip.module.css";
+import styles from "./chip-grid.module.css";
+
+import type { IconName } from "src/models/icons";
 
 type GridAction = {
   name: string;
@@ -11,13 +15,13 @@ type GridAction = {
   renderExpanded?: () => React.ReactNode;
 };
 
-type ActionButtonGridProps = {
+type ChipGridProps = {
   actions: GridAction[];
 };
 
 export type { GridAction };
 
-export function ActionButtonGrid({ actions }: ActionButtonGridProps) {
+export function ChipGrid({ actions }: ChipGridProps) {
   const { expandedKey: expandedAction, toggle: toggleAction } =
     useExpandable<string>();
   const { buttonRefs, arrowOffset } = useArrowOffset(expandedAction);
@@ -25,13 +29,13 @@ export function ActionButtonGrid({ actions }: ActionButtonGridProps) {
   return (
     <div className={styles.actionsGrid}>
       {actions.map((action) => (
-        <ActionButton
+        <ActionChip
           key={action.name}
-          name={action.name}
-          description={action.description}
-          icon={action.icon}
-          disabled={action.disabled}
-          renderExpanded={action.renderExpanded}
+          label={action.name}
+          iconSrc={
+            action.icon ? getIconPath(action.icon as IconName) : undefined
+          }
+          isInactive={action.disabled}
           isExpanded={expandedAction === action.name}
           arrowOffset={arrowOffset}
           buttonRef={(el) => {
@@ -39,7 +43,11 @@ export function ActionButtonGrid({ actions }: ActionButtonGridProps) {
             else buttonRefs.current.delete(action.name);
           }}
           onClick={() => toggleAction(action.name)}
-        />
+        >
+          {action.renderExpanded?.() ?? (
+            <p className={actionChipStyles.description}>{action.description}</p>
+          )}
+        </ActionChip>
       ))}
     </div>
   );

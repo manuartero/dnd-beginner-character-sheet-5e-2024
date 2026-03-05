@@ -36,7 +36,10 @@
       "Bash(sed -i '' 's|import { Section } from \"\"src/components/section\"\";|import { Section } from \"\"elements\"\";|' src/components/character-sheet/character-header/character-header.tsx)",
       "Bash(sed -i '' 's|import { CombatChip } from \"\"src/components/combat-chip/combat-chip\"\";|import { CombatChip, Section } from \"\"elements\"\";|' src/components/character-sheet/combat-stats/combat-stats.tsx)",
       "Bash(sed -i '' '/import { Section } from \"\"src\\\\/components\\\\/section\"\";/d' src/components/character-sheet/combat-stats/combat-stats.tsx)",
-      "Bash(sed -i '' 's|import { Section } from \"\"src/components/section\"\";|import { Section } from \"\"elements\"\";|' src/components/character-sheet/weapon-mastery/weapon-mastery.tsx)"
+      "Bash(sed -i '' 's|import { Section } from \"\"src/components/section\"\";|import { Section } from \"\"elements\"\";|' src/components/character-sheet/weapon-mastery/weapon-mastery.tsx)",
+      "Bash(mv action-button-grid.tsx chip-grid.tsx)",
+      "Bash(mv action-button-grid.module.css chip-grid.module.css)",
+      "Bash(mv action-button-grid.test.tsx chip-grid.test.tsx)"
     ]
   },
   "hooks": {

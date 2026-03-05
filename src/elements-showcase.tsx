@@ -1,8 +1,8 @@
 import {
   AbilityCard,
-  ActionButtonGrid,
+  ActionChip,
   CastSpellGrid,
-  CombatChip,
+  ChipGrid,
   InlineConfirm,
   RetroRadio,
   RowList,
@@ -117,8 +117,8 @@ export function ElementsShowcase() {
           />
         </ShowcaseBlock>
 
-        <ShowcaseBlock name="ActionButtonGrid">
-          <ActionButtonGrid
+        <ShowcaseBlock name="ChipGrid">
+          <ChipGrid
             actions={[
               {
                 name: "Attack",
@@ -130,23 +130,21 @@ export function ElementsShowcase() {
           />
         </ShowcaseBlock>
 
-        <ShowcaseBlock name="CombatChip">
+        <ShowcaseBlock name="ActionChip">
           <div style={{ display: "flex", gap: "0.5rem" }}>
-            <CombatChip
+            <ActionChip
               label="AC"
               iconSrc={SAMPLE_ICON}
               iconAlt="Armor Class"
               value="15"
-              isExpanded={false}
               buttonRef={() => {}}
               onClick={() => {}}
             />
-            <CombatChip
+            <ActionChip
               label="Init"
               iconSrc={SAMPLE_ICON}
               iconAlt="Initiative"
               value="+2"
-              isExpanded={false}
               isInactive
               buttonRef={() => {}}
               onClick={() => {}}

@@ -1,7 +1,7 @@
 export { AbilityCard } from "./ability-card/ability-card";
-export { ActionButtonGrid } from "./action-button-grid/action-button-grid";
+export { ActionChip } from "./action-chip/action-chip";
 export { CastSpellGrid } from "./cast-spell-grid/cast-spell-grid";
-export { CombatChip } from "./combat-chip/combat-chip";
+export { ChipGrid } from "./chip-grid/chip-grid";
 export { InlineConfirm } from "./inline-confirm/inline-confirm";
 export { RetroRadio } from "./retro-radio/retro-radio";
 export { RowList } from "./row-list/row-list";
@@ -14,5 +14,5 @@ export { Section } from "./section/section";
 export { SelectionGrid } from "./selection-grid/selection-grid";
 export { Stepper } from "./stepper/stepper";
 
-export type { GridAction } from "./action-button-grid/action-button-grid";
-export type { CombatChipProps } from "./combat-chip/combat-chip";
+export type { ActionChipProps } from "./action-chip/action-chip";
+export type { GridAction } from "./chip-grid/chip-grid";
