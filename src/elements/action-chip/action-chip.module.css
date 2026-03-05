@@ -1,4 +1,6 @@
-.chip {
+/* ActionChip — shared button chip for actions and combat stats */
+
+.actionChip {
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -16,17 +18,27 @@
   text-align: inherit;
 }
 
-.chipLabel {
+.compact {
+  grid-template-rows: auto 1fr;
+  min-height: 72px;
+}
+
+/* Label banner */
+
+.label {
   position: relative;
   width: 100%;
-  padding: var(--space-xs) 0;
+  padding: var(--space-xs);
   font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: center;
+  line-height: 1.2;
   color: var(--shade-0);
   background: var(--shade-3);
 }
+
+/* Icon */
 
 .icon {
   width: var(--icon-size);
@@ -35,22 +47,30 @@
   align-self: center;
 }
 
+.compact .icon {
+  padding: var(--space-xs) 0;
+}
+
+/* Value (tall variant only) */
+
 .value {
   font-size: var(--font-size-xl);
   font-weight: 700;
   padding-bottom: var(--space-sm);
 }
 
+/* Highlighted (expanded) state */
+
 .highlighted {
   border-color: var(--shade-2);
   box-shadow: 3px 3px 0 var(--shade-2);
 }
 
-.highlighted .chipLabel {
+.highlighted .label {
   background: var(--shade-2);
 }
 
-.highlighted .chipLabel::before {
+.highlighted .label::before {
   content: "";
   position: absolute;
   left: 2px;
@@ -63,7 +83,21 @@
   animation: cursor-blink 1s step-end infinite;
 }
 
+/* Inactive / disabled */
+
 .inactive {
   cursor: default;
   opacity: 0.5;
+}
+
+/* Description popover text (used by children content) */
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  padding: var(--space-sm);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+  line-height: 1.4;
+  margin: 0;
 }

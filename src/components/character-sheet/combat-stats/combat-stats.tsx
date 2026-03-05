@@ -1,4 +1,4 @@
-import { CombatChip, Section } from "elements";
+import { ActionChip, Section } from "elements";
 import { useId } from "react";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
@@ -52,7 +52,7 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
   return (
     <Section title="Combat Stats">
       <div className={styles.row}>
-        <CombatChip
+        <ActionChip
           label="Initiative"
           iconSrc={INITIATIVE_ICON}
           iconAlt="Initiative"
@@ -62,7 +62,7 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
           buttonRef={setRef("initiative")}
           onClick={() => toggle("initiative")}
         />
-        <CombatChip
+        <ActionChip
           label="AC"
           iconSrc={AC_ICON}
           iconAlt="Armor Class"
@@ -72,7 +72,7 @@ export function CombatStats({ initiative, ac, spellAttack }: CombatStatsProps) {
           buttonRef={setRef("ac")}
           onClick={() => toggle("ac")}
         />
-        <CombatChip
+        <ActionChip
           label="Spell Attack"
           iconSrc={SPELL_ICON}
           iconAlt="Spell Attack"

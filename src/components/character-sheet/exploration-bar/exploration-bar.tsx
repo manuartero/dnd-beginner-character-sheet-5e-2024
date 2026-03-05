@@ -1,4 +1,4 @@
-import { ActionButtonGrid, Section } from "elements";
+import { ChipGrid, Section } from "elements";
 import { CLASS_DETAILS } from "src/models/classes";
 import { EXPLORATION_ACTIONS } from "src/models/exploration-actions";
 
@@ -18,7 +18,7 @@ export function ExplorationBar({ characterClass }: ExplorationBarProps) {
 
   return (
     <Section title="Exploration Actions">
-      <ActionButtonGrid actions={availableActions} />
+      <ChipGrid actions={availableActions} />
     </Section>
   );
 }
