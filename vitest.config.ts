@@ -20,6 +20,7 @@ export default defineConfig({
   resolve: {
     alias: {
       src: "/src",
+      elements: "/src/elements",
       "@pkg": "/package.json",
     },
   },

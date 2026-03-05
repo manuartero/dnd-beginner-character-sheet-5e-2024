@@ -1,13 +1,11 @@
+import { ActionButtonGrid, CastSpellGrid, Section } from "elements";
 import { useMemo } from "react";
-import { ActionButtonGrid } from "src/components/action-button-grid/action-button-grid";
-import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
-import { Section } from "src/components/section";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
 import { groupSpellsByTiming } from "src/models/spell-timing";
 import styles from "./action-bar.module.css";
 
-import type { GridAction } from "src/components/action-button-grid/action-button-grid";
+import type { GridAction } from "elements";
 import type { ActionTiming } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
 import type { Spell } from "src/models/spells";

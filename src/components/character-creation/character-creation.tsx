@@ -1,7 +1,6 @@
+import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { ScreenFlash } from "src/components/screen-flash/screen-flash";
-import { Stepper } from "src/components/stepper/stepper";
 import recommendedData from "src/data/recommended-scores.json";
 import { computeProficiencyBonus } from "src/models/abilities";
 import { BACKGROUND_LIST } from "src/models/backgrounds";

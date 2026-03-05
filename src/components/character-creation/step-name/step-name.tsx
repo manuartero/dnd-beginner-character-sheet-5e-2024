@@ -1,4 +1,4 @@
-import { Section } from "src/components/section";
+import { Section } from "elements";
 import styles from "./step-name.module.css";
 
 type StepNameProps = {

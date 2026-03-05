@@ -1,5 +1,4 @@
-import { ActionButtonGrid } from "src/components/action-button-grid/action-button-grid";
-import { Section } from "src/components/section";
+import { ActionButtonGrid, Section } from "elements";
 import { CLASS_DETAILS } from "src/models/classes";
 import { EXPLORATION_ACTIONS } from "src/models/exploration-actions";
 

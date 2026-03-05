@@ -1,8 +1,8 @@
 import c from "classnames";
+import { Section } from "elements";
 import { Fragment, useState } from "react";
 import { SpellCards } from "src/components/character-sheet/spell-cards/spell-cards";
-import descriptionPopoverStyles from "src/components/description-popover/description-popover.module.css";
-import { Section } from "src/components/section";
+import descriptionPopoverStyles from "src/elements/description-popover/description-popover.module.css";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { resolveIconPath } from "src/models/icons";

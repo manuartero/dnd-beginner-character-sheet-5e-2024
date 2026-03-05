@@ -1,7 +1,6 @@
 import c from "classnames";
+import { InlineConfirm, Section } from "elements";
 import { useState } from "react";
-import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
-import { Section } from "src/components/section";
 import { getClassIcon } from "src/models/classes";
 import styles from "./character-list.module.css";
 

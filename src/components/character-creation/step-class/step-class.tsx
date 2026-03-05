@@ -1,8 +1,7 @@
 import c from "classnames";
+import { Section, SelectionGrid } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
-import { ProficiencyGrid } from "src/components/proficiency-grid";
-import { Section } from "src/components/section";
-import { SelectionGrid } from "src/components/selection-grid";
+import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
   type CharacterClass,
   CLASS_DETAILS,
