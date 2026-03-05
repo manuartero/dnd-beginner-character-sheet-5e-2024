@@ -1,5 +1,6 @@
-import { CastSpellGrid, ChipGrid, Section } from "elements";
+import { ChipGrid, Section } from "elements";
 import { useMemo } from "react";
+import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
 import { getIconPath } from "src/models/icons";
