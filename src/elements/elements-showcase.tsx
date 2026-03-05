@@ -14,7 +14,6 @@ import {
   Stepper,
 } from "elements";
 import { useState } from "react";
-import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { resolveIconPath } from "src/models/icons";
 
 function ShowcaseBlock({
@@ -184,14 +183,78 @@ export function ElementsShowcase() {
 
         <ShowcaseBlock name="RowList">
           <RowList
-            title="Equipment"
-            ariaLabel="Sample equipment list"
+            title="Arms & Armor"
+            ariaLabel="Arms and armor"
             items={[
-              { index: 0, item: "Longsword" },
-              { index: 1, item: "Shield" },
-              { index: 2, item: "Chain mail" },
+              {
+                index: 0,
+                item: {
+                  name: "Longsword",
+                  meta: "1d8 slashing | Versatile",
+                  icon: SAMPLE_ICON,
+                },
+              },
+              {
+                index: 1,
+                item: { name: "Shield", meta: "AC +2", icon: SAMPLE_ICON },
+              },
+              {
+                index: 2,
+                item: {
+                  name: "Chain Mail",
+                  meta: "AC 16 | Heavy, Stealth disadv.",
+                  icon: SAMPLE_ICON,
+                },
+              },
             ]}
-            renderItem={(item) => <span>{item}</span>}
+            renderItem={(item) => (
+              <>
+                <img
+                  src={item.icon}
+                  alt=""
+                  style={{
+                    width: "var(--icon-size)",
+                    height: "var(--icon-size)",
+                    imageRendering: "pixelated" as const,
+                  }}
+                />
+                <span
+                  style={{ flex: 1, display: "flex", flexDirection: "column" }}
+                >
+                  <span
+                    style={{
+                      fontWeight: 600,
+                      fontSize: "var(--font-size-sm)",
+                    }}
+                  >
+                    {item.name}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "var(--font-size-xs)",
+                      color: "var(--shade-2)",
+                    }}
+                  >
+                    {item.meta}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  style={{
+                    width: 24,
+                    height: 24,
+                    fontSize: "var(--font-size-sm)",
+                    color: "var(--shade-2)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  aria-label={`Remove ${item.name}`}
+                >
+                  x
+                </button>
+              </>
+            )}
           />
         </ShowcaseBlock>
 
