@@ -1,6 +1,6 @@
 import c from "classnames";
-import descriptionPopoverStyles from "src/components/description-popover/description-popover.module.css";
 import { getIconPath } from "src/models/icons";
+import descriptionPopoverStyles from "../description-popover/description-popover.module.css";
 import styles from "./action-button.module.css";
 
 import type { IconName } from "src/models/icons";

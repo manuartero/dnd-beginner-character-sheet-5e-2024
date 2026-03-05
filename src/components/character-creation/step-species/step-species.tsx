@@ -1,6 +1,5 @@
+import { Section, SelectionGrid } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
-import { Section } from "src/components/section";
-import { SelectionGrid } from "src/components/selection-grid";
 import {
   getSpeciesIcon,
   SPECIES_DETAILS,

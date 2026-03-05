@@ -1,7 +1,5 @@
+import { InlineConfirm, RowList, Section } from "elements";
 import { useState } from "react";
-import { InlineConfirm } from "src/components/inline-confirm/inline-confirm";
-import { RowList } from "src/components/row-list";
-import { Section } from "src/components/section";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./inventory.module.css";

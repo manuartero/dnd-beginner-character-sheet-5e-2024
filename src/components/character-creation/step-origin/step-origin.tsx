@@ -1,5 +1,4 @@
-import { Section } from "src/components/section";
-import { SelectionGrid } from "src/components/selection-grid";
+import { Section, SelectionGrid } from "elements";
 import { ABILITY_LIST } from "src/models/abilities";
 import {
   BACKGROUND_LIST,

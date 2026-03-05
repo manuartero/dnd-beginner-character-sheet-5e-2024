@@ -1,6 +1,5 @@
+import { CombatChip, Section } from "elements";
 import { useId } from "react";
-import { CombatChip } from "src/components/combat-chip/combat-chip";
-import { Section } from "src/components/section";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
 import { formatModifier } from "src/models/abilities";

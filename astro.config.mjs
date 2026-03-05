@@ -9,6 +9,7 @@ export default defineConfig({
     resolve: {
       alias: {
         "@pkg": "/package.json",
+        elements: "/src/elements",
       },
     },
   },
