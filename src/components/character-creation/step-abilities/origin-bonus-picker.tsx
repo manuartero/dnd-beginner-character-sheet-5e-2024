@@ -1,6 +1,6 @@
 import c from "classnames";
+import { Section } from "elements";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { Section } from "src/components/section";
 import { ABILITY_LIST } from "src/models/abilities";
 import styles from "./step-abilities.module.css";
 

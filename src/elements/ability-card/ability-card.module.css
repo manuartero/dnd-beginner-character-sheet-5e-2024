@@ -10,6 +10,8 @@
   border: 2px solid var(--shade-3);
   box-shadow: 3px 3px 0 var(--shade-3);
   overflow: hidden;
+  width: 100%;
+  min-width: 180px;
   min-height: 130px;
 }
 
@@ -146,9 +148,11 @@ button.abilityCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-sm);
   padding: 2px 0;
   font-size: var(--font-size-sm);
   color: var(--shade-2);
+  white-space: nowrap;
 }
 
 .skillProficient {

@@ -23,7 +23,7 @@ type _BaseProps = {
   abilityKey: AbilityName;
   score: number;
   isFlipped?: boolean;
-  onToggle: (key: AbilityName) => void;
+  onToggle?: (key: AbilityName) => void;
 };
 
 type AbilityCardDisplayProps = _BaseProps & {
@@ -38,7 +38,7 @@ type AbilityCardCreationProps = _BaseProps & {
   showError?: boolean;
   readOnly?: boolean;
   onScoreChange: (ability: AbilityName, value: string) => void;
-  onBlur: (ability: AbilityName) => void;
+  onBlur?: (ability: AbilityName) => void;
 };
 
 type AbilityCardAssignProps = _BaseProps & {
@@ -111,7 +111,7 @@ export function AbilityCard(props: AbilityCardProps) {
         className={cardClass}
         aria-label={short}
         aria-expanded={isFlipped}
-        onClick={() => onToggle(abilityKey)}
+        onClick={() => onToggle?.(abilityKey)}
       >
         <AbilityCardContent
           {...props}
@@ -162,7 +162,7 @@ function AbilityCardContent({
           className={styles.label}
           aria-label={short}
           aria-expanded={isFlipped}
-          onClick={() => onToggle(abilityKey)}
+          onClick={() => onToggle?.(abilityKey)}
         >
           {short}
         </button>
@@ -230,7 +230,7 @@ type CreationFrontProps = {
   bonus: number;
   showError: boolean;
   onScoreChange: (ability: AbilityName, value: string) => void;
-  onBlur: (ability: AbilityName) => void;
+  onBlur?: (ability: AbilityName) => void;
 };
 
 function CreationFront({
@@ -252,7 +252,7 @@ function CreationFront({
         inputMode="numeric"
         value={rawScore}
         onChange={(e) => onScoreChange(abilityKey, e.target.value)}
-        onBlur={() => onBlur(abilityKey)}
+        onBlur={() => onBlur?.(abilityKey)}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}
         className={c(styles.scoreInput, showError && styles.scoreInputError)}

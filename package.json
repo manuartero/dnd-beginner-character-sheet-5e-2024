@@ -2,7 +2,7 @@
   "name": "dnd-beginner-character-sheet-5e-2024",
   "description": "A simple, interactive D&D 5e character sheet built for new players and the 2024 rules",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "license": "MIT",
   "author": "Manu Artero <manutero.developer@gmail.com>",

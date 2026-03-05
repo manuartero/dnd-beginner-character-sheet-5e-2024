@@ -1,8 +1,7 @@
+import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
 import { Inventory } from "src/components/inventory/inventory";
-import { ProficiencyGrid } from "src/components/proficiency-grid";
-import { ScreenFlash } from "src/components/screen-flash/screen-flash";
-import { Stepper } from "src/components/stepper/stepper";
+import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
   computeArmorClass,
   computeInitiative,

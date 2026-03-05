@@ -2,6 +2,8 @@ import styles from "./row-list.module.css";
 
 import type { ReactNode } from "react";
 
+export { styles as rowListStyles };
+
 type RowListItem<T> = {
   index: number;
   item: T;

@@ -1,4 +1,4 @@
-import { Section } from "src/components/section";
+import { Section } from "elements";
 import { type CharacterClass, getClassIcon } from "src/models/classes";
 import { SPECIES_LIST } from "src/models/species";
 import styles from "./character-header.module.css";

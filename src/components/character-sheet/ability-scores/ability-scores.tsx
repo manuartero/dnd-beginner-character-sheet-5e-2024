@@ -1,5 +1,4 @@
-import { AbilityCard } from "src/components/ability-card";
-import { Section } from "src/components/section";
+import { AbilityCard, Section } from "elements";
 import { useExpandable } from "src/hooks/use-expandable";
 import { ABILITY_LIST } from "src/models/abilities";
 import styles from "./ability-scores.module.css";

@@ -25,16 +25,25 @@ describe("useAbilityScores()", () => {
     expect(result.current.mode).toBe("quick-start");
   });
 
-  it("initializes rawScores from the scores prop", () => {
+  it("initializes rawScores from scores prop", () => {
+    const customScores: AbilityScores = {
+      str: 15,
+      dex: 14,
+      con: 13,
+      int: 12,
+      wis: 10,
+      cha: 8,
+    };
+
     const { result } = renderHook(() =>
       useAbilityScores({
         characterClass: "fighter",
-        scores: DEFAULT_SCORES,
+        scores: customScores,
         onScoresChange: vi.fn(),
       }),
     );
-    expect(result.current.rawScores.str).toBe("10");
-    expect(result.current.rawScores.cha).toBe("10");
+    expect(result.current.rawScores.str).toBe("15");
+    expect(result.current.rawScores.cha).toBe("8");
   });
 
   it("switches to customize mode and resets assignments", () => {
@@ -131,6 +140,8 @@ describe("useAbilityScores()", () => {
         onScoresChange,
       }),
     );
+
+    onScoresChange.mockClear();
 
     act(() => {
       result.current.handleScoreChange("str", "abc");

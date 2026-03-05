@@ -1,5 +1,5 @@
 import pkg from "@pkg";
-import { useScreenFlash } from "src/components/screen-flash/screen-flash-context";
+import { useScreenFlash } from "elements";
 import styles from "./settings-menu.module.css";
 
 type SettingsMenuProps = {

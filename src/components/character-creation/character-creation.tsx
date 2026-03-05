@@ -1,7 +1,6 @@
+import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { ScreenFlash } from "src/components/screen-flash/screen-flash";
-import { Stepper } from "src/components/stepper/stepper";
 import recommendedData from "src/data/recommended-scores.json";
 import { computeProficiencyBonus } from "src/models/abilities";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
@@ -27,6 +26,8 @@ const RECOMMENDED_SCORES = recommendedData.recommended as Record<
   AbilityScores
 >;
 
+const DEFAULT_CHARACTER_CLASS: CharacterClass = "fighter";
+
 const BACKGROUND_MAP = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
 
 type CharacterCreationProps = {
@@ -46,16 +47,18 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<DraftState>({
     name: "",
-    characterClass: "fighter",
+    characterClass: DEFAULT_CHARACTER_CLASS,
     race: "human",
     background: "soldier",
     abilityScores: {
-      str: 10,
-      dex: 10,
-      con: 10,
-      int: 10,
-      wis: 10,
-      cha: 10,
+      ...(RECOMMENDED_SCORES[DEFAULT_CHARACTER_CLASS] ?? {
+        str: 10,
+        dex: 10,
+        con: 10,
+        int: 10,
+        wis: 10,
+        cha: 10,
+      }),
     },
     abilityBonuses: {},
   });

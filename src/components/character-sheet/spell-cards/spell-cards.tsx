@@ -1,4 +1,4 @@
-import { Section } from "src/components/section";
+import { Section } from "elements";
 import { useExpandable } from "src/hooks/use-expandable";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./spell-cards.module.css";
