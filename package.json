@@ -40,7 +40,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "blue-ball": "pnpm lint && pnpm test && pnpm build",
-    "blue-ball:release": "pnpm blue-ball && pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
+    "postblue-ball": "pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },
   "dependencies": {
     "@astrojs/react": "4.4.2",
