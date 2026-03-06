@@ -1,7 +1,7 @@
 import c from "classnames";
 import { createContext, useContext, useMemo } from "react";
-import { useExpandable } from "src/hooks/use-expandable";
 import labelStyles from "src/elements/style/label.module.css";
+import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./accordion-list.module.css";
 
 import type { ReactNode } from "react";

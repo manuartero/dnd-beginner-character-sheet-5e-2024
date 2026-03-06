@@ -23,7 +23,6 @@ sed -i '' "s|!\[Coverage\](https://img\.shields\.io/badge/coverage-[^)]*)|${BADG
 
 if ! git diff --quiet README.md; then
   git add README.md
-  git commit -m "chore: update coverage badge [${PCT}%]"
   echo "Coverage badge updated → ${PCT}% (${COLOR})"
 else
   echo "Coverage badge already up to date (${PCT}%)"
