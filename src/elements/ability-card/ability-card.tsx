@@ -1,5 +1,5 @@
 import c from "classnames";
-import { ScorePicker } from "src/components/character-creation/score-picker";
+import { ScorePicker } from "src/elements/score-picker";
 import {
   ABILITY_LIST,
   computeModifier,
@@ -83,8 +83,7 @@ export function AbilityCard(props: AbilityCardProps) {
   const cardClass = c(
     styles.abilityCard,
     hasSkills && styles.abilityCardClickable,
-    isFlipped && styles.abilityCardActive,
-    isPrimary && styles.abilityCardPrimary,
+    (isFlipped || isPrimary) && styles.abilityCardHighlighted,
   );
 
   // assign mode has interactive inner buttons (ScorePicker tiles) — the outer
@@ -349,8 +348,6 @@ function AssignFront({
 }
 
 function modifierColorClass(mod: number): string {
-  if (mod < 0) return styles.modifierNegative;
-  if (mod === 0) return styles.modifierNeutral;
   if (mod >= 3) return styles.modifierHigh;
-  return styles.modifierPositive;
+  return styles.modifierDefault;
 }

@@ -1,0 +1,17 @@
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--space-sm);
+  border: 2px dashed var(--shade-2);
+  opacity: 0.45;
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+}

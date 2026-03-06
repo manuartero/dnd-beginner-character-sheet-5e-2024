@@ -1,4 +1,10 @@
-import { InlineConfirm, RowList, rowListStyles, Section } from "elements";
+import {
+  InlineConfirm,
+  labelStyles,
+  RowList,
+  rowListStyles,
+  Section,
+} from "elements";
 import { useState } from "react";
 import { GOLD_ICON } from "src/models/equipment";
 import { resolveIconPath } from "src/models/icons";
@@ -129,7 +135,7 @@ export function Inventory(props: InventoryProps) {
 
       {money && (
         <div className={styles.subsection}>
-          <h3 className={styles.subsectionLabel}>Money</h3>
+          <h3 className={labelStyles.groupLabel}>Money</h3>
           <MoneyTag
             gold={money.quantity ?? 0}
             mode={mode}

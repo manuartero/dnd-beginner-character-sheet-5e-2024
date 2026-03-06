@@ -13,12 +13,7 @@
   gap: var(--space-xs);
 }
 
-.groupLabel {
-  font-size: var(--font-size-xs);
-  color: var(--shade-2);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.groupLabelNoMargin {
   margin: 0;
 }
 

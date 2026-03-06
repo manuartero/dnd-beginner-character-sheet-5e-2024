@@ -1,4 +1,5 @@
 import c from "classnames";
+import { useMemo } from "react";
 import styles from "./stepper.module.css";
 
 type StepperProps = {
@@ -18,9 +19,14 @@ export function Stepper({
   labels,
   onStepChange,
 }: StepperProps) {
+  const steps = useMemo(
+    () => Array.from({ length: total }, (_, i) => i + 1),
+    [total],
+  );
+
   return (
     <div className={styles.stepIndicator}>
-      {Array.from({ length: total }, (_, i) => i + 1).map((n) => {
+      {steps.map((n) => {
         const isActive = current === n;
         const isCompleted = completedSteps.includes(n);
         const isWarned = warnedSteps.includes(n);

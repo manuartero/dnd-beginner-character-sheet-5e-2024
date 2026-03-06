@@ -1,5 +1,6 @@
 import c from "classnames";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
+import labelStyles from "src/elements/style/label.module.css";
 import { useExpandable } from "src/hooks/use-expandable";
 import styles from "./accordion-list.module.css";
 
@@ -26,9 +27,10 @@ type AccordionListProps = {
 
 export function AccordionList({ children }: AccordionListProps) {
   const { expandedKey, toggle } = useExpandable<string>();
+  const value = useMemo(() => ({ expandedKey, toggle }), [expandedKey, toggle]);
 
   return (
-    <AccordionCtx.Provider value={{ expandedKey, toggle }}>
+    <AccordionCtx.Provider value={value}>
       <div className={styles.container}>{children}</div>
     </AccordionCtx.Provider>
   );
@@ -42,7 +44,9 @@ type AccordionGroupProps = {
 export function AccordionGroup({ label, children }: AccordionGroupProps) {
   return (
     <div className={styles.group}>
-      <h4 className={styles.groupLabel}>{label}</h4>
+      <h4 className={c(labelStyles.groupLabel, styles.groupLabelNoMargin)}>
+        {label}
+      </h4>
       <div className={styles.itemList}>{children}</div>
     </div>
   );

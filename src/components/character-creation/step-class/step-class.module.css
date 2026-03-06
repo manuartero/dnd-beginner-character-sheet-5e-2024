@@ -1,8 +1,4 @@
-.groupLabel {
-  font-size: var(--font-size-xs);
-  color: var(--shade-2);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.groupLabelSpacing {
   margin: var(--space-sm) 0;
 }
 

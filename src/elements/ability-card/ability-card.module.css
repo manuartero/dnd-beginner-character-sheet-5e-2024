@@ -26,12 +26,7 @@ button.abilityCard {
   cursor: pointer;
 }
 
-.abilityCardActive {
-  border-color: var(--shade-2);
-  box-shadow: 3px 3px 0 var(--shade-2);
-}
-
-.abilityCardPrimary {
+.abilityCardHighlighted {
   border-color: var(--shade-2);
   box-shadow: 3px 3px 0 var(--shade-2);
 }
@@ -59,15 +54,7 @@ button.abilityCard {
   line-height: 1;
 }
 
-.modifierNegative {
-  color: var(--shade-2);
-}
-
-.modifierNeutral {
-  color: var(--shade-2);
-}
-
-.modifierPositive {
+.modifierDefault {
   color: var(--shade-2);
 }
 

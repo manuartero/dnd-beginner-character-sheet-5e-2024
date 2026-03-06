@@ -1,5 +1,5 @@
 import c from "classnames";
-import { ChipGrid, Section } from "elements";
+import { ChipGrid, labelStyles, Section } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
@@ -44,7 +44,9 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
       <Section title="Class">
         {CLASSES_BY_CATEGORY.map((group) => (
           <div key={group.classification} className={styles.group}>
-            <h3 className={styles.groupLabel}>{group.label}</h3>
+            <h3 className={c(labelStyles.groupLabel, styles.groupLabelSpacing)}>
+              {group.label}
+            </h3>
             <ChipGrid
               actions={group.classes.map(({ key, label }) => ({
                 key,

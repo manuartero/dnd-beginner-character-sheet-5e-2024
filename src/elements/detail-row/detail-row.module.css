@@ -1,0 +1,9 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.label {
+  color: var(--shade-2);
+}
