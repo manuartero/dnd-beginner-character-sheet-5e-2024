@@ -1,15 +1,3 @@
-.groupLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--font-size-xs);
-  color: var(--shade-2);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-xs);
-}
-
 .icon {
   width: var(--icon-size);
   height: var(--icon-size);
@@ -103,34 +91,6 @@
   padding: var(--space-sm);
   padding-top: var(--space-sm);
   margin-top: var(--space-xs);
-}
-
-.detailRow {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--font-size-sm);
-}
-
-.detailLabel {
-  color: var(--shade-2);
-}
-
-.emptyCard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-sm);
-  border: 2px dashed var(--shade-2);
-  opacity: 0.45;
-  min-height: 44px;
-}
-
-.emptyCardLabel {
-  font-size: var(--font-size-xs);
-  color: var(--shade-2);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  text-align: center;
 }
 
 .descriptionText {

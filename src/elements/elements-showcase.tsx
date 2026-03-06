@@ -5,10 +5,13 @@ import {
   AccordionList,
   ActionChip,
   ChipGrid,
+  DetailRow,
+  EmptySlot,
   InlineConfirm,
   RetroRadio,
   RowList,
   rowListStyles,
+  ScorePicker,
   ScreenFlash,
   ScreenFlashProvider,
   Section,
@@ -58,6 +61,7 @@ export function ElementsShowcase() {
   const [radioValue, setRadioValue] = useState("a");
   const [selectedGrid, setSelectedGrid] = useState<string | null>("opt1");
   const [flashTrigger, setFlashTrigger] = useState(0);
+  const [pickedScore, setPickedScore] = useState<number | null>(15);
 
   return (
     <ScreenFlashProvider>
@@ -153,6 +157,16 @@ export function ElementsShowcase() {
           </div>
         </ShowcaseBlock>
 
+        <ShowcaseBlock name="DetailRow">
+          <DetailRow label="School">Evocation</DetailRow>
+          <DetailRow label="Range">120 ft</DetailRow>
+          <DetailRow label="Duration">Instantaneous</DetailRow>
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="EmptySlot">
+          <EmptySlot label="cantrip space" />
+        </ShowcaseBlock>
+
         <ShowcaseBlock name="InlineConfirm">
           <InlineConfirm label="Delete this item?" />
         </ShowcaseBlock>
@@ -167,6 +181,14 @@ export function ElementsShowcase() {
             selected={radioValue}
             name="showcase-radio"
             onSelect={setRadioValue}
+          />
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="ScorePicker">
+          <ScorePicker
+            availableValues={[15, 14, 13, 12, 10, 8]}
+            selectedValue={pickedScore}
+            onPick={setPickedScore}
           />
         </ShowcaseBlock>
 
