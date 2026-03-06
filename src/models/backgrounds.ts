@@ -1,7 +1,6 @@
 import backgroundListData from "src/data/background-list.json";
 import originFeatDescriptions from "src/data/origin-feat-descriptions.json";
 import { resolveIconPath } from "./icons";
-import { SKILLS } from "./skills";
 
 import type { AbilityName } from "./abilities";
 import type { SkillName } from "./skills";
@@ -57,22 +56,16 @@ export function getOriginFeatDescription(feat: OriginFeat): string {
   return ORIGIN_FEAT_DESCRIPTIONS[feat];
 }
 
-export function getSkillLabel(skill: SkillName): string {
-  const entry = SKILLS.find(
-    (s: { name: SkillName; label: string; ability: AbilityName }) =>
-      s.name === skill,
-  );
-  return entry ? entry.label : skill;
-}
-
 export const BACKGROUND_LIST: BackgroundEntry[] =
   backgroundListData as BackgroundEntry[];
+
+const BACKGROUNDS_BY_KEY = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
 
 export function getBackgroundIcon(
   background: Background,
   { variant = "BLACK" }: { variant?: "BLACK" | "WHITE" } = {},
 ): string {
-  const entry = BACKGROUND_LIST.find((b) => b.key === background);
+  const entry = BACKGROUNDS_BY_KEY.get(background);
   if (!entry?.icon) {
     return "/race-icons/placeholder.png";
   }

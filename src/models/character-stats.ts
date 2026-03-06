@@ -1,4 +1,4 @@
-import { computeModifier, formatModifier } from "./abilities";
+import { ABILITY_LIST, computeModifier, formatModifier } from "./abilities";
 import { ARMORS } from "./armor";
 import { CLASS_DETAILS } from "./classes";
 
@@ -115,15 +115,6 @@ const SPELLCASTING_ABILITY: Partial<Record<CharacterClass, AbilityName>> = {
   wizard: "int",
 };
 
-const ABILITY_SHORT: Record<AbilityName, string> = {
-  str: "STR",
-  dex: "DEX",
-  con: "CON",
-  int: "INT",
-  wis: "WIS",
-  cha: "CHA",
-};
-
 export function computeSpellAttack({
   characterClass,
   abilityScores,
@@ -138,12 +129,14 @@ export function computeSpellAttack({
 
   const abilityMod = computeModifier(abilityScores[spellAbility]);
   const total = abilityMod + proficiencyBonus;
+  const shortLabel =
+    ABILITY_LIST.find((a) => a.key === spellAbility)?.short ?? spellAbility;
 
   return {
     total,
     lines: [
       {
-        label: `${ABILITY_SHORT[spellAbility]} modifier`,
+        label: `${shortLabel} modifier`,
         value: formatModifier(abilityMod),
       },
       {

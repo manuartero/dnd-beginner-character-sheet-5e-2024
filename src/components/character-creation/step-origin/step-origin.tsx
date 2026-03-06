@@ -4,8 +4,8 @@ import {
   BACKGROUND_LIST,
   getBackgroundIcon,
   getOriginFeatDescription,
-  getSkillLabel,
 } from "src/models/backgrounds";
+import { getSkillLabel } from "src/models/skills";
 import styles from "./step-origin.module.css";
 
 import type { AbilityName } from "src/models/abilities";

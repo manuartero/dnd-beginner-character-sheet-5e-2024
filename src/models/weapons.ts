@@ -40,20 +40,13 @@ export const WEAPON_PROPERTIES: Record<string, string> =
 export const WEAPON_MASTERY: Record<WeaponMasteryName, string> =
   weaponMasteryData as Record<WeaponMasteryName, string>;
 
-export function getWeaponsByProficiency(
-  proficiency: WeaponProficiency,
-): Weapon[] {
-  return WEAPONS.filter((w) => w.proficiency === proficiency);
-}
-
-export function getWeaponsByRange(range: WeaponRange): Weapon[] {
-  return WEAPONS.filter((w) => w.range === range);
-}
+const WEAPONS_BY_ID = new Map(WEAPONS.map((w) => [w.id, w]));
+const WEAPONS_BY_NAME = new Map(WEAPONS.map((w) => [w.name.toLowerCase(), w]));
 
 export function getWeaponById(id: string): Weapon | undefined {
-  return WEAPONS.find((w) => w.id === id);
+  return WEAPONS_BY_ID.get(id);
 }
 
 export function getWeaponByName(name: string): Weapon | undefined {
-  return WEAPONS.find((w) => w.name.toLowerCase() === name.toLowerCase());
+  return WEAPONS_BY_NAME.get(name.toLowerCase());
 }
