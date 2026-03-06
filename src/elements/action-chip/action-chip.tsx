@@ -1,6 +1,6 @@
 import c from "classnames";
+import descriptionPopoverStyles from "src/elements/style/description-popover.module.css";
 import styles from "./action-chip.module.css";
-import descriptionPopoverStyles from "./description-popover.module.css";
 
 import type { ReactNode } from "react";
 
