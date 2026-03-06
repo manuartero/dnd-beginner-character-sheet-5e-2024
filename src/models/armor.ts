@@ -16,10 +16,8 @@ export type Armor = {
 
 export const ARMORS: Armor[] = armorData as Armor[];
 
-export function getArmorById(id: string): Armor | undefined {
-  return ARMORS.find((a) => a.id === id);
-}
+const ARMORS_BY_ID = new Map(ARMORS.map((a) => [a.id, a]));
 
-export function getArmorsByCategory(category: ArmorCategory): Armor[] {
-  return ARMORS.filter((a) => a.category === category);
+export function getArmorById(id: string): Armor | undefined {
+  return ARMORS_BY_ID.get(id);
 }

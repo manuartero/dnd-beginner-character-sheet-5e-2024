@@ -1,4 +1,8 @@
-import { computeSkillModifier, skillsForAbility } from "src/models/skills";
+import {
+  computeSkillModifier,
+  getSkillLabel,
+  skillsForAbility,
+} from "src/models/skills";
 
 import type { AbilityName } from "src/models/abilities";
 
@@ -30,6 +34,17 @@ describe("skillsForAbility()", () => {
       const skills = skillsForAbility(ability as AbilityName);
       expect(skills.map((s) => s.name)).toEqual(expected);
     });
+  });
+});
+
+describe("getSkillLabel()", () => {
+  it("returns the correct label for a known skill", () => {
+    expect(getSkillLabel("athletics")).toBe("Athletics");
+    expect(getSkillLabel("sleight-of-hand")).toBe("Sleight of Hand");
+  });
+
+  it("returns the skill name as fallback for unknown skill", () => {
+    expect(getSkillLabel("unknown" as never)).toBe("unknown");
   });
 });
 

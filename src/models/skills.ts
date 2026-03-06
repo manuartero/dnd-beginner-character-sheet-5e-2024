@@ -51,7 +51,11 @@ export function skillsForAbility(ability: AbilityName): SkillDefinition[] {
   return SKILLS.filter((s) => s.ability === ability);
 }
 
-// TODO: wire to character creation later
+export function getSkillLabel(skill: SkillName): string {
+  const entry = SKILLS.find((s) => s.name === skill);
+  return entry ? entry.label : skill;
+}
+
 export const DEFAULT_PROFICIENCIES: SkillName[] = ["insight", "perception"];
 
 export function computeSkillModifier({
