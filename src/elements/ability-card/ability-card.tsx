@@ -1,5 +1,5 @@
 import c from "classnames";
-import { ScorePicker } from "src/components/character-creation/score-picker";
+import { ScorePicker } from "src/elements/score-picker";
 import {
   ABILITY_LIST,
   computeModifier,

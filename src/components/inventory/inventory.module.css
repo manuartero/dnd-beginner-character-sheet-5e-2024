@@ -2,15 +2,6 @@
   margin-bottom: var(--space-md);
 }
 
-.subsectionLabel {
-  font-size: var(--font-size-xs);
-  color: var(--shade-2);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-xs);
-}
-
 .addButton {
   width: 100%;
   padding: var(--space-sm);

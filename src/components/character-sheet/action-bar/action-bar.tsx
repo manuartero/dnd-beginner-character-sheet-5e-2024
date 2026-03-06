@@ -1,4 +1,4 @@
-import { ChipGrid, Section } from "elements";
+import { ChipGrid, EmptySlot, labelStyles, Section } from "elements";
 import { useMemo } from "react";
 import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
@@ -91,11 +91,11 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
       <div className={styles.groupsContainer}>
         {grouped.map((group) => (
           <div key={group.timing}>
-            <h3 className={styles.groupLabel}>{group.label}</h3>
+            <h3 className={labelStyles.groupLabel}>{group.label}</h3>
             {group.actions.length > 0 ? (
               <ChipGrid actions={group.actions} />
             ) : (
-              <div className={styles.emptyState}>Empty</div>
+              <EmptySlot label="Empty" />
             )}
           </div>
         ))}

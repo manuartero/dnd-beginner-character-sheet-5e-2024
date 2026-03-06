@@ -1,4 +1,4 @@
-import { Section } from "elements";
+import { DetailRow, EmptySlot, labelStyles, Section } from "elements";
 import { useExpandable } from "src/hooks/use-expandable";
 import { resolveIconPath } from "src/models/icons";
 import styles from "./spell-cards.module.css";
@@ -49,7 +49,7 @@ export function SpellCards({
     <>
       {showCantrips && (
         <div className={styles.spellGroup}>
-          <h3 className={styles.groupLabel}>Cantrips</h3>
+          <h3 className={labelStyles.groupLabel}>Cantrips</h3>
           <div className={styles.cardsGrid}>
             {cantrips.map((spell) => (
               <SpellCard
@@ -70,7 +70,7 @@ export function SpellCards({
               { length: emptyCantripCount },
               (_, i) => `cantrip-slot-${cantrips.length + i}`,
             ).map((slotKey) => (
-              <EmptySpellCard key={slotKey} type="cantrip" />
+              <EmptySlot key={slotKey} label="cantrip space" />
             ))}
           </div>
         </div>
@@ -78,7 +78,7 @@ export function SpellCards({
 
       {showLevel1 && (
         <div className={styles.spellGroup}>
-          <h3 className={styles.groupLabel}>Level 1</h3>
+          <h3 className={labelStyles.groupLabel}>Level 1</h3>
           <div className={styles.cardsGrid}>
             {levelSpells.map((spell) => (
               <SpellCard
@@ -99,7 +99,7 @@ export function SpellCards({
               { length: emptyLevel1Count },
               (_, i) => `level1-slot-${levelSpells.length + i}`,
             ).map((slotKey) => (
-              <EmptySpellCard key={slotKey} type="level1" />
+              <EmptySlot key={slotKey} label="spell space" />
             ))}
           </div>
         </div>
@@ -155,44 +155,15 @@ function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
 
       {isExpanded && (
         <div className={styles.expanded}>
-          <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>School</span>
-            <span>{spell.school}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Range</span>
-            <span>{spell.range}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Casting</span>
-            <span>{spell.castingTime}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Duration</span>
-            <span>{spell.duration}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Components</span>
-            <span>{simplifiedComponents}</span>
-          </div>
+          <DetailRow label="School">{spell.school}</DetailRow>
+          <DetailRow label="Range">{spell.range}</DetailRow>
+          <DetailRow label="Casting">{spell.castingTime}</DetailRow>
+          <DetailRow label="Duration">{spell.duration}</DetailRow>
+          <DetailRow label="Components">{simplifiedComponents}</DetailRow>
           <p className={styles.descriptionText}>{formattedDescription}</p>
         </div>
       )}
     </button>
-  );
-}
-
-type EmptySpellCardProps = {
-  type: "cantrip" | "level1";
-};
-
-function EmptySpellCard({ type }: EmptySpellCardProps) {
-  return (
-    <div className={styles.emptyCard}>
-      <span className={styles.emptyCardLabel}>
-        {type === "cantrip" ? "cantrip space" : "spell space"}
-      </span>
-    </div>
   );
 }
 
