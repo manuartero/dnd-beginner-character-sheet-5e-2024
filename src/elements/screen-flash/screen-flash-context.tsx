@@ -1,4 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
 import type { ReactNode } from "react";
 
@@ -18,10 +24,13 @@ type ScreenFlashProviderProps = {
 
 export function ScreenFlashProvider({ children }: ScreenFlashProviderProps) {
   const [flashEnabled, setFlashEnabled] = useState(false);
+  const toggleFlash = useCallback(() => setFlashEnabled((p) => !p), []);
+  const value = useMemo(
+    () => ({ flashEnabled, toggleFlash }),
+    [flashEnabled, toggleFlash],
+  );
   return (
-    <ScreenFlashContext.Provider
-      value={{ flashEnabled, toggleFlash: () => setFlashEnabled((p) => !p) }}
-    >
+    <ScreenFlashContext.Provider value={value}>
       {children}
     </ScreenFlashContext.Provider>
   );
