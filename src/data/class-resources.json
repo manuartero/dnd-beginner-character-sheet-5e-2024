@@ -1,0 +1,62 @@
+{
+  "rage": {
+    "id": "rage",
+    "name": "Rage",
+    "description": "Enter a fierce rage for extra damage and resistance. While raging, you deal extra damage and have resistance to bludgeoning, piercing, and slashing damage.",
+    "resetOn": "long-rest"
+  },
+  "bardic-inspiration": {
+    "id": "bardic-inspiration",
+    "name": "Bardic Inspiration",
+    "description": "Inspire an ally with a bonus die they can add to an ability check, attack roll, or saving throw within the next 10 minutes.",
+    "resetOn": "long-rest"
+  },
+  "channel-divinity": {
+    "id": "channel-divinity",
+    "name": "Channel Divinity",
+    "description": "Channel divine energy to fuel a powerful class feature granted by your deity or sacred oath.",
+    "resetOn": "short-rest"
+  },
+  "wild-shape": {
+    "id": "wild-shape",
+    "name": "Wild Shape",
+    "description": "Transform into a beast you have seen before. You assume the beast's hit points and physical abilities while retaining your mental stats.",
+    "resetOn": "short-rest"
+  },
+  "second-wind": {
+    "id": "second-wind",
+    "name": "Second Wind",
+    "description": "Use a bonus action to regain hit points equal to 1d10 + your fighter level. A quick burst of stamina in the heat of battle.",
+    "resetOn": "short-rest"
+  },
+  "lay-on-hands": {
+    "id": "lay-on-hands",
+    "name": "Lay on Hands",
+    "description": "Touch a creature to restore hit points from your healing pool, or spend 5 points to cure one disease or neutralize one poison.",
+    "resetOn": "long-rest"
+  },
+  "hunters-mark": {
+    "id": "hunters-mark",
+    "name": "Hunter's Mark",
+    "description": "Cast Hunter's Mark once without expending a spell slot. Mark a creature to deal extra 1d6 damage on each hit and track it more easily.",
+    "resetOn": "long-rest"
+  },
+  "arcane-recovery": {
+    "id": "arcane-recovery",
+    "name": "Arcane Recovery",
+    "description": "During a short rest, recover expended spell slots with a combined level equal to half your wizard level (rounded up).",
+    "resetOn": "long-rest"
+  },
+  "discipline-points": {
+    "id": "discipline-points",
+    "name": "Discipline Points",
+    "description": "Fuel your martial techniques with inner discipline. Spend points to perform Flurry of Blows, Patient Defense, or Step of the Wind.",
+    "resetOn": "short-rest"
+  },
+  "sorcery-points": {
+    "id": "sorcery-points",
+    "name": "Sorcery Points",
+    "description": "Tap into your innate magical power to create spell slots or fuel Metamagic options that modify your spells.",
+    "resetOn": "long-rest"
+  }
+}

@@ -1,7 +1,11 @@
+import { getResourcesForLevel } from "./class-resources";
 import { GOLD_ICON } from "./equipment";
 import { SPECIES_LIST } from "./species";
 
+import type { AbilityScores } from "./abilities";
 import type { Character } from "./character";
+import type { CharacterResource } from "./class-resources";
+import type { CharacterClass } from "./classes";
 import type { Equipment } from "./equipment";
 import type { Species } from "./species";
 
@@ -31,6 +35,16 @@ function migrateEquipment(equipment: Equipment[]): Equipment[] {
   });
 }
 
+function migrateClassResources(
+  existing: CharacterResource[] | undefined,
+  characterClass: CharacterClass,
+  level: number,
+  abilityScores: AbilityScores,
+): CharacterResource[] {
+  if (Array.isArray(existing) && existing.length > 0) return existing;
+  return getResourcesForLevel(characterClass, level, abilityScores);
+}
+
 function migrateCharacter(raw: Record<string, unknown>): Character {
   const character = {
     ...(raw as unknown as Character),
@@ -39,6 +53,12 @@ function migrateCharacter(raw: Record<string, unknown>): Character {
   if (Array.isArray(character.equipment)) {
     character.equipment = migrateEquipment(character.equipment);
   }
+  character.classResources = migrateClassResources(
+    character.classResources,
+    character.characterClass,
+    character.level,
+    character.abilityScores,
+  );
   return character;
 }
 

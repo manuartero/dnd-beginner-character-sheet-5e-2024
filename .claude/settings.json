@@ -39,7 +39,13 @@
       "Bash(sed -i '' 's|import { Section } from \"\"src/components/section\"\";|import { Section } from \"\"elements\"\";|' src/components/character-sheet/weapon-mastery/weapon-mastery.tsx)",
       "Bash(mv action-button-grid.tsx chip-grid.tsx)",
       "Bash(mv action-button-grid.module.css chip-grid.module.css)",
-      "Bash(mv action-button-grid.test.tsx chip-grid.test.tsx)"
+      "Bash(mv action-button-grid.test.tsx chip-grid.test.tsx)",
+      "Bash(gh api:*)",
+      "Bash(jq '.[] | \"\"\\\\\\(.title\\): \\\\\\(.open_issues\\) open issues\"\"')",
+      "Bash(gh project create --owner manuartero --title \"D&D Beginner Sheet Roadmap\" --format json)",
+      "Bash(gh auth refresh -s project,read:project)",
+      "Bash(gh auth refresh -h github.com -s project,read:project)",
+      "mcp__github__list_issues"
     ]
   },
   "hooks": {

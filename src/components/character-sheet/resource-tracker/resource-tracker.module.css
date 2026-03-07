@@ -1,0 +1,65 @@
+/* Resource tracker — pip-based counters matching the 8-bit RPG aesthetic */
+
+.resourceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+}
+
+.resourceRow + .resourceRow {
+  border-top: 1px solid var(--shade-3);
+}
+
+.resourceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.resourceName {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--shade-3);
+}
+
+.restBadge {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pipsContainer {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.pip {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--shade-3);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.1s ease;
+}
+
+.pip:active {
+  transform: scale(0.9);
+}
+
+.pipFilled {
+  background: var(--shade-3);
+}
+
+.description {
+  font-size: var(--font-size-xs);
+  color: var(--shade-2);
+  line-height: 1.6;
+  padding: var(--space-xs) 0 var(--space-sm);
+}

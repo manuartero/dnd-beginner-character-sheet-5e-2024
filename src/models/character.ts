@@ -1,5 +1,6 @@
 import type { AbilityScores } from "./abilities";
 import type { Background } from "./backgrounds";
+import type { CharacterResource } from "./class-resources";
 import type { CharacterClass } from "./classes";
 import type { Equipment } from "./equipment";
 import type { Species } from "./species";
@@ -19,4 +20,5 @@ export type Character = {
   spells: Spell[];
   weaponMasteries?: string[];
   equipment: Equipment[];
+  classResources: CharacterResource[];
 };
