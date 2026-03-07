@@ -1,0 +1,109 @@
+{
+  "barbarian": {
+    "resources": [
+      {
+        "resourceId": "rage",
+        "resetOn": "long-rest",
+        "progression": { "1": 2, "2": 2, "3": 3, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "bard": {
+    "resources": [
+      {
+        "resourceId": "bardic-inspiration",
+        "resetOn": "long-rest",
+        "progression": {
+          "1": "cha-mod",
+          "2": "cha-mod",
+          "3": "cha-mod",
+          "4": "cha-mod",
+          "5": "cha-mod"
+        }
+      }
+    ]
+  },
+  "cleric": {
+    "resources": [
+      {
+        "resourceId": "channel-divinity",
+        "resetOn": "short-rest",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  },
+  "druid": {
+    "resources": [
+      {
+        "resourceId": "wild-shape",
+        "resetOn": "short-rest",
+        "progression": { "1": 2, "2": 2, "3": 2, "4": 2, "5": 2 }
+      }
+    ]
+  },
+  "fighter": {
+    "resources": [
+      {
+        "resourceId": "second-wind",
+        "resetOn": "short-rest",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  },
+  "monk": {
+    "resources": [
+      {
+        "resourceId": "discipline-points",
+        "resetOn": "short-rest",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 4, "5": 5 }
+      }
+    ]
+  },
+  "paladin": {
+    "resources": [
+      {
+        "resourceId": "lay-on-hands",
+        "resetOn": "long-rest",
+        "progression": { "1": 5, "2": 10, "3": 15, "4": 20, "5": 25 }
+      },
+      {
+        "resourceId": "channel-divinity",
+        "resetOn": "long-rest",
+        "progression": { "1": 0, "2": 0, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  },
+  "ranger": {
+    "resources": [
+      {
+        "resourceId": "hunters-mark",
+        "resetOn": "long-rest",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  },
+  "rogue": {
+    "resources": []
+  },
+  "sorcerer": {
+    "resources": [
+      {
+        "resourceId": "sorcery-points",
+        "resetOn": "long-rest",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 4, "5": 5 }
+      }
+    ]
+  },
+  "warlock": {
+    "resources": []
+  },
+  "wizard": {
+    "resources": [
+      {
+        "resourceId": "arcane-recovery",
+        "resetOn": "long-rest",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  }
+}

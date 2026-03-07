@@ -19,6 +19,7 @@ import { ActionBar } from "./action-bar";
 import { CharacterOverview } from "./character-overview";
 import { CombatStats } from "./combat-stats";
 import { ExplorationBar } from "./exploration-bar";
+import { ResourceTracker } from "./resource-tracker";
 import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
 import { WeaponMastery } from "./weapon-mastery";
@@ -105,6 +106,20 @@ export function CharacterSheet({
             ac={ac}
             spellAttack={spellAttack}
           />
+          {character.classResources.length > 0 && (
+            <ResourceTracker
+              characterClass={character.characterClass}
+              resources={character.classResources}
+              onResourceChange={(resourceId, newCurrent) => {
+                const classResources = character.classResources.map((r) =>
+                  r.resourceId === resourceId
+                    ? { ...r, current: newCurrent }
+                    : r,
+                );
+                updateCharacter({ classResources });
+              }}
+            />
+          )}
           <ActionBar
             characterClass={character.characterClass}
             spells={character.spells}
