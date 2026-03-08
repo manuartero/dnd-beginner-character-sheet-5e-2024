@@ -41,8 +41,12 @@ function migrateClassResources(
   level: number,
   abilityScores: AbilityScores,
 ): CharacterResource[] {
-  if (Array.isArray(existing) && existing.length > 0) return existing;
-  return getResourcesForLevel(characterClass, level, abilityScores);
+  const expected = getResourcesForLevel(characterClass, level, abilityScores);
+  if (!Array.isArray(existing) || existing.length === 0) return expected;
+
+  const existingIds = new Set(existing.map((r) => r.resourceId));
+  const missing = expected.filter((r) => !existingIds.has(r.resourceId));
+  return missing.length > 0 ? [...existing, ...missing] : existing;
 }
 
 function migrateCharacter(raw: Record<string, unknown>): Character {

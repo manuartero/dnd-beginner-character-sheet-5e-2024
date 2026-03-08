@@ -58,9 +58,18 @@ describe("getResourcesForLevel", () => {
     expect(resources).toEqual([]);
   });
 
-  it("returns empty array for warlock (pact magic handled separately)", () => {
+  it("returns pact magic slot for warlock level 1", () => {
     const resources = getResourcesForLevel("warlock", 1, DEFAULT_SCORES);
-    expect(resources).toEqual([]);
+    expect(resources).toEqual([
+      { resourceId: "pact-magic-slot", current: 1, max: 1 },
+    ]);
+  });
+
+  it("returns 2 pact magic slots for warlock level 2", () => {
+    const resources = getResourcesForLevel("warlock", 2, DEFAULT_SCORES);
+    expect(resources).toEqual([
+      { resourceId: "pact-magic-slot", current: 2, max: 2 },
+    ]);
   });
 
   it("returns empty for monk at level 1 (discipline points start at level 2)", () => {
@@ -75,52 +84,116 @@ describe("getResourcesForLevel", () => {
     ]);
   });
 
-  it("returns empty for sorcerer at level 1", () => {
+  it("returns only spell slots for sorcerer at level 1 (sorcery points start at 0)", () => {
     const resources = getResourcesForLevel("sorcerer", 1, DEFAULT_SCORES);
-    expect(resources).toEqual([]);
+    expect(resources).toEqual([
+      { resourceId: "spell-slot-1st", current: 2, max: 2 },
+    ]);
   });
 
-  it("returns sorcery points for sorcerer at level 3", () => {
+  it("returns sorcery points and spell slots for sorcerer at level 3", () => {
     const resources = getResourcesForLevel("sorcerer", 3, DEFAULT_SCORES);
-    expect(resources).toEqual([
-      { resourceId: "sorcery-points", current: 3, max: 3 },
-    ]);
+    const ids = resources.map((r) => r.resourceId);
+    expect(ids).toContain("sorcery-points");
+    expect(ids).toContain("spell-slot-1st");
+    expect(ids).toContain("spell-slot-2nd");
   });
 
   it("uses CHA modifier for bard bardic inspiration", () => {
     const highCha: AbilityScores = { ...DEFAULT_SCORES, cha: 16 };
     const resources = getResourcesForLevel("bard", 1, highCha);
-    expect(resources).toEqual([
-      { resourceId: "bardic-inspiration", current: 3, max: 3 },
-    ]);
+    expect(resources[0]).toEqual({
+      resourceId: "bardic-inspiration",
+      current: 3,
+      max: 3,
+    });
   });
 
   it("enforces minimum 1 for ability-based resources", () => {
     const lowCha: AbilityScores = { ...DEFAULT_SCORES, cha: 8 };
     const resources = getResourcesForLevel("bard", 1, lowCha);
-    expect(resources).toEqual([
-      { resourceId: "bardic-inspiration", current: 1, max: 1 },
-    ]);
-  });
-
-  it("returns multiple resources for paladin", () => {
-    const resources = getResourcesForLevel("paladin", 3, DEFAULT_SCORES);
-    expect(resources).toHaveLength(2);
     expect(resources[0]).toEqual({
-      resourceId: "lay-on-hands",
-      current: 15,
-      max: 15,
-    });
-    expect(resources[1]).toEqual({
-      resourceId: "channel-divinity",
+      resourceId: "bardic-inspiration",
       current: 1,
       max: 1,
     });
   });
 
-  it("filters out paladin channel divinity at level 1 (max 0)", () => {
+  it("returns multiple resources for paladin at level 3", () => {
+    const resources = getResourcesForLevel("paladin", 3, DEFAULT_SCORES);
+    const ids = resources.map((r) => r.resourceId);
+    expect(ids).toContain("lay-on-hands");
+    expect(ids).toContain("channel-divinity");
+    expect(ids).toContain("spell-slot-1st");
+  });
+
+  it("filters out paladin channel divinity and spell slots at level 1 (max 0)", () => {
     const resources = getResourcesForLevel("paladin", 1, DEFAULT_SCORES);
     expect(resources).toHaveLength(1);
     expect(resources[0].resourceId).toBe("lay-on-hands");
+  });
+
+  it("returns spell slots for paladin at level 2 (half caster)", () => {
+    const resources = getResourcesForLevel("paladin", 2, DEFAULT_SCORES);
+    const ids = resources.map((r) => r.resourceId);
+    expect(ids).toContain("spell-slot-1st");
+    const slot = resources.find((r) => r.resourceId === "spell-slot-1st");
+    expect(slot).toEqual({ resourceId: "spell-slot-1st", current: 2, max: 2 });
+  });
+});
+
+describe("spell slot progressions", () => {
+  it("wizard level 1: 2 first-level slots, no second-level", () => {
+    const resources = getResourcesForLevel("wizard", 1, DEFAULT_SCORES);
+    const slot1 = resources.find((r) => r.resourceId === "spell-slot-1st");
+    const slot2 = resources.find((r) => r.resourceId === "spell-slot-2nd");
+    expect(slot1).toEqual({ resourceId: "spell-slot-1st", current: 2, max: 2 });
+    expect(slot2).toBeUndefined();
+  });
+
+  it("wizard level 3: 4 first-level slots, 2 second-level slots", () => {
+    const resources = getResourcesForLevel("wizard", 3, DEFAULT_SCORES);
+    const slot1 = resources.find((r) => r.resourceId === "spell-slot-1st");
+    const slot2 = resources.find((r) => r.resourceId === "spell-slot-2nd");
+    expect(slot1).toEqual({ resourceId: "spell-slot-1st", current: 4, max: 4 });
+    expect(slot2).toEqual({ resourceId: "spell-slot-2nd", current: 2, max: 2 });
+  });
+
+  it("wizard level 4: 4 first-level, 3 second-level", () => {
+    const resources = getResourcesForLevel("wizard", 4, DEFAULT_SCORES);
+    const slot1 = resources.find((r) => r.resourceId === "spell-slot-1st");
+    const slot2 = resources.find((r) => r.resourceId === "spell-slot-2nd");
+    expect(slot1?.max).toBe(4);
+    expect(slot2?.max).toBe(3);
+  });
+
+  it("all full casters share the same slot progression", () => {
+    const fullCasters = [
+      "bard",
+      "cleric",
+      "druid",
+      "sorcerer",
+      "wizard",
+    ] as const;
+    for (const cls of fullCasters) {
+      const resources = getResourcesForLevel(cls, 3, DEFAULT_SCORES);
+      const slot1 = resources.find((r) => r.resourceId === "spell-slot-1st");
+      const slot2 = resources.find((r) => r.resourceId === "spell-slot-2nd");
+      expect(slot1?.max, `${cls} 1st-level slots at level 3`).toBe(4);
+      expect(slot2?.max, `${cls} 2nd-level slots at level 3`).toBe(2);
+    }
+  });
+
+  it("half casters (ranger) get no slots at level 1, slots at level 2", () => {
+    const lvl1 = getResourcesForLevel("ranger", 1, DEFAULT_SCORES);
+    expect(lvl1.find((r) => r.resourceId === "spell-slot-1st")).toBeUndefined();
+
+    const lvl2 = getResourcesForLevel("ranger", 2, DEFAULT_SCORES);
+    const slot = lvl2.find((r) => r.resourceId === "spell-slot-1st");
+    expect(slot?.max).toBe(2);
+  });
+
+  it("warlock pact magic resets on short rest", () => {
+    expect(getResourceResetOn("warlock", "pact-magic-slot")).toBe("short-rest");
   });
 });
