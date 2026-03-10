@@ -1,5 +1,7 @@
+import c from "classnames";
 import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
+import { useScrollDirection } from "src/hooks/use-scroll-direction";
 import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
@@ -24,6 +26,8 @@ import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
 import { WeaponMastery } from "./weapon-mastery";
 
+import styles from "./character-sheet.module.css";
+
 import type { Character } from "src/models/character";
 
 const STEP_LABELS = ["Stats", "Combat", "Explore", "Spells & Skills", "Gear"];
@@ -45,6 +49,7 @@ export function CharacterSheet({
   onCharacterUpdate,
 }: CharacterSheetProps) {
   const [step, setStep] = useState(1);
+  const { isVisible } = useScrollDirection();
 
   function updateCharacter(patch: Partial<Character>) {
     const updated = { ...character, ...patch };
@@ -79,88 +84,96 @@ export function CharacterSheet({
         WIZARD_LEVEL1_SELECTION);
   const warnedSteps = spellsReady ? [] : [4];
 
+  const resourceChangeHandler = (resourceId: string, newCurrent: number) => {
+    const classResources = character.classResources.map((r) =>
+      r.resourceId === resourceId ? { ...r, current: newCurrent } : r,
+    );
+    updateCharacter({ classResources });
+  };
+
   return (
     <>
       <ScreenFlash trigger={step} />
-      <Stepper
-        current={step}
-        total={5}
-        labels={STEP_LABELS}
-        warnedSteps={warnedSteps}
-        onStepChange={setStep}
-      />
 
-      {step === 1 && (
-        <CharacterOverview
-          character={character}
-          onHpChange={(value) =>
-            updateCharacter({ hp: { ...character.hp, current: value } })
-          }
+      {/* Persistent resource HUD — visible on all steps */}
+      {character.classResources.length > 0 && (
+        <ResourceTracker
+          characterClass={character.characterClass}
+          resources={character.classResources}
+          onResourceChange={resourceChangeHandler}
         />
       )}
 
-      {step === 2 && (
-        <>
-          <CombatStats
-            initiative={initiative}
-            ac={ac}
-            spellAttack={spellAttack}
+      <div className={styles.sheet}>
+        {step === 1 && (
+          <CharacterOverview
+            character={character}
+            onHpChange={(value) =>
+              updateCharacter({ hp: { ...character.hp, current: value } })
+            }
           />
-          {character.classResources.length > 0 && (
-            <ResourceTracker
-              characterClass={character.characterClass}
-              resources={character.classResources}
-              onResourceChange={(resourceId, newCurrent) => {
-                const classResources = character.classResources.map((r) =>
-                  r.resourceId === resourceId
-                    ? { ...r, current: newCurrent }
-                    : r,
-                );
-                updateCharacter({ classResources });
-              }}
+        )}
+
+        {step === 2 && (
+          <>
+            <CombatStats
+              initiative={initiative}
+              ac={ac}
+              spellAttack={spellAttack}
             />
-          )}
-          <ActionBar
-            characterClass={character.characterClass}
-            spells={character.spells}
+            <ActionBar
+              characterClass={character.characterClass}
+              spells={character.spells}
+            />
+          </>
+        )}
+
+        {step === 3 && (
+          <>
+            <ExplorationBar characterClass={character.characterClass} />
+            {isSpellcaster && ritualSpells.length > 0 && (
+              <SpellCards spells={ritualSpells} />
+            )}
+          </>
+        )}
+
+        {step === 4 && isSpellcaster && (
+          <SpellBook
+            availableCantrips={WIZARD_SPELLS_LEVEL_0}
+            availableLevel1={WIZARD_SPELLS_LEVEL_1}
+            selectedSpells={character.spells}
+            cantripLimit={WIZARD_CANTRIP_SELECTION}
+            level1Limit={WIZARD_LEVEL1_SELECTION}
+            onSpellsChange={(spells) => updateCharacter({ spells })}
           />
-        </>
-      )}
+        )}
 
-      {step === 3 && (
-        <>
-          <ExplorationBar characterClass={character.characterClass} />
-          {isSpellcaster && ritualSpells.length > 0 && (
-            <SpellCards spells={ritualSpells} />
-          )}
-        </>
-      )}
+        {step === 4 && needsWeaponMastery && (
+          <WeaponMastery characterClass={character.characterClass} />
+        )}
 
-      {step === 4 && isSpellcaster && (
-        <SpellBook
-          availableCantrips={WIZARD_SPELLS_LEVEL_0}
-          availableLevel1={WIZARD_SPELLS_LEVEL_1}
-          selectedSpells={character.spells}
-          cantripLimit={WIZARD_CANTRIP_SELECTION}
-          level1Limit={WIZARD_LEVEL1_SELECTION}
-          onSpellsChange={(spells) => updateCharacter({ spells })}
+        {step === 5 && (
+          <>
+            <Inventory
+              mode="editable"
+              equipment={character.equipment}
+              onEquipmentChange={(equipment) => updateCharacter({ equipment })}
+            />
+            <ProficiencyGrid proficiencies={classDetails.proficiencies} />
+          </>
+        )}
+      </div>
+
+      {/* Smart bottom nav — hides on scroll down, reappears on scroll up */}
+      <nav className={c(styles.fixedNav, !isVisible && styles.fixedNavHidden)}>
+        <Stepper
+          current={step}
+          total={5}
+          labels={STEP_LABELS}
+          warnedSteps={warnedSteps}
+          onStepChange={setStep}
         />
-      )}
-
-      {step === 4 && needsWeaponMastery && (
-        <WeaponMastery characterClass={character.characterClass} />
-      )}
-
-      {step === 5 && (
-        <>
-          <Inventory
-            mode="editable"
-            equipment={character.equipment}
-            onEquipmentChange={(equipment) => updateCharacter({ equipment })}
-          />
-          <ProficiencyGrid proficiencies={classDetails.proficiencies} />
-        </>
-      )}
+      </nav>
     </>
   );
 }

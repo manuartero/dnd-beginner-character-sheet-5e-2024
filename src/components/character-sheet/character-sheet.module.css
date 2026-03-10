@@ -1,0 +1,25 @@
+/* Fixed bottom navigation wrapper */
+
+.fixedNav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  /* Mirror the body's max-width constraint */
+  width: min(100%, 480px);
+  transform: translateX(-50%) translateY(0);
+  /* Pixel-snap: no smooth slide, instant appear/disappear */
+  transition: transform 0s step-end;
+  background: var(--shade-0);
+  border-top: 3px solid var(--shade-3);
+  padding: var(--space-sm) var(--space-md);
+  z-index: 100;
+}
+
+.fixedNavHidden {
+  transform: translateX(-50%) translateY(100%);
+}
+
+/* Pushes content above the fixed nav so nothing hides behind it */
+.sheet {
+  padding-bottom: calc(var(--menu-height) + var(--space-md));
+}
