@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-v0.1.0-blue)
+![Version](https://img.shields.io/badge/version-v0.3.0-blue)
 ![Coverage](https://img.shields.io/badge/coverage-76%25-yellow)
 
 # D&D 5e Beginner Character Sheet 2024
