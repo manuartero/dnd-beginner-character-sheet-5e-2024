@@ -1,9 +1,9 @@
 import c from "classnames";
 import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
-import { useScrollDirection } from "src/hooks/use-scroll-direction";
 import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
+import { useScrollDirection } from "src/hooks/use-scroll-direction";
 import {
   computeArmorClass,
   computeInitiative,
@@ -19,14 +19,13 @@ import {
 } from "src/models/spells";
 import { ActionBar } from "./action-bar";
 import { CharacterOverview } from "./character-overview";
+import styles from "./character-sheet.module.css";
 import { CombatStats } from "./combat-stats";
 import { ExplorationBar } from "./exploration-bar";
 import { ResourceTracker } from "./resource-tracker";
 import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
 import { WeaponMastery } from "./weapon-mastery";
-
-import styles from "./character-sheet.module.css";
 
 import type { Character } from "src/models/character";
 
