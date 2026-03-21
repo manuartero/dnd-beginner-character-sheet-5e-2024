@@ -26,7 +26,8 @@
       "WebFetch(domain:fonts.googleapis.com)",
       "WebFetch(domain:www.dndbeyond.com)",
       "WebSearch",
-      "mcp__github__list_issues"
+      "mcp__github__list_issues",
+      "WebFetch(domain:www.cbr.com)"
     ]
   },
   "hooks": {
