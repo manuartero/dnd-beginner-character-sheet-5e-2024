@@ -1,5 +1,5 @@
-import classResourcesData from "src/data/class-resources.json";
 import classProgressionData from "src/data/class-progression.json";
+import classResourcesData from "src/data/class-resources.json";
 import { computeModifier } from "./abilities";
 
 import type { AbilityName, AbilityScores } from "./abilities";

@@ -94,14 +94,12 @@ function ResourceRow({
       <span
         className={c(
           styles.rowTag,
-          resetType === "short-rest"
-            ? styles.rowTagShort
-            : styles.rowTagLong,
+          resetType === "short-rest" ? styles.rowTagShort : styles.rowTagLong,
         )}
       >
         {label}
       </span>
-      <div className={styles.chipsRow} role="group" aria-label={label}>
+      <fieldset className={styles.chipsRow} aria-label={label}>
         {chips.map((chip) => {
           const isDraining =
             animatingChip?.resourceId === chip.resourceId &&
@@ -119,7 +117,7 @@ function ResourceRow({
             />
           );
         })}
-      </div>
+      </fieldset>
     </div>
   );
 }
