@@ -62,7 +62,7 @@ function resolveMax(
 
 export function getResourceDefinition(
   resourceId: ResourceId,
-): ResourceDefinition {
+): ResourceDefinition | undefined {
   return RESOURCE_DEFINITIONS[resourceId];
 }
 

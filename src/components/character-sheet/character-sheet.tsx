@@ -86,7 +86,9 @@ export function CharacterSheet({
 
   const resourceChangeHandler = (resourceId: string, newCurrent: number) => {
     const classResources = character.classResources.map((r) =>
-      r.resourceId === resourceId ? { ...r, current: newCurrent } : r,
+      r.resourceId === resourceId
+        ? { ...r, current: Math.max(0, Math.min(newCurrent, r.max)) }
+        : r,
     );
     updateCharacter({ classResources });
   };

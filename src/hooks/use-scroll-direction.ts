@@ -27,6 +27,7 @@ export function useScrollDirection() {
       lastScrollY.current = currentY;
     }
 
+    lastScrollY.current = window.scrollY;
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

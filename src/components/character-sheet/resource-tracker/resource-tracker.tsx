@@ -139,6 +139,7 @@ export function ResourceTracker({
   const longRestChips = buildChips(resources, characterClass, "long-rest");
 
   function handleChipClick(chip: UseChip) {
+    if (animatingChip) return;
     setAnimatingChip({ resourceId: chip.resourceId, useIndex: chip.useIndex });
     setTimeout(() => {
       setAnimatingChip(null);
