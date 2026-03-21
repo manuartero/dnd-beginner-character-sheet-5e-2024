@@ -7,6 +7,7 @@ import {
   ChipGrid,
   DetailRow,
   EmptySlot,
+  GifPlayer,
   InlineConfirm,
   RetroRadio,
   RowList,
@@ -259,6 +260,13 @@ export function ElementsShowcase() {
               </AccordionItem>
             </AccordionGroup>
           </AccordionList>
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="GifPlayer">
+          <GifPlayer
+            src="/assets/animations/druid/druid-spell.gif"
+            alt="Druid casting a spell"
+          />
         </ShowcaseBlock>
 
         <ShowcaseBlock name="ScreenFlash">
