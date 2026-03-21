@@ -1,10 +1,11 @@
 import c from "classnames";
-import { Section } from "elements";
+import { ResourceChip, Section } from "elements";
 import { useState } from "react";
 import {
   getResourceDefinition,
   getResourceResetOn,
 } from "src/models/class-resources";
+import { resolveIconPath } from "src/models/icons";
 import styles from "./resource-tracker.module.css";
 
 import type { CharacterResource } from "src/models/class-resources";
@@ -14,22 +15,6 @@ type ResourceTrackerProps = {
   characterClass: CharacterClass;
   resources: CharacterResource[];
   onResourceChange: (resourceId: string, newCurrent: number) => void;
-};
-
-const RESOURCE_ICONS: Record<string, string> = {
-  rage: "★",
-  "bardic-inspiration": "♪",
-  "channel-divinity": "◇",
-  "wild-shape": "◈",
-  "second-wind": "○",
-  "lay-on-hands": "◆",
-  "hunters-mark": "◎",
-  "arcane-recovery": "●",
-  "discipline-points": "▲",
-  "sorcery-points": "◉",
-  "spell-slot-1st": "Ⅰ",
-  "spell-slot-2nd": "Ⅱ",
-  "pact-magic-slot": "∞",
 };
 
 const RESOURCE_SHORT_NAMES: Record<string, string> = {
@@ -52,7 +37,7 @@ type UseChip = {
   resourceId: string;
   useIndex: number;
   isReady: boolean;
-  icon: string;
+  iconSrc: string;
   label: string;
   current: number;
 };
@@ -71,53 +56,22 @@ function buildChips(
     .filter(
       (r) => getResourceResetOn(characterClass, r.resourceId) === resetFilter,
     )
-    .flatMap((r) =>
-      Array.from({ length: r.max }, (_, i) => ({
+    .flatMap((r) => {
+      const def = getResourceDefinition(r.resourceId);
+      const iconSrc = resolveIconPath(def?.icon ?? "vol5/icon-vol5_02");
+      const label =
+        RESOURCE_SHORT_NAMES[r.resourceId] ??
+        (def?.name ?? r.resourceId).slice(0, 5).toUpperCase();
+
+      return Array.from({ length: r.max }, (_, i) => ({
         resourceId: r.resourceId,
         useIndex: i,
         isReady: i < r.current,
-        icon: RESOURCE_ICONS[r.resourceId] ?? "◦",
-        label:
-          RESOURCE_SHORT_NAMES[r.resourceId] ??
-          (getResourceDefinition(r.resourceId)?.name ?? r.resourceId)
-            .slice(0, 5)
-            .toUpperCase(),
+        iconSrc,
+        label,
         current: r.current,
-      })),
-    );
-}
-
-function UseChipButton({
-  chip,
-  animatingChip,
-  onClick,
-}: {
-  chip: UseChip;
-  animatingChip: AnimatingChip | null;
-  onClick: (chip: UseChip) => void;
-}) {
-  const isAnimating =
-    animatingChip?.resourceId === chip.resourceId &&
-    animatingChip?.useIndex === chip.useIndex;
-
-  return (
-    <button
-      type="button"
-      aria-label={`${chip.label}: ${chip.isReady ? "ready, click to spend" : "spent"}`}
-      disabled={!chip.isReady}
-      className={c(
-        styles.chip,
-        !chip.isReady && styles.chipSpent,
-        isAnimating && styles.chipDraining,
-      )}
-      onClick={() => onClick(chip)}
-    >
-      <span className={styles.chipIcon} aria-hidden>
-        {chip.icon}
-      </span>
-      <span className={styles.chipLabel}>{chip.label}</span>
-    </button>
-  );
+      }));
+    });
 }
 
 function ResourceRow({
@@ -152,14 +106,23 @@ function ResourceRow({
         {symbol}
       </span>
       <div className={styles.chipsRow} role="group" aria-label={label}>
-        {chips.map((chip) => (
-          <UseChipButton
-            key={`${chip.resourceId}-${chip.useIndex}`}
-            chip={chip}
-            animatingChip={animatingChip}
-            onClick={onChipClick}
-          />
-        ))}
+        {chips.map((chip) => {
+          const isDraining =
+            animatingChip?.resourceId === chip.resourceId &&
+            animatingChip?.useIndex === chip.useIndex;
+
+          return (
+            <ResourceChip
+              key={`${chip.resourceId}-${chip.useIndex}`}
+              iconSrc={chip.iconSrc}
+              label={chip.label}
+              isReady={chip.isReady}
+              isDraining={isDraining}
+              ariaLabel={`${chip.label}: ${chip.isReady ? "ready, click to spend" : "spent"}`}
+              onClick={() => onChipClick(chip)}
+            />
+          );
+        })}
       </div>
     </div>
   );

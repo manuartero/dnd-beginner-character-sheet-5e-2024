@@ -1,0 +1,93 @@
+/* ResourceChip — individual use chip for class resources */
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-xs) 5px;
+  border: 2px solid var(--shade-3);
+  background: var(--shade-1);
+  cursor: pointer;
+  flex-shrink: 0;
+  /* button reset */
+  font: inherit;
+  color: inherit;
+  transition: opacity 0.08s;
+}
+
+.chip:active {
+  transform: translate(1px, 1px);
+}
+
+/* Spent — washed out, non-interactive */
+.chip:disabled {
+  cursor: default;
+}
+
+.chipSpent {
+  border-color: var(--shade-2);
+  background: var(--shade-0);
+  opacity: 0.4;
+}
+
+/* Icon (CSS mask for SVGs) */
+.chipIcon {
+  width: 18px;
+  height: 18px;
+  background-color: var(--shade-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  line-height: 1;
+}
+
+.chipLabel {
+  font-size: var(--font-size-xs);
+  color: var(--shade-3);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+/* ── Drain animation ────────────────────────────────────────── */
+
+.chipDraining {
+  animation: chip-drain 0.32s steps(4, end) forwards;
+}
+
+@keyframes chip-drain {
+  0% {
+    border-color: var(--shade-3);
+    background: var(--shade-1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  25% {
+    border-color: var(--color-hp-low);
+    background: rgba(139, 37, 16, 0.2);
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  50% {
+    border-color: var(--shade-2);
+    background: var(--shade-0);
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  75% {
+    border-color: var(--color-hp-low);
+    background: var(--shade-0);
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    border-color: var(--shade-2);
+    background: var(--shade-0);
+    transform: scale(1);
+    opacity: 0.4;
+  }
+}

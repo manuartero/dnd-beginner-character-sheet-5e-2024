@@ -95,8 +95,8 @@ export function CharacterSheet({
     <>
       <ScreenFlash trigger={step} />
 
-      {/* Persistent resource HUD — visible on all steps */}
-      {character.classResources.length > 0 && (
+      {/* Resource HUD — visible on Combat and Explore tabs */}
+      {character.classResources.length > 0 && (step === 2 || step === 3) && (
         <ResourceTracker
           characterClass={character.characterClass}
           resources={character.classResources}

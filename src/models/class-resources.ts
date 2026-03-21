@@ -12,6 +12,7 @@ export type ResourceDefinition = {
   name: string;
   description: string;
   resetOn: "short-rest" | "long-rest";
+  icon: string;
 };
 
 export type CharacterResource = {

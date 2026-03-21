@@ -11,6 +11,7 @@ export { DetailRow } from "./detail-row/detail-row";
 export { EmptySlot } from "./empty-slot/empty-slot";
 export { GifPlayer } from "./gif-player/gif-player";
 export { InlineConfirm } from "./inline-confirm/inline-confirm";
+export { ResourceChip } from "./resource-chip/resource-chip";
 export { RetroRadio } from "./retro-radio/retro-radio";
 export { RowList, rowListStyles } from "./row-list/row-list";
 export { ScorePicker } from "./score-picker/score-picker";
@@ -25,3 +26,4 @@ export { default as labelStyles } from "./style/label.module.css";
 
 export type { ActionChipProps } from "./action-chip/action-chip";
 export type { GridAction } from "./chip-grid/chip-grid";
+export type { ResourceChipProps } from "./resource-chip/resource-chip";
