@@ -20,6 +20,7 @@ function makeCharacter(overrides: Partial<Character> = {}): Character {
     proficiencyBonus: 2,
     spells: [],
     equipment: [],
+    classResources: [{ resourceId: "second-wind", current: 1, max: 1 }],
     ...overrides,
   };
 }

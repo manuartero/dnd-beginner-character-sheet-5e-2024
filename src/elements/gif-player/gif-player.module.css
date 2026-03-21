@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+.placeholder {
+  color: var(--color-muted, #888);
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.gif {
+  max-height: 60px;
+  width: auto;
+}

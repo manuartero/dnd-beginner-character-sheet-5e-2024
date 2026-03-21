@@ -7,7 +7,9 @@ import {
   ChipGrid,
   DetailRow,
   EmptySlot,
+  GifPlayer,
   InlineConfirm,
+  ResourceChip,
   RetroRadio,
   RowList,
   rowListStyles,
@@ -259,6 +261,42 @@ export function ElementsShowcase() {
               </AccordionItem>
             </AccordionGroup>
           </AccordionList>
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="ResourceChip">
+          <div style={{ display: "flex", gap: "4px" }}>
+            <ResourceChip
+              iconSrc={SAMPLE_ICON}
+              label="RAGE"
+              isReady
+              ariaLabel="Rage: ready"
+            />
+            <ResourceChip
+              iconSrc={SAMPLE_ICON}
+              label="RAGE"
+              isReady
+              ariaLabel="Rage: ready"
+            />
+            <ResourceChip
+              iconSrc={SAMPLE_ICON}
+              label="SL.Ⅰ"
+              isReady
+              ariaLabel="Spell Slot 1st: ready"
+            />
+            <ResourceChip
+              iconSrc={SAMPLE_ICON}
+              label="SL.Ⅰ"
+              isReady={false}
+              ariaLabel="Spell Slot 1st: spent"
+            />
+          </div>
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="GifPlayer">
+          <GifPlayer
+            src="/assets/animations/druid/druid-spell.gif"
+            alt="Druid casting a spell"
+          />
         </ShowcaseBlock>
 
         <ShowcaseBlock name="ScreenFlash">

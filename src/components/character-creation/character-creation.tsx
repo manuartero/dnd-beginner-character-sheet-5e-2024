@@ -4,6 +4,7 @@ import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import recommendedData from "src/data/recommended-scores.json";
 import { computeProficiencyBonus } from "src/models/abilities";
 import { BACKGROUND_LIST } from "src/models/backgrounds";
+import { getResourcesForLevel } from "src/models/class-resources";
 import { computeHpMax } from "src/models/character-stats";
 import { saveCharacter } from "src/models/character-storage";
 import { resolveStartingEquipment } from "src/models/starting-equipment";
@@ -119,6 +120,11 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       proficiencyBonus: computeProficiencyBonus(1),
       spells: [],
       equipment: resolveStartingEquipment(draft.characterClass),
+      classResources: getResourcesForLevel(
+        draft.characterClass,
+        1,
+        draft.abilityScores,
+      ),
     };
     saveCharacter(character);
     onSave(character);

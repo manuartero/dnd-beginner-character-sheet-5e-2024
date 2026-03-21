@@ -1,0 +1,45 @@
+/* Resource tracker — layout for rows inside accent Section */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ── Section row (label tag above, scrollable chips below) ── */
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Rest-type label tag — small inline banner */
+.rowTag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 2px var(--space-xs);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.rowTagShort {
+  background: var(--shade-2);
+  color: var(--shade-0);
+  box-shadow: 2px 2px 0 var(--shade-3);
+}
+
+.rowTagLong {
+  background: var(--shade-3);
+  color: var(--shade-0);
+  box-shadow: 2px 2px 0 var(--shade-2);
+}
+
+.chipsRow {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 2px 0;
+}

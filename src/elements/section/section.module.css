@@ -10,6 +10,17 @@
 }
 
 /*
+ * Accent variant — same double-frame, amber-toned:
+ * shade-2 outer frame > shade-1 inner gap > shade-0 content
+ * Signals "this section is special" without leaving the design system.
+ */
+.sectionAccent {
+  background: var(--shade-0);
+  border-color: var(--shade-1);
+  box-shadow: 0 0 0 3px var(--shade-2);
+}
+
+/*
  * Full-bleed dark banner title — extends to the inner border edge,
  * matching the ability-card label pattern (shade-3 bg, shade-0 text).
  */
@@ -21,4 +32,9 @@
   letter-spacing: 0.08em;
   margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-md)) var(--space-sm);
   padding: var(--space-sm) var(--space-md);
+}
+
+/* Accent title — amber banner instead of dark brown */
+.sectionTitleAccent {
+  background: var(--shade-2);
 }
