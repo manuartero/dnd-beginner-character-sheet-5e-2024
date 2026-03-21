@@ -77,14 +77,12 @@ function buildChips(
 function ResourceRow({
   resetType,
   label,
-  symbol,
   chips,
   animatingChip,
   onChipClick,
 }: {
   resetType: "short-rest" | "long-rest";
   label: string;
-  symbol: string;
   chips: UseChip[];
   animatingChip: AnimatingChip | null;
   onChipClick: (chip: UseChip) => void;
@@ -95,15 +93,13 @@ function ResourceRow({
     <div className={styles.row}>
       <span
         className={c(
-          styles.rowLabel,
+          styles.rowTag,
           resetType === "short-rest"
-            ? styles.rowLabelShort
-            : styles.rowLabelLong,
+            ? styles.rowTagShort
+            : styles.rowTagLong,
         )}
-        aria-label={label}
-        title={label}
       >
-        {symbol}
+        {label}
       </span>
       <div className={styles.chipsRow} role="group" aria-label={label}>
         {chips.map((chip) => {
@@ -151,12 +147,11 @@ export function ResourceTracker({
   }
 
   return (
-    <Section accent title="Class Resources">
+    <Section accent title="Resources">
       <div className={styles.rows}>
         <ResourceRow
           resetType="short-rest"
           label="Short Rest"
-          symbol="↺"
           chips={shortRestChips}
           animatingChip={animatingChip}
           onChipClick={handleChipClick}
@@ -164,7 +159,6 @@ export function ResourceTracker({
         <ResourceRow
           resetType="long-rest"
           label="Long Rest"
-          symbol="☽"
           chips={longRestChips}
           animatingChip={animatingChip}
           onChipClick={handleChipClick}

@@ -3,42 +3,43 @@
 .rows {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
-/* ── Section row (symbol + scrollable chips) ────────────────── */
+/* ── Section row (label tag above, scrollable chips below) ── */
 
 .row {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: var(--space-xs);
 }
 
-.rowLabel {
-  font-size: var(--font-size-sm);
-  flex-shrink: 0;
-  width: 16px;
-  text-align: center;
-  line-height: 1;
+/* Rest-type label tag — small inline banner */
+.rowTag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 2px var(--space-xs);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
 }
 
-.rowLabelShort {
-  color: var(--shade-2);
+.rowTagShort {
+  background: var(--shade-2);
+  color: var(--shade-0);
+  box-shadow: 2px 2px 0 var(--shade-3);
 }
 
-.rowLabelLong {
-  color: var(--shade-3);
+.rowTagLong {
+  background: var(--shade-3);
+  color: var(--shade-0);
+  box-shadow: 2px 2px 0 var(--shade-2);
 }
 
 .chipsRow {
   display: flex;
   gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
   padding: 2px 0;
-  -webkit-overflow-scrolling: touch;
-}
-
-.chipsRow::-webkit-scrollbar {
-  display: none;
 }
