@@ -98,7 +98,11 @@ export function CharacterSheet({
 
   const restHandler = (type: RestType) => {
     updateCharacter({
-      classResources: applyRest(type, character.classResources, character.characterClass),
+      classResources: applyRest(
+        type,
+        character.classResources,
+        character.characterClass,
+      ),
     });
     setHoveredRest(null);
   };
@@ -113,7 +117,9 @@ export function CharacterSheet({
           characterClass={character.characterClass}
           resources={character.classResources}
           onResourceChange={resourceChangeHandler}
-          highlightResetType={step === 3 ? (hoveredRest ?? undefined) : undefined}
+          highlightResetType={
+            step === 3 ? (hoveredRest ?? undefined) : undefined
+          }
         />
       )}
 

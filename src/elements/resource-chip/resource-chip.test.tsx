@@ -12,7 +12,9 @@ describe("<ResourceChip />", () => {
         ariaLabel="Rage: ready, click to spend"
       />,
     );
-    expect(screen.getByRole("button", { name: "Rage: ready, click to spend" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Rage: ready, click to spend" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("RAGE")).toBeInTheDocument();
   });
 

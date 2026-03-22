@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { applyRest } from "src/models/class-resources";
+import { describe, expect, it } from "vitest";
 import classProgressionData from "./class-progression.json";
 import classResourcesData from "./class-resources.json";
 
@@ -20,7 +20,11 @@ const EXPECTED_CLASSES = [
   "wizard",
 ];
 
-function res(resourceId: string, current: number, max: number): CharacterResource {
+function res(
+  resourceId: string,
+  current: number,
+  max: number,
+): CharacterResource {
   return { resourceId, current, max };
 }
 
@@ -43,8 +47,12 @@ describe("applyRest()", () => {
       res("spell-slot-1st", 0, 2),
     ];
     const result = applyRest("short-rest", resources, "cleric");
-    expect(result.find((r) => r.resourceId === "channel-divinity")?.current).toBe(1);
-    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(0);
+    expect(
+      result.find((r) => r.resourceId === "channel-divinity")?.current,
+    ).toBe(1);
+    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(
+      0,
+    );
   });
 
   it("long rest resets all resources regardless of type", () => {
@@ -53,8 +61,12 @@ describe("applyRest()", () => {
       res("spell-slot-1st", 0, 2),
     ];
     const result = applyRest("long-rest", resources, "cleric");
-    expect(result.find((r) => r.resourceId === "channel-divinity")?.current).toBe(1);
-    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(2);
+    expect(
+      result.find((r) => r.resourceId === "channel-divinity")?.current,
+    ).toBe(1);
+    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(
+      2,
+    );
   });
 
   it("does not mutate resources already at max", () => {
