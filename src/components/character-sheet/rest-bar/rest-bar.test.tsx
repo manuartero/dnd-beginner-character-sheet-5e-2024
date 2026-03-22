@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { RestBar } from "./rest-bar";
 
-vi.mock("src/models/icons", () => ({
+vi.mock("src/models/common/icons", () => ({
   resolveIconPath: (pseudo: string) => `/mocked/${pseudo}.svg`,
 }));
 
