@@ -1,5 +1,4 @@
-import classActionsData from "src/data/class/class-actions.json";
-import universalActionsData from "src/data/common/universal-actions.json";
+import actionsData from "src/data/common/actions.json";
 
 import type {
   CharacterClass,
@@ -8,15 +7,32 @@ import type {
 
 export type ActionTiming = "action" | "bonus-action" | "reaction";
 
-export type Action = {
+export type ExplorationCategory = "exploration" | "social";
+
+export type CombatAction = {
   name: string;
   timing: ActionTiming;
   icon?: string;
   description: string;
+};
+
+export type ClassAction = CombatAction & {
   classRestriction?: CharacterClass;
   classificationRestriction?: ManualClassification[];
 };
 
-export const UNIVERSAL_ACTIONS: Action[] = universalActionsData as Action[];
+export type ExplorationAction = {
+  name: string;
+  category: ExplorationCategory;
+  icon?: string;
+  description: string;
+  classificationRestriction?: ManualClassification[];
+};
 
-export const CLASS_ACTIONS: Action[] = classActionsData as Action[];
+export const COMBAT_ACTIONS: CombatAction[] =
+  actionsData.combat as CombatAction[];
+
+export const CLASS_ACTIONS: ClassAction[] = actionsData.class as ClassAction[];
+
+export const EXPLORATION_ACTIONS: ExplorationAction[] =
+  actionsData.exploration as ExplorationAction[];

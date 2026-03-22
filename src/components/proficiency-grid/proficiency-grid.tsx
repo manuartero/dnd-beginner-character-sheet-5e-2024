@@ -1,6 +1,5 @@
 import c from "classnames";
 import { Section } from "elements";
-import proficiencyDetailsData from "src/data/common/proficiency-details.json";
 import {
   getProficiencyRestriction,
   hasProficiency,
@@ -8,21 +7,12 @@ import {
   type ProficiencySet,
 } from "src/models/class/classes";
 import { resolveIconPath } from "src/models/common/icons";
+import { PROFICIENCY_DETAILS } from "src/models/common/proficiency-details";
 import styles from "./proficiency-grid.module.css";
 
 type ProficiencyGridProps = {
   proficiencies: ProficiencySet;
 };
-
-type ProficiencyDetails = {
-  label: string;
-  icon: string;
-};
-
-const PROFICIENCY_DETAILS = proficiencyDetailsData as Record<
-  ProficiencyKey,
-  ProficiencyDetails
->;
 
 const ARMOR_ROW: ProficiencyKey[] = [
   "light-armor",

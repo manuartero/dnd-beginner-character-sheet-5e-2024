@@ -3,24 +3,7 @@ import { groupSpellsByTiming, spellCastingTiming } from "./spell-timing";
 
 import type { Spell } from "./spells";
 
-function makeSpell(overrides: Partial<Spell> = {}): Spell {
-  return {
-    id: "test-spell",
-    name: "Test Spell",
-    level: 1,
-    school: "Evocation",
-    castingTime: "1 action",
-    range: "60 ft",
-    components: "V, S",
-    duration: "Instantaneous",
-    concentration: false,
-    ritual: false,
-    description: "A test spell.",
-    ...overrides,
-  };
-}
-
-describe("spellCastingTiming", () => {
+describe("spellCastingTiming()", () => {
   it("returns 'action' for '1 action' casting time", () => {
     const spell = makeSpell({ castingTime: "1 action" });
     expect(spellCastingTiming(spell)).toBe("action");
@@ -56,7 +39,7 @@ describe("spellCastingTiming", () => {
   });
 });
 
-describe("groupSpellsByTiming", () => {
+describe("groupSpellsByTiming()", () => {
   it("groups spells into the correct timing buckets", () => {
     const spells = [
       makeSpell({ id: "fire-bolt", castingTime: "1 action" }),
@@ -96,3 +79,20 @@ describe("groupSpellsByTiming", () => {
     expect(groups.reaction).toHaveLength(0);
   });
 });
+
+function makeSpell(overrides: Partial<Spell> = {}): Spell {
+  return {
+    id: "test-spell",
+    name: "Test Spell",
+    level: 1,
+    school: "Evocation",
+    castingTime: "1 action",
+    range: "60 ft",
+    components: "V, S",
+    duration: "Instantaneous",
+    concentration: false,
+    ritual: false,
+    description: "A test spell.",
+    ...overrides,
+  };
+}

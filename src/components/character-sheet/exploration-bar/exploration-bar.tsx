@@ -1,6 +1,6 @@
 import { ChipGrid, Section } from "elements";
 import { CLASS_DETAILS } from "src/models/class/classes";
-import { EXPLORATION_ACTIONS } from "src/models/common/exploration-actions";
+import { EXPLORATION_ACTIONS } from "src/models/common/actions";
 import { resolveIconPath } from "src/models/common/icons";
 
 import type { CharacterClass } from "src/models/class/classes";

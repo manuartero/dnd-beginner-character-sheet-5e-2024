@@ -2,7 +2,7 @@ import { ChipGrid, EmptySlot, labelStyles, Section } from "elements";
 import { useMemo } from "react";
 import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { CLASS_DETAILS } from "src/models/class/classes";
-import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/common/actions";
+import { CLASS_ACTIONS, COMBAT_ACTIONS } from "src/models/common/actions";
 import { resolveIconPath } from "src/models/common/icons";
 import { groupSpellsByTiming } from "src/models/spells/spell-timing";
 import styles from "./action-bar.module.css";
@@ -38,7 +38,7 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
 
   const grouped = useMemo(() => {
     const availableActions = [
-      ...UNIVERSAL_ACTIONS,
+      ...COMBAT_ACTIONS,
       ...CLASS_ACTIONS.filter((a) => {
         if (a.classRestriction && a.classRestriction !== characterClass)
           return false;

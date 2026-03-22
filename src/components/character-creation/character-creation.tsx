@@ -1,11 +1,11 @@
 import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import recommendedData from "src/data/class/recommended-scores.json";
 import { getResourcesForLevel } from "src/models/class/class-resources";
 import { computeProficiencyBonus } from "src/models/common/abilities";
 import { computeHpMax } from "src/models/common/character-stats";
 import { saveCharacter } from "src/models/common/character-storage";
+import { RECOMMENDED_SCORES } from "src/models/common/recommended-scores";
 import { resolveStartingEquipment } from "src/models/gear/starting-equipment";
 import { BACKGROUND_LIST } from "src/models/origin/backgrounds";
 import { CreationActions } from "./creation-actions";
@@ -17,15 +17,10 @@ import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
 
 import type { CharacterClass } from "src/models/class/classes";
-import type { AbilityName, AbilityScores } from "src/models/common/abilities";
+import type { AbilityName } from "src/models/common/abilities";
 import type { Character } from "src/models/common/character";
 import type { Background } from "src/models/origin/backgrounds";
 import type { Species } from "src/models/origin/species";
-
-const RECOMMENDED_SCORES = recommendedData.recommended as Record<
-  string,
-  AbilityScores
->;
 
 const DEFAULT_CHARACTER_CLASS: CharacterClass = "fighter";
 
