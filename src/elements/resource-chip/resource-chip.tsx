@@ -6,6 +6,7 @@ export type ResourceChipProps = {
   label: string;
   isReady: boolean;
   isDraining?: boolean;
+  isRestoring?: boolean;
   ariaLabel: string;
   onClick?: () => void;
 };
@@ -15,6 +16,7 @@ export function ResourceChip({
   label,
   isReady,
   isDraining = false,
+  isRestoring = false,
   ariaLabel,
   onClick,
 }: ResourceChipProps) {
@@ -25,8 +27,9 @@ export function ResourceChip({
       disabled={!isReady}
       className={c(
         styles.chip,
-        !isReady && styles.chipSpent,
+        !isReady && !isRestoring && styles.chipSpent,
         isDraining && styles.chipDraining,
+        isRestoring && styles.chipRestoring,
       )}
       onClick={onClick}
     >

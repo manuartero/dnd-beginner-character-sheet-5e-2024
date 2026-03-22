@@ -10,6 +10,7 @@ import {
   computeSpellAttack,
 } from "src/models/character-stats";
 import { saveCharacter } from "src/models/character-storage";
+import { applyRest } from "src/models/class-resources";
 import { CLASS_DETAILS } from "src/models/classes";
 import {
   WIZARD_CANTRIP_SELECTION,
@@ -23,11 +24,13 @@ import styles from "./character-sheet.module.css";
 import { CombatStats } from "./combat-stats";
 import { ExplorationBar } from "./exploration-bar";
 import { ResourceTracker } from "./resource-tracker";
+import { RestBar } from "./rest-bar";
 import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
 import { WeaponMastery } from "./weapon-mastery";
 
 import type { Character } from "src/models/character";
+import type { RestType } from "src/models/class-resources";
 
 const STEP_LABELS = ["Stats", "Combat", "Explore", "Spells & Skills", "Gear"];
 
@@ -48,6 +51,7 @@ export function CharacterSheet({
   onCharacterUpdate,
 }: CharacterSheetProps) {
   const [step, setStep] = useState(1);
+  const [selectedRest, setSelectedRest] = useState<RestType | null>(null);
   const { isVisible } = useScrollDirection();
 
   function updateCharacter(patch: Partial<Character>) {
@@ -92,6 +96,17 @@ export function CharacterSheet({
     updateCharacter({ classResources });
   };
 
+  const restHandler = (type: RestType) => {
+    updateCharacter({
+      classResources: applyRest(
+        type,
+        character.classResources,
+        character.characterClass,
+      ),
+    });
+    setSelectedRest(null);
+  };
+
   return (
     <>
       <ScreenFlash trigger={step} />
@@ -102,6 +117,9 @@ export function CharacterSheet({
           characterClass={character.characterClass}
           resources={character.classResources}
           onResourceChange={resourceChangeHandler}
+          highlightResetType={
+            step === 3 ? (selectedRest ?? undefined) : undefined
+          }
         />
       )}
 
@@ -132,6 +150,13 @@ export function CharacterSheet({
         {step === 3 && (
           <>
             <ExplorationBar characterClass={character.characterClass} />
+            {character.classResources.length > 0 && (
+              <RestBar
+                selectedRest={selectedRest}
+                onSelect={setSelectedRest}
+                onRest={restHandler}
+              />
+            )}
             {isSpellcaster && ritualSpells.length > 0 && (
               <SpellCards spells={ritualSpells} />
             )}

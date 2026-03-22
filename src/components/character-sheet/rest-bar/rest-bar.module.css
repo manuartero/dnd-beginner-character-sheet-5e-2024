@@ -1,0 +1,43 @@
+/* RestBar — confirm popover content */
+
+.confirmRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+}
+
+.confirmText {
+  flex: 1;
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  line-height: 1.4;
+}
+
+.confirmBtn {
+  padding: var(--space-xs) var(--space-sm);
+  font: inherit;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--shade-0);
+  background: var(--shade-3);
+  border: 2px solid var(--shade-3);
+  box-shadow: 2px 2px 0 var(--shade-2);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.confirmBtn:hover {
+  background: var(--shade-2);
+  border-color: var(--shade-2);
+}
+
+.confirmBtn:active {
+  box-shadow: none;
+  translate: 2px 2px;
+}

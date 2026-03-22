@@ -7,11 +7,13 @@ import type { CharacterClass } from "./classes";
 
 export type ResourceId = string;
 
+export type RestType = "short-rest" | "long-rest";
+
 export type ResourceDefinition = {
   id: ResourceId;
   name: string;
   description: string;
-  resetOn: "short-rest" | "long-rest";
+  resetOn: RestType;
   icon: string;
 };
 
@@ -25,7 +27,7 @@ type ProgressionValue = number | string;
 
 type ClassResourceEntry = {
   resourceId: ResourceId;
-  resetOn: "short-rest" | "long-rest";
+  resetOn: RestType;
   progression: Record<string, ProgressionValue>;
 };
 
@@ -69,12 +71,25 @@ export function getResourceDefinition(
 export function getResourceResetOn(
   characterClass: CharacterClass,
   resourceId: ResourceId,
-): "short-rest" | "long-rest" {
+): RestType {
   const entry = CLASS_PROGRESSION[characterClass]?.resources.find(
     (r) => r.resourceId === resourceId,
   );
   if (entry) return entry.resetOn;
   return RESOURCE_DEFINITIONS[resourceId]?.resetOn ?? "long-rest";
+}
+
+export function applyRest(
+  type: RestType,
+  resources: CharacterResource[],
+  characterClass: CharacterClass,
+): CharacterResource[] {
+  return resources.map((r) =>
+    type === "long-rest" ||
+    getResourceResetOn(characterClass, r.resourceId) === type
+      ? { ...r, current: r.max }
+      : r,
+  );
 }
 
 export function getResourcesForLevel(
