@@ -15,6 +15,7 @@ type ResourceTrackerProps = {
   characterClass: CharacterClass;
   resources: CharacterResource[];
   onResourceChange: (resourceId: string, newCurrent: number) => void;
+  highlightResetType?: "short-rest" | "long-rest";
 };
 
 const RESOURCE_SHORT_NAMES: Record<string, string> = {
@@ -79,14 +80,17 @@ function ResourceRow({
   label,
   chips,
   animatingChip,
+  highlightResetType,
   onChipClick,
 }: {
   resetType: "short-rest" | "long-rest";
   label: string;
   chips: UseChip[];
   animatingChip: AnimatingChip | null;
+  highlightResetType?: "short-rest" | "long-rest";
   onChipClick: (chip: UseChip) => void;
 }) {
+  const isHighlighted = highlightResetType === resetType;
   if (chips.length === 0) return null;
 
   return (
@@ -105,6 +109,8 @@ function ResourceRow({
             animatingChip?.resourceId === chip.resourceId &&
             animatingChip?.useIndex === chip.useIndex;
 
+          const isRestoring = isHighlighted && !chip.isReady;
+
           return (
             <ResourceChip
               key={`${chip.resourceId}-${chip.useIndex}`}
@@ -112,7 +118,8 @@ function ResourceRow({
               label={chip.label}
               isReady={chip.isReady}
               isDraining={isDraining}
-              ariaLabel={`${chip.label}: ${chip.isReady ? "ready, click to spend" : "spent"}`}
+              isRestoring={isRestoring}
+              ariaLabel={`${chip.label}: ${chip.isReady ? "ready, click to spend" : isRestoring ? "will restore" : "spent"}`}
               onClick={() => onChipClick(chip)}
             />
           );
@@ -126,6 +133,7 @@ export function ResourceTracker({
   characterClass,
   resources,
   onResourceChange,
+  highlightResetType,
 }: ResourceTrackerProps) {
   const [animatingChip, setAnimatingChip] = useState<AnimatingChip | null>(
     null,
@@ -153,6 +161,7 @@ export function ResourceTracker({
           label="Short Rest"
           chips={shortRestChips}
           animatingChip={animatingChip}
+          highlightResetType={highlightResetType}
           onChipClick={handleChipClick}
         />
         <ResourceRow
@@ -160,6 +169,7 @@ export function ResourceTracker({
           label="Long Rest"
           chips={longRestChips}
           animatingChip={animatingChip}
+          highlightResetType={highlightResetType}
           onChipClick={handleChipClick}
         />
       </div>

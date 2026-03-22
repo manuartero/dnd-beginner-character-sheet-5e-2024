@@ -53,6 +53,44 @@
   line-height: 1;
 }
 
+/* ── Restore preview — spent chips queued for recovery ─────── */
+
+.chipRestoring {
+  border-color: var(--color-hp-full);
+  background: rgba(78, 122, 16, 0.15);
+  opacity: 1;
+  animation: chip-restore 0.7s steps(2, end) infinite;
+}
+
+.chipRestoring .chipIcon {
+  background-color: var(--color-hp-full);
+}
+
+.chipRestoring .chipLabel {
+  color: var(--color-hp-full);
+}
+
+@keyframes chip-restore {
+  0% {
+    border-color: var(--color-hp-full);
+    background: rgba(78, 122, 16, 0.15);
+    box-shadow: 2px 2px 0 var(--color-hp-full);
+    opacity: 1;
+  }
+  50% {
+    border-color: var(--shade-2);
+    background: var(--shade-0);
+    box-shadow: 2px 2px 0 var(--shade-2);
+    opacity: 0.6;
+  }
+  100% {
+    border-color: var(--color-hp-full);
+    background: rgba(78, 122, 16, 0.15);
+    box-shadow: 2px 2px 0 var(--color-hp-full);
+    opacity: 1;
+  }
+}
+
 /* ── Drain animation ────────────────────────────────────────── */
 
 .chipDraining {
