@@ -1,0 +1,14 @@
+[
+  {
+    "id": "short-rest",
+    "label": "Short Rest",
+    "icon": "vol4/icon-vol4_09",
+    "description": "Restores short rest resources."
+  },
+  {
+    "id": "long-rest",
+    "label": "Long Rest",
+    "icon": "vol4/icon-vol4_08",
+    "description": "Restores all resources."
+  }
+]

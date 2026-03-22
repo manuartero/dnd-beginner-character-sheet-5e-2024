@@ -1,5 +1,6 @@
 import { ChipGrid, Section } from "elements";
 import { resolveIconPath } from "src/models/icons";
+import { REST_ACTIONS } from "src/models/rest-actions";
 import styles from "./rest-bar.module.css";
 
 import type { GridAction } from "elements";
@@ -17,46 +18,23 @@ export function RestBar({ selectedRest, onSelect, onRest }: RestBarProps) {
     onSelect(selectedRest === type ? null : type);
   }
 
-  const actions: GridAction[] = [
-    {
-      key: "short-rest",
-      label: "Short Rest",
-      icon: resolveIconPath("vol4/icon-vol4_09"),
-      renderExpanded: () => (
-        <div className={styles.confirmRow}>
-          <p className={styles.confirmText}>
-            Restores short rest resources.
-          </p>
-          <button
-            type="button"
-            className={styles.confirmBtn}
-            onClick={() => onRest("short-rest")}
-          >
-            Take Rest
-          </button>
-        </div>
-      ),
-    },
-    {
-      key: "long-rest",
-      label: "Long Rest",
-      icon: resolveIconPath("vol4/icon-vol4_08"),
-      renderExpanded: () => (
-        <div className={styles.confirmRow}>
-          <p className={styles.confirmText}>
-            Restores all resources.
-          </p>
-          <button
-            type="button"
-            className={styles.confirmBtn}
-            onClick={() => onRest("long-rest")}
-          >
-            Take Rest
-          </button>
-        </div>
-      ),
-    },
-  ];
+  const actions: GridAction[] = REST_ACTIONS.map((action) => ({
+    key: action.id,
+    label: action.label,
+    icon: resolveIconPath(action.icon),
+    renderExpanded: () => (
+      <div className={styles.confirmRow}>
+        <p className={styles.confirmText}>{action.description}</p>
+        <button
+          type="button"
+          className={styles.confirmBtn}
+          onClick={() => onRest(action.id)}
+        >
+          Take Rest
+        </button>
+      </div>
+    ),
+  }));
 
   return (
     <Section title="Rest">
