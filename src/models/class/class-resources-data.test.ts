@@ -1,4 +1,3 @@
-import classProgressionData from "src/data/class/class-progression.json";
 import classResourcesData from "src/data/class/class-resources.json";
 import { applyRest } from "src/models/class/class-resources";
 import { describe, expect, it } from "vitest";
@@ -77,48 +76,40 @@ describe("applyRest()", () => {
 });
 
 describe("class-resources data integrity", () => {
-  it("class-progression.json covers all 12 classes", () => {
-    const classes = Object.keys(classProgressionData);
+  it("covers all 12 classes", () => {
+    const classes = Object.keys(classResourcesData);
     expect(classes.sort()).toEqual(EXPECTED_CLASSES.sort());
   });
 
-  it("every resourceId in class-progression.json exists in class-resources.json", () => {
-    const definedIds = new Set(Object.keys(classResourcesData));
-
-    for (const [className, entry] of Object.entries(classProgressionData)) {
-      for (const resource of entry.resources) {
-        expect(
-          definedIds.has(resource.resourceId),
-          `${className} references unknown resourceId "${resource.resourceId}"`,
-        ).toBe(true);
-      }
-    }
-  });
-
   it("progression levels are valid numbers between 1 and 20", () => {
-    for (const [className, entry] of Object.entries(classProgressionData)) {
+    for (const [className, entry] of Object.entries(classResourcesData)) {
       for (const resource of entry.resources) {
         for (const levelStr of Object.keys(resource.progression)) {
           const level = Number(levelStr);
           expect(
             Number.isInteger(level) && level >= 1 && level <= 20,
-            `${className}/${resource.resourceId} has invalid level "${levelStr}"`,
+            `${className}/${resource.id} has invalid level "${levelStr}"`,
           ).toBe(true);
         }
       }
     }
   });
 
-  it("each resource definition has required fields", () => {
-    for (const [id, def] of Object.entries(classResourcesData)) {
-      expect(def.id, `${id} missing id`).toBe(id);
-      expect(def.name, `${id} missing name`).toBeTruthy();
-      expect(def.description, `${id} missing description`).toBeTruthy();
-      expect(
-        ["short-rest", "long-rest"].includes(def.resetOn),
-        `${id} has invalid resetOn "${def.resetOn}"`,
-      ).toBe(true);
-      expect(def.icon, `${id} missing icon`).toBeTruthy();
+  it("each resource has required fields", () => {
+    for (const [className, entry] of Object.entries(classResourcesData)) {
+      for (const resource of entry.resources) {
+        expect(resource.id, `${className} resource missing id`).toBeTruthy();
+        expect(resource.name, `${resource.id} missing name`).toBeTruthy();
+        expect(
+          resource.description,
+          `${resource.id} missing description`,
+        ).toBeTruthy();
+        expect(
+          ["short-rest", "long-rest"].includes(resource.resetOn),
+          `${resource.id} has invalid resetOn "${resource.resetOn}"`,
+        ).toBe(true);
+        expect(resource.icon, `${resource.id} missing icon`).toBeTruthy();
+      }
     }
   });
 });

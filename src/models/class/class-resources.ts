@@ -1,4 +1,3 @@
-import classProgressionData from "src/data/class/class-progression.json";
 import classResourcesData from "src/data/class/class-resources.json";
 import { computeModifier } from "src/models/common/abilities";
 
@@ -25,21 +24,16 @@ export type CharacterResource = {
 
 type ProgressionValue = number | string;
 
-type ClassResourceEntry = {
-  resourceId: ResourceId;
-  resetOn: RestType;
+type ClassResourceEntry = ResourceDefinition & {
   progression: Record<string, ProgressionValue>;
 };
 
-type ClassProgressionEntry = {
+type ClassEntry = {
   resources: ClassResourceEntry[];
 };
 
-const RESOURCE_DEFINITIONS: Record<ResourceId, ResourceDefinition> =
-  classResourcesData as Record<ResourceId, ResourceDefinition>;
-
-const CLASS_PROGRESSION: Record<CharacterClass, ClassProgressionEntry> =
-  classProgressionData as Record<CharacterClass, ClassProgressionEntry>;
+const CLASS_RESOURCES: Record<CharacterClass, ClassEntry> =
+  classResourcesData as Record<CharacterClass, ClassEntry>;
 
 const ABILITY_MOD_KEYS: Record<string, AbilityName> = {
   "cha-mod": "cha",
@@ -65,18 +59,24 @@ function resolveMax(
 export function getResourceDefinition(
   resourceId: ResourceId,
 ): ResourceDefinition | undefined {
-  return RESOURCE_DEFINITIONS[resourceId];
+  for (const entry of Object.values(CLASS_RESOURCES)) {
+    const found = entry.resources.find((r) => r.id === resourceId);
+    if (found) {
+      const { progression: _, ...definition } = found;
+      return definition;
+    }
+  }
+  return undefined;
 }
 
 export function getResourceResetOn(
   characterClass: CharacterClass,
   resourceId: ResourceId,
 ): RestType {
-  const entry = CLASS_PROGRESSION[characterClass]?.resources.find(
-    (r) => r.resourceId === resourceId,
+  const entry = CLASS_RESOURCES[characterClass]?.resources.find(
+    (r) => r.id === resourceId,
   );
-  if (entry) return entry.resetOn;
-  return RESOURCE_DEFINITIONS[resourceId]?.resetOn ?? "long-rest";
+  return entry?.resetOn ?? "long-rest";
 }
 
 export function applyRest(
@@ -97,13 +97,13 @@ export function getResourcesForLevel(
   level: number,
   abilityScores: AbilityScores,
 ): CharacterResource[] {
-  const progression = CLASS_PROGRESSION[characterClass];
-  if (!progression) return [];
+  const classEntry = CLASS_RESOURCES[characterClass];
+  if (!classEntry) return [];
 
   const resources: CharacterResource[] = [];
   const levelKey = String(level);
 
-  for (const entry of progression.resources) {
+  for (const entry of classEntry.resources) {
     const rawMax = entry.progression[levelKey];
     if (rawMax === undefined) continue;
 
@@ -111,7 +111,7 @@ export function getResourcesForLevel(
     if (max <= 0) continue;
 
     resources.push({
-      resourceId: entry.resourceId,
+      resourceId: entry.id,
       current: max,
       max,
     });
