@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
+  applyRest,
   getResourceDefinition,
   getResourceResetOn,
   getResourcesForLevel,
 } from "./class-resources";
 
 import type { AbilityScores } from "src/models/common/abilities";
+import type { CharacterResource } from "./class-resources";
 
 const DEFAULT_SCORES: AbilityScores = {
   str: 10,
@@ -195,5 +197,61 @@ describe("spell slot progressions", () => {
 
   it("warlock pact magic resets on short rest", () => {
     expect(getResourceResetOn("warlock", "pact-magic-slot")).toBe("short-rest");
+  });
+});
+
+function res(
+  resourceId: string,
+  current: number,
+  max: number,
+): CharacterResource {
+  return { resourceId, current, max };
+}
+
+describe("applyRest", () => {
+  it("short rest resets only short-rest resources (fighter)", () => {
+    const resources = [res("second-wind", 0, 1)];
+    const result = applyRest("short-rest", resources, "fighter");
+    expect(result[0].current).toBe(1);
+  });
+
+  it("short rest does not reset long-rest resources (barbarian)", () => {
+    const resources = [res("rage", 0, 3)];
+    const result = applyRest("short-rest", resources, "barbarian");
+    expect(result[0].current).toBe(0);
+  });
+
+  it("short rest resets short-rest but not long-rest (cleric)", () => {
+    const resources = [
+      res("channel-divinity", 0, 1),
+      res("spell-slot-1st", 0, 2),
+    ];
+    const result = applyRest("short-rest", resources, "cleric");
+    expect(
+      result.find((r) => r.resourceId === "channel-divinity")?.current,
+    ).toBe(1);
+    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(
+      0,
+    );
+  });
+
+  it("long rest resets all resources regardless of type", () => {
+    const resources = [
+      res("channel-divinity", 0, 1),
+      res("spell-slot-1st", 0, 2),
+    ];
+    const result = applyRest("long-rest", resources, "cleric");
+    expect(
+      result.find((r) => r.resourceId === "channel-divinity")?.current,
+    ).toBe(1);
+    expect(result.find((r) => r.resourceId === "spell-slot-1st")?.current).toBe(
+      2,
+    );
+  });
+
+  it("does not mutate resources already at max", () => {
+    const resources = [res("second-wind", 1, 1)];
+    const result = applyRest("short-rest", resources, "fighter");
+    expect(result[0].current).toBe(1);
   });
 });
