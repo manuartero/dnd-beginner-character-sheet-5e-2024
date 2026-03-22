@@ -3,8 +3,7 @@ import { resolveIconPath } from "src/models/icons";
 import styles from "./rest-bar.module.css";
 
 import type { GridAction } from "elements";
-
-type RestType = "short-rest" | "long-rest";
+import type { RestType } from "src/models/class-resources";
 
 type RestBarProps = {
   selectedRest: RestType | null;

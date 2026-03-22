@@ -8,14 +8,14 @@ import {
 import { resolveIconPath } from "src/models/icons";
 import styles from "./resource-tracker.module.css";
 
-import type { CharacterResource } from "src/models/class-resources";
+import type { CharacterResource, RestType } from "src/models/class-resources";
 import type { CharacterClass } from "src/models/classes";
 
 type ResourceTrackerProps = {
   characterClass: CharacterClass;
   resources: CharacterResource[];
   onResourceChange: (resourceId: string, newCurrent: number) => void;
-  highlightResetType?: "short-rest" | "long-rest";
+  highlightResetType?: RestType;
 };
 
 const RESOURCE_SHORT_NAMES: Record<string, string> = {
@@ -51,7 +51,7 @@ type AnimatingChip = {
 function buildChips(
   resources: CharacterResource[],
   characterClass: CharacterClass,
-  resetFilter: "short-rest" | "long-rest",
+  resetFilter: RestType,
 ): UseChip[] {
   return resources
     .filter(
@@ -83,11 +83,11 @@ function ResourceRow({
   highlightResetType,
   onChipClick,
 }: {
-  resetType: "short-rest" | "long-rest";
+  resetType: RestType;
   label: string;
   chips: UseChip[];
   animatingChip: AnimatingChip | null;
-  highlightResetType?: "short-rest" | "long-rest";
+  highlightResetType?: RestType;
   onChipClick: (chip: UseChip) => void;
 }) {
   const isHighlighted = highlightResetType === resetType;
@@ -145,7 +145,7 @@ export function ResourceTracker({
   const longRestChips = buildChips(resources, characterClass, "long-rest");
 
   function handleChipClick(chip: UseChip) {
-    if (animatingChip) return;
+    if (animatingChip || !chip.isReady) return;
     setAnimatingChip({ resourceId: chip.resourceId, useIndex: chip.useIndex });
     setTimeout(() => {
       setAnimatingChip(null);
