@@ -2,37 +2,37 @@
   {
     "name": "Hide",
     "category": "exploration",
-    "icon": "combat.common.actions.hide",
+    "icon": "vol1/icon-vol1_57",
     "description": "Make a Dexterity (Stealth) check to try to become hidden from enemies."
   },
   {
     "name": "Search",
     "category": "exploration",
-    "icon": "exploration.search",
+    "icon": "vol7/icon-vol7_255",
     "description": "Make a Wisdom (Perception) or Intelligence (Investigation) check to find something hidden nearby."
   },
   {
     "name": "Study",
     "category": "exploration",
-    "icon": "exploration.study",
+    "icon": "vol1/icon-vol1_34",
     "description": "Make an Intelligence (Arcana, History, Nature, or Religion) check to recall or deduce information about something."
   },
   {
     "name": "Utilize",
     "category": "exploration",
-    "icon": "exploration.utilize",
+    "icon": "vol1/icon-vol1_38",
     "description": "Use a non-magical object or interact with something in the environment, such as opening a door or drinking a potion."
   },
   {
     "name": "Influence",
     "category": "social",
-    "icon": "exploration.influence",
+    "icon": "vol1/icon-vol1_78",
     "description": "Make a Charisma (Deception, Intimidation, Performance, or Persuasion) check to alter a creature's attitude."
   },
   {
     "name": "Cast Ritual Spell",
     "category": "exploration",
-    "icon": "exploration.cast-ritual",
+    "icon": "vol7/icon-vol7_63",
     "description": "Cast a spell with the Ritual tag. This takes 10 minutes longer than normal but does not expend a spell slot.",
     "classificationRestriction": ["spell-caster", "versatile"]
   }

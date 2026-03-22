@@ -1,4 +1,4 @@
-import { getIconPath, resolveIconPath } from "./icons";
+import { resolveIconPath } from "./icons";
 
 describe("resolveIconPath()", () => {
   it("builds the default BLACK variant path", () => {
@@ -11,17 +11,5 @@ describe("resolveIconPath()", () => {
     expect(resolveIconPath("vol1/icon-vol1_42", { variant: "WHITE" })).toBe(
       "/assets/vol1/WHITE/icon-vol1_42.svg",
     );
-  });
-});
-
-describe("getIconPath()", () => {
-  it("resolves a known icon name", () => {
-    const path = getIconPath("exploration.influence");
-    expect(path).toBe("/assets/vol1/BLACK/icon-vol1_78.svg");
-  });
-
-  it("supports the WHITE variant", () => {
-    const path = getIconPath("exploration.influence", { variant: "WHITE" });
-    expect(path).toBe("/assets/vol1/WHITE/icon-vol1_78.svg");
   });
 });

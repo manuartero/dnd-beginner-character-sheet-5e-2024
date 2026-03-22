@@ -1,11 +1,4 @@
-import iconMap from "src/data/icon-map.json";
-
-export type IconName = keyof typeof iconMap;
 export type IconVariant = "BLACK" | "WHITE";
-
-export function isIconName(name: string): name is IconName {
-  return name in iconMap;
-}
 
 export function resolveIconPath(
   pseudoPath: string,
@@ -13,11 +6,4 @@ export function resolveIconPath(
 ): string {
   const [vol, file] = pseudoPath.split("/");
   return `/assets/${vol}/${variant}/${file}.svg`;
-}
-
-export function getIconPath(
-  name: IconName,
-  { variant = "BLACK" }: { variant?: IconVariant } = {},
-) {
-  return resolveIconPath(iconMap[name], { variant });
 }

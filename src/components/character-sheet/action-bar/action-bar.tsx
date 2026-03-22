@@ -3,14 +3,13 @@ import { useMemo } from "react";
 import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { CLASS_ACTIONS, UNIVERSAL_ACTIONS } from "src/models/actions";
 import { CLASS_DETAILS } from "src/models/classes";
-import { getIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/icons";
 import { groupSpellsByTiming } from "src/models/spell-timing";
 import styles from "./action-bar.module.css";
 
 import type { GridAction } from "elements";
 import type { ActionTiming } from "src/models/actions";
 import type { CharacterClass } from "src/models/classes";
-import type { IconName } from "src/models/icons";
 import type { Spell } from "src/models/spells";
 
 type ActionBarProps = {
@@ -26,7 +25,7 @@ const TIMING_LABELS: Record<ActionTiming, string> = {
 
 const TIMING_ORDER: ActionTiming[] = ["action", "bonus-action", "reaction"];
 
-const CAST_SPELL_ICON = getIconPath("combat.common.actions.cast-spell");
+const CAST_SPELL_ICON = resolveIconPath("vol3/icon-vol3_01");
 const CAST_SPELL_DESCRIPTION =
   "Cast one of your prepared spells using the appropriate casting time.";
 
@@ -59,7 +58,7 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
           key: a.name,
           label: a.name,
           description: a.description,
-          icon: a.icon ? getIconPath(a.icon as IconName) : undefined,
+          icon: a.icon ? resolveIconPath(a.icon) : undefined,
         }));
 
       if (isSpellcaster) {
