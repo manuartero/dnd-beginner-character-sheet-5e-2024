@@ -51,7 +51,7 @@ export function CharacterSheet({
   onCharacterUpdate,
 }: CharacterSheetProps) {
   const [step, setStep] = useState(1);
-  const [hoveredRest, setHoveredRest] = useState<RestType | null>(null);
+  const [selectedRest, setSelectedRest] = useState<RestType | null>(null);
   const { isVisible } = useScrollDirection();
 
   function updateCharacter(patch: Partial<Character>) {
@@ -104,7 +104,7 @@ export function CharacterSheet({
         character.characterClass,
       ),
     });
-    setHoveredRest(null);
+    setSelectedRest(null);
   };
 
   return (
@@ -118,7 +118,7 @@ export function CharacterSheet({
           resources={character.classResources}
           onResourceChange={resourceChangeHandler}
           highlightResetType={
-            step === 3 ? (hoveredRest ?? undefined) : undefined
+            step === 3 ? (selectedRest ?? undefined) : undefined
           }
         />
       )}
@@ -152,8 +152,8 @@ export function CharacterSheet({
             <ExplorationBar characterClass={character.characterClass} />
             {character.classResources.length > 0 && (
               <RestBar
-                selectedRest={hoveredRest}
-                onSelect={setHoveredRest}
+                selectedRest={selectedRest}
+                onSelect={setSelectedRest}
                 onRest={restHandler}
               />
             )}

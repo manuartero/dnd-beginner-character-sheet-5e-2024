@@ -4,7 +4,7 @@
     "name": "Rage",
     "description": "Enter a fierce rage for extra damage and resistance. While raging, you deal extra damage and have resistance to bludgeoning, piercing, and slashing damage.",
     "resetOn": "long-rest",
-    "icon": "vol5/icon-vol2_65"
+    "icon": "vol2/icon-vol2_65"
   },
   "bardic-inspiration": {
     "id": "bardic-inspiration",

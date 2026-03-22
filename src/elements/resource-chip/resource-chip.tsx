@@ -24,7 +24,7 @@ export function ResourceChip({
     <button
       type="button"
       aria-label={ariaLabel}
-      disabled={!isReady && !isRestoring}
+      disabled={!isReady}
       className={c(
         styles.chip,
         !isReady && !isRestoring && styles.chipSpent,

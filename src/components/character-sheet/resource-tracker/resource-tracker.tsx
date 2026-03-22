@@ -90,7 +90,8 @@ function ResourceRow({
   highlightResetType?: RestType;
   onChipClick: (chip: UseChip) => void;
 }) {
-  const isHighlighted = highlightResetType === resetType;
+  const isHighlighted =
+    highlightResetType === "long-rest" || highlightResetType === resetType;
   if (chips.length === 0) return null;
 
   return (

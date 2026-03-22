@@ -102,6 +102,49 @@ describe("<ResourceTracker />", () => {
     expect(disabled).toHaveLength(2);
   });
 
+  it("short-rest highlight marks only short-rest spent chips as 'will restore'", () => {
+    render(
+      <ResourceTracker
+        characterClass="cleric"
+        resources={[
+          makeResource("channel-divinity", 0, 1),
+          makeResource("spell-slot-1st", 0, 2),
+        ]}
+        onResourceChange={vi.fn()}
+        highlightResetType="short-rest"
+      />,
+    );
+    // channel-divinity is short-rest for cleric → should pulse
+    expect(
+      screen.getByRole("button", { name: /CHDIV: will restore/i }),
+    ).toBeInTheDocument();
+    // spell-slot-1st is long-rest → should NOT pulse
+    expect(
+      screen.queryByRole("button", { name: /SL.*will restore/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("long-rest highlight marks all spent chips as 'will restore'", () => {
+    render(
+      <ResourceTracker
+        characterClass="cleric"
+        resources={[
+          makeResource("channel-divinity", 0, 1),
+          makeResource("spell-slot-1st", 0, 2),
+        ]}
+        onResourceChange={vi.fn()}
+        highlightResetType="long-rest"
+      />,
+    );
+    // both short-rest and long-rest chips should pulse
+    expect(
+      screen.getByRole("button", { name: /CHDIV: will restore/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole("button", { name: /SL.*will restore/i }),
+    ).toHaveLength(2);
+  });
+
   it("calls onResourceChange with decremented current on chip click", () => {
     vi.useFakeTimers();
     const onResourceChange = vi.fn();
