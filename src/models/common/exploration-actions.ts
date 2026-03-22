@@ -1,6 +1,6 @@
-import explorationActionsData from "src/data/exploration-actions.json";
+import explorationActionsData from "src/data/common/exploration-actions.json";
 
-import type { ManualClassification } from "./classes";
+import type { ManualClassification } from "src/models/class/classes";
 
 export type ExplorationCategory = "exploration" | "social";
 

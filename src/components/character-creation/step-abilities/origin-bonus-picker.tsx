@@ -1,10 +1,10 @@
 import c from "classnames";
 import { Section } from "elements";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { ABILITY_LIST } from "src/models/abilities";
+import { ABILITY_LIST } from "src/models/common/abilities";
 import styles from "./step-abilities.module.css";
 
-import type { AbilityName } from "src/models/abilities";
+import type { AbilityName } from "src/models/common/abilities";
 
 type OriginBonusPickerProps = {
   abilityOptions: [AbilityName, AbilityName, AbilityName];

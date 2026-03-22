@@ -6,11 +6,11 @@ import {
   Section,
 } from "elements";
 import { useState } from "react";
-import { GOLD_ICON } from "src/models/equipment";
-import { resolveIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/common/icons";
+import { GOLD_ICON } from "src/models/gear/equipment";
 import styles from "./inventory.module.css";
 
-import type { Equipment } from "src/models/equipment";
+import type { Equipment } from "src/models/gear/equipment";
 
 type ReadonlyProps = {
   mode: "readonly";

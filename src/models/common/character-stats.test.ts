@@ -5,9 +5,9 @@ import {
   computeSpellAttack,
 } from "./character-stats";
 
+import type { Equipment } from "src/models/gear/equipment";
 import type { AbilityScores } from "./abilities";
 import type { StatResult } from "./character-stats";
-import type { Equipment } from "./equipment";
 
 // --- computeHpMax ---
 

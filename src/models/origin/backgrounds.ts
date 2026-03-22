@@ -1,9 +1,9 @@
-import backgroundListData from "src/data/background-list.json";
-import originFeatDescriptions from "src/data/origin-feat-descriptions.json";
-import { resolveIconPath } from "./icons";
+import backgroundListData from "src/data/origin/background-list.json";
+import originFeatDescriptions from "src/data/origin/origin-feat-descriptions.json";
+import { resolveIconPath } from "src/models/common/icons";
 
-import type { AbilityName } from "./abilities";
-import type { SkillName } from "./skills";
+import type { AbilityName } from "src/models/common/abilities";
+import type { SkillName } from "src/models/common/skills";
 
 export type Background =
   | "acolyte"

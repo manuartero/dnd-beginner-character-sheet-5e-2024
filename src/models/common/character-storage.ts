@@ -1,13 +1,13 @@
-import { getResourcesForLevel } from "./class-resources";
-import { GOLD_ICON } from "./equipment";
-import { SPECIES_LIST } from "./species";
+import { getResourcesForLevel } from "src/models/class/class-resources";
+import { GOLD_ICON } from "src/models/gear/equipment";
+import { SPECIES_LIST } from "src/models/origin/species";
 
+import type { CharacterResource } from "src/models/class/class-resources";
+import type { CharacterClass } from "src/models/class/classes";
+import type { Equipment } from "src/models/gear/equipment";
+import type { Species } from "src/models/origin/species";
 import type { AbilityScores } from "./abilities";
 import type { Character } from "./character";
-import type { CharacterResource } from "./class-resources";
-import type { CharacterClass } from "./classes";
-import type { Equipment } from "./equipment";
-import type { Species } from "./species";
 
 const STORAGE_KEY = "dnd-characters";
 

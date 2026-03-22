@@ -2,9 +2,9 @@ import {
   computeSkillModifier,
   getSkillLabel,
   skillsForAbility,
-} from "src/models/skills";
+} from "./skills";
 
-import type { AbilityName } from "src/models/abilities";
+import type { AbilityName } from "./abilities";
 
 describe("skillsForAbility()", () => {
   [

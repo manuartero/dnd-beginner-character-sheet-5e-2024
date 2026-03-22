@@ -1,8 +1,8 @@
 import { useState } from "react";
-import recommendedData from "src/data/recommended-scores.json";
+import recommendedData from "src/data/class/recommended-scores.json";
 
-import type { AbilityName, AbilityScores } from "src/models/abilities";
-import type { CharacterClass } from "src/models/classes";
+import type { CharacterClass } from "src/models/class/classes";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 
 type AbilityScoreMode = "quick-start" | "customize" | "advanced";
 

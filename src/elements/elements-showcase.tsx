@@ -20,7 +20,7 @@ import {
   Stepper,
 } from "elements";
 import { useState } from "react";
-import { resolveIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/common/icons";
 
 function ShowcaseBlock({
   name,

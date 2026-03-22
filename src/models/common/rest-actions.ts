@@ -1,6 +1,6 @@
-import restActionsData from "src/data/rest-actions.json";
+import restActionsData from "src/data/common/rest-actions.json";
 
-import type { RestType } from "./class-resources";
+import type { RestType } from "src/models/class/class-resources";
 
 export type RestAction = {
   id: RestType;

@@ -1,9 +1,9 @@
-import { applyRest } from "src/models/class-resources";
+import classProgressionData from "src/data/class/class-progression.json";
+import classResourcesData from "src/data/class/class-resources.json";
+import { applyRest } from "src/models/class/class-resources";
 import { describe, expect, it } from "vitest";
-import classProgressionData from "./class-progression.json";
-import classResourcesData from "./class-resources.json";
 
-import type { CharacterResource } from "src/models/class-resources";
+import type { CharacterResource } from "src/models/class/class-resources";
 
 const EXPECTED_CLASSES = [
   "barbarian",

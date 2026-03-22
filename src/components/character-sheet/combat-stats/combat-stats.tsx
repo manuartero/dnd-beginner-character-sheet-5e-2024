@@ -2,11 +2,11 @@ import { ActionChip, Section } from "elements";
 import { useId } from "react";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { formatModifier } from "src/models/abilities";
-import { resolveIconPath } from "src/models/icons";
+import { formatModifier } from "src/models/common/abilities";
+import { resolveIconPath } from "src/models/common/icons";
 import styles from "./combat-stats.module.css";
 
-import type { StatResult } from "src/models/character-stats";
+import type { StatResult } from "src/models/common/character-stats";
 
 type CombatStatsKey = "initiative" | "ac" | "spell";
 

@@ -1,7 +1,10 @@
-import classActionsData from "src/data/class-actions.json";
-import universalActionsData from "src/data/universal-actions.json";
+import classActionsData from "src/data/class/class-actions.json";
+import universalActionsData from "src/data/common/universal-actions.json";
 
-import type { CharacterClass, ManualClassification } from "./classes";
+import type {
+  CharacterClass,
+  ManualClassification,
+} from "src/models/class/classes";
 
 export type ActionTiming = "action" | "bonus-action" | "reaction";
 

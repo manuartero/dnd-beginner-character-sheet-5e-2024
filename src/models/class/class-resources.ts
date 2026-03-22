@@ -1,8 +1,8 @@
-import classProgressionData from "src/data/class-progression.json";
-import classResourcesData from "src/data/class-resources.json";
-import { computeModifier } from "./abilities";
+import classProgressionData from "src/data/class/class-progression.json";
+import classResourcesData from "src/data/class/class-resources.json";
+import { computeModifier } from "src/models/common/abilities";
 
-import type { AbilityName, AbilityScores } from "./abilities";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 import type { CharacterClass } from "./classes";
 
 export type ResourceId = string;

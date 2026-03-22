@@ -1,4 +1,4 @@
-import armorData from "src/data/armor.json";
+import armorData from "src/data/gear/armor.json";
 
 export type ArmorCategory = "light" | "medium" | "heavy" | "shield";
 

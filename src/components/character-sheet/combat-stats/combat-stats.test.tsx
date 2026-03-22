@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { CombatStats } from "./combat-stats";
 
-import type { StatResult } from "src/models/character-stats";
+import type { StatResult } from "src/models/common/character-stats";
 
 const initiative: StatResult = {
   total: 2,

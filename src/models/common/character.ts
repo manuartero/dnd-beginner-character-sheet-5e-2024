@@ -1,10 +1,10 @@
+import type { CharacterResource } from "src/models/class/class-resources";
+import type { CharacterClass } from "src/models/class/classes";
+import type { Equipment } from "src/models/gear/equipment";
+import type { Background } from "src/models/origin/backgrounds";
+import type { Species } from "src/models/origin/species";
+import type { Spell } from "src/models/spells/spells";
 import type { AbilityScores } from "./abilities";
-import type { Background } from "./backgrounds";
-import type { CharacterResource } from "./class-resources";
-import type { CharacterClass } from "./classes";
-import type { Equipment } from "./equipment";
-import type { Species } from "./species";
-import type { Spell } from "./spells";
 
 export type Character = {
   id: string;

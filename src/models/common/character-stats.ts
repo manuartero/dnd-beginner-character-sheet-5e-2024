@@ -1,11 +1,11 @@
+import { CLASS_DETAILS } from "src/models/class/classes";
+import { ARMORS } from "src/models/gear/armor";
 import { ABILITY_LIST, computeModifier, formatModifier } from "./abilities";
-import { ARMORS } from "./armor";
-import { CLASS_DETAILS } from "./classes";
 
+import type { CharacterClass } from "src/models/class/classes";
+import type { Armor } from "src/models/gear/armor";
+import type { Equipment } from "src/models/gear/equipment";
 import type { AbilityName, AbilityScores } from "./abilities";
-import type { Armor } from "./armor";
-import type { CharacterClass } from "./classes";
-import type { Equipment } from "./equipment";
 
 // --- Shared types ---
 

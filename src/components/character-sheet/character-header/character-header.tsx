@@ -1,9 +1,9 @@
 import { Section } from "elements";
-import { type CharacterClass, getClassIcon } from "src/models/classes";
-import { SPECIES_LIST } from "src/models/species";
+import { type CharacterClass, getClassIcon } from "src/models/class/classes";
+import { SPECIES_LIST } from "src/models/origin/species";
 import styles from "./character-header.module.css";
 
-import type { Species } from "src/models/species";
+import type { Species } from "src/models/origin/species";
 
 type CharacterHeaderProps = {
   name: string;

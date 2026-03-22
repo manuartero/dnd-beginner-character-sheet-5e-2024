@@ -5,10 +5,13 @@ import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
 import { TopMenu } from "src/components/top-menu";
-import { deleteCharacter, loadCharacters } from "src/models/character-storage";
+import {
+  deleteCharacter,
+  loadCharacters,
+} from "src/models/common/character-storage";
 import styles from "./app.module.css";
 
-import type { Character } from "src/models/character";
+import type { Character } from "src/models/common/character";
 
 type AppView =
   | { kind: "character-list" }

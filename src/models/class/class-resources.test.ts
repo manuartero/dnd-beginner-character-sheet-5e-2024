@@ -5,7 +5,7 @@ import {
   getResourcesForLevel,
 } from "./class-resources";
 
-import type { AbilityScores } from "./abilities";
+import type { AbilityScores } from "src/models/common/abilities";
 
 const DEFAULT_SCORES: AbilityScores = {
   str: 10,

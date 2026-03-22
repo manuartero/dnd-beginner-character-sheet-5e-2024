@@ -1,5 +1,5 @@
-import type { ActionTiming } from "src/models/actions";
-import type { Spell } from "src/models/spells";
+import type { ActionTiming } from "src/models/common/actions";
+import type { Spell } from "./spells";
 
 /** Map a spell's castingTime string to an ActionTiming, or null if not combat-castable. */
 function spellCastingTiming(spell: Spell): ActionTiming | null {

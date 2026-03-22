@@ -1,4 +1,4 @@
-import speciesDetailsData from "src/data/species-details.json";
+import speciesDetailsData from "src/data/origin/species-details.json";
 
 export type Species =
   | "aasimar"

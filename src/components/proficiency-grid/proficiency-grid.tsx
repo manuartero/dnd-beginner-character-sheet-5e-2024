@@ -1,13 +1,13 @@
 import c from "classnames";
 import { Section } from "elements";
-import proficiencyDetailsData from "src/data/proficiency-details.json";
+import proficiencyDetailsData from "src/data/common/proficiency-details.json";
 import {
   getProficiencyRestriction,
   hasProficiency,
   type ProficiencyKey,
   type ProficiencySet,
-} from "src/models/classes";
-import { resolveIconPath } from "src/models/icons";
+} from "src/models/class/classes";
+import { resolveIconPath } from "src/models/common/icons";
 import styles from "./proficiency-grid.module.css";
 
 type ProficiencyGridProps = {

@@ -4,12 +4,15 @@ import { useState } from "react";
 import {
   getResourceDefinition,
   getResourceResetOn,
-} from "src/models/class-resources";
-import { resolveIconPath } from "src/models/icons";
+} from "src/models/class/class-resources";
+import { resolveIconPath } from "src/models/common/icons";
 import styles from "./resource-tracker.module.css";
 
-import type { CharacterResource, RestType } from "src/models/class-resources";
-import type { CharacterClass } from "src/models/classes";
+import type {
+  CharacterResource,
+  RestType,
+} from "src/models/class/class-resources";
+import type { CharacterClass } from "src/models/class/classes";
 
 type ResourceTrackerProps = {
   characterClass: CharacterClass;

@@ -5,10 +5,10 @@ import { SpellCards } from "src/components/character-sheet/spell-cards/spell-car
 import descriptionPopoverStyles from "src/elements/style/description-popover.module.css";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { resolveIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/common/icons";
 import styles from "./spell-book.module.css";
 
-import type { Spell } from "src/models/spells";
+import type { Spell } from "src/models/spells/spells";
 
 type SpellBookProps = {
   availableCantrips: Spell[];
