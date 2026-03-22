@@ -4,10 +4,10 @@ import {
   getSpeciesIcon,
   SPECIES_DETAILS,
   SPECIES_LIST,
-} from "src/models/species";
+} from "src/models/origin/species";
 import styles from "./step-species.module.css";
 
-import type { Species } from "src/models/species";
+import type { Species } from "src/models/origin/species";
 
 type StepSpeciesProps = {
   race: Species | null;

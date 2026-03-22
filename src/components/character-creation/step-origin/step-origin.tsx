@@ -1,15 +1,15 @@
 import { ChipGrid, Section } from "elements";
-import { ABILITY_LIST } from "src/models/abilities";
+import { ABILITY_LIST } from "src/models/common/abilities";
+import { getSkillLabel } from "src/models/common/skills";
 import {
   BACKGROUND_LIST,
   getBackgroundIcon,
   getOriginFeatDescription,
-} from "src/models/backgrounds";
-import { getSkillLabel } from "src/models/skills";
+} from "src/models/origin/backgrounds";
 import styles from "./step-origin.module.css";
 
-import type { AbilityName } from "src/models/abilities";
-import type { Background } from "src/models/backgrounds";
+import type { AbilityName } from "src/models/common/abilities";
+import type { Background } from "src/models/origin/backgrounds";
 
 function abilityShortLabel(key: AbilityName): string {
   return ABILITY_LIST.find((a) => a.key === key)?.short ?? key;

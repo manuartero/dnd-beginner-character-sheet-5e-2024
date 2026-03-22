@@ -1,0 +1,263 @@
+{
+  "barbarian": {
+    "resources": [
+      {
+        "id": "rage",
+        "name": "Rage",
+        "description": "Enter a fierce rage for extra damage and resistance. While raging, you deal extra damage and have resistance to bludgeoning, piercing, and slashing damage.",
+        "resetOn": "long-rest",
+        "icon": "vol2/icon-vol2_65",
+        "progression": { "1": 2, "2": 2, "3": 3, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "bard": {
+    "resources": [
+      {
+        "id": "bardic-inspiration",
+        "name": "Bardic Inspiration",
+        "description": "Inspire an ally with a bonus die they can add to an ability check, attack roll, or saving throw within the next 10 minutes.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": {
+          "1": "cha-mod",
+          "2": "cha-mod",
+          "3": "cha-mod",
+          "4": "cha-mod",
+          "5": "cha-mod"
+        }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 2, "2": 3, "3": 4, "4": 4, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 2, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "cleric": {
+    "resources": [
+      {
+        "id": "channel-divinity",
+        "name": "Channel Divinity",
+        "description": "Channel divine energy to fuel a powerful class feature granted by your deity or sacred oath.",
+        "resetOn": "short-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 2, "2": 3, "3": 4, "4": 4, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 2, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "druid": {
+    "resources": [
+      {
+        "id": "wild-shape",
+        "name": "Wild Shape",
+        "description": "Transform into a beast you have seen before. You assume the beast's hit points and physical abilities while retaining your mental stats.",
+        "resetOn": "short-rest",
+        "icon": "vol4/icon-vol4_10",
+        "progression": { "1": 2, "2": 2, "3": 2, "4": 2, "5": 2 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 2, "2": 3, "3": 4, "4": 4, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 2, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "fighter": {
+    "resources": [
+      {
+        "id": "second-wind",
+        "name": "Second Wind",
+        "description": "Use a bonus action to regain hit points equal to 1d10 + your fighter level. A quick burst of stamina in the heat of battle.",
+        "resetOn": "short-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      }
+    ]
+  },
+  "monk": {
+    "resources": [
+      {
+        "id": "discipline-points",
+        "name": "Discipline Points",
+        "description": "Fuel your martial techniques with inner discipline. Spend points to perform Flurry of Blows, Patient Defense, or Step of the Wind.",
+        "resetOn": "short-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 4, "5": 5 }
+      }
+    ]
+  },
+  "paladin": {
+    "resources": [
+      {
+        "id": "lay-on-hands",
+        "name": "Lay on Hands",
+        "description": "Touch a creature to restore hit points from your healing pool, or spend 5 points to cure one disease or neutralize one poison.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_35",
+        "progression": { "1": 5, "2": 10, "3": 15, "4": 20, "5": 25 }
+      },
+      {
+        "id": "channel-divinity",
+        "name": "Channel Divinity",
+        "description": "Channel divine energy to fuel a powerful class feature granted by your deity or sacred oath.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 1, "4": 1, "5": 1 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 3, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 2 }
+      }
+    ]
+  },
+  "ranger": {
+    "resources": [
+      {
+        "id": "hunters-mark",
+        "name": "Hunter's Mark",
+        "description": "Cast Hunter's Mark once without expending a spell slot. Mark a creature to deal extra 1d6 damage on each hit and track it more easily.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 3, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 2 }
+      }
+    ]
+  },
+  "rogue": {
+    "resources": []
+  },
+  "sorcerer": {
+    "resources": [
+      {
+        "id": "sorcery-points",
+        "name": "Sorcery Points",
+        "description": "Tap into your innate magical power to create spell slots or fuel Metamagic options that modify your spells.",
+        "resetOn": "long-rest",
+        "icon": "vol2/icon-vol2_55",
+        "progression": { "1": 0, "2": 2, "3": 3, "4": 4, "5": 5 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 2, "2": 3, "3": 4, "4": 4, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 2, "4": 3, "5": 3 }
+      }
+    ]
+  },
+  "warlock": {
+    "resources": [
+      {
+        "id": "pact-magic-slot",
+        "name": "Pact Magic Slots",
+        "description": "Warlock spell slots that recharge on a short rest. All slots are the same level and can be used to cast any warlock spell you know.",
+        "resetOn": "short-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 1, "2": 2, "3": 2, "4": 2, "5": 2 }
+      }
+    ]
+  },
+  "wizard": {
+    "resources": [
+      {
+        "id": "arcane-recovery",
+        "name": "Arcane Recovery",
+        "description": "During a short rest, recover expended spell slots with a combined level equal to half your wizard level (rounded up).",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_37",
+        "progression": { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1 }
+      },
+      {
+        "id": "spell-slot-1st",
+        "name": "1st Level Spell Slots",
+        "description": "Expend a 1st-level spell slot to cast a prepared spell of 1st level or higher.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 2, "2": 3, "3": 4, "4": 4, "5": 4 }
+      },
+      {
+        "id": "spell-slot-2nd",
+        "name": "2nd Level Spell Slots",
+        "description": "Expend a 2nd-level spell slot to cast a prepared spell of 2nd level or higher, or upcast a lower-level spell for greater effect.",
+        "resetOn": "long-rest",
+        "icon": "vol5/icon-vol5_02",
+        "progression": { "1": 0, "2": 0, "3": 2, "4": 3, "5": 3 }
+      }
+    ]
+  }
+}

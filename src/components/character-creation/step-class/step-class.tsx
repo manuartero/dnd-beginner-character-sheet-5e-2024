@@ -8,7 +8,7 @@ import {
   CLASS_LIST,
   CLASSES_BY_CATEGORY,
   getClassIcon,
-} from "src/models/classes";
+} from "src/models/class/classes";
 import styles from "./step-class.module.css";
 
 type StepClassProps = {

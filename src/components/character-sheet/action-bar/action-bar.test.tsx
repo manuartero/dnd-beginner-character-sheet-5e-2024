@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ActionBar } from "./action-bar";
 
-import type { Spell } from "src/models/spells";
+import type { Spell } from "src/models/spells/spells";
 
 function makeSpell(overrides: Partial<Spell> = {}): Spell {
   return {

@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { SpellBook } from "./spell-book";
 
-import type { Spell } from "src/models/spells";
+import type { Spell } from "src/models/spells/spells";
 
 function createSpell({
   id,

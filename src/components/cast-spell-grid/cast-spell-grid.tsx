@@ -4,9 +4,9 @@ import {
   AccordionList,
   accordionStyles as styles,
 } from "elements";
-import { resolveIconPath } from "src/models/icons";
+import { resolveIconPath } from "src/models/common/icons";
 
-import type { Spell } from "src/models/spells";
+import type { Spell } from "src/models/spells/spells";
 
 type CastSpellGridProps = {
   spells: Spell[];

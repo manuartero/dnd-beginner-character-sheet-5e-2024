@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { useAbilityScores } from "./use-ability-scores";
 
-import type { AbilityScores } from "src/models/abilities";
+import type { AbilityScores } from "src/models/common/abilities";
 
 const DEFAULT_SCORES: AbilityScores = {
   str: 10,

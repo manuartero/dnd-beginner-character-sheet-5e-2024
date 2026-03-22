@@ -2,9 +2,9 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ResourceTracker } from "./resource-tracker";
 
-import type { CharacterResource } from "src/models/class-resources";
+import type { CharacterResource } from "src/models/class/class-resources";
 
-vi.mock("src/models/icons", () => ({
+vi.mock("src/models/common/icons", () => ({
   resolveIconPath: (pseudo: string) => `/mocked/${pseudo}.svg`,
 }));
 

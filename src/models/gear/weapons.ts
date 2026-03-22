@@ -1,0 +1,52 @@
+import weaponMasteryData from "src/data/gear/weapon-mastery.json";
+import weaponPropertiesData from "src/data/gear/weapon-properties.json";
+import weaponsData from "src/data/gear/weapons.json";
+
+import type { DamageType } from "src/models/common/damage-types";
+
+export type WeaponProficiency = "simple" | "martial";
+
+export type WeaponRange = "melee" | "ranged";
+
+export type WeaponMasteryName =
+  | "cleave"
+  | "graze"
+  | "nick"
+  | "push"
+  | "sap"
+  | "slow"
+  | "topple"
+  | "vex";
+
+export type Weapon = {
+  id: string;
+  name: string;
+  proficiency: WeaponProficiency;
+  range: WeaponRange;
+  damage: {
+    dice: string;
+    type: DamageType;
+  };
+  properties: string[];
+  mastery: WeaponMasteryName;
+  icon: string;
+};
+
+export const WEAPONS: Weapon[] = weaponsData as Weapon[];
+
+export const WEAPON_PROPERTIES: Record<string, string> =
+  weaponPropertiesData as Record<string, string>;
+
+export const WEAPON_MASTERY: Record<WeaponMasteryName, string> =
+  weaponMasteryData as Record<WeaponMasteryName, string>;
+
+const WEAPONS_BY_ID = new Map(WEAPONS.map((w) => [w.id, w]));
+const WEAPONS_BY_NAME = new Map(WEAPONS.map((w) => [w.name.toLowerCase(), w]));
+
+export function getWeaponById(id: string): Weapon | undefined {
+  return WEAPONS_BY_ID.get(id);
+}
+
+export function getWeaponByName(name: string): Weapon | undefined {
+  return WEAPONS_BY_NAME.get(name.toLowerCase());
+}

@@ -5,15 +5,15 @@ import {
   computeModifier,
   computeProficiencyBonus,
   formatModifier,
-} from "src/models/abilities";
+} from "src/models/common/abilities";
 import {
   computeSkillModifier,
   DEFAULT_PROFICIENCIES,
   skillsForAbility,
-} from "src/models/skills";
+} from "src/models/common/skills";
 import styles from "./ability-card.module.css";
 
-import type { AbilityName } from "src/models/abilities";
+import type { AbilityName } from "src/models/common/abilities";
 
 const ABILITY_SHORTS = Object.fromEntries(
   ABILITY_LIST.map(({ key, short }) => [key, short]),

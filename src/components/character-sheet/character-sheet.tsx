@@ -4,20 +4,20 @@ import { useState } from "react";
 import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import { useScrollDirection } from "src/hooks/use-scroll-direction";
+import { applyRest } from "src/models/class/class-resources";
+import { CLASS_DETAILS } from "src/models/class/classes";
 import {
   computeArmorClass,
   computeInitiative,
   computeSpellAttack,
-} from "src/models/character-stats";
-import { saveCharacter } from "src/models/character-storage";
-import { applyRest } from "src/models/class-resources";
-import { CLASS_DETAILS } from "src/models/classes";
+} from "src/models/common/character-stats";
+import { saveCharacter } from "src/models/common/character-storage";
 import {
   WIZARD_CANTRIP_SELECTION,
   WIZARD_LEVEL1_SELECTION,
   WIZARD_SPELLS_LEVEL_0,
   WIZARD_SPELLS_LEVEL_1,
-} from "src/models/spells";
+} from "src/models/spells/spells";
 import { ActionBar } from "./action-bar";
 import { CharacterOverview } from "./character-overview";
 import styles from "./character-sheet.module.css";
@@ -29,8 +29,8 @@ import { SpellBook } from "./spell-book";
 import { SpellCards } from "./spell-cards";
 import { WeaponMastery } from "./weapon-mastery";
 
-import type { Character } from "src/models/character";
-import type { RestType } from "src/models/class-resources";
+import type { RestType } from "src/models/class/class-resources";
+import type { Character } from "src/models/common/character";
 
 const STEP_LABELS = ["Stats", "Combat", "Explore", "Spells & Skills", "Gear"];
 

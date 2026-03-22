@@ -1,19 +1,19 @@
 import { AbilityCard, RetroRadio, Section } from "elements";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
 import { useExpandable } from "src/hooks/use-expandable";
+import { CLASS_DETAILS } from "src/models/class/classes";
 import {
   ABILITY_LIST,
   computeModifier,
   formatModifier,
-} from "src/models/abilities";
-import { CLASS_DETAILS } from "src/models/classes";
+} from "src/models/common/abilities";
 import { isValidScore } from "./is-valid-score";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";
 import { MODE_OPTIONS, useAbilityScores } from "./use-ability-scores";
 
-import type { AbilityName, AbilityScores } from "src/models/abilities";
-import type { CharacterClass } from "src/models/classes";
+import type { CharacterClass } from "src/models/class/classes";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 
 type StepAbilitiesProps = {
   characterClass: CharacterClass | null;

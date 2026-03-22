@@ -1,7 +1,7 @@
 import { Section } from "elements";
 import styles from "./weapon-mastery.module.css";
 
-import type { CharacterClass } from "src/models/classes";
+import type { CharacterClass } from "src/models/class/classes";
 
 type WeaponMasteryProps = {
   characterClass: CharacterClass;

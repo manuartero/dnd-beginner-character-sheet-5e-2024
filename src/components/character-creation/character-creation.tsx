@@ -1,13 +1,13 @@
 import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import recommendedData from "src/data/recommended-scores.json";
-import { computeProficiencyBonus } from "src/models/abilities";
-import { BACKGROUND_LIST } from "src/models/backgrounds";
-import { computeHpMax } from "src/models/character-stats";
-import { saveCharacter } from "src/models/character-storage";
-import { getResourcesForLevel } from "src/models/class-resources";
-import { resolveStartingEquipment } from "src/models/starting-equipment";
+import { getResourcesForLevel } from "src/models/class/class-resources";
+import { computeProficiencyBonus } from "src/models/common/abilities";
+import { computeHpMax } from "src/models/common/character-stats";
+import { saveCharacter } from "src/models/common/character-storage";
+import { RECOMMENDED_SCORES } from "src/models/common/recommended-scores";
+import { resolveStartingEquipment } from "src/models/gear/starting-equipment";
+import { BACKGROUND_LIST } from "src/models/origin/backgrounds";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
@@ -16,16 +16,11 @@ import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
 
-import type { AbilityName, AbilityScores } from "src/models/abilities";
-import type { Background } from "src/models/backgrounds";
-import type { Character } from "src/models/character";
-import type { CharacterClass } from "src/models/classes";
-import type { Species } from "src/models/species";
-
-const RECOMMENDED_SCORES = recommendedData.recommended as Record<
-  string,
-  AbilityScores
->;
+import type { CharacterClass } from "src/models/class/classes";
+import type { AbilityName } from "src/models/common/abilities";
+import type { Character } from "src/models/common/character";
+import type { Background } from "src/models/origin/backgrounds";
+import type { Species } from "src/models/origin/species";
 
 const DEFAULT_CHARACTER_CLASS: CharacterClass = "fighter";
 

@@ -1,10 +1,10 @@
 import { ChipGrid, Section } from "elements";
-import { resolveIconPath } from "src/models/icons";
-import { REST_ACTIONS } from "src/models/rest-actions";
+import { resolveIconPath } from "src/models/common/icons";
+import { REST_ACTIONS } from "src/models/common/rest-actions";
 import styles from "./rest-bar.module.css";
 
 import type { GridAction } from "elements";
-import type { RestType } from "src/models/class-resources";
+import type { RestType } from "src/models/class/class-resources";
 
 type RestBarProps = {
   selectedRest: RestType | null;

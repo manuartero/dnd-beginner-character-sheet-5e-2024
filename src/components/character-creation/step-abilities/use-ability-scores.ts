@@ -1,15 +1,13 @@
 import { useState } from "react";
-import recommendedData from "src/data/recommended-scores.json";
+import {
+  RECOMMENDED_SCORES,
+  STANDARD_ARRAY,
+} from "src/models/common/recommended-scores";
 
-import type { AbilityName, AbilityScores } from "src/models/abilities";
-import type { CharacterClass } from "src/models/classes";
+import type { CharacterClass } from "src/models/class/classes";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 
 type AbilityScoreMode = "quick-start" | "customize" | "advanced";
-
-const STANDARD_ARRAY: number[] = recommendedData.standardArray;
-
-const RECOMMENDED_SCORES: Record<string, AbilityScores> =
-  recommendedData.recommended as Record<string, AbilityScores>;
 
 const EMPTY_SCORES: AbilityScores = {
   str: 0,
