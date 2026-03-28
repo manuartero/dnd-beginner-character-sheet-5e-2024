@@ -42,6 +42,9 @@
     "test:coverage": "vitest run --coverage",
     "sprite:colors": "node scripts/color-analysis.mjs",
     "sprite:upscale": "node scripts/upscale-sprite.mjs",
+    "sprite:merge-colors": "node scripts/reduce-palette.mjs",
+    "sprite:remove-background": "node scripts/remove-background.mjs",
+    "sprite:flip": "node scripts/flip-sprite.mjs",
     "blue-ball": "pnpm lint && pnpm test && pnpm build",
     "postblue-ball": "pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },

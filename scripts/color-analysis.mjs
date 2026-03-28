@@ -39,11 +39,11 @@ function extractPalette(file) {
 
   const seen = new Set();
   const colors = [];
-  const re = /(\d+):.*?\(\s*(\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)/g;
+  const re = /(\d+):.*?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/g;
 
   for (const match of raw.matchAll(re)) {
     const [, count, r, g, b, a] = match;
-    if (Number.parseFloat(a) <= 0.5) continue;
+    if (a !== undefined && Number.parseFloat(a) <= 0.5) continue;
     const hex = toHex(r, g, b);
     if (!seen.has(hex)) {
       seen.add(hex);
