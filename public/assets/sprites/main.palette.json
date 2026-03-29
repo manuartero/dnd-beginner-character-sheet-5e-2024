@@ -13,9 +13,19 @@
   {
     "hex": "#832B10",
     "sprites": [
-      "barbarian"
+      "barbarian",
+      "rogue"
     ],
-    "totalPixels": 787
+    "totalPixels": 1234
+  },
+  {
+    "hex": "#3B1F17",
+    "sprites": [
+      "barbarian",
+      "druid",
+      "rogue"
+    ],
+    "totalPixels": 867
   },
   {
     "hex": "#264381",
@@ -46,20 +56,6 @@
     "totalPixels": 487
   },
   {
-    "hex": "#3B1F17",
-    "sprites": [
-      "rogue"
-    ],
-    "totalPixels": 447
-  },
-  {
-    "hex": "#683B1D",
-    "sprites": [
-      "rogue"
-    ],
-    "totalPixels": 447
-  },
-  {
     "hex": "#B64826",
     "sprites": [
       "barbarian"
@@ -67,25 +63,20 @@
     "totalPixels": 390
   },
   {
-    "hex": "#511507",
-    "sprites": [
-      "barbarian"
-    ],
-    "totalPixels": 348
-  },
-  {
     "hex": "#EFB88B",
     "sprites": [
-      "barbarian"
+      "barbarian",
+      "fighter"
     ],
-    "totalPixels": 288
+    "totalPixels": 308
   },
   {
     "hex": "#BA724D",
     "sprites": [
-      "barbarian"
+      "barbarian",
+      "fighter"
     ],
-    "totalPixels": 284
+    "totalPixels": 289
   },
   {
     "hex": "#21491F",
@@ -165,11 +156,12 @@
     "totalPixels": 105
   },
   {
-    "hex": "#433B15",
+    "hex": "#623C2A",
     "sprites": [
-      "druid"
+      "fighter",
+      "wizard"
     ],
-    "totalPixels": 72
+    "totalPixels": 89
   },
   {
     "hex": "#6A5E67",
@@ -200,20 +192,6 @@
     "totalPixels": 51
   },
   {
-    "hex": "#623C2A",
-    "sprites": [
-      "fighter"
-    ],
-    "totalPixels": 45
-  },
-  {
-    "hex": "#704536",
-    "sprites": [
-      "wizard"
-    ],
-    "totalPixels": 44
-  },
-  {
     "hex": "#5A8327",
     "sprites": [
       "druid"
@@ -226,13 +204,6 @@
       "fighter"
     ],
     "totalPixels": 21
-  },
-  {
-    "hex": "#ECBD9A",
-    "sprites": [
-      "fighter"
-    ],
-    "totalPixels": 20
   },
   {
     "hex": "#B9BBC3",
@@ -273,13 +244,6 @@
     "hex": "#B5B5B4",
     "sprites": [
       "barbarian"
-    ],
-    "totalPixels": 5
-  },
-  {
-    "hex": "#BA7A66",
-    "sprites": [
-      "fighter"
     ],
     "totalPixels": 5
   },
