@@ -199,6 +199,14 @@
     "totalPixels": 41
   },
   {
+    "hex": "#FFFFFE",
+    "sprites": [
+      "barbarian",
+      "druid"
+    ],
+    "totalPixels": 28
+  },
+  {
     "hex": "#926446",
     "sprites": [
       "fighter"
@@ -211,20 +219,6 @@
       "rogue"
     ],
     "totalPixels": 18
-  },
-  {
-    "hex": "#FFFFFE",
-    "sprites": [
-      "barbarian"
-    ],
-    "totalPixels": 16
-  },
-  {
-    "hex": "#CDFDB0",
-    "sprites": [
-      "druid"
-    ],
-    "totalPixels": 12
   },
   {
     "hex": "#8897A3",
