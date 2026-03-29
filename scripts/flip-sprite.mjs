@@ -5,8 +5,8 @@
 //   node scripts/flip-sprite.mjs [--input <file-or-dir>]
 
 import { execSync } from "node:child_process";
-import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import { resolveFiles } from "./palette.mjs";
 
 const isMain = process.argv[1] === fileURLToPath(import.meta.url);

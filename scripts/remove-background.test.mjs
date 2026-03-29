@@ -1,13 +1,18 @@
-import { describe, it, expect } from "vitest";
-import { luminance, borderSeedPoints } from "./remove-background.mjs";
+import { describe, expect, it } from "vitest";
+import { borderSeedPoints, luminance } from "./remove-background.mjs";
 
 describe("luminance", () => {
   it("black has 0 luminance", () => expect(luminance("#000000")).toBe(0));
-  it("white has max luminance", () => expect(luminance("#FFFFFF")).toBeCloseTo(255));
-  it("pure red luminance matches formula", () => expect(luminance("#FF0000")).toBeCloseTo(0.299 * 255));
-  it("pure green luminance matches formula", () => expect(luminance("#00FF00")).toBeCloseTo(0.587 * 255));
-  it("pure blue luminance matches formula", () => expect(luminance("#0000FF")).toBeCloseTo(0.114 * 255));
-  it("dark color < light color", () => expect(luminance("#111111")).toBeLessThan(luminance("#EEEEEE")));
+  it("white has max luminance", () =>
+    expect(luminance("#FFFFFF")).toBeCloseTo(255));
+  it("pure red luminance matches formula", () =>
+    expect(luminance("#FF0000")).toBeCloseTo(0.299 * 255));
+  it("pure green luminance matches formula", () =>
+    expect(luminance("#00FF00")).toBeCloseTo(0.587 * 255));
+  it("pure blue luminance matches formula", () =>
+    expect(luminance("#0000FF")).toBeCloseTo(0.114 * 255));
+  it("dark color < light color", () =>
+    expect(luminance("#111111")).toBeLessThan(luminance("#EEEEEE")));
 });
 
 describe("borderSeedPoints", () => {

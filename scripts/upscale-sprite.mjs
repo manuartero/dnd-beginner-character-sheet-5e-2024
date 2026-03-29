@@ -8,9 +8,9 @@
 // Default scale: 4  (1px → 4px, e.g. 79×80 → 316×320)
 
 import { execSync } from "node:child_process";
-import { parseArgs } from "node:util";
-import { fileURLToPath } from "node:url";
 import { basename, dirname, extname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import { resolveFiles } from "./palette.mjs";
 
 const isMain = process.argv[1] === fileURLToPath(import.meta.url);

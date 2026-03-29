@@ -9,8 +9,8 @@ import { execSync } from "node:child_process";
 import { copyFileSync, mkdtempSync, renameSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, dirname, extname, join } from "node:path";
-import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import { extractPalette, resolveFiles } from "./palette.mjs";
 
 export function luminance(hex) {
@@ -22,17 +22,45 @@ export function luminance(hex) {
 }
 
 export function borderSeedPoints(w, h) {
-  const xs = [...new Set([0, 1, Math.floor(w / 4), Math.floor(w / 2), Math.floor(3 * w / 4), w - 2, w - 1])];
-  const ys = [...new Set([0, 1, Math.floor(h / 4), Math.floor(h / 2), Math.floor(3 * h / 4), h - 2, h - 1])];
+  const xs = [
+    ...new Set([
+      0,
+      1,
+      Math.floor(w / 4),
+      Math.floor(w / 2),
+      Math.floor((3 * w) / 4),
+      w - 2,
+      w - 1,
+    ]),
+  ];
+  const ys = [
+    ...new Set([
+      0,
+      1,
+      Math.floor(h / 4),
+      Math.floor(h / 2),
+      Math.floor((3 * h) / 4),
+      h - 2,
+      h - 1,
+    ]),
+  ];
   const pts = new Set();
-  for (const x of xs) { pts.add(`${x},0`); pts.add(`${x},${h - 1}`); }
-  for (const y of ys) { pts.add(`0,${y}`); pts.add(`${w - 1},${y}`); }
+  for (const x of xs) {
+    pts.add(`${x},0`);
+    pts.add(`${x},${h - 1}`);
+  }
+  for (const y of ys) {
+    pts.add(`0,${y}`);
+    pts.add(`${w - 1},${y}`);
+  }
   return [...pts].map((s) => s.split(",").map(Number));
 }
 
 function pixelAlpha(file, x, y) {
   return Number(
-    execSync(`magick "${file}" -format "%[fx:p{${x},${y}}.a]" info:`, { encoding: "utf8" }).trim(),
+    execSync(`magick "${file}" -format "%[fx:p{${x},${y}}.a]" info:`, {
+      encoding: "utf8",
+    }).trim(),
   );
 }
 
@@ -62,9 +90,19 @@ if (isMain) {
       luminance(c.hex) < luminance(darkest.hex) ? c : darkest,
     ).hex;
 
-    const w = Number(execSync(`magick identify -format "%w" "${file}"`, { encoding: "utf8" }).trim());
-    const h = Number(execSync(`magick identify -format "%h" "${file}"`, { encoding: "utf8" }).trim());
-    const seeds = borderSeedPoints(w, h).filter(([x, y]) => pixelAlpha(file, x, y) > 0.5);
+    const w = Number(
+      execSync(`magick identify -format "%w" "${file}"`, {
+        encoding: "utf8",
+      }).trim(),
+    );
+    const h = Number(
+      execSync(`magick identify -format "%h" "${file}"`, {
+        encoding: "utf8",
+      }).trim(),
+    );
+    const seeds = borderSeedPoints(w, h).filter(
+      ([x, y]) => pixelAlpha(file, x, y) > 0.5,
+    );
 
     console.log(`\n${file}`);
     console.log(`  border color: ${borderColor}`);
@@ -83,7 +121,9 @@ if (isMain) {
     const tmpFile = join(tmpDir, basename(file));
     copyFileSync(file, tmpFile);
 
-    const draws = seeds.map(([x, y]) => `-draw "color ${x},${y} filltoborder"`).join(" ");
+    const draws = seeds
+      .map(([x, y]) => `-draw "color ${x},${y} filltoborder"`)
+      .join(" ");
     execSync(
       `magick "${tmpFile}" -alpha set -bordercolor "${borderColor}" -fill none ${draws} PNG32:"${tmpFile}"`,
     );
@@ -92,7 +132,7 @@ if (isMain) {
     const newPalette = extractPalette(file);
     const name = basename(file, extname(file));
     const paletteOut = join(dirname(file), `${name}-palette.json`);
-    writeFileSync(paletteOut, JSON.stringify(newPalette, null, 2) + "\n");
+    writeFileSync(paletteOut, `${JSON.stringify(newPalette, null, 2)}\n`);
 
     console.log(`  done → ${newPalette.length} colors (palette JSON updated)`);
   }

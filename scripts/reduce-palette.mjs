@@ -10,13 +10,15 @@ import { execSync } from "node:child_process";
 import { copyFileSync, mkdtempSync, renameSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, dirname, extname, join } from "node:path";
-import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
-import { hexToRgb, normalize } from "./rgb.mjs";
+import { parseArgs } from "node:util";
 import { extractPalette } from "./palette.mjs";
+import { hexToRgb, normalize } from "./rgb.mjs";
 
 export function rgbDistance(a, b) {
-  return Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2);
+  return Math.sqrt(
+    (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2,
+  );
 }
 
 export function parseExplicitMerges(rawMerges, paletteHexes) {
@@ -57,13 +59,22 @@ export function greedyMerges(colors, target) {
         const d = rgbDistance(state[i].rgb, state[j].rgb);
         if (d < minDist) {
           minDist = d;
-          if (state[i].pixels <= state[j].pixels) { fi = i; ti = j; }
-          else { fi = j; ti = i; }
+          if (state[i].pixels <= state[j].pixels) {
+            fi = i;
+            ti = j;
+          } else {
+            fi = j;
+            ti = i;
+          }
         }
       }
     }
 
-    merges.push({ from: state[fi].hex, into: state[ti].hex, distance: Math.round(minDist) });
+    merges.push({
+      from: state[fi].hex,
+      into: state[ti].hex,
+      distance: Math.round(minDist),
+    });
     state[ti] = { ...state[ti], pixels: state[ti].pixels + state[fi].pixels };
     state.splice(fi, 1);
   }
@@ -109,7 +120,8 @@ if (isMain) {
   }
 
   const targetCount = values.target ? Number(values.target) : remaining.length;
-  const autoMerges = remaining.length > targetCount ? greedyMerges(remaining, targetCount) : [];
+  const autoMerges =
+    remaining.length > targetCount ? greedyMerges(remaining, targetCount) : [];
 
   const allMerges = [...explicitMerges, ...autoMerges];
 
@@ -138,7 +150,9 @@ if (isMain) {
     .map(({ from, into }) => `-fill "${into}" -opaque "${from}"`)
     .join(" ");
 
-  const typeInfo = execSync(`magick identify -format "%[type]" "${tmpFile}"`, { encoding: "utf8" }).trim();
+  const typeInfo = execSync(`magick identify -format "%[type]" "${tmpFile}"`, {
+    encoding: "utf8",
+  }).trim();
   const hasAlpha = typeInfo.includes("Alpha");
   const formatFlag = hasAlpha ? "PNG32:" : "";
 
@@ -148,7 +162,9 @@ if (isMain) {
   const newPalette = extractPalette(inputFile);
   const name = basename(inputFile, extname(inputFile));
   const paletteOut = join(dirname(inputFile), `${name}-palette.json`);
-  writeFileSync(paletteOut, JSON.stringify(newPalette, null, 2) + "\n");
+  writeFileSync(paletteOut, `${JSON.stringify(newPalette, null, 2)}\n`);
 
-  console.log(`\nDone. Wrote ${inputFile} and ${paletteOut}  (${newPalette.length} colors)`);
+  console.log(
+    `\nDone. Wrote ${inputFile} and ${paletteOut}  (${newPalette.length} colors)`,
+  );
 }
