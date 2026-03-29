@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { toHex, hexToRgb, normalize } from "./utils.mjs";
 
 describe("toHex", () => {

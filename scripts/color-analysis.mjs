@@ -7,7 +7,7 @@
 // Default input: public/assets/sprites
 
 import { writeFileSync } from "node:fs";
-import { basename, dirname, extname } from "node:path";
+import { basename, dirname, extname, join } from "node:path";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 import { extractPalette, resolveFiles } from "./utils.mjs";
@@ -23,7 +23,7 @@ if (isMain) {
   for (const file of resolveFiles(values.input)) {
     const palette = extractPalette(file);
     const name = basename(file, extname(file));
-    const out = `${dirname(file)}/${name}-palette.json`;
+    const out = join(dirname(file), `${name}-palette.json`);
     writeFileSync(out, JSON.stringify(palette, null, 2) + "\n");
     console.log(`${file}  →  ${out}  (${palette.length} colors)`);
   }

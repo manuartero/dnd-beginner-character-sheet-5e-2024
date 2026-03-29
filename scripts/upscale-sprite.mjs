@@ -10,7 +10,7 @@
 import { execSync } from "node:child_process";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
-import { basename, extname } from "node:path";
+import { basename, dirname, extname, join } from "node:path";
 import { resolveFiles } from "./utils.mjs";
 
 const isMain = process.argv[1] === fileURLToPath(import.meta.url);
@@ -33,7 +33,7 @@ if (isMain) {
 
   for (const file of resolveFiles(values.input)) {
     const name = basename(file, extname(file));
-    const out = `${file.replace(/[^/]+$/, "")}${name}_${scale}x.png`;
+    const out = join(dirname(file), `${name}_${scale}x.png`);
     execSync(`magick "${file}" -filter point -resize ${scale * 100}% "${out}"`);
     console.log(`${file}  →  ${out}  (${scale}x)`);
   }

@@ -26,7 +26,7 @@ export function resolveFiles(target) {
   const stat = statSync(target);
   if (stat.isDirectory()) {
     return readdirSync(target)
-      .filter((f) => extname(f) === ".png" && !f.includes("_4x"))
+      .filter((f) => extname(f) === ".png" && !f.endsWith("_4x.png"))
       .map((f) => join(target, f));
   }
   return [target];
