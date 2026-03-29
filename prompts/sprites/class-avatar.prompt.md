@@ -36,6 +36,7 @@ Palette order: **darkest → dark → light → lightest**
 - Darkest shade = outline color
 - Companion: 4-6 pixel blob, must read clearly at 32px
 - Generator tends to upscale — run `scripts/upscale-sprite.mjs` if needed
+- Custom/tiefling variants may use up to 6 colors to accommodate extra skin tone; deviate from the 4-color template explicitly in the prompt
 
 ## Iteration log
 

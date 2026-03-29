@@ -111,26 +111,28 @@ if (isMain) {
   const explicitMerges = parseExplicitMerges(values.merge, paletteHexes);
 
   let remaining = palette.map((c) => ({ ...c }));
-  for (const { from, into } of explicitMerges) {
-    const fromEntry = remaining.find((c) => c.hex === from);
-    const intoEntry = remaining.find((c) => c.hex === into);
+  const appliedExplicitMerges = [];
+  for (const merge of explicitMerges) {
+    const fromEntry = remaining.find((c) => c.hex === merge.from);
+    const intoEntry = remaining.find((c) => c.hex === merge.into);
     if (!fromEntry || !intoEntry) continue;
     intoEntry.pixels += fromEntry.pixels;
-    remaining = remaining.filter((c) => c.hex !== from);
+    remaining = remaining.filter((c) => c.hex !== merge.from);
+    appliedExplicitMerges.push(merge);
   }
 
   const targetCount = values.target ? Number(values.target) : remaining.length;
   const autoMerges =
     remaining.length > targetCount ? greedyMerges(remaining, targetCount) : [];
 
-  const allMerges = [...explicitMerges, ...autoMerges];
+  const allMerges = [...appliedExplicitMerges, ...autoMerges];
 
   if (allMerges.length === 0) {
     console.log("Nothing to merge.");
     process.exit(0);
   }
 
-  const finalCount = palette.length - allMerges.length;
+  const finalCount = remaining.length - autoMerges.length;
   console.log(`\nMerge plan (${palette.length} → ${finalCount} colors):\n`);
   for (const { from, into, distance, explicit } of allMerges) {
     const tag = explicit ? "[explicit]" : `[auto, distance ${distance}]`;

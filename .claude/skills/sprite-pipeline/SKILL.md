@@ -55,13 +55,13 @@ pnpm sprite:upscale --input <file> --scale 2
 ```
 Use `--scale 2` (not 4) — AI-generated sprites arrive pre-upscaled and are already larger than the original 32×32 base. Using 4x would produce an oversized image.
 
-After upscaling, read and display the `_4x.png` result image for visual confirmation.
+After upscaling, read and display the `<name>_2x.png` result image for visual confirmation.
 
 ## Output
 - `<name>.png` — processed sprite (transparent background, 10 colors)
-- `<name>_4x.png` — upscaled version (2x)
+- `<name>_2x.png` — upscaled version (the suffix follows `_<scale>x`, e.g. `_2x` for `--scale 2`)
 - `<name>-palette.json` — final palette
 
 ## Notes
 - Target 10 colors is the established sweet spot for these sprites (enough for skin, leather, cloak, outline, highlights)
-- The `_4x` suffix is hardcoded in the upscale script regardless of scale factor used
+- Output suffix is dynamic: `--scale 2` → `_2x.png`, `--scale 4` → `_4x.png`
