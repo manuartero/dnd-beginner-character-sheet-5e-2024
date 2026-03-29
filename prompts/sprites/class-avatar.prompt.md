@@ -40,3 +40,11 @@ Palette order: **darkest → dark → light → lightest**
 ## Iteration log
 
 - Druid (2026-03-28): v1 accepted. Original prompt recovered post-hoc.
+
+- Fighter (2026-03-29): v1 accepted.
+  > A tiny female Fighter character sprite in Game Boy pixel art style, 4 colors only using classic Game Boy Fighter palette (#040408 #202838 #607080 #c8d0d8), 32x32 pixels, front-facing idle pose, half-plate armor with visible leather pauldrons and bracers, open-faced helmet showing her face, longsword in hand, kite shield on arm, none — a single battle-worn scar, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
+
+- Rogue (2026-03-29): v2 accepted (v1 rejected — lacking leather/color, too grey).
+  > A tiny tall Tiefling Rogue character sprite in Game Boy pixel art style, 32x32 pixels, front-facing idle pose, 6-color palette: dark near-black outline (#030305), deep dark blue-grey (#181820), mid blue-grey (#404058), light silver-grey (#9090a8) for the cloak and armor, warm reddish-purple (#7a2040) for tiefling skin on face and hands, warm brown (#6b3a1a) for leather chest piece and bracers, dark hooded cloak pushed back revealing small curved horns, tight leather armor with visible belt and buckle details, slender tall frame, dagger in raised hand, second dagger at belt, a tiny rat on shoulder, thin devil tail curling from cloak hem, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
+
+- Wizard (2026-03-29): prompt note — must specify character facing right (3/4 right-facing view).
