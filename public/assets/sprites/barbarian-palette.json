@@ -29,14 +29,6 @@
   },
   {
     "hex": "#FFFFFE",
-    "pixels": 10
-  },
-  {
-    "hex": "#B5B5B4",
-    "pixels": 5
-  },
-  {
-    "hex": "#DADAD9",
-    "pixels": 1
+    "pixels": 16
   }
 ]
