@@ -8,39 +8,33 @@
 // Default scale: 4  (1px → 4px, e.g. 79×80 → 316×320)
 
 import { execSync } from "node:child_process";
-import { readdirSync, statSync } from "node:fs";
 import { parseArgs } from "node:util";
-import { basename, extname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { basename, dirname, extname, join } from "node:path";
+import { resolveFiles } from "./palette.mjs";
 
-const { values } = parseArgs({
-  args: process.argv.slice(2),
-  options: {
-    input: { type: "string", default: "public/assets/sprites" },
-    scale: { type: "string", default: "4" },
-  },
-});
+const isMain = process.argv[1] === fileURLToPath(import.meta.url);
 
-const input = values.input;
-const scale = Number(values.scale);
+if (isMain) {
+  const { values } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      input: { type: "string", default: "public/assets/sprites" },
+      scale: { type: "string", default: "4" },
+    },
+  });
 
-if (!Number.isInteger(scale) || scale < 1) {
-  console.error("--scale must be a positive integer");
-  process.exit(1);
-}
+  const scale = Number(values.scale);
 
-function resolveFiles(target) {
-  const stat = statSync(target);
-  if (stat.isDirectory()) {
-    return readdirSync(target)
-      .filter((f) => extname(f) === ".png" && !f.includes("_4x"))
-      .map((f) => join(target, f));
+  if (!Number.isInteger(scale) || scale < 1) {
+    console.error("--scale must be a positive integer");
+    process.exit(1);
   }
-  return [target];
-}
 
-for (const file of resolveFiles(input)) {
-  const name = basename(file, extname(file));
-  const out = join(file.replace(/[^/]+$/, ""), `${name}_4x.png`);
-  execSync(`magick "${file}" -filter point -resize ${scale * 100}% "${out}"`);
-  console.log(`${file}  →  ${out}  (${scale}x)`);
+  for (const file of resolveFiles(values.input)) {
+    const name = basename(file, extname(file));
+    const out = join(dirname(file), `${name}_${scale}x.png`);
+    execSync(`magick "${file}" -filter point -resize ${scale * 100}% "${out}"`);
+    console.log(`${file}  →  ${out}  (${scale}x)`);
+  }
 }
