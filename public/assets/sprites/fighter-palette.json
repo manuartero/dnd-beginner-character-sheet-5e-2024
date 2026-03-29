@@ -1,6 +1,6 @@
 [
   {
-    "hex": "#010217",
+    "hex": "#030307",
     "pixels": 404
   },
   {
@@ -9,7 +9,7 @@
   },
   {
     "hex": "#6D7F8B",
-    "pixels": 149
+    "pixels": 160
   },
   {
     "hex": "#BEC1C8",
@@ -21,19 +21,11 @@
   },
   {
     "hex": "#926446",
-    "pixels": 21
+    "pixels": 26
   },
   {
     "hex": "#ECBD9A",
     "pixels": 20
-  },
-  {
-    "hex": "#8897A3",
-    "pixels": 11
-  },
-  {
-    "hex": "#BA7A66",
-    "pixels": 5
   },
   {
     "hex": "#FFFFFF",

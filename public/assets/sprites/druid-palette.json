@@ -1,27 +1,15 @@
 [
   {
-    "hex": "#8BAC0F",
-    "pixels": 489
-  },
-  {
     "hex": "#38692C",
-    "pixels": 487
+    "pixels": 838
   },
   {
-    "hex": "#092907",
-    "pixels": 460
+    "hex": "#030307",
+    "pixels": 624
   },
   {
-    "hex": "#21491F",
-    "pixels": 279
-  },
-  {
-    "hex": "#062205",
-    "pixels": 162
-  },
-  {
-    "hex": "#433B15",
-    "pixels": 72
+    "hex": "#8BAC0F",
+    "pixels": 494
   },
   {
     "hex": "#A5E270",
@@ -38,13 +26,5 @@
   {
     "hex": "#CDFDB0",
     "pixels": 12
-  },
-  {
-    "hex": "#86A91D",
-    "pixels": 4
-  },
-  {
-    "hex": "#85AA3A",
-    "pixels": 1
   }
 ]
