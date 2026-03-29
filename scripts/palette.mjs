@@ -1,26 +1,10 @@
-// utils.mjs
-// Shared pure helpers for sprite-tooling scripts.
+// palette.mjs
+// Sprite file resolution and ImageMagick palette extraction.
 
 import { execSync } from "node:child_process";
 import { readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
-
-export function toHex(r, g, b) {
-  return `#${[r, g, b].map((n) => Number(n).toString(16).padStart(2, "0").toUpperCase()).join("")}`;
-}
-
-export function hexToRgb(hex) {
-  const h = hex.replace("#", "");
-  return [
-    Number.parseInt(h.slice(0, 2), 16),
-    Number.parseInt(h.slice(2, 4), 16),
-    Number.parseInt(h.slice(4, 6), 16),
-  ];
-}
-
-export function normalize(hex) {
-  return `#${hex.replace("#", "").toUpperCase()}`;
-}
+import { toHex } from "./rgb.mjs";
 
 export function resolveFiles(target) {
   const stat = statSync(target);

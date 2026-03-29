@@ -11,7 +11,7 @@ import { tmpdir } from "node:os";
 import { basename, dirname, extname, join } from "node:path";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
-import { extractPalette, resolveFiles } from "./utils.mjs";
+import { extractPalette, resolveFiles } from "./palette.mjs";
 
 export function luminance(hex) {
   const h = hex.replace("#", "");

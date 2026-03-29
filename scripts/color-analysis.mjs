@@ -10,7 +10,7 @@ import { writeFileSync } from "node:fs";
 import { basename, dirname, extname, join } from "node:path";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
-import { extractPalette, resolveFiles } from "./utils.mjs";
+import { extractPalette, resolveFiles } from "./palette.mjs";
 
 const isMain = process.argv[1] === fileURLToPath(import.meta.url);
 

@@ -11,7 +11,7 @@ import { execSync } from "node:child_process";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 import { basename, dirname, extname, join } from "node:path";
-import { resolveFiles } from "./utils.mjs";
+import { resolveFiles } from "./palette.mjs";
 
 const isMain = process.argv[1] === fileURLToPath(import.meta.url);
 

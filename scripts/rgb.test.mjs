@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { toHex, hexToRgb, normalize } from "./utils.mjs";
+import { toHex, hexToRgb, normalize } from "./rgb.mjs";
 
 describe("toHex", () => {
   it("converts black", () => expect(toHex(0, 0, 0)).toBe("#000000"));
