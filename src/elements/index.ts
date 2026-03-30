@@ -15,6 +15,8 @@ export { ResourceChip } from "./resource-chip/resource-chip";
 export { RetroRadio } from "./retro-radio/retro-radio";
 export { RowList, rowListStyles } from "./row-list/row-list";
 export { ScorePicker } from "./score-picker/score-picker";
+export { TileRow } from "./tile-row/tile-row";
+export type { TileItem } from "./tile-row/tile-row";
 export { ScreenFlash } from "./screen-flash/screen-flash";
 export {
   ScreenFlashProvider,

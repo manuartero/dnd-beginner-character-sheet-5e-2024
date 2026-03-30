@@ -1,4 +1,4 @@
-import { ChipGrid, Section } from "elements";
+import { ChipGrid, Section, TileRow } from "elements";
 import { ABILITY_LIST } from "src/models/common/abilities";
 import { getSkillLabel } from "src/models/common/skills";
 import {
@@ -51,13 +51,12 @@ export function StepOrigin({
           </div>
           <div className={styles.infoBox}>
             <span>Ability Bonuses:</span>
-            <div className={styles.abilityBonuses}>
-              {selected.abilityOptions.map((ability) => (
-                <span key={ability} className={styles.abilityBadge}>
-                  {abilityShortLabel(ability)}
-                </span>
-              ))}
-            </div>
+            <TileRow
+              items={selected.abilityOptions.map((ability) => ({
+                key: ability,
+                label: abilityShortLabel(ability),
+              }))}
+            />
           </div>
           <div className={styles.infoBox}>
             Origin Feat:{" "}

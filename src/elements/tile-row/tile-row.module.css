@@ -1,0 +1,67 @@
+/* Compact row of text-label tiles — 8-bit retro style */
+
+.tileRow {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.tile {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--shade-3);
+  background: var(--shade-0);
+  border: 2px solid var(--shade-3);
+}
+
+/* Interactive tile (button) extras */
+button.tile {
+  cursor: pointer;
+  transition: none;
+}
+
+button.tile:hover {
+  background: var(--shade-1);
+}
+
+button.tile:active {
+  transform: translate(1px, 1px);
+}
+
+.tileSelected {
+  background: var(--shade-2);
+  border-color: var(--shade-2);
+  color: var(--shade-0);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+button.tileSelected:hover {
+  background: var(--shade-2);
+  color: var(--shade-0);
+}
+
+.tileDimmed {
+  opacity: 0.3;
+}
+
+button.tileDimmed {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.tileDimmed:hover {
+  background: var(--shade-0);
+}
+
+.tileBadge {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  margin-top: 2px;
+}
