@@ -4,7 +4,7 @@
 // Usage:
 //   node scripts/build-main-palette.mjs [--input <dir>] [--output <file>]
 
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { parseArgs } from "node:util";
 
@@ -12,7 +12,10 @@ const { values } = parseArgs({
   args: process.argv.slice(2),
   options: {
     input: { type: "string", default: "public/assets/sprites" },
-    output: { type: "string", default: "public/assets/sprites/main.palette.json" },
+    output: {
+      type: "string",
+      default: "public/assets/sprites/main.palette.json",
+    },
   },
 });
 
@@ -45,4 +48,6 @@ const result = [...combined.entries()]
   .sort((a, b) => b.totalPixels - a.totalPixels);
 
 writeFileSync(outputFile, `${JSON.stringify(result, null, 2)}\n`);
-console.log(`Wrote ${outputFile}  (${result.length} unique colors across ${paletteFiles.length} sprites)`);
+console.log(
+  `Wrote ${outputFile}  (${result.length} unique colors across ${paletteFiles.length} sprites)`,
+);

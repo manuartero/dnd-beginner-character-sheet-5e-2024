@@ -5,7 +5,7 @@
 // Usage:
 //   node scripts/find-merge-candidates.mjs [--top <N>] [--max-distance <N>]
 
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
@@ -17,7 +17,9 @@ const SPRITES_DIR = join(__dirname, "../public/assets/sprites");
 function rgbDistance(hexA, hexB) {
   const [r1, g1, b1] = hexToRgb(hexA);
   const [r2, g2, b2] = hexToRgb(hexB);
-  return Math.round(Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2));
+  return Math.round(
+    Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2),
+  );
 }
 
 function loadAllPalettes(dir) {
@@ -93,7 +95,9 @@ for (const { dist, from, into } of shown) {
 }
 
 console.log();
-console.log(`Showing ${shown.length} of ${candidates.length} pairs (max-distance: ${maxDist})`);
+console.log(
+  `Showing ${shown.length} of ${candidates.length} pairs (max-distance: ${maxDist})`,
+);
 console.log();
 console.log("To apply a merge:");
 console.log(

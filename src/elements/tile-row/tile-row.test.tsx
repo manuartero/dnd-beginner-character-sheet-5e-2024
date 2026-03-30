@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { TileRow } from "./tile-row";
+
 import type { TileItem } from "./tile-row";
 
 const ITEMS: TileItem[] = [

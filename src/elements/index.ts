@@ -15,8 +15,6 @@ export { ResourceChip } from "./resource-chip/resource-chip";
 export { RetroRadio } from "./retro-radio/retro-radio";
 export { RowList, rowListStyles } from "./row-list/row-list";
 export { ScorePicker } from "./score-picker/score-picker";
-export { TileRow } from "./tile-row/tile-row";
-export type { TileItem } from "./tile-row/tile-row";
 export { ScreenFlash } from "./screen-flash/screen-flash";
 export {
   ScreenFlashProvider,
@@ -25,7 +23,9 @@ export {
 export { Section } from "./section/section";
 export { Stepper } from "./stepper/stepper";
 export { default as labelStyles } from "./style/label.module.css";
+export { TileRow } from "./tile-row/tile-row";
 
 export type { ActionChipProps } from "./action-chip/action-chip";
 export type { GridAction } from "./chip-grid/chip-grid";
 export type { ResourceChipProps } from "./resource-chip/resource-chip";
+export type { TileItem } from "./tile-row/tile-row";

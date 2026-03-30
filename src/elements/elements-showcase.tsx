@@ -15,10 +15,10 @@ import {
   rowListStyles,
   ScorePicker,
   ScreenFlash,
-  TileRow,
   ScreenFlashProvider,
   Section,
   Stepper,
+  TileRow,
 } from "elements";
 import { useState } from "react";
 import { resolveIconPath } from "src/models/common/icons";
@@ -203,9 +203,7 @@ export function ElementsShowcase() {
               { key: "d12", label: "d12", dimmed: true },
             ]}
           />
-          <p
-            style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}
-          >
+          <p style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}>
             interactive — pick one
           </p>
           <TileRow
@@ -216,9 +214,7 @@ export function ElementsShowcase() {
             }))}
             onPick={(key) => setPickedDie(key === pickedDie ? null : key)}
           />
-          <p
-            style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}
-          >
+          <p style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}>
             interactive — grid (6 col) with badges and dimmed
           </p>
           <TileRow

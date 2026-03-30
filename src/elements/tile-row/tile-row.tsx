@@ -24,11 +24,10 @@ export function TileRow({ items, onPick, columns, onUnpick }: TileRowProps) {
 
   if (!interactive) {
     return (
-      <div role="list" className={styles.tileRow} style={style}>
+      <ul className={styles.tileRow} style={style}>
         {items.map((item) => (
-          <span
+          <li
             key={item.key}
-            role="listitem"
             className={c(
               styles.tile,
               item.selected && styles.tileSelected,
@@ -39,9 +38,9 @@ export function TileRow({ items, onPick, columns, onUnpick }: TileRowProps) {
             {item.badge && (
               <span className={styles.tileBadge}>{item.badge}</span>
             )}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 
@@ -68,9 +67,7 @@ export function TileRow({ items, onPick, columns, onUnpick }: TileRowProps) {
           }}
         >
           {item.label}
-          {item.badge && (
-            <span className={styles.tileBadge}>{item.badge}</span>
-          )}
+          {item.badge && <span className={styles.tileBadge}>{item.badge}</span>}
         </button>
       ))}
     </div>
