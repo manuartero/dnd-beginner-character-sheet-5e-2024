@@ -19,6 +19,20 @@
     "totalPixels": 1234
   },
   {
+    "hex": "#B32631",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 1035
+  },
+  {
+    "hex": "#070310",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 878
+  },
+  {
     "hex": "#3B1F17",
     "sprites": [
       "barbarian",
@@ -28,11 +42,25 @@
     "totalPixels": 867
   },
   {
+    "hex": "#F3EBE0",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 663
+  },
+  {
     "hex": "#264381",
     "sprites": [
       "wizard"
     ],
     "totalPixels": 628
+  },
+  {
+    "hex": "#EA826A",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 533
   },
   {
     "hex": "#EA9364",
@@ -56,11 +84,25 @@
     "totalPixels": 487
   },
   {
+    "hex": "#D9CAB5",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 428
+  },
+  {
     "hex": "#B64826",
     "sprites": [
       "barbarian"
     ],
     "totalPixels": 390
+  },
+  {
+    "hex": "#6B1228",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 337
   },
   {
     "hex": "#EFB88B",
@@ -128,6 +170,13 @@
     "totalPixels": 185
   },
   {
+    "hex": "#B6A393",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 178
+  },
+  {
     "hex": "#6D7F8B",
     "sprites": [
       "fighter"
@@ -149,11 +198,12 @@
     "totalPixels": 124
   },
   {
-    "hex": "#BEC1C8",
+    "hex": "#B9BBC3",
     "sprites": [
-      "fighter"
+      "fighter",
+      "rogue"
     ],
-    "totalPixels": 105
+    "totalPixels": 123
   },
   {
     "hex": "#623C2A",
@@ -169,6 +219,13 @@
       "wizard"
     ],
     "totalPixels": 70
+  },
+  {
+    "hex": "#F61D2D",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 65
   },
   {
     "hex": "#A5E270",
@@ -192,6 +249,13 @@
     "totalPixels": 51
   },
   {
+    "hex": "#CC5C4F",
+    "sprites": [
+      "sorcerer"
+    ],
+    "totalPixels": 42
+  },
+  {
     "hex": "#5A8327",
     "sprites": [
       "druid"
@@ -212,13 +276,6 @@
       "fighter"
     ],
     "totalPixels": 21
-  },
-  {
-    "hex": "#B9BBC3",
-    "sprites": [
-      "rogue"
-    ],
-    "totalPixels": 18
   },
   {
     "hex": "#8897A3",
