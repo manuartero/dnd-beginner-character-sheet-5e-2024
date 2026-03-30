@@ -13,6 +13,25 @@ const palettes = Object.fromEntries(
     JSON.parse(readFileSync(resolve("public/assets/sprites", `${name}-palette.json`), "utf-8")),
   ])
 );
+
+const globalPalette = JSON.parse(
+  readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
+);
+
+function readPngSize(filePath: string): { width: number; height: number } {
+  const buf = readFileSync(filePath);
+  return {
+    width: buf.readUInt32BE(16),
+    height: buf.readUInt32BE(20),
+  };
+}
+
+const spriteSizes = Object.fromEntries(
+  SPRITES.map((name) => [
+    name,
+    readPngSize(resolve("public/assets/sprites", `${name}.png`)),
+  ])
+);
 ---
 
 <html lang="en">
@@ -29,9 +48,12 @@ const palettes = Object.fromEntries(
           <img
             src={`/assets/sprites/${name}_4x.png`}
             alt={name}
-            style="image-rendering: pixelated; display: block; margin-bottom: var(--space-md);"
+            style="image-rendering: pixelated; display: block; margin-bottom: var(--space-sm);"
           />
-          <SpritePalette colors={palettes[name]} client:load />
+          <p style="font-size: 12px; color: var(--color-muted, #888); margin-bottom: var(--space-md);">
+            {spriteSizes[name].width}×{spriteSizes[name].height}px
+          </p>
+          <SpritePalette colors={palettes[name]} globalPalette={globalPalette} client:load />
         </Section>
       ))}
     </div>
