@@ -45,6 +45,8 @@
     "sprite:merge-colors": "node scripts/reduce-palette.mjs",
     "sprite:remove-background": "node scripts/remove-background.mjs",
     "sprite:flip": "node scripts/flip-sprite.mjs",
+    "sprite:build-palette": "node scripts/build-main-palette.mjs",
+    "sprite:candidates": "node scripts/sprite-merge-candidates.mjs",
     "blue-ball": "pnpm lint && pnpm test && pnpm build",
     "postblue-ball": "pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },

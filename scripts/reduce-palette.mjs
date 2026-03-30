@@ -35,10 +35,6 @@ export function parseExplicitMerges(rawMerges, paletteHexes) {
       console.error(`Error: color ${from} not found in palette`);
       process.exit(1);
     }
-    if (!paletteHexes.has(into)) {
-      console.error(`Error: color ${into} not found in palette`);
-      process.exit(1);
-    }
     merges.push({ from, into, explicit: true });
   }
   return merges;
@@ -114,9 +110,11 @@ if (isMain) {
   const appliedExplicitMerges = [];
   for (const merge of explicitMerges) {
     const fromEntry = remaining.find((c) => c.hex === merge.from);
+    if (!fromEntry) continue;
     const intoEntry = remaining.find((c) => c.hex === merge.into);
-    if (!fromEntry || !intoEntry) continue;
-    intoEntry.pixels += fromEntry.pixels;
+    if (intoEntry) {
+      intoEntry.pixels += fromEntry.pixels;
+    }
     remaining = remaining.filter((c) => c.hex !== merge.from);
     appliedExplicitMerges.push(merge);
   }
@@ -149,7 +147,7 @@ if (isMain) {
   copyFileSync(inputFile, tmpFile);
 
   const replacements = allMerges
-    .map(({ from, into }) => `-fill "${into}" -opaque "${from}"`)
+    .map(({ from, into }) => `-fuzz 1% -fill "${into}" -opaque "${from}"`)
     .join(" ");
 
   const typeInfo = execSync(`magick identify -format "%[type]" "${tmpFile}"`, {

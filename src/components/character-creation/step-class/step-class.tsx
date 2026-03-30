@@ -1,5 +1,5 @@
 import c from "classnames";
-import { ChipGrid, labelStyles, Section } from "elements";
+import { ChipGrid, labelStyles, Section, TileRow } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
@@ -17,24 +17,6 @@ type StepClassProps = {
 };
 
 const HIT_DIE_OPTIONS = ["d6", "d8", "d10", "d12"] as const;
-
-function HitDieOptions({ selected }: { selected: string }) {
-  return (
-    <div className={styles.hitDieGroup}>
-      {HIT_DIE_OPTIONS.map((die) => (
-        <span
-          key={die}
-          className={c(
-            styles.hitDieOption,
-            die === selected ? styles.hitDieSelected : styles.hitDieDisabled,
-          )}
-        >
-          {die}
-        </span>
-      ))}
-    </div>
-  );
-}
 
 export function StepClass({ characterClass, onClassChange }: StepClassProps) {
   const details = characterClass ? CLASS_DETAILS[characterClass] : null;
@@ -73,7 +55,14 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
           <div className={styles.detailsRow}>
             <dt className={styles.detailsLabel}>Hit Die</dt>
             <dd className={styles.detailsValue}>
-              <HitDieOptions selected={details.hitDie} />
+              <TileRow
+                items={HIT_DIE_OPTIONS.map((die) => ({
+                  key: die,
+                  label: die,
+                  selected: die === details.hitDie,
+                  dimmed: die !== details.hitDie,
+                }))}
+              />
             </dd>
           </div>
           <div className={styles.detailsRow}>

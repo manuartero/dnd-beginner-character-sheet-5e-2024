@@ -30,19 +30,6 @@
   content: "- ";
 }
 
-.abilityBonuses {
-  margin-top: var(--space-xs);
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.abilityBadge {
-  font-weight: 600;
-  color: var(--shade-2);
-  padding: 2px var(--space-sm);
-  border: 1px solid var(--shade-2);
-}
-
 .featLabel {
   font-weight: 600;
   color: var(--shade-2);

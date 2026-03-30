@@ -18,6 +18,7 @@ import {
   ScreenFlashProvider,
   Section,
   Stepper,
+  TileRow,
 } from "elements";
 import { useState } from "react";
 import { resolveIconPath } from "src/models/common/icons";
@@ -64,6 +65,10 @@ export function ElementsShowcase() {
   const [selectedGrid, setSelectedGrid] = useState<string | null>("opt1");
   const [flashTrigger, setFlashTrigger] = useState(0);
   const [pickedScore, setPickedScore] = useState<number | null>(15);
+  const [pickedDie, setPickedDie] = useState<string | null>("d10");
+  const [originBonuses, setOriginBonuses] = useState<Record<string, boolean>>(
+    {},
+  );
 
   return (
     <ScreenFlashProvider>
@@ -183,6 +188,51 @@ export function ElementsShowcase() {
             selected={radioValue}
             name="showcase-radio"
             onSelect={setRadioValue}
+          />
+        </ShowcaseBlock>
+
+        <ShowcaseBlock name="TileRow">
+          <p style={{ fontSize: "0.5rem", marginBottom: "0.5rem" }}>
+            read-only
+          </p>
+          <TileRow
+            items={[
+              { key: "d6", label: "d6", dimmed: true },
+              { key: "d8", label: "d8", dimmed: true },
+              { key: "d10", label: "d10", selected: true },
+              { key: "d12", label: "d12", dimmed: true },
+            ]}
+          />
+          <p style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}>
+            interactive — pick one
+          </p>
+          <TileRow
+            items={["d6", "d8", "d10", "d12"].map((die) => ({
+              key: die,
+              label: die,
+              selected: die === pickedDie,
+            }))}
+            onPick={(key) => setPickedDie(key === pickedDie ? null : key)}
+          />
+          <p style={{ fontSize: "0.5rem", margin: "0.75rem 0 0.5rem" }}>
+            interactive — grid (6 col) with badges and dimmed
+          </p>
+          <TileRow
+            items={["STR", "DEX", "CON", "INT", "WIS", "CHA"].map((ab) => {
+              const eligible = ["STR", "DEX", "CON"].includes(ab);
+              const active = originBonuses[ab] ?? false;
+              return {
+                key: ab,
+                label: ab,
+                selected: active,
+                dimmed: !eligible,
+                badge: active ? "+1" : undefined,
+              };
+            })}
+            columns={6}
+            onPick={(key) =>
+              setOriginBonuses((prev) => ({ ...prev, [key]: !prev[key] }))
+            }
           />
         </ShowcaseBlock>
 

@@ -1,26 +1,22 @@
 [
   {
+    "hex": "#030307",
+    "pixels": 624
+  },
+  {
     "hex": "#8BAC0F",
-    "pixels": 489
+    "pixels": 494
   },
   {
     "hex": "#38692C",
     "pixels": 487
   },
   {
-    "hex": "#092907",
-    "pixels": 460
-  },
-  {
     "hex": "#21491F",
     "pixels": 279
   },
   {
-    "hex": "#062205",
-    "pixels": 162
-  },
-  {
-    "hex": "#433B15",
+    "hex": "#3B1F17",
     "pixels": 72
   },
   {
@@ -36,15 +32,7 @@
     "pixels": 41
   },
   {
-    "hex": "#CDFDB0",
+    "hex": "#FFFFFE",
     "pixels": 12
-  },
-  {
-    "hex": "#86A91D",
-    "pixels": 4
-  },
-  {
-    "hex": "#85AA3A",
-    "pixels": 1
   }
 ]

@@ -1,5 +1,4 @@
-import c from "classnames";
-import { Section } from "elements";
+import { Section, TileRow } from "elements";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { ABILITY_LIST } from "src/models/common/abilities";
 import styles from "./step-abilities.module.css";
@@ -33,53 +32,37 @@ export function OriginBonusPicker({
     onAbilityBonusesChange(next);
   }
 
-  function handleClick(ability: AbilityName) {
+  function incrementBonus(ability: AbilityName) {
     const current = abilityBonuses[ability] ?? 0;
     if (remaining > 0) {
-      onAbilityBonusesChange({
-        ...abilityBonuses,
-        [ability]: current + 1,
-      });
+      onAbilityBonusesChange({ ...abilityBonuses, [ability]: current + 1 });
     } else {
       decrementBonus(ability);
     }
   }
 
-  function handleRightClick(e: React.MouseEvent, ability: AbilityName) {
-    e.preventDefault();
-    decrementBonus(ability);
-  }
+  const items = ABILITY_LIST.map(({ key, short }) => {
+    const allocated = abilityBonuses[key] ?? 0;
+    return {
+      key,
+      label: short,
+      selected: allocated > 0,
+      dimmed: !abilityOptions.includes(key),
+      badge: allocated > 0 ? `+${allocated}` : undefined,
+    };
+  });
 
   return (
     <Section title="Origin Bonus">
       <p className={styles.bonusHint}>
         {remaining} bonus {remaining === 1 ? "point" : "points"} remaining
       </p>
-      <div className={styles.bonusGrid}>
-        {ABILITY_LIST.map(({ key, short }) => {
-          const eligible = abilityOptions.includes(key);
-          const allocated = abilityBonuses[key] ?? 0;
-          return (
-            <button
-              key={key}
-              type="button"
-              disabled={!eligible}
-              className={c(
-                styles.bonusCell,
-                eligible && styles.bonusCellEligible,
-                allocated > 0 && styles.bonusCellActive,
-              )}
-              onClick={() => eligible && handleClick(key)}
-              onContextMenu={(e) => eligible && handleRightClick(e, key)}
-            >
-              <span className={styles.bonusAbility}>{short}</span>
-              {allocated > 0 && (
-                <span className={styles.bonusCount}>+{allocated}</span>
-              )}
-            </button>
-          );
-        })}
-      </div>
+      <TileRow
+        items={items}
+        columns={6}
+        onPick={(key) => incrementBonus(key as AbilityName)}
+        onUnpick={(key) => decrementBonus(key as AbilityName)}
+      />
     </Section>
   );
 }

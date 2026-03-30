@@ -51,15 +51,13 @@ Show the final palette table with color roles (outline, skin, leather, cloak, et
 
 ### Step 5 — Upscale
 ```
-pnpm sprite:upscale --input <file> --scale 2
+pnpm sprite:upscale --input <file> --scale 4
 ```
-Use `--scale 2` (not 4) — AI-generated sprites arrive pre-upscaled and are already larger than the original 32×32 base. Using 4x would produce an oversized image.
-
-After upscaling, read and display the `<name>_2x.png` result image for visual confirmation.
+After upscaling, read and display the `<name>_4x.png` result image for visual confirmation.
 
 ## Output
 - `<name>.png` — processed sprite (transparent background, 10 colors)
-- `<name>_2x.png` — upscaled version (the suffix follows `_<scale>x`, e.g. `_2x` for `--scale 2`)
+- `<name>_4x.png` — upscaled version (the suffix follows `_<scale>x`, e.g. `_4x` for `--scale 4`)
 - `<name>-palette.json` — final palette
 
 ## Notes
