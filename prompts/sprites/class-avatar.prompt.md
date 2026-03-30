@@ -5,7 +5,7 @@
 ## Template
 
 ```
-A tiny {CLASS} character sprite in Game Boy pixel art style, 4 colors only using classic Game Boy
+A {CLASS} character sprite in Game Boy pixel art style, 4 colors only using classic Game Boy
 {CLASS} palette ({PALETTE}), 32x32 pixels, front-facing idle pose, {CLOTHING}, {WEAPON},
 {COMPANION}, chunky pixelated outlines, no background, transparent background, retro RPG handheld
 game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution
@@ -49,3 +49,9 @@ Palette order: **darkest → dark → light → lightest**
   > A tiny tall Tiefling Rogue character sprite in Game Boy pixel art style, 32x32 pixels, front-facing idle pose, 6-color palette: dark near-black outline (#030305), deep dark blue-grey (#181820), mid blue-grey (#404058), light silver-grey (#9090a8) for the cloak and armor, warm reddish-purple (#7a2040) for tiefling skin on face and hands, warm brown (#6b3a1a) for leather chest piece and bracers, dark hooded cloak pushed back revealing small curved horns, tight leather armor with visible belt and buckle details, slender tall frame, dagger in raised hand, second dagger at belt, a tiny rat on shoulder, thin devil tail curling from cloak hem, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
 
 - Wizard (2026-03-29): prompt note — must specify character facing right (3/4 right-facing view).
+
+- Sorcerer (2026-03-30): v1 good result, not exquisite — saved as baseline.
+  > A tiny female Aasimar Sorcerer character sprite in Game Boy pixel art style, 32x32 pixels, front-facing idle pose, 6-color palette: dark near-black outline (#080010), deep dark purple (#380868), mid purple (#9040d0), soft pink-white (#f8d0ff) for robe highlights and wing feather tips, warm light skin (#e8c490) for face and hands, bright near-white (#f4f0e8) for large feathered aasimar wings spread slightly behind her, flowing robe with arcane rune trim, arcane orb held forward no staff, large feathered wings fanned slightly behind back — NO halo, small magical purple flames flickering around her body as an arcane aura — at her feet, along her arms, framing the wings — NO animal companion, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
+
+- Sorcerer (2026-03-30): v2 accepted — red tones, aasimar wings, no halo, no animal companion.
+  > A female Aasimar Sorcerer character sprite in Game Boy pixel art style, 32x32 pixels, front-facing idle pose, 6-color palette: dark near-black outline (#080010), deep crimson-dark (#3a0010), vivid red (#c02030) for flames and clothing details, warm rose-gold (#f8a080) for robe highlights and flame tips, warm light skin (#e8c490) for face and hands, bright near-white (#f4f0e8) for large feathered aasimar wings spread slightly behind her, gorgeous elegant flowing crimson sorcerer robes with ornate gold-red trim and arcane runes, low neckline, dramatic silhouette, arcane orb held forward no staff, large feathered wings fanned slightly behind back — NO halo, vivid red magical flames flickering around her body as an arcane aura — at her feet, along her arms, framing the wings — NO animal companion, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
