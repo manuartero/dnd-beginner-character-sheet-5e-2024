@@ -1,9 +1,9 @@
-// find-merge-candidates.mjs
+// sprite-merge-candidates.mjs
 // Find cross-sprite color pairs that are visually close — candidates for global palette reduction.
 // For each pair, one sprite's color can be replaced with the other's, shrinking the global palette by 1.
 //
 // Usage:
-//   node scripts/find-merge-candidates.mjs [--top <N>] [--max-distance <N>]
+//   node scripts/sprite-merge-candidates.mjs [--top <N>] [--max-distance <N>]
 
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";

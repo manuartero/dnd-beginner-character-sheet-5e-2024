@@ -17,12 +17,11 @@ type TileRowProps = {
 };
 
 export function TileRow({ items, onPick, columns, onUnpick }: TileRowProps) {
-  const interactive = !!onPick;
   const style = columns
     ? { display: "grid", gridTemplateColumns: `repeat(${columns}, 1fr)` }
     : undefined;
 
-  if (!interactive) {
+  if (!onPick) {
     return (
       <ul className={styles.tileRow} style={style}>
         {items.map((item) => (
