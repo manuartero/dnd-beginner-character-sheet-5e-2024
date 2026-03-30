@@ -1,6 +1,7 @@
 ---
 import "src/styles/global.css";
-import { RowList, rowListStyles, Section } from "elements";
+import { Section } from "elements";
+import { SpritePalette } from "src/components/sprites/sprite-palette";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 
@@ -30,17 +31,7 @@ const palettes = Object.fromEntries(
             alt={name}
             style="image-rendering: pixelated; display: block; margin-bottom: var(--space-md);"
           />
-          <RowList
-            title="Palette"
-            ariaLabel={`${name} color palette`}
-            items={palettes[name].map((color, index) => ({ index, item: color }))}
-            renderItem={(color) => (
-              <>
-                <div style={{ width: 48, height: 48, background: color.hex, border: "1px solid #ccc", flexShrink: 0 }} />
-                <span className={rowListStyles.name}>{color.hex}</span>
-              </>
-            )}
-          />
+          <SpritePalette colors={palettes[name]} client:load />
         </Section>
       ))}
     </div>
