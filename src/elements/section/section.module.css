@@ -38,3 +38,8 @@
 .sectionTitleAccent {
   background: var(--shade-2);
 }
+
+/* White fill variant — same frame, pure white content area */
+.sectionWhite {
+  background: #ffffff;
+}

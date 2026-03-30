@@ -1,0 +1,48 @@
+---
+import "src/styles/global.css";
+import { RowList, rowListStyles, Section } from "elements";
+import { readFileSync } from "fs";
+import { resolve } from "path";
+
+const SPRITES = ["barbarian", "druid", "fighter", "rogue", "sorcerer", "wizard"];
+
+const palettes = Object.fromEntries(
+  SPRITES.map((name) => [
+    name,
+    JSON.parse(readFileSync(resolve("public/assets/sprites", `${name}-palette.json`), "utf-8")),
+  ])
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sprites Showcase</title>
+  </head>
+  <body>
+    <div style="padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-md);">
+      {SPRITES.map((name) => (
+        <Section title={name} variant="white-bg">
+          <img
+            src={`/assets/sprites/${name}_4x.png`}
+            alt={name}
+            style="image-rendering: pixelated; display: block; margin-bottom: var(--space-md);"
+          />
+          <RowList
+            title="Palette"
+            ariaLabel={`${name} color palette`}
+            items={palettes[name].map((color, index) => ({ index, item: color }))}
+            renderItem={(color) => (
+              <>
+                <div style={{ width: 48, height: 48, background: color.hex, border: "1px solid #ccc", flexShrink: 0 }} />
+                <span className={rowListStyles.name}>{color.hex}</span>
+              </>
+            )}
+          />
+        </Section>
+      ))}
+    </div>
+  </body>
+</html>
