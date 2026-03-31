@@ -74,7 +74,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pnpm blue-ball"
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && pnpm format && pnpm blue-ball"
           }
         ]
       }

@@ -15,7 +15,9 @@ type SpritePaletteProps = {
 };
 
 export function SpritePalette({ colors, globalPalette }: SpritePaletteProps) {
-  const globalMap = new Map(globalPalette.map((e) => [e.hex.toUpperCase(), e.sprites]));
+  const globalMap = new Map(
+    globalPalette.map((e) => [e.hex.toUpperCase(), e.sprites]),
+  );
 
   return (
     <RowList
