@@ -6,12 +6,12 @@
 //   node scripts/remove-background.mjs [--input <file-or-dir>] [--dry-run]
 
 import { execSync } from "node:child_process";
-import { copyFileSync, mkdtempSync, renameSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdtempSync, renameSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, extname, join } from "node:path";
+import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { extractPalette, resolveFiles } from "./palette.mjs";
+import { extractPalette, resolveFiles, updateMainPalette } from "./palette.mjs";
 
 export function luminance(hex) {
   const h = hex.replace("#", "");
@@ -147,10 +147,10 @@ if (isMain) {
     renameSync(tmpFile, file);
 
     const newPalette = extractPalette(file);
-    const name = basename(file, extname(file));
-    const paletteOut = join(dirname(file), `${name}-palette.json`);
-    writeFileSync(paletteOut, `${JSON.stringify(newPalette, null, 2)}\n`);
+    updateMainPalette(file, newPalette);
 
-    console.log(`  done → ${newPalette.length} colors (palette JSON updated)`);
+    console.log(
+      `  done → ${newPalette.length} colors (main.palette.json updated)`,
+    );
   }
 }

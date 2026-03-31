@@ -55,10 +55,16 @@ pnpm sprite:upscale --input <file> --scale 4
 ```
 After upscaling, read and display the `<name>_4x.png` result image for visual confirmation.
 
+### Step 6 — Rebuild main palette
+```
+pnpm sprite:build-palette
+```
+Report the new total unique color count from `main.palette.json`.
+
 ## Output
 - `<name>.png` — processed sprite (transparent background, 10 colors)
 - `<name>_4x.png` — upscaled version (the suffix follows `_<scale>x`, e.g. `_4x` for `--scale 4`)
-- `<name>-palette.json` — final palette
+- `main.palette.json` — updated global palette (single source of truth)
 
 ## Notes
 - Target 10 colors is the established sweet spot for these sprites (enough for skin, leather, cloak, outline, highlights)
