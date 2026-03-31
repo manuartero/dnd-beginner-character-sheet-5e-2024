@@ -59,6 +59,13 @@ function ShowcaseBlock({
 
 const SAMPLE_ICON = resolveIconPath("vol1/icon-vol1_29");
 
+const equippedBadgeBase = {
+  fontFamily: "var(--font-body)",
+  fontSize: "var(--font-size-xs)",
+  padding: "2px var(--space-xs)",
+  background: "var(--shade-0)",
+};
+
 export function ElementsShowcase() {
   const [step, setStep] = useState(1);
   const [radioValue, setRadioValue] = useState("a");
@@ -287,10 +294,7 @@ export function ElementsShowcase() {
                 {item.equipped ? (
                   <span
                     style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "var(--font-size-xs)",
-                      padding: "2px var(--space-xs)",
-                      background: "var(--shade-0)",
+                      ...equippedBadgeBase,
                       color: "var(--color-hp-full)",
                       border: "1px solid var(--color-hp-full)",
                     }}
@@ -300,10 +304,7 @@ export function ElementsShowcase() {
                 ) : (
                   <span
                     style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "var(--font-size-xs)",
-                      padding: "2px var(--space-xs)",
-                      background: "var(--shade-0)",
+                      ...equippedBadgeBase,
                       color: "var(--shade-2)",
                       border: "1px solid var(--shade-2)",
                     }}
