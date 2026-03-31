@@ -255,11 +255,17 @@ export function ElementsShowcase() {
                   name: "Longsword",
                   meta: "1d8 slashing | Versatile",
                   icon: SAMPLE_ICON,
+                  equipped: true,
                 },
               },
               {
                 index: 1,
-                item: { name: "Shield", meta: "AC +2", icon: SAMPLE_ICON },
+                item: {
+                  name: "Shield",
+                  meta: "AC +2",
+                  icon: SAMPLE_ICON,
+                  equipped: true,
+                },
               },
               {
                 index: 2,
@@ -267,6 +273,7 @@ export function ElementsShowcase() {
                   name: "Chain Mail",
                   meta: "AC 16 | Heavy, Stealth disadv.",
                   icon: SAMPLE_ICON,
+                  equipped: false,
                 },
               },
             ]}
@@ -277,6 +284,33 @@ export function ElementsShowcase() {
                   <span className={rowListStyles.name}>{item.name}</span>
                   <span className={rowListStyles.meta}>{item.meta}</span>
                 </span>
+                {item.equipped ? (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--font-size-xs)",
+                      padding: "2px var(--space-xs)",
+                      background: "var(--shade-0)",
+                      color: "var(--color-hp-full)",
+                      border: "1px solid var(--color-hp-full)",
+                    }}
+                  >
+                    equipped
+                  </span>
+                ) : (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--font-size-xs)",
+                      padding: "2px var(--space-xs)",
+                      background: "var(--shade-0)",
+                      color: "var(--shade-2)",
+                      border: "1px solid var(--shade-2)",
+                    }}
+                  >
+                    in bag
+                  </span>
+                )}
                 <button
                   type="button"
                   className={rowListStyles.removeButton}

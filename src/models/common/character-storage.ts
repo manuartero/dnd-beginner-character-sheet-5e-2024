@@ -29,6 +29,16 @@ function migrateEquipment(equipment: Equipment[]): Equipment[] {
         type: "money",
         icon: GOLD_ICON,
         quantity: item.quantity ?? 0,
+        equipped: false,
+      };
+    }
+    if (item.equipped === undefined) {
+      return {
+        ...item,
+        equipped:
+          item.type === "weapon" ||
+          item.type === "armor" ||
+          item.type === "shield",
       };
     }
     return item;

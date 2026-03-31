@@ -36,13 +36,15 @@ export function computeHpMax({
 // --- AC ---
 
 function findEquippedArmor(equipment: Equipment[]): Armor | null {
-  const armorItem = equipment.find((e) => e.type === "armor");
+  const armorItem = equipment.find(
+    (e) => e.type === "armor" && e.equipped !== false,
+  );
   if (!armorItem) return null;
   return ARMORS.find((a) => a.name === armorItem.name) ?? null;
 }
 
 function hasShield(equipment: Equipment[]): boolean {
-  return equipment.some((e) => e.type === "shield");
+  return equipment.some((e) => e.type === "shield" && e.equipped !== false);
 }
 
 export function computeArmorClass({

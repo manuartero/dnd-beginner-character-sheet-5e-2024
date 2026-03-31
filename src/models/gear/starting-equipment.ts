@@ -25,6 +25,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
       icon: weapon.icon,
       damage: weapon.damage,
       properties: weapon.properties,
+      equipped: true,
       ...(quantity > 1 ? { quantity } : {}),
     };
   }
@@ -35,6 +36,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
       type: armor.category === "shield" ? "shield" : "armor",
       icon: armor.icon,
       ac: armor.baseAc,
+      equipped: true,
       ...(quantity > 1 ? { quantity } : {}),
     };
   }

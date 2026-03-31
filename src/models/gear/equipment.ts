@@ -14,4 +14,5 @@ export type Equipment = {
   icon?: string;
   properties?: string[];
   quantity?: number;
+  equipped?: boolean;
 };
