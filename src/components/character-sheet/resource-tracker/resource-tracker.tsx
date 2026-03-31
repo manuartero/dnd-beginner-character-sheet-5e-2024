@@ -158,7 +158,7 @@ export function ResourceTracker({
   }
 
   return (
-    <Section accent title="Resources">
+    <Section variant="accent" title="Resources">
       <div className={styles.rows}>
         <ResourceRow
           resetType="short-rest"

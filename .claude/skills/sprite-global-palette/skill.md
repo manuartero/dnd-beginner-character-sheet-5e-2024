@@ -1,16 +1,16 @@
 ---
-name: reduce-global-palette
+name: sprite-global-palette
 description: Iteratively reduce the global cross-sprite palette one color at a time. Use when the user wants to unify colors across character sprites or shrink the main palette.
 version: 1.1.0
 ---
 
-# Reduce Global Palette
+# Sprite Global Palette
 
 ## When to use this skill
 When the user wants to shrink the total number of unique colors across all sprites.
 Always process **one color at a time** — find one candidate, apply one merge, verify, done.
 
-Invoke with: `/reduce-global-palette`
+Invoke with: `/sprite-global-palette`
 
 ---
 

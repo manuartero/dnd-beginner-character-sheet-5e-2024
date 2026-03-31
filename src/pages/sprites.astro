@@ -1,0 +1,61 @@
+---
+import "src/styles/global.css";
+import { Section } from "elements";
+import { SpritePalette } from "src/components/sprites/sprite-palette";
+import { readFileSync } from "fs";
+import { resolve } from "path";
+
+const SPRITES = ["barbarian", "druid", "fighter", "rogue", "sorcerer", "wizard"];
+
+const palettes = Object.fromEntries(
+  SPRITES.map((name) => [
+    name,
+    JSON.parse(readFileSync(resolve("public/assets/sprites", `${name}-palette.json`), "utf-8")),
+  ])
+);
+
+const globalPalette = JSON.parse(
+  readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
+);
+
+function readPngSize(filePath: string): { width: number; height: number } {
+  const buf = readFileSync(filePath);
+  return {
+    width: buf.readUInt32BE(16),
+    height: buf.readUInt32BE(20),
+  };
+}
+
+const spriteSizes = Object.fromEntries(
+  SPRITES.map((name) => [
+    name,
+    readPngSize(resolve("public/assets/sprites", `${name}.png`)),
+  ])
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sprites Showcase</title>
+  </head>
+  <body>
+    <div style="padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-md);">
+      {SPRITES.map((name) => (
+        <Section title={name} variant="white-bg">
+          <img
+            src={`/assets/sprites/${name}_4x.png`}
+            alt={name}
+            style="image-rendering: pixelated; display: block; margin-bottom: var(--space-sm);"
+          />
+          <p style="font-size: 12px; color: var(--color-muted, #888); margin-bottom: var(--space-md);">
+            {spriteSizes[name].width}×{spriteSizes[name].height}px
+          </p>
+          <SpritePalette colors={palettes[name]} globalPalette={globalPalette} client:load />
+        </Section>
+      ))}
+    </div>
+  </body>
+</html>
