@@ -9,7 +9,7 @@
 import { execSync } from "node:child_process";
 import { copyFileSync, mkdtempSync, renameSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, extname, join } from "node:path";
+import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { extractPalette, updateMainPalette } from "./palette.mjs";

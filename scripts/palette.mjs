@@ -2,7 +2,7 @@
 // Sprite file resolution and ImageMagick palette extraction.
 
 import { execSync } from "node:child_process";
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, extname, join } from "node:path";
 import { toHex } from "./rgb.mjs";
 
