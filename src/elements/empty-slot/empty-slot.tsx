@@ -6,7 +6,7 @@ type EmptySlotProps = {
 
 export function EmptySlot({ label }: EmptySlotProps) {
   return (
-    <div className={styles.slot}>
+    <div className={styles.slot} role="region" aria-label={label}>
       <span className={styles.label}>{label}</span>
     </div>
   );

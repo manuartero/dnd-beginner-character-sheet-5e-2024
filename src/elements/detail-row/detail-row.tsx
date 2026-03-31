@@ -9,9 +9,9 @@ type DetailRowProps = {
 
 export function DetailRow({ label, children }: DetailRowProps) {
   return (
-    <div className={styles.row}>
-      <span className={styles.label}>{label}</span>
-      <span>{children}</span>
-    </div>
+    <dl className={styles.row}>
+      <dt className={styles.label}>{label}</dt>
+      <dd>{children}</dd>
+    </dl>
   );
 }
