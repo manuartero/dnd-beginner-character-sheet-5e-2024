@@ -1,4 +1,4 @@
-import { TileRow } from "src/elements/tile-row/tile-row";
+import { TileRow } from "elements";
 import styles from "./score-picker.module.css";
 
 type ScorePickerProps = {

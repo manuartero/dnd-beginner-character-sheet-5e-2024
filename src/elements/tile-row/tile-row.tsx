@@ -9,12 +9,21 @@ export type TileItem = {
   badge?: string;
 };
 
-type TileRowProps = {
+type ReadOnlyTileRowProps = {
   items: TileItem[];
-  onPick?: (key: string) => void;
-  onUnpick?: (key: string) => void;
   columns?: number;
+  onPick?: never;
+  onUnpick?: never;
 };
+
+type InteractiveTileRowProps = {
+  items: TileItem[];
+  columns?: number;
+  onPick: (key: string) => void;
+  onUnpick?: (key: string) => void;
+};
+
+type TileRowProps = ReadOnlyTileRowProps | InteractiveTileRowProps;
 
 export function TileRow({ items, onPick, columns, onUnpick }: TileRowProps) {
   const style = columns

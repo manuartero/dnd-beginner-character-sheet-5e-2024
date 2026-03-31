@@ -56,6 +56,18 @@ describe("<ScorePicker />", () => {
     expect(onPick).toHaveBeenCalledWith(null);
   });
 
+  it("renders available values in descending order", () => {
+    render(
+      <ScorePicker
+        availableValues={[8, 15, 13, 14]}
+        selectedValue={null}
+        onPick={vi.fn()}
+      />,
+    );
+    const buttons = screen.getAllByRole("button");
+    expect(buttons.map((b) => b.textContent)).toEqual(["15", "14", "13", "8"]);
+  });
+
   it("renders no buttons when availableValues is empty", () => {
     render(
       <ScorePicker

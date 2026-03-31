@@ -56,8 +56,8 @@ describe("computeArmorClass()", () => {
     {
       // light armor + shield: full DEX modifier applies
       equipment: [
-        { type: "armor", name: "Leather Armor" },
-        { type: "shield", name: "Shield" },
+        { type: "armor", name: "Leather Armor", equipped: true },
+        { type: "shield", name: "Shield", equipped: true },
       ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
@@ -71,7 +71,7 @@ describe("computeArmorClass()", () => {
     },
     {
       // heavy armor: DEX modifier is ignored
-      equipment: [{ type: "armor", name: "Chain Mail" }],
+      equipment: [{ type: "armor", name: "Chain Mail", equipped: true }],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
@@ -80,13 +80,25 @@ describe("computeArmorClass()", () => {
     },
     {
       // medium armor: DEX modifier capped at +2
-      equipment: [{ type: "armor", name: "Scale Mail" }],
+      equipment: [{ type: "armor", name: "Scale Mail", equipped: true }],
       abilityScores: { str: 10, dex: 18, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
         lines: [
           { label: "Scale Mail", value: "14" },
           { label: "DEX modifier (max +2)", value: "+2" },
+        ],
+      },
+    },
+    {
+      // unequipped armor: treated as no armor
+      equipment: [{ type: "armor", name: "Chain Mail", equipped: false }],
+      abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
+      expected: {
+        total: 12,
+        lines: [
+          { label: "No armor", value: "10" },
+          { label: "DEX modifier", value: "+2" },
         ],
       },
     },

@@ -21,6 +21,17 @@ describe("<TileRow /> — read-only", () => {
     render(<TileRow items={ITEMS} />);
     expect(screen.queryAllByRole("button")).toHaveLength(0);
   });
+
+  it("renders badge text in read-only mode", () => {
+    const items: TileItem[] = [{ key: "str", label: "STR", badge: "+2" }];
+    render(<TileRow items={items} />);
+    expect(screen.getByText("+2")).toBeInTheDocument();
+  });
+
+  it("renders selected item in read-only mode", () => {
+    render(<TileRow items={ITEMS} />);
+    expect(screen.getByText("d10")).toBeInTheDocument();
+  });
 });
 
 describe("<TileRow /> — interactive", () => {
@@ -77,6 +88,13 @@ describe("<TileRow /> — interactive", () => {
     render(<TileRow items={ITEMS} onPick={vi.fn()} onUnpick={onUnpick} />);
     fireEvent.contextMenu(screen.getByRole("button", { name: "d6" }));
     expect(onUnpick).toHaveBeenCalledWith("d6");
+  });
+
+  it("does not call onPick on right-click when onUnpick is not provided", () => {
+    const onPick = vi.fn();
+    render(<TileRow items={ITEMS} onPick={onPick} />);
+    fireEvent.contextMenu(screen.getByRole("button", { name: "d6" }));
+    expect(onPick).not.toHaveBeenCalled();
   });
 
   it("does not call onUnpick on right-click of dimmed item", () => {
