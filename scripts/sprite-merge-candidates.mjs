@@ -5,8 +5,8 @@
 // Usage:
 //   node scripts/sprite-merge-candidates.mjs [--top <N>] [--max-distance <N>]
 
-import { readdirSync, readFileSync } from "node:fs";
-import { basename, dirname, join } from "node:path";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { hexToRgb } from "./rgb.mjs";
@@ -23,14 +23,20 @@ function rgbDistance(hexA, hexB) {
 }
 
 function loadAllPalettes(dir) {
-  const files = readdirSync(dir).filter(
-    (f) => f.endsWith("-palette.json") && f !== "main.palette.json",
+  const entries = JSON.parse(
+    readFileSync(join(dir, "main.palette.json"), "utf8"),
   );
-  return files.map((f) => {
-    const sprite = basename(f, "-palette.json");
-    const entries = JSON.parse(readFileSync(join(dir, f), "utf8"));
-    return { sprite, colors: entries.map((e) => e.hex) };
-  });
+  const spriteMap = new Map();
+  for (const { hex, sprites } of entries) {
+    for (const sprite of Object.keys(sprites)) {
+      if (!spriteMap.has(sprite)) spriteMap.set(sprite, []);
+      spriteMap.get(sprite).push(hex);
+    }
+  }
+  return [...spriteMap.entries()].map(([sprite, colors]) => ({
+    sprite,
+    colors,
+  }));
 }
 
 const { values } = parseArgs({

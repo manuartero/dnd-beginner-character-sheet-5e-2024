@@ -9,7 +9,6 @@ export { ActionChip } from "./action-chip/action-chip";
 export { ChipGrid } from "./chip-grid/chip-grid";
 export { DetailRow } from "./detail-row/detail-row";
 export { EmptySlot } from "./empty-slot/empty-slot";
-export { GifPlayer } from "./gif-player/gif-player";
 export { InlineConfirm } from "./inline-confirm/inline-confirm";
 export { ResourceChip } from "./resource-chip/resource-chip";
 export { RetroRadio } from "./retro-radio/retro-radio";

@@ -7,12 +7,12 @@
 // --merge applies first; --target fills the rest with greedy RGB-distance merges.
 
 import { execSync } from "node:child_process";
-import { copyFileSync, mkdtempSync, renameSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdtempSync, renameSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, extname, join } from "node:path";
+import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { extractPalette } from "./palette.mjs";
+import { extractPalette, updateMainPalette } from "./palette.mjs";
 import { hexToRgb, normalize } from "./rgb.mjs";
 
 export function rgbDistance(a, b) {
@@ -160,11 +160,9 @@ if (isMain) {
   renameSync(tmpFile, inputFile);
 
   const newPalette = extractPalette(inputFile);
-  const name = basename(inputFile, extname(inputFile));
-  const paletteOut = join(dirname(inputFile), `${name}-palette.json`);
-  writeFileSync(paletteOut, `${JSON.stringify(newPalette, null, 2)}\n`);
+  updateMainPalette(inputFile, newPalette);
 
   console.log(
-    `\nDone. Wrote ${inputFile} and ${paletteOut}  (${newPalette.length} colors)`,
+    `\nDone. Wrote ${inputFile} and main.palette.json  (${newPalette.length} colors)`,
   );
 }

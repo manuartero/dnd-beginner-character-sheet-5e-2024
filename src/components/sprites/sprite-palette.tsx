@@ -6,7 +6,7 @@ type PaletteColor = {
 
 type GlobalPaletteEntry = {
   hex: string;
-  sprites: string[];
+  sprites: Record<string, number>;
 };
 
 type SpritePaletteProps = {
@@ -25,8 +25,8 @@ export function SpritePalette({ colors, globalPalette }: SpritePaletteProps) {
       ariaLabel="color palette"
       items={colors.map((color, index) => ({ index, item: color }))}
       renderItem={(color) => {
-        const sharedWith = globalMap.get(color.hex.toUpperCase()) ?? [];
-        const isShared = sharedWith.length > 1;
+        const sharedWith = globalMap.get(color.hex.toUpperCase()) ?? {};
+        const isShared = Object.keys(sharedWith).length > 1;
 
         return (
           <>
@@ -42,7 +42,7 @@ export function SpritePalette({ colors, globalPalette }: SpritePaletteProps) {
             <span className={rowListStyles.name}>{color.hex}</span>
             {isShared ? (
               <span style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-                {sharedWith.map((sprite) => (
+                {Object.keys(sharedWith).map((sprite) => (
                   <span
                     key={sprite}
                     style={{

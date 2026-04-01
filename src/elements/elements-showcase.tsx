@@ -7,7 +7,6 @@ import {
   ChipGrid,
   DetailRow,
   EmptySlot,
-  GifPlayer,
   InlineConfirm,
   ResourceChip,
   RetroRadio,
@@ -375,13 +374,6 @@ export function ElementsShowcase() {
               ariaLabel="Spell Slot 1st: spent"
             />
           </div>
-        </ShowcaseBlock>
-
-        <ShowcaseBlock name="GifPlayer">
-          <GifPlayer
-            src="/assets/animations/druid/druid-spell.gif"
-            alt="Druid casting a spell"
-          />
         </ShowcaseBlock>
 
         <ShowcaseBlock name="ScreenFlash">

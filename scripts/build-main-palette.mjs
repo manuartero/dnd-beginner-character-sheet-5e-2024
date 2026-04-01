@@ -1,12 +1,12 @@
 // build-main-palette.mjs
-// Combine all per-sprite palette JSONs into a single main.palette.json.
+// Rebuild main.palette.json by reading all sprite PNGs directly.
 //
 // Usage:
 //   node scripts/build-main-palette.mjs [--input <dir>] [--output <file>]
 
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
+import { extractPalette, resolveFiles } from "./palette.mjs";
 
 const { values } = parseArgs({
   args: process.argv.slice(2),
@@ -19,26 +19,23 @@ const { values } = parseArgs({
   },
 });
 
-const dir = values.input;
-const outputFile = values.output;
+const spriteFiles = resolveFiles(values.input);
 
-const paletteFiles = readdirSync(dir)
-  .filter((f) => f.endsWith("-palette.json"))
-  .map((f) => join(dir, f));
-
-/** @type {Map<string, { sprites: string[], totalPixels: number }>} */
+/** @type {Map<string, { sprites: Record<string, number>, totalPixels: number }>} */
 const combined = new Map();
 
-for (const file of paletteFiles) {
-  const spriteName = basename(file, "-palette.json");
-  const entries = JSON.parse(readFileSync(file, "utf8"));
-  for (const { hex, pixels } of entries) {
+for (const file of spriteFiles) {
+  const spriteName = file.replace(/.*\//, "").replace(/\.png$/, "");
+  for (const { hex, pixels } of extractPalette(file)) {
     if (combined.has(hex)) {
       const entry = combined.get(hex);
-      entry.sprites.push(spriteName);
+      entry.sprites[spriteName] = pixels;
       entry.totalPixels += pixels;
     } else {
-      combined.set(hex, { sprites: [spriteName], totalPixels: pixels });
+      combined.set(hex, {
+        sprites: { [spriteName]: pixels },
+        totalPixels: pixels,
+      });
     }
   }
 }
@@ -47,7 +44,7 @@ const result = [...combined.entries()]
   .map(([hex, { sprites, totalPixels }]) => ({ hex, sprites, totalPixels }))
   .sort((a, b) => b.totalPixels - a.totalPixels);
 
-writeFileSync(outputFile, `${JSON.stringify(result, null, 2)}\n`);
+writeFileSync(values.output, `${JSON.stringify(result, null, 2)}\n`);
 console.log(
-  `Wrote ${outputFile}  (${result.length} unique colors across ${paletteFiles.length} sprites)`,
+  `Wrote ${values.output}  (${result.length} unique colors across ${spriteFiles.length} sprites)`,
 );

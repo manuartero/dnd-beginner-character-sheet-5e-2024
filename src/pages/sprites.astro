@@ -7,15 +7,15 @@ import { resolve } from "path";
 
 const SPRITES = ["barbarian", "druid", "rogue", "sorcerer", "wizard"];
 
+const globalPalette = JSON.parse(
+  readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
+);
+
 const palettes = Object.fromEntries(
   SPRITES.map((name) => [
     name,
-    JSON.parse(readFileSync(resolve("public/assets/sprites", `${name}-palette.json`), "utf-8")),
+    globalPalette.filter((e: { sprites: Record<string, number> }) => name in e.sprites),
   ])
-);
-
-const globalPalette = JSON.parse(
-  readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
 );
 
 function readPngSize(filePath: string): { width: number; height: number } {

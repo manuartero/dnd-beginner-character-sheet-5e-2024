@@ -6,12 +6,12 @@
 //   node scripts/remove-background.mjs [--input <file-or-dir>] [--dry-run]
 
 import { execSync } from "node:child_process";
-import { copyFileSync, mkdtempSync, renameSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdtempSync, renameSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, extname, join } from "node:path";
+import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { extractPalette, resolveFiles } from "./palette.mjs";
+import { extractPalette, resolveFiles, updateMainPalette } from "./palette.mjs";
 
 export function luminance(hex) {
   const h = hex.replace("#", "");
@@ -71,11 +71,13 @@ if (isMain) {
     args: process.argv.slice(2),
     options: {
       input: { type: "string", default: "public/assets/sprites" },
+      color: { type: "string" },
       "dry-run": { type: "boolean", default: false },
     },
   });
 
   const dryRun = values["dry-run"];
+  const forcedColor = values.color ?? null;
 
   for (const file of resolveFiles(values.input)) {
     const palette = extractPalette(file);
@@ -85,10 +87,6 @@ if (isMain) {
       console.log("  no opaque pixels — skipped.");
       continue;
     }
-
-    const borderColor = palette.reduce((darkest, c) =>
-      luminance(c.hex) < luminance(darkest.hex) ? c : darkest,
-    ).hex;
 
     const w = Number(
       execSync(`magick identify -format "%w" "${file}"`, {
@@ -105,7 +103,6 @@ if (isMain) {
     );
 
     console.log(`\n${file}`);
-    console.log(`  border color: ${borderColor}`);
 
     if (seeds.length === 0) {
       console.log("  background already transparent — skipped.");
@@ -121,19 +118,39 @@ if (isMain) {
     const tmpFile = join(tmpDir, basename(file));
     copyFileSync(file, tmpFile);
 
-    const draws = seeds
-      .map(([x, y]) => `-draw "color ${x},${y} filltoborder"`)
-      .join(" ");
-    execSync(
-      `magick "${tmpFile}" -alpha set -bordercolor "${borderColor}" -fill none ${draws} PNG32:"${tmpFile}"`,
-    );
+    let draws;
+    if (forcedColor) {
+      // floodfill: spreads from seed points replacing pixels that match the
+      // specified color (within fuzz). Safe for sprites with near-white details.
+      console.log(`  background color: ${forcedColor} (forced)`);
+      draws = seeds
+        .map(([x, y]) => `-draw "color ${x},${y} floodfill"`)
+        .join(" ");
+      execSync(
+        `magick "${tmpFile}" -alpha set -fuzz 15% -fill none ${draws} PNG32:"${tmpFile}"`,
+      );
+    } else {
+      // filltoborder: spreads from seed points stopping at the darkest color
+      // (outline). Works for sprites without near-white/near-background details.
+      const borderColor = palette.reduce((darkest, c) =>
+        luminance(c.hex) < luminance(darkest.hex) ? c : darkest,
+      ).hex;
+      console.log(`  border color: ${borderColor} (auto-detected)`);
+      draws = seeds
+        .map(([x, y]) => `-draw "color ${x},${y} filltoborder"`)
+        .join(" ");
+      execSync(
+        `magick "${tmpFile}" -alpha set -bordercolor "${borderColor}" -fill none ${draws} PNG32:"${tmpFile}"`,
+      );
+    }
+
     renameSync(tmpFile, file);
 
     const newPalette = extractPalette(file);
-    const name = basename(file, extname(file));
-    const paletteOut = join(dirname(file), `${name}-palette.json`);
-    writeFileSync(paletteOut, `${JSON.stringify(newPalette, null, 2)}\n`);
+    updateMainPalette(file, newPalette);
 
-    console.log(`  done → ${newPalette.length} colors (palette JSON updated)`);
+    console.log(
+      `  done → ${newPalette.length} colors (main.palette.json updated)`,
+    );
   }
 }
