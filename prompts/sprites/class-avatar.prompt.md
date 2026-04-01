@@ -42,6 +42,9 @@ Palette order: **darkest → dark → light → lightest**
 
 - Druid (2026-03-28): v1 accepted. Original prompt recovered post-hoc.
 
+- Druid (2026-03-31): v2 — explicit hood + no neon greens. Known v1 issues: hood not rendered, light colors came out neon lime ("nano banana") instead of muted sage.
+  > A druid character sprite in Game Boy pixel art style, 4 colors only using deep forest green palette (#0f380f #306230 #8bac0f #9bbc0f), 32x32 pixels, front-facing idle pose, stocky overweight build, HOODED cloak with hood UP covering the head, leaf and vine details on cloak hem, wooden staff topped with a small glowing orb, owl or frog sitting on shoulder, chunky pixelated outlines, SOLID BRIGHT MAGENTA background (#FF00FF), retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view). IMPORTANT: all 4 colors must be dark forest greens — the lightest shade (#9bbc0f) is a muted olive-sage, NOT neon yellow, NOT lime green, NOT banana yellow.
+
 - Fighter (2026-03-29): v1 accepted.
   > A tiny female Fighter character sprite in Game Boy pixel art style, 4 colors only using classic Game Boy Fighter palette (#040408 #202838 #607080 #c8d0d8), 32x32 pixels, front-facing idle pose, half-plate armor with visible leather pauldrons and bracers, open-faced helmet showing her face, longsword in hand, kite shield on arm, none — a single battle-worn scar, chunky pixelated outlines, no background, transparent background, retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
 
