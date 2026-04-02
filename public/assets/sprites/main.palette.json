@@ -2,51 +2,59 @@
   {
     "hex": "#030307",
     "sprites": {
-      "barbarian": 1256,
       "druid": 624,
       "rogue": 1303,
       "sorcerer": 856,
       "warlock": 1611,
-      "wizard": 1383
+      "wizard": 1383,
+      "barbarian": 1256
     },
     "totalPixels": 7033
   },
   {
     "hex": "#EA9364",
     "sprites": {
-      "barbarian": 510,
       "sorcerer": 617,
       "warlock": 369,
-      "wizard": 251
+      "wizard": 251,
+      "barbarian": 510
     },
     "totalPixels": 1747
   },
   {
     "hex": "#EFB88B",
     "sprites": {
-      "barbarian": 288,
       "rogue": 10,
       "sorcerer": 669,
-      "wizard": 722
+      "wizard": 722,
+      "barbarian": 288
     },
     "totalPixels": 1689
   },
   {
     "hex": "#3B1F17",
     "sprites": {
-      "barbarian": 348,
       "druid": 72,
       "rogue": 436,
       "warlock": 548,
-      "wizard": 188
+      "wizard": 188,
+      "barbarian": 348
     },
     "totalPixels": 1592
   },
   {
+    "hex": "#A3541A",
+    "sprites": {
+      "warlock": 844,
+      "barbarian": 390
+    },
+    "totalPixels": 1234
+  },
+  {
     "hex": "#832B10",
     "sprites": {
-      "barbarian": 787,
-      "rogue": 402
+      "rogue": 402,
+      "barbarian": 787
     },
     "totalPixels": 1189
   },
@@ -56,13 +64,6 @@
       "sorcerer": 1078
     },
     "totalPixels": 1078
-  },
-  {
-    "hex": "#A3541A",
-    "sprites": {
-      "warlock": 844
-    },
-    "totalPixels": 844
   },
   {
     "hex": "#326EC2",
@@ -84,8 +85,8 @@
   {
     "hex": "#BA724D",
     "sprites": {
-      "barbarian": 284,
-      "sorcerer": 231
+      "sorcerer": 231,
+      "barbarian": 284
     },
     "totalPixels": 515
   },
@@ -109,13 +110,6 @@
       "sorcerer": 409
     },
     "totalPixels": 409
-  },
-  {
-    "hex": "#B64826",
-    "sprites": {
-      "barbarian": 390
-    },
-    "totalPixels": 390
   },
   {
     "hex": "#21491F",
@@ -198,8 +192,8 @@
   {
     "hex": "#FFFFFE",
     "sprites": {
-      "barbarian": 16,
-      "druid": 12
+      "druid": 12,
+      "barbarian": 16
     },
     "totalPixels": 28
   }
