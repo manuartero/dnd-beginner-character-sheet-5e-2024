@@ -18,19 +18,19 @@
     "totalPixels": 3168
   },
   {
+    "hex": "#050311",
+    "sprites": {
+      "warlock-copy": 1258,
+      "warlock": 1611
+    },
+    "totalPixels": 2869
+  },
+  {
     "hex": "#8E8E8D",
     "sprites": {
       "warlock-copy": 2599
     },
     "totalPixels": 2599
-  },
-  {
-    "hex": "#050311",
-    "sprites": {
-      "warlock-copy": 1258,
-      "warlock": 1262
-    },
-    "totalPixels": 2520
   },
   {
     "hex": "#EFB88B",
@@ -101,14 +101,6 @@
     "totalPixels": 793
   },
   {
-    "hex": "#2A103C",
-    "sprites": {
-      "warlock-copy": 349,
-      "warlock": 349
-    },
-    "totalPixels": 698
-  },
-  {
     "hex": "#162F6E",
     "sprites": {
       "rogue": 262,
@@ -174,6 +166,13 @@
       "warlock": 175
     },
     "totalPixels": 350
+  },
+  {
+    "hex": "#2A103C",
+    "sprites": {
+      "warlock-copy": 349
+    },
+    "totalPixels": 349
   },
   {
     "hex": "#21491F",
