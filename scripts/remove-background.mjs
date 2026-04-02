@@ -98,16 +98,7 @@ if (isMain) {
         encoding: "utf8",
       }).trim(),
     );
-    const seeds = borderSeedPoints(w, h).filter(
-      ([x, y]) => pixelAlpha(file, x, y) > 0.5,
-    );
-
     console.log(`\n${file}`);
-
-    if (seeds.length === 0) {
-      console.log("  background already transparent — skipped.");
-      continue;
-    }
 
     if (dryRun) {
       console.log("  [dry-run] skipped.");
@@ -118,25 +109,33 @@ if (isMain) {
     const tmpFile = join(tmpDir, basename(file));
     copyFileSync(file, tmpFile);
 
-    let draws;
     if (forcedColor) {
-      // floodfill: spreads from seed points replacing pixels that match the
-      // specified color (within fuzz). Safe for sprites with near-white details.
+      // Global exact-color replacement: since the background color is a
+      // deliberately chosen unique color (e.g. magenta #FF00FF), we can safely
+      // replace every matching pixel with transparency — no flood-fill needed.
+      // Flood-fill from border seeds was wrong here: on sprites that fill most
+      // of the canvas, border seeds land on sprite pixels and eat the artwork.
       console.log(`  background color: ${forcedColor} (forced)`);
-      draws = seeds
-        .map(([x, y]) => `-draw "color ${x},${y} floodfill"`)
-        .join(" ");
       execSync(
-        `magick "${tmpFile}" -alpha set -fuzz 15% -fill none ${draws} PNG32:"${tmpFile}"`,
+        `magick "${tmpFile}" -alpha set -fuzz 5% -transparent "${forcedColor}" PNG32:"${tmpFile}"`,
       );
     } else {
       // filltoborder: spreads from seed points stopping at the darkest color
       // (outline). Works for sprites without near-white/near-background details.
+      const seeds = borderSeedPoints(w, h).filter(
+        ([x, y]) => pixelAlpha(file, x, y) > 0.5,
+      );
+
+      if (seeds.length === 0) {
+        console.log("  background already transparent — skipped.");
+        continue;
+      }
+
       const borderColor = palette.reduce((darkest, c) =>
         luminance(c.hex) < luminance(darkest.hex) ? c : darkest,
       ).hex;
       console.log(`  border color: ${borderColor} (auto-detected)`);
-      draws = seeds
+      const draws = seeds
         .map(([x, y]) => `-draw "color ${x},${y} filltoborder"`)
         .join(" ");
       execSync(

@@ -47,6 +47,8 @@
     "sprite:flip": "node scripts/flip-sprite.mjs",
     "sprite:build-palette": "node scripts/build-main-palette.mjs",
     "sprite:candidates": "node scripts/sprite-merge-candidates.mjs",
+    "sprite:replace": "node scripts/global-replace-color.mjs",
+    "sprite:analyze": "node scripts/analyze-palette.mjs",
     "blue-ball": "pnpm lint && pnpm test && pnpm build",
     "postblue-ball": "pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },

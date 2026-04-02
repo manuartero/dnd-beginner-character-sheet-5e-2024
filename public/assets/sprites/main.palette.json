@@ -2,61 +2,63 @@
   {
     "hex": "#030307",
     "sprites": {
-      "druid": 624,
-      "rogue": 1303,
+      "barbarian": 1256,
+      "cleric": 1138,
+      "rogue": 1281,
       "sorcerer": 856,
-      "warlock": 1611,
-      "wizard": 1383,
-      "barbarian": 1256
+      "warlock": 1590,
+      "wizard": 1383
     },
-    "totalPixels": 7033
-  },
-  {
-    "hex": "#EA9364",
-    "sprites": {
-      "sorcerer": 617,
-      "warlock": 369,
-      "wizard": 251,
-      "barbarian": 510
-    },
-    "totalPixels": 1747
-  },
-  {
-    "hex": "#EFB88B",
-    "sprites": {
-      "rogue": 10,
-      "sorcerer": 669,
-      "wizard": 722,
-      "barbarian": 288
-    },
-    "totalPixels": 1689
-  },
-  {
-    "hex": "#3B1F17",
-    "sprites": {
-      "druid": 72,
-      "rogue": 436,
-      "warlock": 548,
-      "wizard": 188,
-      "barbarian": 348
-    },
-    "totalPixels": 1592
+    "totalPixels": 7504
   },
   {
     "hex": "#A3541A",
     "sprites": {
-      "warlock": 844,
-      "barbarian": 390
+      "barbarian": 390,
+      "cleric": 855,
+      "warlock": 847
     },
-    "totalPixels": 1234
+    "totalPixels": 2092
+  },
+  {
+    "hex": "#EA9364",
+    "sprites": {
+      "barbarian": 510,
+      "cleric": 333,
+      "sorcerer": 617,
+      "warlock": 306,
+      "wizard": 251
+    },
+    "totalPixels": 2017
+  },
+  {
+    "hex": "#EFB88B",
+    "sprites": {
+      "barbarian": 288,
+      "cleric": 70,
+      "rogue": 9,
+      "sorcerer": 669,
+      "wizard": 722
+    },
+    "totalPixels": 1758
+  },
+  {
+    "hex": "#46240B",
+    "sprites": {
+      "barbarian": 348,
+      "rogue": 432,
+      "warlock": 569,
+      "wizard": 188
+    },
+    "totalPixels": 1537
   },
   {
     "hex": "#832B10",
     "sprites": {
-      "rogue": 402,
-      "barbarian": 787
+      "barbarian": 787,
+      "rogue": 409
     },
-    "totalPixels": 1189
+    "totalPixels": 1196
   },
   {
     "hex": "#B32631",
@@ -64,6 +66,13 @@
       "sorcerer": 1078
     },
     "totalPixels": 1078
+  },
+  {
+    "hex": "#4F3307",
+    "sprites": {
+      "cleric": 846
+    },
+    "totalPixels": 846
   },
   {
     "hex": "#326EC2",
@@ -76,33 +85,36 @@
   {
     "hex": "#162F6E",
     "sprites": {
-      "rogue": 262,
-      "warlock": 83,
+      "rogue": 268,
+      "warlock": 86,
       "wizard": 424
     },
-    "totalPixels": 769
+    "totalPixels": 778
+  },
+  {
+    "hex": "#CD9419",
+    "sprites": {
+      "cleric": 641
+    },
+    "totalPixels": 641
+  },
+  {
+    "hex": "#F9E8DC",
+    "sprites": {
+      "barbarian": 16,
+      "cleric": 466,
+      "rogue": 18,
+      "sorcerer": 30
+    },
+    "totalPixels": 530
   },
   {
     "hex": "#BA724D",
     "sprites": {
-      "sorcerer": 231,
-      "barbarian": 284
+      "barbarian": 284,
+      "sorcerer": 231
     },
     "totalPixels": 515
-  },
-  {
-    "hex": "#8BAC0F",
-    "sprites": {
-      "druid": 494
-    },
-    "totalPixels": 494
-  },
-  {
-    "hex": "#38692C",
-    "sprites": {
-      "druid": 487
-    },
-    "totalPixels": 487
   },
   {
     "hex": "#6B1228",
@@ -112,20 +124,6 @@
     "totalPixels": 409
   },
   {
-    "hex": "#21491F",
-    "sprites": {
-      "druid": 279
-    },
-    "totalPixels": 279
-  },
-  {
-    "hex": "#A744DF",
-    "sprites": {
-      "warlock": 175
-    },
-    "totalPixels": 175
-  },
-  {
     "hex": "#D9CAB5",
     "sprites": {
       "sorcerer": 172
@@ -133,11 +131,18 @@
     "totalPixels": 172
   },
   {
+    "hex": "#A744DF",
+    "sprites": {
+      "warlock": 166
+    },
+    "totalPixels": 166
+  },
+  {
     "hex": "#833C50",
     "sprites": {
-      "rogue": 156
+      "rogue": 155
     },
-    "totalPixels": 156
+    "totalPixels": 155
   },
   {
     "hex": "#B6A393",
@@ -147,54 +152,17 @@
     "totalPixels": 91
   },
   {
+    "hex": "#E7A8F9",
+    "sprites": {
+      "warlock": 72
+    },
+    "totalPixels": 72
+  },
+  {
     "hex": "#848493",
     "sprites": {
       "rogue": 60
     },
     "totalPixels": 60
-  },
-  {
-    "hex": "#A5E270",
-    "sprites": {
-      "druid": 54
-    },
-    "totalPixels": 54
-  },
-  {
-    "hex": "#7C652E",
-    "sprites": {
-      "druid": 51
-    },
-    "totalPixels": 51
-  },
-  {
-    "hex": "#F3EBE0",
-    "sprites": {
-      "rogue": 18,
-      "sorcerer": 30
-    },
-    "totalPixels": 48
-  },
-  {
-    "hex": "#E7A8F9",
-    "sprites": {
-      "warlock": 43
-    },
-    "totalPixels": 43
-  },
-  {
-    "hex": "#5A8327",
-    "sprites": {
-      "druid": 41
-    },
-    "totalPixels": 41
-  },
-  {
-    "hex": "#FFFFFE",
-    "sprites": {
-      "druid": 12,
-      "barbarian": 16
-    },
-    "totalPixels": 28
   }
 ]

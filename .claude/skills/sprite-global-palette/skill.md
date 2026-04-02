@@ -1,7 +1,7 @@
 ---
 name: sprite-global-palette
 description: Iteratively reduce the global cross-sprite palette one color at a time. Use when the user wants to unify colors across character sprites or shrink the main palette.
-version: 1.1.0
+version: 2.0.0
 ---
 
 # Sprite Global Palette
@@ -14,49 +14,44 @@ Invoke with: `/sprite-global-palette`
 
 ---
 
-## Phase 1 — Find one color to remove
+## Phase 1 — Analyze the palette
+
+Run both tools to understand the current state:
 
 ```
 pnpm sprite:candidates
+pnpm sprite:analyze
 ```
 
-This prints a ranked table of cross-sprite color pairs sorted by RGB distance (smallest = safest):
+`sprite:candidates` ranks cross-sprite color pairs by RGB distance (lowest = safest merge).
+`sprite:analyze` groups colors by hue family and flags near-duplicate candidates.
 
-```
-dist  replace in    from-hex      →  keep in       into-hex
-9     fighter       #BEC1C8       →  rogue         #B9BBC3
-18    barbarian     #EA9364       →  sorcerer      #EA826A
-...
-```
-
-**Pick the top row** (lowest distance). That is your target.
+**Pick one candidate** — prefer the lowest distance pair from `sprite:candidates`.
 - Distance < 30: safe to apply directly.
 - Distance 30–50: apply and do a visual check before confirming.
 
 ---
 
-## Phase 2 — Remove one color
+## Phase 2 — Apply the merge globally
 
-With the chosen row (`replace-in` sprite, `FROM` hex, `INTO` hex):
+With the chosen `FROM` and `INTO` hex values:
 
-**Step 1 — Apply the merge**
+**Step 1 — Dry run first**
 ```
-pnpm sprite:merge-colors --input public/assets/sprites/<replace-in>.png --merge FROM:INTO
+pnpm sprite:replace --from <FROM> --to <INTO> --dry-run
 ```
+Confirm which sprites are affected and how many pixels will change.
 
-**Step 2 — Upscale and display**
+**Step 2 — Apply**
 ```
-pnpm sprite:upscale --input public/assets/sprites/<replace-in>.png --scale 4
+pnpm sprite:replace --from <FROM> --to <INTO>
 ```
-Read and display `<name>_4x.png`. Confirm no visible change.
+This replaces the color in **every sprite** that contains it, regenerates all `_4x.png` upscales, and rebuilds `main.palette.json` automatically.
 
-**Step 3 — Rebuild main palette**
-```
-pnpm sprite:build-palette
-```
-Report the new total unique color count from `main.palette.json`.
+**Step 3 — Visual check**
+Read and display the `_4x.png` for each affected sprite. Confirm no visible degradation.
 
 ---
 
 ## Done for this round
-One color removed. Stop here and wait for the user to confirm before continuing.
+One color removed globally. Stop here and wait for the user to confirm before continuing.
