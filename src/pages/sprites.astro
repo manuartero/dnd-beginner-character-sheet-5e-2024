@@ -5,7 +5,7 @@ import { SpritePalette } from "src/components/sprites/sprite-palette";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 
-const SPRITES = ["barbarian", "druid", "rogue", "sorcerer", "wizard"];
+const SPRITES = ["barbarian", "druid", "rogue", "sorcerer", "warlock", "wizard"];
 
 const globalPalette = JSON.parse(
   readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
@@ -45,9 +45,16 @@ const spriteSizes = Object.fromEntries(
     <div style="padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-md);">
       {SPRITES.map((name) => (
         <Section title={name} variant="white-bg">
+          <div style="width: 120px; height: 120px; border: 1px solid var(--color-muted, #ccc); display: flex; align-items: center; justify-content: center; background: #f5f5f5; margin-bottom: var(--space-sm);">
+            <img
+              src={`/assets/sprites/${name}.png`}
+              alt={`${name} 1x`}
+              style="image-rendering: pixelated; display: block;"
+            />
+          </div>
           <img
             src={`/assets/sprites/${name}_4x.png`}
-            alt={name}
+            alt={`${name} 4x`}
             style="image-rendering: pixelated; display: block; margin-bottom: var(--space-sm);"
           />
           <p style="font-size: 12px; color: var(--color-muted, #888); margin-bottom: var(--space-md);">
