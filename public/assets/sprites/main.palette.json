@@ -6,31 +6,20 @@
       "druid": 624,
       "rogue": 1303,
       "sorcerer": 856,
+      "warlock": 1611,
       "wizard": 1383
     },
-    "totalPixels": 5422
+    "totalPixels": 7033
   },
   {
-    "hex": "#CBCBCA",
+    "hex": "#EA9364",
     "sprites": {
-      "warlock-copy": 3168
+      "barbarian": 510,
+      "sorcerer": 617,
+      "warlock": 369,
+      "wizard": 251
     },
-    "totalPixels": 3168
-  },
-  {
-    "hex": "#050311",
-    "sprites": {
-      "warlock-copy": 1258,
-      "warlock": 1611
-    },
-    "totalPixels": 2869
-  },
-  {
-    "hex": "#8E8E8D",
-    "sprites": {
-      "warlock-copy": 2599
-    },
-    "totalPixels": 2599
+    "totalPixels": 1747
   },
   {
     "hex": "#EFB88B",
@@ -43,21 +32,15 @@
     "totalPixels": 1689
   },
   {
-    "hex": "#A3541A",
+    "hex": "#3B1F17",
     "sprites": {
-      "warlock-copy": 643,
-      "warlock": 844
+      "barbarian": 348,
+      "druid": 72,
+      "rogue": 436,
+      "warlock": 548,
+      "wizard": 188
     },
-    "totalPixels": 1487
-  },
-  {
-    "hex": "#EA9364",
-    "sprites": {
-      "barbarian": 510,
-      "sorcerer": 617,
-      "wizard": 251
-    },
-    "totalPixels": 1378
+    "totalPixels": 1592
   },
   {
     "hex": "#832B10",
@@ -75,22 +58,11 @@
     "totalPixels": 1078
   },
   {
-    "hex": "#3B1F17",
+    "hex": "#A3541A",
     "sprites": {
-      "barbarian": 348,
-      "druid": 72,
-      "rogue": 436,
-      "wizard": 188
+      "warlock": 844
     },
-    "totalPixels": 1044
-  },
-  {
-    "hex": "#542706",
-    "sprites": {
-      "warlock-copy": 462,
-      "warlock": 548
-    },
-    "totalPixels": 1010
+    "totalPixels": 844
   },
   {
     "hex": "#326EC2",
@@ -104,24 +76,10 @@
     "hex": "#162F6E",
     "sprites": {
       "rogue": 262,
+      "warlock": 83,
       "wizard": 424
     },
-    "totalPixels": 686
-  },
-  {
-    "hex": "#E6903F",
-    "sprites": {
-      "warlock-copy": 279,
-      "warlock": 369
-    },
-    "totalPixels": 648
-  },
-  {
-    "hex": "#888887",
-    "sprites": {
-      "warlock-copy": 560
-    },
-    "totalPixels": 560
+    "totalPixels": 769
   },
   {
     "hex": "#BA724D",
@@ -160,21 +118,6 @@
     "totalPixels": 390
   },
   {
-    "hex": "#A744DF",
-    "sprites": {
-      "warlock-copy": 175,
-      "warlock": 175
-    },
-    "totalPixels": 350
-  },
-  {
-    "hex": "#2A103C",
-    "sprites": {
-      "warlock-copy": 349
-    },
-    "totalPixels": 349
-  },
-  {
     "hex": "#21491F",
     "sprites": {
       "druid": 279
@@ -182,11 +125,11 @@
     "totalPixels": 279
   },
   {
-    "hex": "#855043",
+    "hex": "#A744DF",
     "sprites": {
-      "warlock-copy": 201
+      "warlock": 175
     },
-    "totalPixels": 201
+    "totalPixels": 175
   },
   {
     "hex": "#D9CAB5",
@@ -194,14 +137,6 @@
       "sorcerer": 172
     },
     "totalPixels": 172
-  },
-  {
-    "hex": "#5F1782",
-    "sprites": {
-      "warlock-copy": 83,
-      "warlock": 83
-    },
-    "totalPixels": 166
   },
   {
     "hex": "#833C50",
@@ -216,28 +151,6 @@
       "sorcerer": 91
     },
     "totalPixels": 91
-  },
-  {
-    "hex": "#BE8862",
-    "sprites": {
-      "warlock-copy": 90
-    },
-    "totalPixels": 90
-  },
-  {
-    "hex": "#773A10",
-    "sprites": {
-      "warlock-copy": 86
-    },
-    "totalPixels": 86
-  },
-  {
-    "hex": "#E7A8F9",
-    "sprites": {
-      "warlock-copy": 43,
-      "warlock": 43
-    },
-    "totalPixels": 86
   },
   {
     "hex": "#848493",
@@ -269,6 +182,13 @@
     "totalPixels": 48
   },
   {
+    "hex": "#E7A8F9",
+    "sprites": {
+      "warlock": 43
+    },
+    "totalPixels": 43
+  },
+  {
     "hex": "#5A8327",
     "sprites": {
       "druid": 41
@@ -282,12 +202,5 @@
       "druid": 12
     },
     "totalPixels": 28
-  },
-  {
-    "hex": "#240D09",
-    "sprites": {
-      "warlock-copy": 4
-    },
-    "totalPixels": 4
   }
 ]
