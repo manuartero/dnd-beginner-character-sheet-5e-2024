@@ -1,0 +1,457 @@
+---
+import "src/styles/global.css";
+import { readFileSync } from "fs";
+import { resolve } from "path";
+
+// --- Types ---
+type PaletteEntry = {
+  hex: string;
+  sprites: Record<string, number>;
+  totalPixels: number;
+};
+
+// --- Data ---
+const SPRITES = ["barbarian", "paladin", "rogue", "sorcerer", "warlock", "wizard"];
+const HUE_TOLERANCE = 10;
+
+const palette: PaletteEntry[] = JSON.parse(
+  readFileSync(resolve("public/assets/sprites", "main.palette.json"), "utf-8")
+);
+
+// --- HSL helpers (mirrors scripts/rgb.mjs — can't import Node scripts in Astro) ---
+function hexToHsl(hex: string): [number, number, number] {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return [0, 0, Math.round(l * 100)];
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let hue: number;
+  if (max === r) hue = (g - b) / d + (g < b ? 6 : 0);
+  else if (max === g) hue = (b - r) / d + 2;
+  else hue = (r - g) / d + 4;
+  return [Math.round((hue / 6) * 360), Math.round(s * 100), Math.round(l * 100)];
+}
+
+
+function textColor(hex: string): string {
+  const [, , l] = hexToHsl(hex);
+  return l > 50 ? "#1a1a1a" : "#f0f0f0";
+}
+
+// --- Hue clusters ---
+type Cluster = { centerHue: number; colors: (PaletteEntry & { h: number; s: number; l: number })[] };
+
+const enriched = palette.map((e) => {
+  const [h, s, l] = hexToHsl(e.hex);
+  return { ...e, h, s, l };
+});
+
+const clusters: Cluster[] = [];
+for (const color of [...enriched].sort((a, b) => a.h - b.h)) {
+  const group = clusters.find((g) => {
+    const dh = Math.min(Math.abs(g.centerHue - color.h), 360 - Math.abs(g.centerHue - color.h));
+    return dh <= HUE_TOLERANCE;
+  });
+  if (group) {
+    group.colors.push(color);
+    const toRad = (h: number) => (h * Math.PI) / 180;
+    const sinM = group.colors.reduce((s, c) => s + Math.sin(toRad(c.h)), 0) / group.colors.length;
+    const cosM = group.colors.reduce((s, c) => s + Math.cos(toRad(c.h)), 0) / group.colors.length;
+    const deg = Math.atan2(sinM, cosM) * (180 / Math.PI);
+    group.centerHue = Math.round(deg < 0 ? deg + 360 : deg);
+  } else {
+    clusters.push({ centerHue: color.h, colors: [color] });
+  }
+}
+clusters.sort((a, b) =>
+  b.colors.reduce((s, c) => s + c.totalPixels, 0) -
+  a.colors.reduce((s, c) => s + c.totalPixels, 0)
+);
+for (const g of clusters) g.colors.sort((a, b) => a.l - b.l);
+
+// --- Cluster health ---
+type ClusterHealth = { hueSpread: number };
+
+function clusterHealth(colors: { h: number; s: number; l: number }[]): ClusterHealth {
+  if (colors.length < 2) return { hueSpread: 0 };
+
+  // Hue spread — smallest circular arc containing all hues
+  const sorted = colors.map((c) => c.h).sort((a, b) => a - b);
+  let maxAdjacentGap = 0;
+  for (let i = 1; i < sorted.length; i++) {
+    maxAdjacentGap = Math.max(maxAdjacentGap, sorted[i] - sorted[i - 1]);
+  }
+  const wrapGap = 360 - sorted[sorted.length - 1] + sorted[0];
+  maxAdjacentGap = Math.max(maxAdjacentGap, wrapGap);
+  const hueSpread = 360 - maxAdjacentGap;
+
+  return { hueSpread };
+}
+
+// --- Color distance helpers ---
+function toRgb(hex: string): [number, number, number] {
+  const c = hex.replace("#", "");
+  return [parseInt(c.slice(0, 2), 16), parseInt(c.slice(2, 4), 16), parseInt(c.slice(4, 6), 16)];
+}
+
+function rgbDist(hexA: string, hexB: string): number {
+  const [r1, g1, b1] = toRgb(hexA);
+  const [r2, g2, b2] = toRgb(hexB);
+  return Math.round(Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2));
+}
+
+function toLab(hex: string): [number, number, number] {
+  // RGB → linear RGB (reverse sRGB gamma)
+  const [r, g, b] = toRgb(hex).map((c) => {
+    const s = c / 255;
+    return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  // Linear RGB → XYZ (D65)
+  const x = r * 0.4124564 + g * 0.3575761 + b * 0.1804375;
+  const y = r * 0.2126729 + g * 0.7151522 + b * 0.0721750;
+  const z = r * 0.0193339 + g * 0.1191920 + b * 0.9503041;
+  // XYZ → Lab (D65 reference white)
+  const f = (t: number) => t > 0.008856 ? t ** (1 / 3) : 7.787 * t + 16 / 116;
+  const L = 116 * f(y / 1.00000) - 16;
+  const a = 500 * (f(x / 0.95047) - f(y / 1.00000));
+  const bStar = 200 * (f(y / 1.00000) - f(z / 1.08883));
+  return [L, a, bStar];
+}
+
+function deltaE(hexA: string, hexB: string): number {
+  const [L1, a1, b1] = toLab(hexA);
+  const [L2, a2, b2] = toLab(hexB);
+  return Math.round(Math.sqrt((L1 - L2) ** 2 + (a1 - a2) ** 2 + (b1 - b2) ** 2));
+}
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Palette Health</title>
+    <style>
+      body {
+        font-family: var(--font-body);
+        font-size: var(--font-size-xs);
+        padding: var(--space-md);
+        background: var(--shade-0, #f7ecd3);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+        max-width: none;
+        width: 100%;
+      }
+
+      h1 { font-size: var(--font-size-md); margin: 0; }
+      h2 { font-size: var(--font-size-sm); margin: 0 0 var(--space-sm); }
+
+      .legend {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: var(--space-md);
+      }
+      .legend-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .legend-label {
+        font-family: monospace;
+        font-size: var(--font-size-xs);
+        color: #666;
+        width: 60px;
+        flex-shrink: 0;
+      }
+
+      .section {
+        background: white;
+        padding: var(--space-md);
+        border: 1px solid var(--shade-1, #e1bf84);
+      }
+
+      /* --- Section 1: Hue Clusters --- */
+      .clusters { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+      .cluster-header {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-sm);
+        flex-wrap: wrap;
+      }
+
+      .cluster-title {
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        color: #222;
+        margin: 0;
+      }
+
+      .cluster-meta {
+        font-size: var(--font-size-xs);
+        color: #999;
+      }
+
+      .health-badges { display: flex; gap: 6px; align-items: center; }
+
+      .health-badge {
+        font-size: var(--font-size-xs);
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+      }
+      .health-good { background: #e8f4e8; color: #2d6a2d; border: 1px solid #b2d8b2; }
+      .health-ok   { background: #fdf3e3; color: #8a5c1a; border: 1px solid #f0d4a0; }
+      .health-bad  { background: #fde8e8; color: #8a1a1a; border: 1px solid #f0b2b2; }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        width: 72px;
+        flex-shrink: 0;
+      }
+
+      .swatch-color {
+        width: 64px;
+        height: 64px;
+        border: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 4px;
+        font-size: 8px;
+      }
+
+      .swatch-hex { font-size: 8px; color: #333; }
+
+      .badges { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; }
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+      .dot-shared { background: #2d6a2d; }
+      .dot-unique  { background: #c0392b; }
+
+      /* --- Distance labels between swatches --- */
+      .swatches { display: flex; flex-wrap: nowrap; align-items: flex-start; overflow-x: auto; gap: 0; }
+
+      .dist-gap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 6px;
+        padding-top: 16px;
+        font-size: 8px;
+        color: #aaa;
+        white-space: nowrap;
+        flex-shrink: 0;
+        gap: 2px;
+      }
+      .dist-gap .de {
+        color: #b8a0c8;
+      }
+
+      /* --- Section 2: Sharing Matrix --- */
+      .matrix {
+        overflow-x: auto;
+      }
+
+      .matrix table {
+        border-collapse: collapse;
+        font-size: 8px;
+      }
+
+      .matrix th {
+        padding: 4px 8px;
+        text-align: center;
+        background: var(--shade-0, #f7ecd3);
+        border: 1px solid var(--shade-1, #e1bf84);
+        white-space: nowrap;
+      }
+
+      .matrix td {
+        border: 1px solid #eee;
+        padding: 2px;
+        text-align: center;
+        min-width: 56px;
+      }
+
+      .matrix-swatch {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7px;
+        margin: auto;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+
+      .matrix-color-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 4px 2px;
+      }
+
+      .matrix-hex { font-size: 7px; color: #555; }
+      .matrix-hsl { font-size: 6px; color: #999; }
+
+
+    </style>
+  </head>
+  <body>
+    <h1>Palette Health — {palette.length} colors</h1>
+
+    <div class="legend">
+      <div class="legend-row">
+        <span class="legend-label">H°</span>
+        <span class="health-badge health-good">≤5° tight</span>
+        <span class="health-badge health-ok">≤12° ok</span>
+        <span class="health-badge health-bad">&gt;12° bad</span>
+      </div>
+      <div class="legend-row">
+        <span class="legend-label">d (RGB)</span>
+        <span class="health-badge health-good">&lt;30 safe merge</span>
+        <span class="health-badge health-ok">30–60 noticeable</span>
+        <span class="health-badge health-bad">&gt;60 different</span>
+      </div>
+      <div class="legend-row">
+        <span class="legend-label">ΔE</span>
+        <span class="health-badge health-good">&lt;3 imperceptible</span>
+        <span class="health-badge health-ok">3–10 noticeable</span>
+        <span class="health-badge health-bad">&gt;10 clearly different</span>
+      </div>
+    </div>
+
+    <!-- Section 1: Hue Clusters -->
+    <div class="section">
+      <h2>Hue Clusters</h2>
+      <div class="clusters">
+        {clusters.map((group) => {
+          const totalPx = group.colors.reduce((s, c) => s + c.totalPixels, 0);
+          const isNeutral = group.colors.every((c) => c.s === 0);
+          const label = isNeutral ? "grey / neutral" : `hue ~${group.centerHue}°`;
+          const health = clusterHealth(group.colors);
+          const hueClass = health.hueSpread <= 5 ? "health-good" : health.hueSpread <= 12 ? "health-ok" : "health-bad";
+          return (
+            <div>
+              <div class="cluster-header">
+                <h3 class="cluster-title">{label}</h3>
+                <span class="cluster-meta">{group.colors.length} colors, {totalPx.toLocaleString()}px</span>
+                {!isNeutral && group.colors.length > 1 && (
+                  <div class="health-badges">
+                    <span class={`health-badge ${hueClass}`} title="max hue spread within cluster">ΔH={health.hueSpread}°</span>
+                  </div>
+                )}
+              </div>
+              <div class="swatches">
+                {group.colors.map((c, i) => {
+                  const spriteNames = Object.keys(c.sprites);
+                  const isShared = spriteNames.length > 1;
+                  const prev = group.colors[i - 1];
+                  const dist = prev ? rgbDist(prev.hex, c.hex) : null;
+                  const de = prev ? deltaE(prev.hex, c.hex) : null;
+                  return (
+                    <>
+                      {dist !== null && (
+                        <div class="dist-gap" title={`RGB: ${dist} · ΔE: ${de}`}>
+                          <span>d={dist}</span>
+                          <span class="de">ΔE={de}</span>
+                        </div>
+                      )}
+                      <div class="swatch">
+                        <div
+                          class="swatch-color"
+                          style={`background: ${c.hex}; color: ${textColor(c.hex)};`}
+                          title={`H${c.h} S${c.s} L${c.l} — ${c.totalPixels}px`}
+                        >
+                          {c.totalPixels}px
+                        </div>
+                        <div class="swatch-hex">{c.hex}</div>
+                        <div class="badges">
+                          {spriteNames.map((s) => (
+                            <span
+                              class={`dot ${isShared ? "dot-shared" : "dot-unique"}`}
+                              title={s}
+                              role="img"
+                              aria-label={s}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Section 2: Sharing Matrix (per hue cluster) -->
+    {clusters.map((group) => {
+      const isNeutral = group.colors.every((c) => c.s === 0);
+      const label = isNeutral ? "grey / neutral" : `hue ~${group.centerHue}°`;
+      const clusterColors = [...group.colors].sort((a, b) => a.h !== b.h ? a.h - b.h : a.l - b.l);
+      return (
+        <div class="section">
+          <h2>Sharing Matrix — {label}</h2>
+          <div class="matrix">
+            <table>
+              <thead>
+                <tr>
+                  <th>color</th>
+                  {SPRITES.map((s) => <th>{s}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {clusterColors.map((c) => (
+                  <tr>
+                    <td>
+                      <div class="matrix-color-cell">
+                        <div class="matrix-swatch" style={`background: ${c.hex};`} />
+                        <div class="matrix-hex">{c.hex}</div>
+                        <div class="matrix-hsl">H{c.h} S{c.s} L{c.l}</div>
+                      </div>
+                    </td>
+                    {SPRITES.map((sprite) => {
+                      const px = c.sprites[sprite];
+                      return (
+                        <td>
+                          {px != null
+                            ? <div class="matrix-swatch" style={`background: ${c.hex}; color: ${textColor(c.hex)};`} title={`${px}px`}>{px}</div>
+                            : null
+                          }
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    })}
+
+  </body>
+</html>
