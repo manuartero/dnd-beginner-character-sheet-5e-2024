@@ -19,7 +19,7 @@ Global target: 1–2 unique colors per sprite. Replacements move toward a canoni
 
 | Priority | Replace | → | Ideal | Δhsl | Sprites hit | Notes |
 |----------|---------|---|-------|------|-------------|-------|
-| 1 | `#F3EBE0` H35 S44 L92 | → | `#F9E8DC` H25 S72 L92 | low | cleric, rogue, sorcerer | near-white — subtle |
+| 1 | `#F3EBE0` H35 S44 L92 | → | `#F9E8DC` H25 S72 L92 | low | paladin, rogue, sorcerer | near-white — subtle |
 | 2 | `#3B1F17` H13 S44 L16 | → | `#46240B` H25 S72 L16 | med | barbarian, rogue, warlock, wizard | shadows go golden |
 | 3 | `#832B10` H14 S78 L29 | → | `#6E3812` H25 S72 L25 | med | barbarian, rogue | darks go warmer |
 | 4 | `#BA724D` H20 S44 L52 | → | `#DD762C` H25 S72 L52 | med | barbarian, sorcerer | saturation dip fixed |

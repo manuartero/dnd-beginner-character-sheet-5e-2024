@@ -358,7 +358,7 @@ function deltaE(hexA: string, hexB: string): number {
                 <span class="cluster-meta">{group.colors.length} colors, {totalPx.toLocaleString()}px</span>
                 {!isNeutral && group.colors.length > 1 && (
                   <div class="health-badges">
-                    <span class={`health-badge ${hueClass}`} title="max hue spread within cluster">H±{health.hueSpread}°</span>
+                    <span class={`health-badge ${hueClass}`} title="max hue spread within cluster">ΔH={health.hueSpread}°</span>
                   </div>
                 )}
               </div>
