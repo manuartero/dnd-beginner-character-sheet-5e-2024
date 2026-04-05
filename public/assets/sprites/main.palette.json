@@ -2,12 +2,12 @@
   {
     "hex": "#030307",
     "sprites": {
-      "rogue": 1281,
       "barbarian": 1256,
       "paladin": 1138,
-      "sorcerer": 855,
       "warlock": 1590,
-      "wizard": 1383
+      "wizard": 1383,
+      "rogue": 1281,
+      "sorcerer": 855
     },
     "totalPixels": 7503
   },
@@ -16,8 +16,8 @@
     "sprites": {
       "barbarian": 284,
       "paladin": 855,
-      "sorcerer": 242,
-      "warlock": 847
+      "warlock": 847,
+      "sorcerer": 242
     },
     "totalPixels": 2228
   },
@@ -26,43 +26,43 @@
     "sprites": {
       "barbarian": 510,
       "paladin": 333,
-      "sorcerer": 612,
       "warlock": 306,
-      "wizard": 251
+      "wizard": 251,
+      "sorcerer": 612
     },
     "totalPixels": 2012
   },
   {
     "hex": "#F2BD9C",
     "sprites": {
-      "rogue": 9,
       "barbarian": 288,
       "paladin": 70,
-      "sorcerer": 729,
-      "wizard": 722
+      "wizard": 722,
+      "rogue": 9,
+      "sorcerer": 729
     },
     "totalPixels": 1818
   },
   {
     "hex": "#8F400F",
     "sprites": {
-      "rogue": 409,
-      "barbarian": 1177
+      "barbarian": 1177,
+      "rogue": 409
     },
     "totalPixels": 1586
   },
   {
     "hex": "#47220B",
     "sprites": {
-      "rogue": 432,
       "barbarian": 348,
       "warlock": 569,
-      "wizard": 188
+      "wizard": 188,
+      "rogue": 432
     },
     "totalPixels": 1537
   },
   {
-    "hex": "#A82741",
+    "hex": "#AD2943",
     "sprites": {
       "rogue": 155,
       "sorcerer": 1078
@@ -79,26 +79,26 @@
   {
     "hex": "#3C85CD",
     "sprites": {
-      "sorcerer": 8,
-      "wizard": 785
+      "wizard": 785,
+      "sorcerer": 8
     },
     "totalPixels": 793
   },
   {
     "hex": "#16426F",
     "sprites": {
-      "rogue": 268,
       "warlock": 86,
-      "wizard": 424
+      "wizard": 424,
+      "rogue": 268
     },
     "totalPixels": 778
   },
   {
     "hex": "#E4E4E7",
     "sprites": {
-      "rogue": 18,
       "barbarian": 16,
       "paladin": 466,
+      "rogue": 18,
       "sorcerer": 228
     },
     "totalPixels": 728
