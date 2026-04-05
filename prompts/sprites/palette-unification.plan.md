@@ -23,7 +23,7 @@ Global target: 1–2 unique colors per sprite. Replacements move toward a canoni
 | 2 | `#3B1F17` H13 S44 L16 | → | `#46240B` H25 S72 L16 | med | barbarian, rogue, warlock, wizard | shadows go golden |
 | 3 | `#832B10` H14 S78 L29 | → | `#6E3812` H25 S72 L25 | med | barbarian, rogue | darks go warmer |
 | 4 | `#BA724D` H20 S44 L52 | → | `#DD762C` H25 S72 L52 | med | barbarian, sorcerer | saturation dip fixed |
-| 5 | `#CD9419` H41 S78 L45 | → | `#C56520` H25 S72 L45 | med | cleric only | gold shifts more orange |
+| 5 | `#CD9419` H41 S78 L45 | → | `#C56520` H25 S72 L45 | med | paladin only | gold shifts more orange |
 | 6 | `#D9CAB5` H35 S32 L78 | → | `#EDB483` H25 S72 L78 | high | sorcerer | beige → orange, big change |
 
 ## Applied

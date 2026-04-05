@@ -38,9 +38,15 @@ for (const color of [...colors].sort((a, b) => a.h - b.h)) {
   });
   if (group) {
     group.colors.push(color);
-    group.centerHue = Math.round(
-      group.colors.reduce((sum, c) => sum + c.h, 0) / group.colors.length,
-    );
+    const toRad = (h) => (h * Math.PI) / 180;
+    const sinM =
+      group.colors.reduce((s, c) => s + Math.sin(toRad(c.h)), 0) /
+      group.colors.length;
+    const cosM =
+      group.colors.reduce((s, c) => s + Math.cos(toRad(c.h)), 0) /
+      group.colors.length;
+    const deg = Math.atan2(sinM, cosM) * (180 / Math.PI);
+    group.centerHue = Math.round(deg < 0 ? deg + 360 : deg);
   } else {
     groups.push({ centerHue: color.h, colors: [color] });
   }

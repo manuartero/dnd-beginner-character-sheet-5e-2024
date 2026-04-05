@@ -40,7 +40,7 @@ Palette order: **darkest → dark → light → lightest**
 
 ## Prompts used
 
-**Cleric**
+**Paladin**
 > A Dwarf male Cleric character sprite in Game Boy pixel art style, 64x64 pixels, front-facing idle pose, 6-color palette: deep dark brown outline (#100800), dark warm brown (#584800) for armor shadows and beard depth, golden-amber (#c8a820) for rune-inscribed plate armor and warhammer head, warm near-white (#f8f8c0) for armor highlights and carved rune trim, ruddy tan (#a85030) for dwarf skin on face and hands, brilliant pure white (#f8f8f8) for holy symbol divine glow, stocky barrel-chested dwarf build — thick legs, wide frame, visibly massive strength beneath the bulk, full dwarven rune plate armor with ancestral runes etched across every surface, wide bushy beard braided with iron rings, warhammer held casually in off-hand at side, holy symbol raised high in main hand with brilliant white divine light blazing from it and short rays radiating outward, chunky pixelated outlines, SOLID BRIGHT MAGENTA background (#FF00FF), retro RPG handheld game aesthetic, 1990s portable game sprite "no anti-aliasing, hard pixel edges, low resolution dithering", character facing right (3/4 right-facing view)
 
 **Barbarian**

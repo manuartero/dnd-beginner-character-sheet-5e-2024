@@ -117,7 +117,7 @@ if (isMain) {
       // of the canvas, border seeds land on sprite pixels and eat the artwork.
       console.log(`  background color: ${forcedColor} (forced)`);
       execSync(
-        `magick "${tmpFile}" -alpha set -fuzz 5% -transparent "${forcedColor}" PNG32:"${tmpFile}"`,
+        `magick "${tmpFile}" -alpha set -fuzz 0% -transparent "${forcedColor}" PNG32:"${tmpFile}"`,
       );
     } else {
       // filltoborder: spreads from seed points stopping at the darkest color
