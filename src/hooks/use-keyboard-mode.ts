@@ -4,16 +4,19 @@ export function useKeyboardMode(): boolean {
   const [isKeyboardMode, setIsKeyboardMode] = useState(false);
 
   useEffect(() => {
+    let isActive = true;
+
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Tab") setIsKeyboardMode(true);
+      if (isActive && e.key === "Tab") setIsKeyboardMode(true);
     }
     function onPointerDown() {
-      setIsKeyboardMode(false);
+      if (isActive) setIsKeyboardMode(false);
     }
 
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
     return () => {
+      isActive = false;
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
     };
