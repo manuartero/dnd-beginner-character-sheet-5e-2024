@@ -27,6 +27,7 @@ export function SpellCards({
   const { expandedKey: expandedSpell, toggle: toggleSpell } =
     useExpandable<string>();
   const stagedIds = new Set(stagedSpellIds);
+  const showPreparationState = !!onStagedSpellClick;
 
   const cantrips = spells.filter((s) => s.level === 0);
   const levelSpells = spells.filter((s) => s.level > 0);
@@ -56,6 +57,7 @@ export function SpellCards({
                 key={spell.name}
                 spell={spell}
                 isStaged={stagedIds.has(spell.id)}
+                showPreparationState={showPreparationState}
                 isExpanded={expandedSpell === spell.name}
                 onToggle={() => {
                   if (stagedIds.has(spell.id)) {
@@ -85,6 +87,7 @@ export function SpellCards({
                 key={spell.name}
                 spell={spell}
                 isStaged={stagedIds.has(spell.id)}
+                showPreparationState={showPreparationState}
                 isExpanded={expandedSpell === spell.name}
                 onToggle={() => {
                   if (stagedIds.has(spell.id)) {
@@ -117,19 +120,32 @@ export function SpellCards({
 type SpellCardProps = {
   spell: Spell;
   isStaged: boolean;
+  showPreparationState?: boolean;
   isExpanded: boolean;
   onToggle: () => void;
 };
 
-function SpellCard({ spell, isStaged, isExpanded, onToggle }: SpellCardProps) {
+function SpellCard({
+  spell,
+  isStaged,
+  showPreparationState = false,
+  isExpanded,
+  onToggle,
+}: SpellCardProps) {
   const simplifiedComponents = simplifyComponents(spell.components);
   const formattedDescription = formatDescription(spell.description);
   const spellResult = formatSpellResult(spell);
   const resultColor = spell.damage ? DAMAGE_COLOR : undefined;
+  const accessibleLabel = isStaged
+    ? `${spell.name}, preparing — click to remove`
+    : showPreparationState
+      ? `${spell.name}, prepared`
+      : spell.name;
 
   return (
     <button
       type="button"
+      aria-label={accessibleLabel}
       onClick={onToggle}
       className={`${styles.card} ${isStaged ? styles.cardStaged : ""}`}
     >
