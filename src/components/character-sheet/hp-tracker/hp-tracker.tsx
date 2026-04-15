@@ -81,9 +81,9 @@ export function HpTracker(props: HpTrackerProps) {
       <HpBar current={current} max={max} dynamicColor />
 
       <div className={styles.controls}>
-        <span role="status" className={styles.srOnly}>
+        <output className={styles.srOnly}>
           {current} / {max} HP — {healthStatus(ratio)}
-        </span>
+        </output>
 
         <button
           type="button"
