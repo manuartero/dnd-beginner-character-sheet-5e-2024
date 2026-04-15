@@ -1,3 +1,19 @@
+.skipLink {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--shade-1);
+  color: var(--color-text);
+  z-index: 200;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.skipLink:focus-visible {
+  top: 0;
+}
+
 .layout {
   display: flex;
   flex-direction: column;

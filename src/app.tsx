@@ -87,12 +87,15 @@ export function App() {
             view.kind === "character-view" ? view.characterId : view.kind
           }
         />
+        <a href="#main-content" className={styles.skipLink}>
+          Skip to main content
+        </a>
         <TopMenu
           title={getMenuTitle()}
           showBack={view.kind !== "character-list"}
           onBack={goToList}
         />
-        <div className={styles.content}>
+        <div id="main-content" className={styles.content}>
           {view.kind === "character-list" && (
             <CharacterList
               characters={characters}
