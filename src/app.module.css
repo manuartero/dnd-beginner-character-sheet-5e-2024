@@ -1,3 +1,16 @@
+.keyboardBadge {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--shade-3);
+  color: var(--shade-0);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  z-index: 300;
+  pointer-events: none;
+}
+
 .skipLink {
   position: absolute;
   top: -100%;

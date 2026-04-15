@@ -5,6 +5,7 @@ import { CharacterCreation } from "src/components/character-creation";
 import { CharacterList } from "src/components/character-list";
 import { CharacterSheet } from "src/components/character-sheet";
 import { TopMenu } from "src/components/top-menu";
+import { useKeyboardMode } from "src/hooks/use-keyboard-mode";
 import {
   deleteCharacter,
   loadCharacters,
@@ -19,6 +20,7 @@ type AppView =
   | { kind: "character-creation" };
 
 export function App() {
+  const isKeyboardMode = useKeyboardMode();
   const [view, setView] = useState<AppView>({ kind: "character-list" });
   const [characters, setCharacters] = useState<Character[]>(() =>
     loadCharacters(),
@@ -82,6 +84,11 @@ export function App() {
   return (
     <ScreenFlashProvider>
       <div className={styles.layout}>
+        {isKeyboardMode && (
+          <div aria-hidden className={styles.keyboardBadge}>
+            ⌨ KB NAV
+          </div>
+        )}
         <ScreenFlash
           trigger={
             view.kind === "character-view" ? view.characterId : view.kind
