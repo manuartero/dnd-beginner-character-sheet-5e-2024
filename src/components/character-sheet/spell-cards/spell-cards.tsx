@@ -146,6 +146,7 @@ function SpellCard({
     <button
       type="button"
       aria-label={accessibleLabel}
+      aria-expanded={isExpanded}
       onClick={onToggle}
       className={`${styles.card} ${isStaged ? styles.cardStaged : ""}`}
     >

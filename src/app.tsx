@@ -102,7 +102,7 @@ export function App() {
           showBack={view.kind !== "character-list"}
           onBack={goToList}
         />
-        <div id="main-content" className={styles.content}>
+        <main id="main-content" tabIndex={-1} className={styles.content}>
           {view.kind === "character-list" && (
             <CharacterList
               characters={characters}
@@ -120,7 +120,7 @@ export function App() {
               onCharacterUpdate={handleCharacterUpdate}
             />
           )}
-        </div>
+        </main>
       </div>
     </ScreenFlashProvider>
   );

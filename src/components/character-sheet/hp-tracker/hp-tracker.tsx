@@ -100,6 +100,7 @@ export function HpTracker(props: HpTrackerProps) {
               type="number"
               min={0}
               value={current}
+              aria-label="Current HP"
               onChange={(e) => {
                 const parsed = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(parsed)) onCurrentChange(parsed);
@@ -115,6 +116,7 @@ export function HpTracker(props: HpTrackerProps) {
               type="number"
               min={1}
               value={max}
+              aria-label="Max HP"
               onChange={(e) => {
                 const parsed = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(parsed)) onMaxChange?.(parsed);
