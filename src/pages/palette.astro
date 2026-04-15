@@ -67,10 +67,7 @@ for (const color of [...enriched].sort((a, b) => a.h - b.h)) {
     clusters.push({ centerHue: color.h, colors: [color] });
   }
 }
-clusters.sort((a, b) =>
-  b.colors.reduce((s, c) => s + c.totalPixels, 0) -
-  a.colors.reduce((s, c) => s + c.totalPixels, 0)
-);
+clusters.sort((a, b) => a.centerHue - b.centerHue);
 for (const g of clusters) g.colors.sort((a, b) => a.l - b.l);
 
 // --- Cluster health ---
