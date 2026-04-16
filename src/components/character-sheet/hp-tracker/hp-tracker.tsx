@@ -25,6 +25,12 @@ function blockColor(ratio: number, dynamicColor: boolean): string {
   return "var(--color-hp-low)";
 }
 
+function healthStatus(ratio: number): "Healthy" | "Wounded" | "Critical" {
+  if (ratio > 0.5) return "Healthy";
+  if (ratio > 0.25) return "Wounded";
+  return "Critical";
+}
+
 function HpBar({
   current,
   max,
@@ -68,14 +74,20 @@ export function HpTracker(props: HpTrackerProps) {
   }
 
   const { current, max, editable, onCurrentChange, onMaxChange } = props;
+  const ratio = max > 0 ? current / max : 0;
 
   return (
     <Section title="Hit Points">
       <HpBar current={current} max={max} dynamicColor />
 
       <div className={styles.controls}>
+        <output className={styles.srOnly}>
+          {current} / {max} HP — {healthStatus(ratio)}
+        </output>
+
         <button
           type="button"
+          aria-label="Decrease HP"
           onClick={() => onCurrentChange(Math.max(0, current - 1))}
           className={styles.button}
         >
@@ -88,6 +100,7 @@ export function HpTracker(props: HpTrackerProps) {
               type="number"
               min={0}
               value={current}
+              aria-label="Current HP"
               onChange={(e) => {
                 const parsed = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(parsed)) onCurrentChange(parsed);
@@ -103,6 +116,7 @@ export function HpTracker(props: HpTrackerProps) {
               type="number"
               min={1}
               value={max}
+              aria-label="Max HP"
               onChange={(e) => {
                 const parsed = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(parsed)) onMaxChange?.(parsed);
@@ -116,6 +130,7 @@ export function HpTracker(props: HpTrackerProps) {
 
         <button
           type="button"
+          aria-label="Increase HP"
           onClick={() => onCurrentChange(Math.min(max, current + 1))}
           className={styles.button}
         >

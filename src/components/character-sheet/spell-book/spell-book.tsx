@@ -231,7 +231,8 @@ function SpellSelectionGrid({
                   else buttonRefs.current.delete(spell.id);
                 }}
                 type="button"
-                aria-label={spell.name}
+                aria-label={`${spell.name}${isCommitted ? ", prepared" : isStaged ? ", preparing" : ""}`}
+                aria-pressed={isCommitted || isStaged}
                 aria-expanded={isExpanded}
                 disabled={isDisabled}
                 className={c(

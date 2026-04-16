@@ -200,6 +200,35 @@ describe("<SpellBook />", () => {
     expect(onSpellsChange).toHaveBeenCalledWith([cantrip]);
   });
 
+  it("staged spell in grid has aria-label with 'preparing' and aria-pressed", () => {
+    const cantrip = createSpell({
+      id: "c-1",
+      name: "Cantrip 1",
+      level: 0,
+      description: "Description 1",
+    });
+
+    render(
+      <SpellBook
+        availableCantrips={[cantrip]}
+        availableLevel1={[]}
+        selectedSpells={[]}
+        cantripLimit={3}
+        level1Limit={0}
+        onSpellsChange={vi.fn()}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /Prepare Cantrips/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Cantrip 1/i }));
+
+    const gridBtn = within(
+      screen.getByRole("region", { name: "Prepare Spells" }),
+    ).getByRole("button", { name: /Cantrip 1/i });
+    expect(gridBtn).toHaveAttribute("aria-label", "Cantrip 1, preparing");
+    expect(gridBtn).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("removes staged spell when clicked in spell book", () => {
     const cantrip = createSpell({
       id: "c-1",
