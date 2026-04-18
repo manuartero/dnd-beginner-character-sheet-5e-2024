@@ -27,6 +27,43 @@
     "description": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spells ends.",
     "save": "Wisdom"
   },
+  "armor-of-agathys": {
+    "id": "armor-of-agathys",
+    "name": "Armor of Agathys",
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "V, S, M (a cup of water)",
+    "duration": "1 hour",
+    "concentration": false,
+    "ritual": false,
+    "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points for the duration. If a creature hits you with a melee attack while you have these Hit Points, the creature takes 5 Cold damage.",
+    "damage": {
+      "dice": "5",
+      "type": "cold"
+    },
+    "atHigherLevels": "When you cast this spell using a spell slot of level 2 or higher, both the Temporary Hit Points and the Cold damage increase by 5 for each slot level above 1."
+  },
+  "arms-of-hadar": {
+    "id": "arms-of-hadar",
+    "name": "Arms of Hadar",
+    "level": 1,
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Self (10-ft radius)",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You invoke the power of Hadar, the Dark Hunger. Tendrils of dark energy erupt from you and batter all creatures within 10 feet of you. Each creature in that area must make a Strength saving throw. On a failed save, a target takes 2d6 Necrotic damage and can't take Reactions until the start of its next turn. On a successful save, the creature takes half as much damage only.",
+    "damage": {
+      "dice": "2d6",
+      "type": "necrotic"
+    },
+    "save": "Strength",
+    "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
+  },
   "bane": {
     "id": "bane",
     "name": "Bane",
@@ -418,6 +455,25 @@
     "description": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
     "atHigherLevels": "The healing increases by 1d4 for each spell slot level above 1."
   },
+  "hellish-rebuke": {
+    "id": "hellish-rebuke",
+    "name": "Hellish Rebuke",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+    "range": "60 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 Fire damage on a failed save, or half as much damage on a successful one.",
+    "damage": {
+      "dice": "2d10",
+      "type": "fire"
+    },
+    "save": "Dexterity",
+    "atHigherLevels": "The damage increases by 1d10 for each spell slot level above 1."
+  },
   "heroism": {
     "id": "heroism",
     "name": "Heroism",
@@ -431,6 +487,24 @@
     "ritual": false,
     "description": "A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns. When the spell ends, the target loses any remaining temporary hit points from this spell.",
     "atHigherLevels": "You can target one additional creature for each spell slot level above 1."
+  },
+  "hex": {
+    "id": "hex",
+    "name": "Hex",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 bonus action",
+    "range": "90 ft",
+    "components": "V, S, M (the petrified eye of a newt)",
+    "duration": "Concentration, up to 1 hour",
+    "concentration": true,
+    "ritual": false,
+    "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a subsequent turn to curse a new creature.",
+    "damage": {
+      "dice": "1d6",
+      "type": "necrotic"
+    },
+    "atHigherLevels": "When you cast this spell using a spell slot of level 3 or 4, you can maintain your Concentration on the spell for up to 8 hours. When you use a spell slot of level 5 or higher, you can maintain your Concentration on the spell for up to 24 hours."
   },
   "ice-knife": {
     "id": "ice-knife",
@@ -583,6 +657,26 @@
     "concentration": false,
     "ritual": true,
     "description": "All nonmagical food and drink within a 5-foot radius sphere centered on a point of your choice within range is purified and rendered free of poison and disease."
+  },
+  "ray-of-sickness": {
+    "id": "ray-of-sickness",
+    "name": "Ray of Sickness",
+    "level": 1,
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "A ray of sickening greenish energy lashes out toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 2d8 Poison damage and must succeed on a Constitution saving throw or have the Poisoned condition until the end of your next turn.",
+    "damage": {
+      "dice": "2d8",
+      "type": "poison"
+    },
+    "save": "Constitution",
+    "attack": "ranged",
+    "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 1."
   },
   "sanctuary": {
     "id": "sanctuary",

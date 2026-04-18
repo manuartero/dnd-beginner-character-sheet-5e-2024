@@ -78,6 +78,24 @@
     "ritual": false,
     "description": "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire."
   },
+  "eldritch-blast": {
+    "id": "eldritch-blast",
+    "name": "Eldritch Blast",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "A beam of crackling energy streaks toward a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Force damage. The spell creates more than one beam when you reach higher levels: two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+    "damage": {
+      "dice": "1d10",
+      "type": "force"
+    },
+    "attack": "ranged"
+  },
   "elementalism": {
     "id": "elementalism",
     "name": "Elementalism",
@@ -360,6 +378,24 @@
     },
     "attack": "melee",
     "icon": "vol6/icon-vol6_441"
+  },
+  "sorcerous-burst": {
+    "id": "sorcerous-burst",
+    "name": "Sorcerous Burst",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You cast sorcerous energy at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 damage of a type you choose: Acid, Cold, Fire, Lightning, Poison, Psychic, or Thunder. If you roll an 8 on a d8 for this spell, you can roll another d8, and add it to the damage. When you cast this spell, the maximum number of these d8s you can add to the spell's damage equals your spellcasting ability modifier. The damage increases by 1d8 when you reach levels 5, 11, and 17.",
+    "damage": {
+      "dice": "1d8",
+      "type": "acid/cold/fire/lightning/poison/psychic/thunder"
+    },
+    "attack": "ranged"
   },
   "spare-the-dying": {
     "id": "spare-the-dying",
