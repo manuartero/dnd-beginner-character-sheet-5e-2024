@@ -1,0 +1,33 @@
+{
+  "cantrips": [
+    "blade-ward",
+    "chill-touch",
+    "eldritch-blast",
+    "friends",
+    "mage-hand",
+    "mind-sliver",
+    "minor-illusion",
+    "poison-spray",
+    "prestidigitation",
+    "thunderclap",
+    "toll-the-dead",
+    "true-strike"
+  ],
+  "level1": [
+    "armor-of-agathys",
+    "arms-of-hadar",
+    "bane",
+    "charm-person",
+    "comprehend-languages",
+    "detect-magic",
+    "expeditious-retreat",
+    "hellish-rebuke",
+    "hex",
+    "illusory-script",
+    "protection-from-evil-and-good",
+    "speak-with-animals",
+    "tashas-hideous-laughter",
+    "unseen-servant",
+    "witch-bolt"
+  ]
+}

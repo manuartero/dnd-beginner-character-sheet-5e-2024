@@ -13,7 +13,7 @@
     "description": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.",
     "damage": {
       "dice": "1d6",
-      "type": "acid"
+      "type": ["acid"]
     },
     "save": "Dexterity",
     "icon": "vol6/icon-vol6_206"
@@ -46,7 +46,7 @@
     "description": "You channel the chill of the grave through your hand. Make a melee spell attack against a creature you can reach. On a hit, the target takes 1d10 Necrotic damage, and it can't regain Hit Points until the start of your next turn.",
     "damage": {
       "dice": "1d10",
-      "type": "necrotic"
+      "type": ["necrotic"]
     },
     "attack": "melee",
     "icon": "vol3/icon-vol3_08"
@@ -78,6 +78,24 @@
     "ritual": false,
     "description": "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire."
   },
+  "eldritch-blast": {
+    "id": "eldritch-blast",
+    "name": "Eldritch Blast",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "A beam of crackling energy streaks toward a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Force damage. The spell creates more than one beam when you reach higher levels: two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+    "damage": {
+      "dice": "1d10",
+      "type": ["force"]
+    },
+    "attack": "ranged"
+  },
   "elementalism": {
     "id": "elementalism",
     "name": "Elementalism",
@@ -106,7 +124,7 @@
     "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell catches fire if it isn't being worn or carried.",
     "damage": {
       "dice": "1d10",
-      "type": "fire"
+      "type": ["fire"]
     },
     "attack": "ranged",
     "icon": "vol6/icon-vol6_576"
@@ -209,7 +227,7 @@
     "description": "You drive a disorienting spike of psychic energy into the mind of one creature you can see within range. The target must succeed on an Intelligence saving throw or take 1d6 Psychic damage and subtract 1d4 from the next saving throw it makes before the end of your next turn.",
     "damage": {
       "dice": "1d6",
-      "type": "psychic"
+      "type": ["psychic"]
     },
     "save": "Intelligence",
     "icon": "vol3/icon-vol3_12"
@@ -242,7 +260,7 @@
     "description": "You spray toxic mist at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d12 Poison damage.",
     "damage": {
       "dice": "1d12",
-      "type": "poison"
+      "type": ["poison"]
     },
     "attack": "ranged",
     "icon": "vol6/icon-vol6_100"
@@ -276,7 +294,7 @@
     "attack": "ranged",
     "damage": {
       "dice": "1d8",
-      "type": "fire"
+      "type": ["fire"]
     }
   },
   "ray-of-frost": {
@@ -293,7 +311,7 @@
     "description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 Cold damage, and its Speed is reduced by 10 feet until the start of your next turn.",
     "damage": {
       "dice": "1d8",
-      "type": "cold"
+      "type": ["cold"]
     },
     "attack": "ranged",
     "icon": "vol3/icon-vol3_16"
@@ -326,7 +344,7 @@
     "save": "Dexterity",
     "damage": {
       "dice": "1d8",
-      "type": "radiant"
+      "type": ["radiant"]
     }
   },
   "shillelagh": {
@@ -356,10 +374,36 @@
     "description": "Lightning springs from your hand to deliver a shock to a creature you try to touch. Make a melee spell attack against the target. You have Advantage on the attack roll if the target is wearing armor made of metal. On a hit, the target takes 1d8 Lightning damage, and it can't make Opportunity Attacks until the start of its next turn.",
     "damage": {
       "dice": "1d8",
-      "type": "lightning"
+      "type": ["lightning"]
     },
     "attack": "melee",
     "icon": "vol6/icon-vol6_441"
+  },
+  "sorcerous-burst": {
+    "id": "sorcerous-burst",
+    "name": "Sorcerous Burst",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You cast sorcerous energy at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 damage of a type you choose: Acid, Cold, Fire, Lightning, Poison, Psychic, or Thunder. If you roll an 8 on a d8 for this spell, you can roll another d8, and add it to the damage. When you cast this spell, the maximum number of these d8s you can add to the spell's damage equals your spellcasting ability modifier. The damage increases by 1d8 when you reach levels 5, 11, and 17.",
+    "damage": {
+      "dice": "1d8",
+      "type": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "poison",
+        "psychic",
+        "thunder"
+      ]
+    },
+    "attack": "ranged"
   },
   "spare-the-dying": {
     "id": "spare-the-dying",
@@ -388,7 +432,7 @@
     "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and it sheds Dim Light in a 10-foot radius until the end of your next turn.",
     "damage": {
       "dice": "1d8",
-      "type": "radiant"
+      "type": ["radiant"]
     },
     "attack": "ranged"
   },
@@ -419,7 +463,7 @@
     "description": "You create a long, vine-like whip covered in thorns that lashes out at a creature in range. Make a melee spell attack against the target. On a hit, the target takes 1d6 Piercing damage, and if the target is a Large or smaller creature, you pull the target up to 10 feet closer to you.",
     "damage": {
       "dice": "1d6",
-      "type": "piercing"
+      "type": ["piercing"]
     },
     "attack": "melee"
   },
@@ -437,7 +481,7 @@
     "description": "You create a burst of thunderous sound that can be heard 100 feet away. Each creature within a 5-foot Emanation originating from you must succeed on a Constitution saving throw or take 1d6 Thunder damage.",
     "damage": {
       "dice": "1d6",
-      "type": "thunder"
+      "type": ["thunder"]
     },
     "save": "Constitution",
     "icon": "vol6/icon-vol6_340"
@@ -456,7 +500,7 @@
     "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 Necrotic damage. If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage.",
     "damage": {
       "dice": "1d8/1d12",
-      "type": "necrotic"
+      "type": ["necrotic"]
     },
     "save": "Wisdom",
     "icon": "vol3/icon-vol3_10"
@@ -475,7 +519,7 @@
     "description": "Guided by a flash of magical insight, you make one attack with the weapon used as this spell's Material component. The attack deals an extra 1d6 Radiant damage on a hit. If the attack roll has Advantage or Disadvantage, you can treat the d20 roll as an 11.",
     "damage": {
       "dice": "1d6",
-      "type": "radiant"
+      "type": ["radiant"]
     },
     "attack": "melee"
   },
@@ -494,7 +538,7 @@
     "save": "Wisdom",
     "damage": {
       "dice": "1d6",
-      "type": "psychic"
+      "type": ["psychic"]
     }
   }
 }

@@ -94,7 +94,7 @@ function SpellDetails({ spell }: { spell: Spell }) {
         <div className={styles.detailRow}>
           <span className={styles.detailLabel}>Damage</span>
           <span>
-            {spell.damage.dice} {spell.damage.type}
+            {spell.damage.dice} {spell.damage.type.join("/")}
           </span>
         </div>
       )}
@@ -108,7 +108,7 @@ function SpellDetails({ spell }: { spell: Spell }) {
 
 function formatSpellResult(spell: Spell): string {
   const damagePart = spell.damage
-    ? `${spell.damage.dice} ${spell.damage.type}`
+    ? `${spell.damage.dice} ${spell.damage.type.join("/")}`
     : "";
   const savePart = spell.save ? spell.save.replace(/\+/g, "").trim() : "";
 

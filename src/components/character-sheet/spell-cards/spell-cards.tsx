@@ -194,7 +194,7 @@ function formatDescription(description: string): string {
 
 function formatSpellResult(spell: Spell): string {
   const damagePart = spell.damage
-    ? `${spell.damage.dice} ${spell.damage.type}`
+    ? `${spell.damage.dice} ${spell.damage.type.join("/")}`
     : "";
   const savePart = spell.save ? spell.save.replace(/\+/g, "").trim() : "";
 
