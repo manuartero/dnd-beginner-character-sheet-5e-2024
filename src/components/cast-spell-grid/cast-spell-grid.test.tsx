@@ -114,6 +114,20 @@ describe("<CastSpellGrid />", () => {
     expect(screen.getByText("1d10 fire")).toBeInTheDocument();
   });
 
+  it("renders multi-type damage as slash-joined list", () => {
+    const spells = [
+      makeSpell({
+        id: "chromatic-orb",
+        name: "Chromatic Orb",
+        level: 1,
+        damage: { dice: "3d8", type: ["acid", "cold", "fire"] },
+      }),
+    ];
+    render(<CastSpellGrid spells={spells} />);
+
+    expect(screen.getByText("3d8 acid/cold/fire")).toBeInTheDocument();
+  });
+
   it("shows concentration keyword when expanded", () => {
     const spells = [
       makeSpell({
