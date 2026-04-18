@@ -1,0 +1,28 @@
+{
+  "cantrips": [
+    "guidance",
+    "light",
+    "mending",
+    "resistance",
+    "sacred-flame",
+    "spare-the-dying",
+    "thaumaturgy"
+  ],
+  "level1": [
+    "bane",
+    "bless",
+    "command",
+    "create-or-destroy-water",
+    "cure-wounds",
+    "detect-evil-and-good",
+    "detect-magic",
+    "detect-poison-and-disease",
+    "guiding-bolt",
+    "healing-word",
+    "inflict-wounds",
+    "protection-from-evil-and-good",
+    "purify-food-and-drink",
+    "sanctuary",
+    "shield-of-faith"
+  ]
+}

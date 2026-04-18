@@ -13,6 +13,49 @@
     "description": "You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is mental or audible. A mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping. An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.",
     "icon": "vol3/icon-vol3_20"
   },
+  "animal-friendship": {
+    "id": "animal-friendship",
+    "name": "Animal Friendship",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S, M",
+    "duration": "24 hours",
+    "concentration": false,
+    "ritual": false,
+    "description": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spells ends.",
+    "save": "Wisdom"
+  },
+  "bane": {
+    "id": "bane",
+    "name": "Bane",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S, M",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "Up to three creatures of your choice that you can see within range must make charisma saving throws. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw.",
+    "save": "Charisma",
+    "atHigherLevels": "You can target one additional creature for each spell slot level above 1."
+  },
+  "bless": {
+    "id": "bless",
+    "name": "Bless",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S, M",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.",
+    "atHigherLevels": "You can target one additional creature for each spell slot level above 1."
+  },
   "burning-hands": {
     "id": "burning-hands",
     "name": "Burning Hands",
@@ -25,7 +68,10 @@
     "concentration": false,
     "ritual": false,
     "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
-    "damage": { "dice": "3d6", "type": "fire" },
+    "damage": {
+      "dice": "3d6",
+      "type": "fire"
+    },
     "save": "Dexterity",
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_21"
@@ -81,6 +127,21 @@
     "save": "Constitution",
     "icon": "vol3/icon-vol3_24"
   },
+  "command": {
+    "id": "command",
+    "name": "Command",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V",
+    "duration": "1 round",
+    "concentration": false,
+    "ritual": false,
+    "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it. Some typical commands and their effects follow. You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target can't follow your command, the spell ends\n\n **Approach.** The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\n**Drop** The target drops whatever it is holding and then ends its turn.\n\n**Flee.** The target spends its turn moving away from you by the fastest available means.\n\n**Grovel.** The target falls prone and then ends its turn.\n\n**Halt.** The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.",
+    "save": "Wisdom",
+    "atHigherLevels": "You can affect one additional creature for each spell slot level above 1."
+  },
   "comprehend-languages": {
     "id": "comprehend-languages",
     "name": "Comprehend Languages",
@@ -94,6 +155,47 @@
     "ritual": true,
     "description": "For the duration, you understand the literal meaning of any language that you hear or see (if written). It takes about 1 minute to read one page of text. This spell doesn't decode secret messages or reveal the meaning of symbols that aren't part of a written language.",
     "icon": "vol3/icon-vol3_25"
+  },
+  "create-or-destroy-water": {
+    "id": "create-or-destroy-water",
+    "name": "Create or Destroy Water",
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You either create or destroy water.\n\n**Create Water.** You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range\n\n **Destroy Water.** You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range.",
+    "atHigherLevels": "The area increases by 5 feet for each spell slot level above 1."
+  },
+  "cure-wounds": {
+    "id": "cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+    "atHigherLevels": "The healing increases by 1d8 for each spell slot level above 1."
+  },
+  "detect-evil-and-good": {
+    "id": "detect-evil-and-good",
+    "name": "Detect Evil and Good",
+    "level": 1,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "Up to 10 minutes",
+    "concentration": true,
+    "ritual": false,
+    "description": "For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."
   },
   "detect-magic": {
     "id": "detect-magic",
@@ -109,6 +211,19 @@
     "description": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any.",
     "icon": "vol3/icon-vol3_26"
   },
+  "detect-poison-and-disease": {
+    "id": "detect-poison-and-disease",
+    "name": "Detect Poison and Disease",
+    "level": 1,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "V, S, M",
+    "duration": "Up to 10 minutes",
+    "concentration": true,
+    "ritual": true,
+    "description": "For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."
+  },
   "disguise-self": {
     "id": "disguise-self",
     "name": "Disguise Self",
@@ -123,6 +238,39 @@
     "description": "You make yourself, including your clothing, armor, weapons, and other belongings on your person, look different until the spell ends. You can seem up to 1 foot shorter or taller and can appear heavier or lighter. The changes wrought by this spell fail to hold up to physical inspection. To discern that you are disguised, a creature must take the Study action to inspect your appearance and succeed on an Intelligence (Investigation) check against your spell save DC.",
     "icon": "vol3/icon-vol3_27"
   },
+  "dissonant-whispers": {
+    "id": "dissonant-whispers",
+    "name": "Dissonant Whispers",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You whisper a discordant melody that only one creature of your choice within range can hear, wracking it with terrible pain. The target must make a Wisdom saving throw. On a failed save, it takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far as its Speed allows away from you. The creature doesn't move into obviously dangerous ground. On a successful save, the target takes half as much damage only.",
+    "save": "Wisdom",
+    "damage": {
+      "dice": "3d6",
+      "type": "psychic"
+    },
+    "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
+  },
+  "entangle": {
+    "id": "entangle",
+    "name": "Entangle",
+    "level": 1,
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "90 ft",
+    "components": "V, S",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting form a point within range. For the duration, these plants turn the ground in the area into difficult terrain. A creature in the area when you cast the spell must succeed on a Strength saving throw or be restrained by the entangling plants until the spell ends. A creature restrained by the plants can use its action to make a Strength check against your spell save DC. On a success, it frees itself. When the spell ends, the conjured plants wilt away.",
+    "save": "Strength"
+  },
   "expeditious-retreat": {
     "id": "expeditious-retreat",
     "name": "Expeditious Retreat",
@@ -136,6 +284,20 @@
     "ritual": false,
     "description": "You take the Dash action, and until the spell ends, you can take the Dash action as a Bonus Action.",
     "icon": "vol3/icon-vol3_29"
+  },
+  "faerie-fire": {
+    "id": "faerie-fire",
+    "name": "Faerie Fire",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "Each object in a 20-foot cube within range is outlined in blue, green, or violet light (your choice). Any creature in the area when the spell is cast is also outlined in light if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed dim light in a 10-foot radius. Any attack roll against an affected creature or object has advantage if the attacker can see it, and the affected creature or object can't benefit from being invisible.",
+    "save": "Dexterity"
   },
   "false-life": {
     "id": "false-life",
@@ -195,6 +357,19 @@
     "atHigherLevels": "The radius of the fog increases by 20 feet for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_33"
   },
+  "goodberry": {
+    "id": "goodberry",
+    "name": "Goodberry",
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "Up to ten berries appear in your hand and are infused with magic for the duration. A creature can use its action to eat one berry. Eating a berry restores 1 hit point, and the berry provides enough nourishment to sustain a creature for one day. The berries lose their potency if they have not been consumed within 24 hours of the casting of this spell."
+  },
   "grease": {
     "id": "grease",
     "name": "Grease",
@@ -209,6 +384,145 @@
     "description": "Slick grease covers the ground in a 10-foot square centered on a point within range and turns it into Difficult Terrain for the duration. When the grease appears, each creature standing in its area must succeed on a Dexterity saving throw or have the Prone condition. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw or have the Prone condition.",
     "save": "Dexterity",
     "icon": "vol3/icon-vol3_34"
+  },
+  "guiding-bolt": {
+    "id": "guiding-bolt",
+    "name": "Guiding Bolt",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "120 ft",
+    "components": "V, S",
+    "duration": "1 round",
+    "concentration": false,
+    "ritual": false,
+    "description": "A flash of light streaks toward a creature of your choice within range. Make a ranged spell attack against the target. On a hit, the target takes 4d6 radiant damage, and the next attack roll made against this target before the end of your next turn has advantage, thanks to the mystical dim light glittering on the target until then.",
+    "attack": "ranged",
+    "damage": {
+      "dice": "4d6",
+      "type": "radiant"
+    },
+    "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
+  },
+  "healing-word": {
+    "id": "healing-word",
+    "name": "Healing Word",
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "1 bonus action",
+    "range": "60 ft",
+    "components": "V",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+    "atHigherLevels": "The healing increases by 1d4 for each spell slot level above 1."
+  },
+  "heroism": {
+    "id": "heroism",
+    "name": "Heroism",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns. When the spell ends, the target loses any remaining temporary hit points from this spell.",
+    "atHigherLevels": "You can target one additional creature for each spell slot level above 1."
+  },
+  "ice-knife": {
+    "id": "ice-knife",
+    "name": "Ice Knife",
+    "level": 1,
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "S, M (a drop of water or a piece of ice)",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You create a shard of ice and fling it at one creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of it must succeed on a Dexterity saving throw or take 2d6 Cold damage.",
+    "damage": {
+      "dice": "1d10",
+      "type": "piercing"
+    },
+    "attack": "ranged",
+    "save": "Dexterity",
+    "atHigherLevels": "Both the Piercing damage and the Cold damage increase by 1d6 for each spell slot level above 1."
+  },
+  "identify": {
+    "id": "identify",
+    "name": "Identify",
+    "level": 1,
+    "school": "Divination",
+    "castingTime": "1 minute",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": true,
+    "description": "You choose one object that you must touch throughout the casting of the spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it. If you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it."
+  },
+  "illusory-script": {
+    "id": "illusory-script",
+    "name": "Illusory Script",
+    "level": 1,
+    "school": "Illusion",
+    "castingTime": "1 minute",
+    "range": "Touch",
+    "components": "S, M",
+    "duration": "10 days",
+    "concentration": false,
+    "ritual": true,
+    "description": "You write on parchment, paper, or some other suitable writing material and imbue it with a potent illusion that lasts for the duration. To you and any creatures you designate when you cast the spell, the writing appears normal, written in your hand, and conveys whatever meaning you intended when you wrote the text. To all others, the writing appears as if it were written in an unknown or magical script that is unintelligible. Alternatively, you can cause the writing to appear to be an entirely different message, written in a different hand and language, though the language must be one you know. Should the spell be dispelled, the original script and the illusion both disappear. A creature with truesight can read the hidden message."
+  },
+  "inflict-wounds": {
+    "id": "inflict-wounds",
+    "name": "Inflict Wounds",
+    "level": 1,
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "Make a melee spell attack against a creature you can reach. On a hit, the target takes 3d10 necrotic damage.",
+    "attack": "melee",
+    "damage": {
+      "dice": "3d10",
+      "type": "necrotic"
+    },
+    "atHigherLevels": "The damage increases by 1d10 for each spell slot level above 1."
+  },
+  "jump": {
+    "id": "jump",
+    "name": "Jump",
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "1 minute",
+    "concentration": false,
+    "ritual": false,
+    "description": "You touch a creature. The creature's jump distance is tripled until the spell ends."
+  },
+  "longstrider": {
+    "id": "longstrider",
+    "name": "Longstrider",
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "1 hour",
+    "concentration": false,
+    "ritual": false,
+    "description": "You touch a creature. The target's speed increases by 10 feet until the spell ends.",
+    "atHigherLevels": "You can target one additional creature for each spell slot level above 1."
   },
   "mage-armor": {
     "id": "mage-armor",
@@ -236,7 +550,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 Force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.",
-    "damage": { "dice": "3x(1d4+1)", "type": "force" },
+    "damage": {
+      "dice": "3x(1d4+1)",
+      "type": "force"
+    },
     "atHigherLevels": "The spell creates one more dart for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_36"
   },
@@ -254,6 +571,33 @@
     "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: Aberrations, Celestials, Elementals, Fey, Fiends, and Undead. The protection grants several benefits. Creatures of those types have Disadvantage on attack rolls against the target. The target also can't be Charmed, Frightened, or possessed by them. If the target is already Charmed, Frightened, or possessed by such a creature, the target has Advantage on any new saving throw against the relevant effect.",
     "icon": "vol3/icon-vol3_37"
   },
+  "purify-food-and-drink": {
+    "id": "purify-food-and-drink",
+    "name": "Purify Food and Drink",
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "10 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": true,
+    "description": "All nonmagical food and drink within a 5-foot radius sphere centered on a point of your choice within range is purified and rendered free of poison and disease."
+  },
+  "sanctuary": {
+    "id": "sanctuary",
+    "name": "Sanctuary",
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "1 bonus action",
+    "range": "30 ft",
+    "components": "V, S, M",
+    "duration": "1 minute",
+    "concentration": false,
+    "ritual": false,
+    "description": "You ward a creature within range against attack. Until the spell ends, any creature who targets the warded creature with an attack or a harmful spell must first make a Wisdom saving throw. On a failed save, the creature must choose a new target or lose the attack or spell. This spell doesn't protect the warded creature from area effects, such as the explosion of a fireball. If the warded creature makes an attack or casts a spell that affects an enemy creature, this spell ends.",
+    "save": "Wisdom"
+  },
   "shield": {
     "id": "shield",
     "name": "Shield",
@@ -268,6 +612,19 @@
     "description": "An invisible barrier of magical force protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from Magic Missile.",
     "icon": "vol3/icon-vol3_38"
   },
+  "shield-of-faith": {
+    "id": "shield-of-faith",
+    "name": "Shield of Faith",
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "1 bonus action",
+    "range": "60 ft",
+    "components": "V, S, M",
+    "duration": "Up to 10 minutes",
+    "concentration": true,
+    "ritual": false,
+    "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration."
+  },
   "silent-image": {
     "id": "silent-image",
     "name": "Silent Image",
@@ -281,6 +638,33 @@
     "ritual": false,
     "description": "You create the image of an object, a creature, or some other visible phenomenon that is no larger than a 15-foot Cube. The image appears at a spot within range and lasts for the duration. The image is purely visual; it isn't accompanied by sound, smell, or other sensory effects. As a Magic action, you can cause the image to move to any spot within range. As the image changes location, you can alter its appearance so that its movements appear natural for the image. Physical interaction with the image reveals it to be an illusion. A creature that examines the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC.",
     "icon": "vol3/icon-vol3_39"
+  },
+  "sleep": {
+    "id": "sleep",
+    "name": "Sleep",
+    "level": 1,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "90 ft",
+    "components": "V, S, M",
+    "duration": "1 minute",
+    "concentration": false,
+    "ritual": false,
+    "description": "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures). Starting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected. Undead and creatures immune to being charmed aren't affected by this spell.",
+    "atHigherLevels": "Roll an additional 2d8 for each spell slot level above 1."
+  },
+  "speak-with-animals": {
+    "id": "speak-with-animals",
+    "name": "Speak with Animals",
+    "level": 1,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "10 minutes",
+    "concentration": false,
+    "ritual": true,
+    "description": "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion."
   },
   "tashas-hideous-laughter": {
     "id": "tashas-hideous-laughter",
@@ -310,7 +694,10 @@
     "concentration": false,
     "ritual": false,
     "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot Cube originating from you makes a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, it takes half as much damage only. Unsecured objects that are completely within the area are pushed 10 feet away from you, and the spell emits a thunderous boom audible out to 300 feet.",
-    "damage": { "dice": "2d8", "type": "thunder" },
+    "damage": {
+      "dice": "2d8",
+      "type": "thunder"
+    },
     "save": "Constitution",
     "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_41"
@@ -341,7 +728,10 @@
     "concentration": true,
     "ritual": false,
     "description": "A beam of crackling energy lances toward a creature within range, forming a sustained arc of lightning between you and the target. Make a ranged spell attack against that creature. On a hit, the target takes 2d12 Lightning damage. On each of your subsequent turns, you can use a Bonus Action to deal 1d12 Lightning damage to the target automatically. The spell ends if the target is ever outside the spell's range or if it has Total Cover from you.",
-    "damage": { "dice": "2d12", "type": "lightning" },
+    "damage": {
+      "dice": "2d12",
+      "type": "lightning"
+    },
     "attack": "ranged",
     "atHigherLevels": "The initial damage increases by 1d12 for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_44"

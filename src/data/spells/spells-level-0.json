@@ -11,7 +11,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.",
-    "damage": { "dice": "1d6", "type": "acid" },
+    "damage": {
+      "dice": "1d6",
+      "type": "acid"
+    },
     "save": "Dexterity",
     "icon": "vol6/icon-vol6_206"
   },
@@ -41,7 +44,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You channel the chill of the grave through your hand. Make a melee spell attack against a creature you can reach. On a hit, the target takes 1d10 Necrotic damage, and it can't regain Hit Points until the start of your next turn.",
-    "damage": { "dice": "1d10", "type": "necrotic" },
+    "damage": {
+      "dice": "1d10",
+      "type": "necrotic"
+    },
     "attack": "melee",
     "icon": "vol3/icon-vol3_08"
   },
@@ -58,6 +64,19 @@
     "ritual": false,
     "description": "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover for the duration. Each light sheds Dim Light in a 10-foot radius. As a Bonus Action, you can move the lights up to 60 feet to new spots within range. A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
     "icon": "vol6/icon-vol6_317"
+  },
+  "druidcraft": {
+    "id": "druidcraft",
+    "name": "Druidcraft",
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire."
   },
   "elementalism": {
     "id": "elementalism",
@@ -85,7 +104,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell catches fire if it isn't being worn or carried.",
-    "damage": { "dice": "1d10", "type": "fire" },
+    "damage": {
+      "dice": "1d10",
+      "type": "fire"
+    },
     "attack": "ranged",
     "icon": "vol6/icon-vol6_576"
   },
@@ -103,6 +125,19 @@
     "description": "You magically emanate a sense of friendship toward one creature you can see within range. The target must succeed on a Wisdom saving throw or be Charmed by you for the duration. The target succeeds automatically if it isn't a Humanoid, if you're fighting it, or if you have cast this spell on it within the past 24 hours.",
     "save": "Wisdom",
     "icon": "vol3/icon-vol3_70"
+  },
+  "guidance": {
+    "id": "guidance",
+    "name": "Guidance",
+    "level": 0,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The spell then ends."
   },
   "light": {
     "id": "light",
@@ -172,7 +207,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You drive a disorienting spike of psychic energy into the mind of one creature you can see within range. The target must succeed on an Intelligence saving throw or take 1d6 Psychic damage and subtract 1d4 from the next saving throw it makes before the end of your next turn.",
-    "damage": { "dice": "1d6", "type": "psychic" },
+    "damage": {
+      "dice": "1d6",
+      "type": "psychic"
+    },
     "save": "Intelligence",
     "icon": "vol3/icon-vol3_12"
   },
@@ -202,7 +240,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You spray toxic mist at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d12 Poison damage.",
-    "damage": { "dice": "1d12", "type": "poison" },
+    "damage": {
+      "dice": "1d12",
+      "type": "poison"
+    },
     "attack": "ranged",
     "icon": "vol6/icon-vol6_100"
   },
@@ -220,6 +261,24 @@
     "description": "This spell is a minor magical trick that novice spellcasters use for practice. You create one of the following effects within range: a harmless sensory effect (wind, sparks, music, odor); you light or snuff out a candle, torch, or campfire; you clean or soil an object no larger than 1 cubic foot; you chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour; you make a color, mark, or symbol appear on an object or surface for 1 hour; or you create a nonmagical trinket or illusory image that fits in your hand and lasts until the end of your next turn. You can have up to three non-instantaneous effects active at a time.",
     "icon": "vol3/icon-vol3_108"
   },
+  "produce-flame": {
+    "id": "produce-flame",
+    "name": "Produce Flame",
+    "level": 0,
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "10 minutes",
+    "concentration": false,
+    "ritual": false,
+    "description": "A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again. You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage.",
+    "attack": "ranged",
+    "damage": {
+      "dice": "1d8",
+      "type": "fire"
+    }
+  },
   "ray-of-frost": {
     "id": "ray-of-frost",
     "name": "Ray of Frost",
@@ -232,9 +291,56 @@
     "concentration": false,
     "ritual": false,
     "description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 Cold damage, and its Speed is reduced by 10 feet until the start of your next turn.",
-    "damage": { "dice": "1d8", "type": "cold" },
+    "damage": {
+      "dice": "1d8",
+      "type": "cold"
+    },
     "attack": "ranged",
     "icon": "vol3/icon-vol3_16"
+  },
+  "resistance": {
+    "id": "resistance",
+    "name": "Resistance",
+    "level": 0,
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "Up to 1 minute",
+    "concentration": true,
+    "ritual": false,
+    "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one saving throw of its choice. It can roll the die before or after making the saving throw. The spell then ends."
+  },
+  "sacred-flame": {
+    "id": "sacred-flame",
+    "name": "Sacred Flame",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "Flame-like radiance descends on a creature that you can see within range. The target must succeed on a Dexterity saving throw or take 1d8 radiant damage. The target gains no benefit from cover for this saving throw.",
+    "save": "Dexterity",
+    "damage": {
+      "dice": "1d8",
+      "type": "radiant"
+    }
+  },
+  "shillelagh": {
+    "id": "shillelagh",
+    "name": "Shillelagh",
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "1 bonus action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "1 minute",
+    "concentration": false,
+    "ritual": false,
+    "description": "The wood of a club or a quarterstaff you are holding is imbued with nature's power. For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already. The spell ends if you cast it again or if you let go of the weapon."
   },
   "shocking-grasp": {
     "id": "shocking-grasp",
@@ -248,9 +354,74 @@
     "concentration": false,
     "ritual": false,
     "description": "Lightning springs from your hand to deliver a shock to a creature you try to touch. Make a melee spell attack against the target. You have Advantage on the attack roll if the target is wearing armor made of metal. On a hit, the target takes 1d8 Lightning damage, and it can't make Opportunity Attacks until the start of its next turn.",
-    "damage": { "dice": "1d8", "type": "lightning" },
+    "damage": {
+      "dice": "1d8",
+      "type": "lightning"
+    },
     "attack": "melee",
     "icon": "vol6/icon-vol6_441"
+  },
+  "spare-the-dying": {
+    "id": "spare-the-dying",
+    "name": "Spare the Dying",
+    "level": 0,
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You touch a living creature that has 0 hit points. The creature becomes stable. This spell has no effect on undead or constructs."
+  },
+  "starry-wisp": {
+    "id": "starry-wisp",
+    "name": "Starry Wisp",
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V, S, M (a bit of burnt cork)",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and it sheds Dim Light in a 10-foot radius until the end of your next turn.",
+    "damage": {
+      "dice": "1d8",
+      "type": "radiant"
+    },
+    "attack": "ranged"
+  },
+  "thaumaturgy": {
+    "id": "thaumaturgy",
+    "name": "Thaumaturgy",
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V",
+    "duration": "1 minute",
+    "concentration": false,
+    "ritual": false,
+    "description": "You manifest a minor wonder, a sign of supernatural power, within range. You create one of the following magical effects within range. \n- Your voice booms up to three times as loud as normal for 1 minute. \n- You cause flames to flicker, brighten, dim, or change color for 1 minute. \n- You cause harmless tremors in the ground for 1 minute. \n- You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers. \n- You instantaneously cause an unlocked door or window to fly open or slam shut. \n- You alter the appearance of your eyes for 1 minute. \nIf you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time, and you can dismiss such an effect as an action."
+  },
+  "thorn-whip": {
+    "id": "thorn-whip",
+    "name": "Thorn Whip",
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "30 ft",
+    "components": "V, S, M (the stem of a plant with thorns)",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You create a long, vine-like whip covered in thorns that lashes out at a creature in range. Make a melee spell attack against the target. On a hit, the target takes 1d6 Piercing damage, and if the target is a Large or smaller creature, you pull the target up to 10 feet closer to you.",
+    "damage": {
+      "dice": "1d6",
+      "type": "piercing"
+    },
+    "attack": "melee"
   },
   "thunderclap": {
     "id": "thunderclap",
@@ -264,7 +435,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You create a burst of thunderous sound that can be heard 100 feet away. Each creature within a 5-foot Emanation originating from you must succeed on a Constitution saving throw or take 1d6 Thunder damage.",
-    "damage": { "dice": "1d6", "type": "thunder" },
+    "damage": {
+      "dice": "1d6",
+      "type": "thunder"
+    },
     "save": "Constitution",
     "icon": "vol6/icon-vol6_340"
   },
@@ -280,8 +454,47 @@
     "concentration": false,
     "ritual": false,
     "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 Necrotic damage. If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage.",
-    "damage": { "dice": "1d8/1d12", "type": "necrotic" },
+    "damage": {
+      "dice": "1d8/1d12",
+      "type": "necrotic"
+    },
     "save": "Wisdom",
     "icon": "vol3/icon-vol3_10"
+  },
+  "true-strike": {
+    "id": "true-strike",
+    "name": "True Strike",
+    "level": 0,
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "components": "S, M (a weapon with which you have proficiency and that is worth 1+ CP)",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "Guided by a flash of magical insight, you make one attack with the weapon used as this spell's Material component. The attack deals an extra 1d6 Radiant damage on a hit. If the attack roll has Advantage or Disadvantage, you can treat the d20 roll as an 11.",
+    "damage": {
+      "dice": "1d6",
+      "type": "radiant"
+    },
+    "attack": "melee"
+  },
+  "vicious-mockery": {
+    "id": "vicious-mockery",
+    "name": "Vicious Mockery",
+    "level": 0,
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "60 ft",
+    "components": "V",
+    "duration": "Instantaneous",
+    "concentration": false,
+    "ritual": false,
+    "description": "You unleash a string of insults laced with subtle enchantments at a creature you can see within range. If the target can hear you (though it need not understand you), it must succeed on a Wisdom saving throw or take 1d6 Psychic damage and have disadvantage on the next attack roll it makes before the end of its next turn.",
+    "save": "Wisdom",
+    "damage": {
+      "dice": "1d6",
+      "type": "psychic"
+    }
   }
 }
