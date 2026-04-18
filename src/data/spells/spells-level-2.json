@@ -69,7 +69,10 @@
     "concentration": true,
     "ritual": false,
     "description": "You fill the air with spinning daggers in a Cube 5 feet on each side, centered on a point you choose within range. A creature takes 4d4 Slashing damage when it enters the area for the first time on a turn or starts its turn there.",
-    "damage": { "dice": "4d4", "type": "slashing" },
+    "damage": {
+      "dice": "4d4",
+      "type": ["slashing"]
+    },
     "atHigherLevels": "The damage increases by 2d4 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_49"
   },
@@ -157,7 +160,10 @@
     "concentration": true,
     "ritual": false,
     "description": "You touch one willing creature and choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the target can take a Magic action to exhale energy of the chosen type in a 15-foot Cone. Each creature in that area makes a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save or half as much on a successful one.",
-    "damage": { "dice": "3d6", "type": "acid/cold/fire/lightning/poison" },
+    "damage": {
+      "dice": "3d6",
+      "type": ["acid", "cold", "fire", "lightning", "poison"]
+    },
     "save": "Dexterity",
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_56"
@@ -174,7 +180,10 @@
     "concentration": true,
     "ritual": false,
     "description": "A 5-foot-diameter Sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration. Any creature that ends its turn within 5 feet of the Sphere makes a Dexterity saving throw, taking 2d6 Fire damage on a failed save or half as much on a successful one. As a Bonus Action, you can move the Sphere up to 30 feet. If you move the Sphere into a creature's space, that creature makes the saving throw against the Sphere, and the Sphere stops moving for that turn. The Sphere ignites flammable objects not being worn or carried, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet.",
-    "damage": { "dice": "2d6", "type": "fire" },
+    "damage": {
+      "dice": "2d6",
+      "type": ["fire"]
+    },
     "save": "Dexterity",
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_57"
@@ -323,7 +332,10 @@
     "concentration": false,
     "ritual": false,
     "description": "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 Acid damage and 2d4 Acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage only.",
-    "damage": { "dice": "4d4 + 2d4", "type": "acid" },
+    "damage": {
+      "dice": "4d4 + 2d4",
+      "type": ["acid"]
+    },
     "attack": "ranged",
     "atHigherLevels": "The initial damage and the later damage both increase by 1d4 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_67"
@@ -340,7 +352,10 @@
     "concentration": true,
     "ritual": false,
     "description": "You reach into the mind of one creature you can see within range. The target makes a Wisdom saving throw, taking 3d8 Psychic damage on a failed save or half as much on a successful one. On a failed save, you also always know the target's location until the spell ends, but only while the two of you are on the same plane of existence. While you have this knowledge, the target can't become hidden from you, and if it has the Invisible condition, it gains no benefit from that condition against you.",
-    "damage": { "dice": "3d8", "type": "psychic" },
+    "damage": {
+      "dice": "3d8",
+      "type": ["psychic"]
+    },
     "save": "Wisdom",
     "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_68"
@@ -399,7 +414,10 @@
     "concentration": true,
     "ritual": false,
     "description": "You attempt to craft an illusion in the mind of a creature you can see within range. The target makes an Intelligence saving throw. On a failure, you create a phantasmal object, creature, or phenomenon no larger than a 10-foot Cube that is perceivable only to the target for the duration. The phantasm includes sound, temperature, and other stimuli. The target can use the Study action to make an Intelligence (Investigation) check against your spell save DC; on a success, it realizes the phantasm is an illusion, and the spell ends. While affected, the target treats the phantasm as if it were real and rationalizes illogical outcomes. Each round on your turn, the phantasm can deal 2d8 Psychic damage to the target if it is in the phantasm's area or within 5 feet of it.",
-    "damage": { "dice": "2d8", "type": "psychic" },
+    "damage": {
+      "dice": "2d8",
+      "type": ["psychic"]
+    },
     "save": "Intelligence",
     "icon": "vol3/icon-vol3_73"
   },
@@ -444,7 +462,10 @@
     "concentration": false,
     "ritual": false,
     "description": "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several. Make a ranged spell attack for each ray. On a hit, the target takes 2d6 Fire damage.",
-    "damage": { "dice": "3x(2d6)", "type": "fire" },
+    "damage": {
+      "dice": "3x(2d6)",
+      "type": ["fire"]
+    },
     "attack": "ranged",
     "atHigherLevels": "You create one additional ray for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_76"
@@ -475,7 +496,10 @@
     "concentration": false,
     "ritual": false,
     "description": "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-foot-radius Sphere centered on that point must make a Constitution saving throw, taking 3d8 Thunder damage on a failed save or half as much on a successful one. A creature made of inorganic material such as stone, crystal, or metal has Disadvantage on this saving throw. A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.",
-    "damage": { "dice": "3d8", "type": "thunder" },
+    "damage": {
+      "dice": "3d8",
+      "type": ["thunder"]
+    },
     "save": "Constitution",
     "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 2.",
     "icon": "vol3/icon-vol3_78"

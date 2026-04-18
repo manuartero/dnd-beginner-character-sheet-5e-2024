@@ -41,7 +41,7 @@
     "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points for the duration. If a creature hits you with a melee attack while you have these Hit Points, the creature takes 5 Cold damage.",
     "damage": {
       "dice": "5",
-      "type": "cold"
+      "type": ["cold"]
     },
     "atHigherLevels": "When you cast this spell using a spell slot of level 2 or higher, both the Temporary Hit Points and the Cold damage increase by 5 for each slot level above 1."
   },
@@ -59,7 +59,7 @@
     "description": "You invoke the power of Hadar, the Dark Hunger. Tendrils of dark energy erupt from you and batter all creatures within 10 feet of you. Each creature in that area must make a Strength saving throw. On a failed save, a target takes 2d6 Necrotic damage and can't take Reactions until the start of its next turn. On a successful save, the creature takes half as much damage only.",
     "damage": {
       "dice": "2d6",
-      "type": "necrotic"
+      "type": ["necrotic"]
     },
     "save": "Strength",
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
@@ -107,7 +107,7 @@
     "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
     "damage": {
       "dice": "3d6",
-      "type": "fire"
+      "type": ["fire"]
     },
     "save": "Dexterity",
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1.",
@@ -143,7 +143,7 @@
     "description": "You hurl an orb of energy at a creature you can see within range. You choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again.",
     "damage": {
       "dice": "3d8",
-      "type": "acid/cold/fire/lightning/poison/thunder"
+      "type": ["acid", "cold", "fire", "lightning", "poison", "thunder"]
     },
     "attack": "ranged",
     "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 1.",
@@ -290,7 +290,7 @@
     "save": "Wisdom",
     "damage": {
       "dice": "3d6",
-      "type": "psychic"
+      "type": ["psychic"]
     },
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
   },
@@ -437,7 +437,7 @@
     "attack": "ranged",
     "damage": {
       "dice": "4d6",
-      "type": "radiant"
+      "type": ["radiant"]
     },
     "atHigherLevels": "The damage increases by 1d6 for each spell slot level above 1."
   },
@@ -469,7 +469,7 @@
     "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 Fire damage on a failed save, or half as much damage on a successful one.",
     "damage": {
       "dice": "2d10",
-      "type": "fire"
+      "type": ["fire"]
     },
     "save": "Dexterity",
     "atHigherLevels": "The damage increases by 1d10 for each spell slot level above 1."
@@ -502,7 +502,7 @@
     "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a subsequent turn to curse a new creature.",
     "damage": {
       "dice": "1d6",
-      "type": "necrotic"
+      "type": ["necrotic"]
     },
     "atHigherLevels": "When you cast this spell using a spell slot of level 3 or 4, you can maintain your Concentration on the spell for up to 8 hours. When you use a spell slot of level 5 or higher, you can maintain your Concentration on the spell for up to 24 hours."
   },
@@ -520,7 +520,7 @@
     "description": "You create a shard of ice and fling it at one creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of it must succeed on a Dexterity saving throw or take 2d6 Cold damage.",
     "damage": {
       "dice": "1d10",
-      "type": "piercing"
+      "type": ["piercing"]
     },
     "attack": "ranged",
     "save": "Dexterity",
@@ -567,7 +567,7 @@
     "attack": "melee",
     "damage": {
       "dice": "3d10",
-      "type": "necrotic"
+      "type": ["necrotic"]
     },
     "atHigherLevels": "The damage increases by 1d10 for each spell slot level above 1."
   },
@@ -626,7 +626,7 @@
     "description": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 Force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.",
     "damage": {
       "dice": "3x(1d4+1)",
-      "type": "force"
+      "type": ["force"]
     },
     "atHigherLevels": "The spell creates one more dart for each spell slot level above 1.",
     "icon": "vol3/icon-vol3_36"
@@ -672,7 +672,7 @@
     "description": "A ray of sickening greenish energy lashes out toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 2d8 Poison damage and must succeed on a Constitution saving throw or have the Poisoned condition until the end of your next turn.",
     "damage": {
       "dice": "2d8",
-      "type": "poison"
+      "type": ["poison"]
     },
     "save": "Constitution",
     "attack": "ranged",
@@ -790,7 +790,7 @@
     "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot Cube originating from you makes a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, it takes half as much damage only. Unsecured objects that are completely within the area are pushed 10 feet away from you, and the spell emits a thunderous boom audible out to 300 feet.",
     "damage": {
       "dice": "2d8",
-      "type": "thunder"
+      "type": ["thunder"]
     },
     "save": "Constitution",
     "atHigherLevels": "The damage increases by 1d8 for each spell slot level above 1.",
@@ -824,7 +824,7 @@
     "description": "A beam of crackling energy lances toward a creature within range, forming a sustained arc of lightning between you and the target. Make a ranged spell attack against that creature. On a hit, the target takes 2d12 Lightning damage. On each of your subsequent turns, you can use a Bonus Action to deal 1d12 Lightning damage to the target automatically. The spell ends if the target is ever outside the spell's range or if it has Total Cover from you.",
     "damage": {
       "dice": "2d12",
-      "type": "lightning"
+      "type": ["lightning"]
     },
     "attack": "ranged",
     "atHigherLevels": "The initial damage increases by 1d12 for each spell slot level above 1.",

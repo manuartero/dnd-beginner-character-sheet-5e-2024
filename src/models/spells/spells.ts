@@ -28,7 +28,7 @@ export type Spell = {
   save?: string;
   damage?: {
     dice: string;
-    type: DamageType;
+    type: DamageType[];
   };
   icon?: string;
 };

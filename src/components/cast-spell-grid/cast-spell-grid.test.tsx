@@ -106,7 +106,7 @@ describe("<CastSpellGrid />", () => {
         id: "fire-bolt",
         name: "Fire Bolt",
         level: 0,
-        damage: { dice: "1d10", type: "fire" },
+        damage: { dice: "1d10", type: ["fire"] },
       }),
     ];
     render(<CastSpellGrid spells={spells} />);

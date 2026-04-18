@@ -14,7 +14,7 @@ const fireBolt: Spell = {
   components: "V, S",
   duration: "Instantaneous",
   description: "A beam of fire",
-  damage: { dice: "1d10", type: "fire" },
+  damage: { dice: "1d10", type: ["fire"] },
 };
 
 describe("<SpellCards />", () => {

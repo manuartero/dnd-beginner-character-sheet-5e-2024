@@ -287,7 +287,7 @@ function SpellSelectionGrid({
                             <span className={styles.metaLabel}>Damage</span>
                             <span>
                               {expandedSpell.damage.dice}{" "}
-                              {expandedSpell.damage.type}
+                              {expandedSpell.damage.type.join("/")}
                             </span>
                           </div>
                         )}
