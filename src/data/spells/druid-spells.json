@@ -1,0 +1,37 @@
+{
+  "cantrips": [
+    "druidcraft",
+    "elementalism",
+    "guidance",
+    "mending",
+    "message",
+    "poison-spray",
+    "produce-flame",
+    "resistance",
+    "shillelagh",
+    "spare-the-dying",
+    "starry-wisp",
+    "thorn-whip",
+    "thunderclap"
+  ],
+  "level1": [
+    "animal-friendship",
+    "charm-person",
+    "create-or-destroy-water",
+    "cure-wounds",
+    "detect-magic",
+    "detect-poison-and-disease",
+    "entangle",
+    "faerie-fire",
+    "fog-cloud",
+    "goodberry",
+    "healing-word",
+    "ice-knife",
+    "jump",
+    "longstrider",
+    "protection-from-evil-and-good",
+    "purify-food-and-drink",
+    "speak-with-animals",
+    "thunderwave"
+  ]
+}
