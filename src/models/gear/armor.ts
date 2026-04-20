@@ -18,11 +18,11 @@ type ArmorCriteria = { id: string } | { name: string };
 
 const DATA = armorData as Armor[];
 const BY_ID = new Map(DATA.map((a) => [a.id, a]));
-const BY_NAME = new Map(DATA.map((a) => [a.name, a]));
+const BY_NAME = new Map(DATA.map((a) => [a.name.toLowerCase(), a]));
 
 function lookup(criteria: ArmorCriteria): Armor | undefined {
   if ("id" in criteria) return BY_ID.get(criteria.id);
-  return BY_NAME.get(criteria.name);
+  return BY_NAME.get(criteria.name.toLowerCase());
 }
 
 export const armor = {

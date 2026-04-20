@@ -26,19 +26,28 @@ function isValidCharacter(raw: unknown): raw is Character {
 
 export type LoadResult = {
   characters: Character[];
-  droppedCount: number;
+  corrupted: boolean;
 };
 
 export function loadCharacters(): LoadResult {
+  let raw: string | null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { characters: [], droppedCount: 0 };
-    const parsed = JSON.parse(raw) as unknown[];
-    const characters = parsed.filter(isValidCharacter);
-    return { characters, droppedCount: parsed.length - characters.length };
+    raw = localStorage.getItem(STORAGE_KEY);
   } catch {
-    return { characters: [], droppedCount: 0 };
+    return { characters: [], corrupted: false };
   }
+  if (!raw) return { characters: [], corrupted: false };
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { characters: [], corrupted: true };
+  }
+  if (!Array.isArray(parsed)) {
+    return { characters: [], corrupted: true };
+  }
+  const characters = parsed.filter(isValidCharacter);
+  return { characters, corrupted: characters.length < parsed.length };
 }
 
 export function saveCharacter(character: Character): void {

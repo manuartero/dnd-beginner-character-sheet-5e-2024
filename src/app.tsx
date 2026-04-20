@@ -22,7 +22,7 @@ type AppView =
 export function App() {
   const isKeyboardMode = useKeyboardMode();
   const [view, setView] = useState<AppView>({ kind: "character-list" });
-  const [{ characters, droppedCount }, setLoadResult] = useState(() =>
+  const [{ characters, corrupted }, setLoadResult] = useState(() =>
     loadCharacters(),
   );
 
@@ -109,7 +109,7 @@ export function App() {
           {view.kind === "character-list" && (
             <CharacterList
               characters={characters}
-              droppedCount={droppedCount}
+              corrupted={corrupted}
               onSelect={handleSelect}
               onNew={handleNew}
               onDelete={handleDelete}

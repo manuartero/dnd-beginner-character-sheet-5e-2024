@@ -8,47 +8,46 @@ import type { Character } from "src/models/common/character";
 
 type CharacterListProps = {
   characters: Character[];
-  droppedCount?: number;
+  corrupted?: boolean;
   onSelect: (characterId: string) => void;
   onNew: () => void;
   onDelete: (characterId: string) => void;
 };
 
-const DISMISS_KEY = "faded-notice-dismissed";
+const CORRUPTED_DISMISS_KEY = "corrupted-storage-dismissed";
 
-function FadedNotice({ count }: { count: number }) {
+function CorruptedStorageNotice() {
   const [dismissed, setDismissed] = useState(
     () =>
       typeof window !== "undefined" &&
-      window.localStorage.getItem(DISMISS_KEY) === "true",
+      window.localStorage.getItem(CORRUPTED_DISMISS_KEY) === "true",
   );
 
-  if (dismissed || count <= 0) return null;
+  if (dismissed) return null;
 
   function handleDismiss() {
-    localStorage.setItem(DISMISS_KEY, "true");
+    window.localStorage.setItem(CORRUPTED_DISMISS_KEY, "true");
     setDismissed(true);
   }
 
-  const label =
-    count === 1 ? "1 saved character was" : `${count} saved characters were`;
   return (
     <Banner icon="⚠" onDismiss={handleDismiss} dismissLabel="Dismiss notice">
-      <strong>{label} removed.</strong> They didn't match the current schema.
+      <strong>Some saved characters couldn't be loaded</strong> and were
+      discarded.
     </Banner>
   );
 }
 
 export function CharacterList({
   characters,
-  droppedCount = 0,
+  corrupted = false,
   onSelect,
   onNew,
   onDelete,
 }: CharacterListProps) {
   return (
     <Section title="Characters">
-      <FadedNotice count={droppedCount} />
+      {corrupted && <CorruptedStorageNotice />}
       <div className={styles.grid}>
         {characters.map((char) => (
           <CharacterCard

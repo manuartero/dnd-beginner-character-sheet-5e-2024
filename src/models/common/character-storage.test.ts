@@ -56,8 +56,8 @@ describe("character-storage", () => {
   });
 
   describe("loadCharacters()", () => {
-    it("returns empty characters and zero drops when nothing stored", () => {
-      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 0 });
+    it("returns empty result when nothing stored", () => {
+      expect(loadCharacters()).toEqual({ characters: [], corrupted: false });
     });
 
     it("returns parsed characters that match the current schema", () => {
@@ -65,35 +65,40 @@ describe("character-storage", () => {
       store["dnd-characters"] = JSON.stringify(chars);
       expect(loadCharacters()).toEqual({
         characters: chars,
-        droppedCount: 0,
+        corrupted: false,
       });
     });
 
-    it("returns empty characters and zero drops on corrupted JSON", () => {
+    it("flags corruption when stored JSON is malformed", () => {
       store["dnd-characters"] = "not-json{{{";
-      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 0 });
+      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
     });
 
-    it("drops entries with unknown race and reports the count", () => {
+    it("flags corruption when parsed value is not an array", () => {
+      store["dnd-characters"] = JSON.stringify({ legacy: "shape" });
+      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
+    });
+
+    it("flags corruption when entries have an unknown race", () => {
       const bad = { ...makeCharacter(), race: "Half-Dragon" };
       store["dnd-characters"] = JSON.stringify([bad]);
-      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 1 });
+      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
     });
 
-    it("drops entries with unknown class and reports the count", () => {
+    it("flags corruption when entries have an unknown class", () => {
       const bad = { ...makeCharacter(), characterClass: "necromancer" };
       store["dnd-characters"] = JSON.stringify([bad]);
-      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 1 });
+      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
     });
 
-    it("keeps valid entries and drops invalid ones from the same list", () => {
+    it("keeps valid entries and flags corruption when some are invalid", () => {
       const good = makeCharacter({ id: "good" });
       const bad = { ...makeCharacter({ id: "bad" }), race: "Half-Dragon" };
       store["dnd-characters"] = JSON.stringify([good, bad]);
       const result = loadCharacters();
       expect(result.characters).toHaveLength(1);
       expect(result.characters[0].id).toBe("good");
-      expect(result.droppedCount).toBe(1);
+      expect(result.corrupted).toBe(true);
     });
   });
 
