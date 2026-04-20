@@ -30,8 +30,8 @@ export type SpeciesDetails = { id: Species; label: string; icon: string; ... };
 
 | Method                | Use when                                                | Returns                      |
 | --------------------- | ------------------------------------------------------- | ---------------------------- |
-| `get(criteria)`       | caller expects exactly one match; any other case = bug  | `T` (throws on 0 or >1)      |
-| `find(criteria)`      | caller expects 0 or 1 match (unknown id, search)        | `T \| undefined` (throws on >1) |
+| `get(criteria)`       | caller expects exactly one match; any other case = bug  | `T` (throws on miss)         |
+| `find(criteria)`      | caller expects 0 or 1 match (unknown id, search)        | `T \| undefined`             |
 | `findAll(criteria)`   | filter / multi-match query                              | `T[]` (empty array on 0)     |
 | `groupBy({ by })`     | partition records by a field                            | `{ key; items: T[] }[]` (ordered) |
 | `list()`              | all records, no criteria (UI grids, tests, pickers)     | `T[]`                        |
@@ -42,8 +42,9 @@ Add only what real consumers use — not every module needs all five.
 
 - **All criteria are objects.** No positional ids. `get({ id })`, `find({ name })`, `findAll({ cls, level })`.
 - **Criteria keys mirror entity fields.** If the entity has `.id`, query by `{ id }`. If `.name`, by `{ name }`. Composite criteria are fine: `spells.findAll({ cls, level })`.
-- **`get` and `find` throw on ambiguous match (>1).** Multiple matches means a model-level bug — surface it rather than silently picking one.
-- **`find` returns `undefined`** (idiomatic TS, mirrors `Array.prototype.find`).
+- **`get` throws on miss.** Unknown id = caller bug; surface it rather than returning a fallback.
+- **`find` returns `undefined`** on miss (idiomatic TS, mirrors `Array.prototype.find`).
+- **Criteria should uniquely identify at most one record.** Models index by unique fields (id, name). If you ever need "at most one match from an ambiguous query", use `findAll(...)[0]` explicitly.
 - **No `getAll`.** `findAll` covers it; a strict-only multi-query variant adds noise without carrying its weight.
 - **`groupBy` returns raw keys**, not display labels. Labels live in the UI consumer. The result is an **ordered array** of `{ key, items }` so group order is preserved.
 - **Entities carry their identity field (flat `T[]`).** If the data source keys records by id in a map, fold `.id` into each value at read time — don't make consumers handle `{ id, details }` wrappers.
@@ -61,5 +62,5 @@ Add only what real consumers use — not every module needs all five.
 
 ## Reference implementations
 
-- `src/models/origin/species.ts`
-- `src/models/spells/spells.ts`
+- `src/models/class/classes.ts` — full surface (`get` / `find` / `list` / `groupBy`)
+- `src/models/origin/backgrounds.ts` — `get` / `find` / `list` + `icon({ id })` projection
