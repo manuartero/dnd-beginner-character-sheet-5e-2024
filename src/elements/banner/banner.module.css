@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 3px dashed var(--shade-3);
+  background: transparent;
+  color: var(--shade-2);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-md);
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: var(--font-size-md);
+  line-height: 1;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.dismiss {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-sm);
+  color: var(--shade-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

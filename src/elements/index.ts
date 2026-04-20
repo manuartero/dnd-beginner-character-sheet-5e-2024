@@ -6,6 +6,7 @@ export {
   accordionStyles,
 } from "./accordion-list/accordion-list";
 export { ActionChip } from "./action-chip/action-chip";
+export { Banner } from "./banner/banner";
 export { ChipGrid } from "./chip-grid/chip-grid";
 export { DetailRow } from "./detail-row/detail-row";
 export { EmptySlot } from "./empty-slot/empty-slot";

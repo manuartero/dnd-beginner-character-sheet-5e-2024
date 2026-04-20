@@ -55,42 +55,53 @@ describe("character-storage", () => {
     vi.restoreAllMocks();
   });
 
-  describe("loadCharacters", () => {
-    it("returns empty array when nothing stored", () => {
-      expect(loadCharacters()).toEqual([]);
+  describe("loadCharacters()", () => {
+    it("returns empty characters and zero drops when nothing stored", () => {
+      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 0 });
     });
 
-    it("returns parsed characters", () => {
+    it("returns parsed characters that match the current schema", () => {
       const chars = [makeCharacter()];
       store["dnd-characters"] = JSON.stringify(chars);
-      expect(loadCharacters()).toEqual(chars);
+      expect(loadCharacters()).toEqual({
+        characters: chars,
+        droppedCount: 0,
+      });
     });
 
-    it("returns empty array on corrupted data", () => {
+    it("returns empty characters and zero drops on corrupted JSON", () => {
       store["dnd-characters"] = "not-json{{{";
-      expect(loadCharacters()).toEqual([]);
+      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 0 });
     });
 
-    it("migrates old string race to lowercase", () => {
-      const oldChar = { ...makeCharacter(), race: "Human" };
-      store["dnd-characters"] = JSON.stringify([oldChar]);
-      const loaded = loadCharacters();
-      expect(loaded[0].race).toBe("human");
+    it("drops entries with unknown race and reports the count", () => {
+      const bad = { ...makeCharacter(), race: "Half-Dragon" };
+      store["dnd-characters"] = JSON.stringify([bad]);
+      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 1 });
     });
 
-    it("migrates unknown race to human", () => {
-      const oldChar = { ...makeCharacter(), race: "Half-Dragon" };
-      store["dnd-characters"] = JSON.stringify([oldChar]);
-      const loaded = loadCharacters();
-      expect(loaded[0].race).toBe("human");
+    it("drops entries with unknown class and reports the count", () => {
+      const bad = { ...makeCharacter(), characterClass: "necromancer" };
+      store["dnd-characters"] = JSON.stringify([bad]);
+      expect(loadCharacters()).toEqual({ characters: [], droppedCount: 1 });
+    });
+
+    it("keeps valid entries and drops invalid ones from the same list", () => {
+      const good = makeCharacter({ id: "good" });
+      const bad = { ...makeCharacter({ id: "bad" }), race: "Half-Dragon" };
+      store["dnd-characters"] = JSON.stringify([good, bad]);
+      const result = loadCharacters();
+      expect(result.characters).toHaveLength(1);
+      expect(result.characters[0].id).toBe("good");
+      expect(result.droppedCount).toBe(1);
     });
   });
 
-  describe("saveCharacter", () => {
+  describe("saveCharacter()", () => {
     it("adds a new character", () => {
       const char = makeCharacter();
       saveCharacter(char);
-      expect(loadCharacters()).toEqual([char]);
+      expect(loadCharacters().characters).toEqual([char]);
     });
 
     it("updates an existing character by id", () => {
@@ -98,32 +109,32 @@ describe("character-storage", () => {
       saveCharacter(char);
       const updated = { ...char, name: "Thorn the Brave" };
       saveCharacter(updated);
-      const loaded = loadCharacters();
-      expect(loaded).toHaveLength(1);
-      expect(loaded[0].name).toBe("Thorn the Brave");
+      const { characters } = loadCharacters();
+      expect(characters).toHaveLength(1);
+      expect(characters[0].name).toBe("Thorn the Brave");
     });
 
     it("adds multiple characters with different ids", () => {
       saveCharacter(makeCharacter({ id: "id-1", name: "Thorn" }));
       saveCharacter(makeCharacter({ id: "id-2", name: "Elara" }));
-      expect(loadCharacters()).toHaveLength(2);
+      expect(loadCharacters().characters).toHaveLength(2);
     });
   });
 
-  describe("deleteCharacter", () => {
+  describe("deleteCharacter()", () => {
     it("removes a character by id", () => {
       saveCharacter(makeCharacter({ id: "id-1" }));
       saveCharacter(makeCharacter({ id: "id-2" }));
       deleteCharacter("id-1");
-      const loaded = loadCharacters();
-      expect(loaded).toHaveLength(1);
-      expect(loaded[0].id).toBe("id-2");
+      const { characters } = loadCharacters();
+      expect(characters).toHaveLength(1);
+      expect(characters[0].id).toBe("id-2");
     });
 
     it("does nothing if id not found", () => {
       saveCharacter(makeCharacter({ id: "id-1" }));
       deleteCharacter("nonexistent");
-      expect(loadCharacters()).toHaveLength(1);
+      expect(loadCharacters().characters).toHaveLength(1);
     });
   });
 });

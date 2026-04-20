@@ -1,5 +1,5 @@
 import c from "classnames";
-import { InlineConfirm, Section } from "elements";
+import { Banner, InlineConfirm, Section } from "elements";
 import { useState } from "react";
 import { classes } from "src/models/class/classes";
 import styles from "./character-list.module.css";
@@ -8,19 +8,47 @@ import type { Character } from "src/models/common/character";
 
 type CharacterListProps = {
   characters: Character[];
+  droppedCount?: number;
   onSelect: (characterId: string) => void;
   onNew: () => void;
   onDelete: (characterId: string) => void;
 };
 
+const DISMISS_KEY = "faded-notice-dismissed";
+
+function FadedNotice({ count }: { count: number }) {
+  const [dismissed, setDismissed] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(DISMISS_KEY) === "true",
+  );
+
+  if (dismissed || count <= 0) return null;
+
+  function handleDismiss() {
+    localStorage.setItem(DISMISS_KEY, "true");
+    setDismissed(true);
+  }
+
+  const label =
+    count === 1 ? "1 saved character was" : `${count} saved characters were`;
+  return (
+    <Banner icon="⚠" onDismiss={handleDismiss} dismissLabel="Dismiss notice">
+      <strong>{label} removed.</strong> They didn't match the current schema.
+    </Banner>
+  );
+}
+
 export function CharacterList({
   characters,
+  droppedCount = 0,
   onSelect,
   onNew,
   onDelete,
 }: CharacterListProps) {
   return (
     <Section title="Characters">
+      <FadedNotice count={droppedCount} />
       <div className={styles.grid}>
         {characters.map((char) => (
           <CharacterCard

@@ -22,7 +22,7 @@ type AppView =
 export function App() {
   const isKeyboardMode = useKeyboardMode();
   const [view, setView] = useState<AppView>({ kind: "character-list" });
-  const [characters, setCharacters] = useState<Character[]>(() =>
+  const [{ characters, droppedCount }, setLoadResult] = useState(() =>
     loadCharacters(),
   );
 
@@ -38,7 +38,7 @@ export function App() {
   }, []);
 
   function goToList() {
-    setCharacters(loadCharacters());
+    setLoadResult(loadCharacters());
     setView({ kind: "character-list" });
   }
 
@@ -52,18 +52,21 @@ export function App() {
 
   function handleDelete(characterId: string) {
     deleteCharacter(characterId);
-    setCharacters(loadCharacters());
+    setLoadResult(loadCharacters());
   }
 
   function handleSave(character: Character) {
-    setCharacters(loadCharacters());
+    setLoadResult(loadCharacters());
     setView({ kind: "character-view", characterId: character.id });
   }
 
   function handleCharacterUpdate(updated: Character) {
-    setCharacters((prev) =>
-      prev.map((c) => (c.id === updated.id ? updated : c)),
-    );
+    setLoadResult((prev) => ({
+      ...prev,
+      characters: prev.characters.map((c) =>
+        c.id === updated.id ? updated : c,
+      ),
+    }));
   }
 
   const activeCharacter =
@@ -106,6 +109,7 @@ export function App() {
           {view.kind === "character-list" && (
             <CharacterList
               characters={characters}
+              droppedCount={droppedCount}
               onSelect={handleSelect}
               onNew={handleNew}
               onDelete={handleDelete}
