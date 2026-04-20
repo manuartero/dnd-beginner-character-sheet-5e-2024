@@ -1,18 +1,14 @@
 import { ChipGrid, Section, TileRow } from "elements";
-import { ABILITY_LIST } from "src/models/common/abilities";
-import { getSkillLabel } from "src/models/common/skills";
-import {
-  BACKGROUND_LIST,
-  getBackgroundIcon,
-  getOriginFeatDescription,
-} from "src/models/origin/backgrounds";
+import { abilities } from "src/models/common/abilities";
+import { skills } from "src/models/common/skills";
+import { backgrounds, originFeats } from "src/models/origin/backgrounds";
 import styles from "./step-origin.module.css";
 
 import type { AbilityName } from "src/models/common/abilities";
 import type { Background } from "src/models/origin/backgrounds";
 
 function abilityShortLabel(key: AbilityName): string {
-  return ABILITY_LIST.find((a) => a.key === key)?.short ?? key;
+  return abilities.get(key).short;
 }
 
 type StepOriginProps = {
@@ -24,15 +20,15 @@ export function StepOrigin({
   background,
   onBackgroundChange,
 }: StepOriginProps) {
-  const selected = BACKGROUND_LIST.find((b) => b.key === background);
+  const selected = background ? backgrounds.get(background) : null;
 
   return (
     <Section title="Background">
       <ChipGrid
-        actions={BACKGROUND_LIST.map(({ key, label }) => ({
+        actions={backgrounds.list().map(({ key, label }) => ({
           key,
           label,
-          icon: getBackgroundIcon(key as Background),
+          icon: backgrounds.icon(key),
         }))}
         selectedKey={background}
         onSelect={(key) => onBackgroundChange(key as Background)}
@@ -44,7 +40,7 @@ export function StepOrigin({
             <ul className={styles.skillList}>
               {selected.skillProficiencies.map((skill) => (
                 <li key={skill} className={styles.skillItem}>
-                  {getSkillLabel(skill)}
+                  {skills.get(skill).label}
                 </li>
               ))}
             </ul>
@@ -62,7 +58,8 @@ export function StepOrigin({
             Origin Feat:{" "}
             <span className={styles.featLabel}>{selected.originFeatLabel}</span>
             <div className={styles.featDescription}>
-              {getOriginFeatDescription(selected.originFeat)
+              {originFeats
+                .describe(selected.originFeat)
                 .split(". ")
                 .filter(Boolean)
                 .map((sentence) => (

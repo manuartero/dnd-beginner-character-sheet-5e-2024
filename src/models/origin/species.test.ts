@@ -1,7 +1,7 @@
-import { getSpeciesIcon } from "./species";
+import { species } from "./species";
 
-describe("getSpeciesIcon()", () => {
-  it("should return the correct icon path for a given species", () => {
-    expect(getSpeciesIcon("dwarf")).toBe("/race-icons/dwarf.jpeg");
+describe("species.get()", () => {
+  it("returns details for a known species", () => {
+    expect(species.get("dwarf").icon).toBe("/race-icons/dwarf.jpeg");
   });
 });

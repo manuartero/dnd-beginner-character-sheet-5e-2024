@@ -1,7 +1,7 @@
-import { WIZARD_SPELLS_LEVEL_1 } from "./spells";
+import { spells } from "./spells";
 
-describe("WIZARD_SPELLS_LEVEL_1 {}", () => {
-  it("should have n spells", () => {
-    expect(WIZARD_SPELLS_LEVEL_1.length).not.toBe(0);
+describe("spells.get()", () => {
+  it("returns wizard level-1 spells", () => {
+    expect(spells.get({ cls: "wizard", level: 1 }).length).not.toBe(0);
   });
 });

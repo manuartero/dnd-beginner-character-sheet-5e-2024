@@ -3,6 +3,7 @@ import originFeatDescriptions from "src/data/origin/origin-feat-descriptions.jso
 import { resolveIconPath } from "src/models/common/icons";
 
 import type { AbilityName } from "src/models/common/abilities";
+import type { IconVariant } from "src/models/common/icons";
 import type { SkillName } from "src/models/common/skills";
 
 export type Background =
@@ -37,7 +38,7 @@ export type OriginFeat =
   | "tavern-brawler"
   | "tough";
 
-type BackgroundEntry = {
+export type BackgroundEntry = {
   key: Background;
   label: string;
   icon: string;
@@ -47,27 +48,33 @@ type BackgroundEntry = {
   skillProficiencies: [SkillName, SkillName];
 };
 
-const ORIGIN_FEAT_DESCRIPTIONS = originFeatDescriptions as Record<
-  OriginFeat,
-  string
->;
+const DATA = backgroundListData as BackgroundEntry[];
+const BY_KEY = new Map(DATA.map((b) => [b.key, b]));
+const FEAT_DESCRIPTIONS = originFeatDescriptions as Record<OriginFeat, string>;
 
-export function getOriginFeatDescription(feat: OriginFeat): string {
-  return ORIGIN_FEAT_DESCRIPTIONS[feat];
-}
+const PLACEHOLDER_ICON = "/race-icons/placeholder.png";
 
-export const BACKGROUND_LIST: BackgroundEntry[] =
-  backgroundListData as BackgroundEntry[];
+export const backgrounds = {
+  get(id: Background): BackgroundEntry {
+    const found = BY_KEY.get(id);
+    if (!found) throw new Error(`Unknown background: ${id}`);
+    return found;
+  },
+  find(id: string): BackgroundEntry | undefined {
+    return BY_KEY.get(id as Background);
+  },
+  list(): BackgroundEntry[] {
+    return DATA;
+  },
+  icon(id: Background, opts?: { variant?: IconVariant }): string {
+    const entry = BY_KEY.get(id);
+    if (!entry?.icon) return PLACEHOLDER_ICON;
+    return resolveIconPath(entry.icon, { variant: opts?.variant ?? "BLACK" });
+  },
+};
 
-const BACKGROUNDS_BY_KEY = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
-
-export function getBackgroundIcon(
-  background: Background,
-  { variant = "BLACK" }: { variant?: "BLACK" | "WHITE" } = {},
-): string {
-  const entry = BACKGROUNDS_BY_KEY.get(background);
-  if (!entry?.icon) {
-    return "/race-icons/placeholder.png";
-  }
-  return resolveIconPath(entry.icon, { variant });
-}
+export const originFeats = {
+  describe(id: OriginFeat): string {
+    return FEAT_DESCRIPTIONS[id];
+  },
+};

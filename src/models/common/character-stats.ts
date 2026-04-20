@@ -1,6 +1,6 @@
-import { CLASS_DETAILS } from "src/models/class/classes";
-import { ARMORS } from "src/models/gear/armor";
-import { ABILITY_LIST, computeModifier, formatModifier } from "./abilities";
+import { classes } from "src/models/class/classes";
+import { armor } from "src/models/gear/armor";
+import { abilities, computeModifier, formatModifier } from "./abilities";
 
 import type { CharacterClass } from "src/models/class/classes";
 import type { Armor } from "src/models/gear/armor";
@@ -24,7 +24,7 @@ export function computeHpMax({
   characterClass: CharacterClass;
   conScore: number;
 }): number {
-  const hitDie = CLASS_DETAILS[characterClass].hitDie;
+  const hitDie = classes.get(characterClass).hitDie;
   const hitDieMax = Number.parseInt(hitDie.replace("d", ""), 10);
   return Math.max(1, hitDieMax + computeModifier(conScore));
 }
@@ -34,7 +34,7 @@ function findEquippedArmor(equipment: Equipment[]): Armor | null {
     (e) => e.type === "armor" && e.equipped === true,
   );
   if (!armorItem) return null;
-  return ARMORS.find((a) => a.name === armorItem.name) ?? null;
+  return armor.findByName(armorItem.name) ?? null;
 }
 
 function hasShield(equipment: Equipment[]): boolean {
@@ -121,8 +121,7 @@ export function computeSpellAttack({
 
   const abilityMod = computeModifier(abilityScores[spellAbility]);
   const total = abilityMod + proficiencyBonus;
-  const shortLabel =
-    ABILITY_LIST.find((a) => a.key === spellAbility)?.short ?? spellAbility;
+  const shortLabel = abilities.get(spellAbility).short;
 
   return {
     total,

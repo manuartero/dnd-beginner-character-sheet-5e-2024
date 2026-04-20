@@ -1,6 +1,6 @@
 import { getResourcesForLevel } from "src/models/class/class-resources";
 import { GOLD_ICON } from "src/models/gear/equipment";
-import { SPECIES_LIST } from "src/models/origin/species";
+import { species } from "src/models/origin/species";
 
 import type { CharacterResource } from "src/models/class/class-resources";
 import type { CharacterClass } from "src/models/class/classes";
@@ -11,14 +11,9 @@ import type { Character } from "./character";
 
 const STORAGE_KEY = "dnd-characters";
 
-const VALID_SPECIES: Species[] = SPECIES_LIST.map((r) => r.key);
-
 function migrateRace(raw: string): Species {
   const lower = raw.toLowerCase().trim();
-  if (VALID_SPECIES.includes(lower as Species)) {
-    return lower as Species;
-  }
-  return "human";
+  return species.find(lower) ? (lower as Species) : "human";
 }
 
 function migrateEquipment(equipment: Equipment[]): Equipment[] {

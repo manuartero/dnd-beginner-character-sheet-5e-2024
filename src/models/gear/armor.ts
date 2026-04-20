@@ -14,10 +14,23 @@ export type Armor = {
   icon: string;
 };
 
-export const ARMORS: Armor[] = armorData as Armor[];
+const DATA = armorData as Armor[];
+const BY_ID = new Map(DATA.map((a) => [a.id, a]));
+const BY_NAME = new Map(DATA.map((a) => [a.name, a]));
 
-const ARMORS_BY_ID = new Map(ARMORS.map((a) => [a.id, a]));
-
-export function getArmorById(id: string): Armor | undefined {
-  return ARMORS_BY_ID.get(id);
-}
+export const armor = {
+  get(id: string): Armor {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown armor: ${id}`);
+    return found;
+  },
+  find(id: string): Armor | undefined {
+    return BY_ID.get(id);
+  },
+  list(): Armor[] {
+    return DATA;
+  },
+  findByName(name: string): Armor | undefined {
+    return BY_NAME.get(name);
+  },
+};

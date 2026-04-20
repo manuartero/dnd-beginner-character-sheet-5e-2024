@@ -7,7 +7,19 @@ export type ProficiencyDetails = {
   icon: string;
 };
 
-export const PROFICIENCY_DETAILS = proficiencyDetailsData as Record<
+const DATA = proficiencyDetailsData as Record<
   ProficiencyKey,
   ProficiencyDetails
 >;
+
+export const proficiencyDetails = {
+  get(id: ProficiencyKey): ProficiencyDetails {
+    return DATA[id];
+  },
+  list(): { id: ProficiencyKey; details: ProficiencyDetails }[] {
+    return Object.entries(DATA).map(([id, details]) => ({
+      id: id as ProficiencyKey,
+      details,
+    }));
+  },
+};

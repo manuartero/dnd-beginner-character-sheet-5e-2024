@@ -1,6 +1,6 @@
 import { ChipGrid, Section } from "elements";
 import { resolveIconPath } from "src/models/common/icons";
-import { REST_ACTIONS } from "src/models/common/rest-actions";
+import { restActions } from "src/models/common/rest-actions";
 import styles from "./rest-bar.module.css";
 
 import type { GridAction } from "elements";
@@ -18,7 +18,7 @@ export function RestBar({ selectedRest, onSelect, onRest }: RestBarProps) {
     onSelect(selectedRest === type ? null : type);
   }
 
-  const actions: GridAction[] = REST_ACTIONS.map((action) => ({
+  const actions: GridAction[] = restActions.list().map((action) => ({
     key: action.id,
     label: action.label,
     icon: resolveIconPath(action.icon),

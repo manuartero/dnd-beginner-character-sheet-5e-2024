@@ -1,7 +1,7 @@
-import { getClassIcon } from "./classes";
+import { classes } from "./classes";
 
-describe("getClassIcon()", () => {
-  it("should return the correct icon path for a given character class", () => {
-    expect(getClassIcon("wizard")).toBe("/class-icons/wizard.svg");
+describe("classes.get()", () => {
+  it("returns details for a known class", () => {
+    expect(classes.get("wizard").icon).toBe("/class-icons/wizard.svg");
   });
 });

@@ -1,8 +1,8 @@
-import { getBackgroundIcon } from "./backgrounds";
+import { backgrounds } from "./backgrounds";
 
-describe("getBackgroundIcon()", () => {
-  it("should return the correct icon path for a given background", () => {
-    expect(getBackgroundIcon("artisan")).toBe(
+describe("backgrounds.icon()", () => {
+  it("returns the resolved icon path for a given background", () => {
+    expect(backgrounds.icon("artisan")).toBe(
       "/assets/vol5/BLACK/icon-vol5_70.svg",
     );
   });

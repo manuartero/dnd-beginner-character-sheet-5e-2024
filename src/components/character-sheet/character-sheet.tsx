@@ -5,19 +5,14 @@ import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import { useScrollDirection } from "src/hooks/use-scroll-direction";
 import { applyRest } from "src/models/class/class-resources";
-import { CLASS_DETAILS } from "src/models/class/classes";
+import { classes } from "src/models/class/classes";
 import {
   computeArmorClass,
   computeInitiative,
   computeSpellAttack,
 } from "src/models/common/character-stats";
 import { saveCharacter } from "src/models/common/character-storage";
-import {
-  WIZARD_CANTRIP_SELECTION,
-  WIZARD_LEVEL1_SELECTION,
-  WIZARD_SPELLS_LEVEL_0,
-  WIZARD_SPELLS_LEVEL_1,
-} from "src/models/spells/spells";
+import { spells } from "src/models/spells/spells";
 import { ActionBar } from "./action-bar";
 import { CharacterOverview } from "./character-overview";
 import styles from "./character-sheet.module.css";
@@ -60,7 +55,7 @@ export function CharacterSheet({
     onCharacterUpdate(updated);
   }
 
-  const classDetails = CLASS_DETAILS[character.characterClass];
+  const classDetails = classes.get(character.characterClass);
   const isSpellcaster = classDetails.manualClassification !== "martial";
   const needsWeaponMastery = WEAPON_MASTERY_CLASSES.has(
     character.characterClass,
@@ -79,12 +74,13 @@ export function CharacterSheet({
     proficiencyBonus: character.proficiencyBonus,
   });
 
+  const cls = character.characterClass;
   const spellsReady =
     !isSpellcaster ||
     (character.spells.filter((s) => s.level === 0).length >=
-      WIZARD_CANTRIP_SELECTION &&
+      spells.limit({ cls, level: 0 }) &&
       character.spells.filter((s) => s.level > 0).length >=
-        WIZARD_LEVEL1_SELECTION);
+        spells.limit({ cls, level: 1 }));
   const warnedSteps = spellsReady ? [] : [4];
 
   const resourceChangeHandler = (resourceId: string, newCurrent: number) => {
@@ -165,12 +161,14 @@ export function CharacterSheet({
 
         {step === 4 && isSpellcaster && (
           <SpellBook
-            availableCantrips={WIZARD_SPELLS_LEVEL_0}
-            availableLevel1={WIZARD_SPELLS_LEVEL_1}
+            availableCantrips={spells.get({ cls, level: 0 })}
+            availableLevel1={spells.get({ cls, level: 1 })}
             selectedSpells={character.spells}
-            cantripLimit={WIZARD_CANTRIP_SELECTION}
-            level1Limit={WIZARD_LEVEL1_SELECTION}
-            onSpellsChange={(spells) => updateCharacter({ spells })}
+            cantripLimit={spells.limit({ cls, level: 0 })}
+            level1Limit={spells.limit({ cls, level: 1 })}
+            onSpellsChange={(updatedSpells) =>
+              updateCharacter({ spells: updatedSpells })
+            }
           />
         )}
 

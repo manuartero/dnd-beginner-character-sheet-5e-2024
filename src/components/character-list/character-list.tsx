@@ -1,7 +1,7 @@
 import c from "classnames";
 import { InlineConfirm, Section } from "elements";
 import { useState } from "react";
-import { getClassIcon } from "src/models/class/classes";
+import { classes } from "src/models/class/classes";
 import styles from "./character-list.module.css";
 
 import type { Character } from "src/models/common/character";
@@ -79,7 +79,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
         onClick={() => onSelect(character.id)}
       >
         <img
-          src={getClassIcon(character.characterClass)}
+          src={classes.get(character.characterClass).icon}
           alt={character.characterClass}
           className={c(styles.classIcon, styles.cardIcon)}
         />

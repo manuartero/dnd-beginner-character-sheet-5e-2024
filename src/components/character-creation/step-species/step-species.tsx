@@ -1,10 +1,6 @@
 import { ChipGrid, Section } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
-import {
-  getSpeciesIcon,
-  SPECIES_DETAILS,
-  SPECIES_LIST,
-} from "src/models/origin/species";
+import { species } from "src/models/origin/species";
 import styles from "./step-species.module.css";
 
 import type { Species } from "src/models/origin/species";
@@ -15,16 +11,16 @@ type StepSpeciesProps = {
 };
 
 export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
-  const details = race ? SPECIES_DETAILS[race] : null;
+  const details = race ? species.get(race) : null;
 
   return (
     <>
       <Section title="Species">
         <ChipGrid
-          actions={SPECIES_LIST.map(({ key, label }) => ({
-            key,
-            label,
-            icon: getSpeciesIcon(key as Species),
+          actions={species.list().map(({ id, details }) => ({
+            key: id,
+            label: details.label,
+            icon: details.icon,
           }))}
           selectedKey={race}
           onSelect={(key) => onRaceChange(key as Species)}
@@ -34,9 +30,9 @@ export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
 
       {details && race && (
         <DetailsPanel
-          icon={getSpeciesIcon(race)}
+          icon={details.icon}
           iconAlt={race}
-          name={SPECIES_LIST.find((r) => r.key === race)?.label ?? race}
+          name={details.label}
           description={details.description}
         >
           <div className={styles.detailsRow}>

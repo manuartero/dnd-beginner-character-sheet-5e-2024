@@ -1,18 +1,30 @@
 export type AbilityName = "str" | "dex" | "con" | "int" | "wis" | "cha";
 export type AbilityScores = Record<AbilityName, number>;
 
-export const ABILITY_LIST: {
-  key: AbilityName;
+export type AbilityDetails = {
   label: string;
   short: string;
-}[] = [
-  { key: "str", label: "Strength", short: "STR" },
-  { key: "dex", label: "Dexterity", short: "DEX" },
-  { key: "con", label: "Constitution", short: "CON" },
-  { key: "int", label: "Intelligence", short: "INT" },
-  { key: "wis", label: "Wisdom", short: "WIS" },
-  { key: "cha", label: "Charisma", short: "CHA" },
-];
+};
+
+const DATA: Record<AbilityName, AbilityDetails> = {
+  str: { label: "Strength", short: "STR" },
+  dex: { label: "Dexterity", short: "DEX" },
+  con: { label: "Constitution", short: "CON" },
+  int: { label: "Intelligence", short: "INT" },
+  wis: { label: "Wisdom", short: "WIS" },
+  cha: { label: "Charisma", short: "CHA" },
+};
+
+const ORDER: AbilityName[] = ["str", "dex", "con", "int", "wis", "cha"];
+
+export const abilities = {
+  get(id: AbilityName): AbilityDetails {
+    return DATA[id];
+  },
+  list(): { id: AbilityName; details: AbilityDetails }[] {
+    return ORDER.map((id) => ({ id, details: DATA[id] }));
+  },
+};
 
 export function computeProficiencyBonus(level: number): number {
   return Math.ceil(level / 4) + 1;

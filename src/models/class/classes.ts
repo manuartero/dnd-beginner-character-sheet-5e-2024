@@ -80,32 +80,45 @@ export function getProficiencyRestriction(
   return null;
 }
 
-export const CLASS_DETAILS: Record<CharacterClass, ClassDetails> =
-  classDetailsData as Record<CharacterClass, ClassDetails>;
+const DATA = classDetailsData as Record<CharacterClass, ClassDetails>;
 
-export const CLASS_LIST: { key: CharacterClass; label: string }[] =
-  Object.entries(CLASS_DETAILS).map(([key, value]) => ({
-    key: key as CharacterClass,
-    label: value.label,
-  }));
+const CATEGORY_LABELS: Record<ManualClassification, string> = {
+  martial: "Martial",
+  "spell-caster": "Spell Casters",
+  versatile: "Versatile",
+};
 
-type ClassListEntry = { key: CharacterClass; label: string };
+const CATEGORY_ORDER: ManualClassification[] = [
+  "martial",
+  "spell-caster",
+  "versatile",
+];
 
-export const CLASSES_BY_CATEGORY: {
-  classification: ManualClassification;
-  label: string;
-  classes: ClassListEntry[];
-}[] = [
-  { classification: "martial", label: "Martial", classes: [] },
-  { classification: "spell-caster", label: "Spell Casters", classes: [] },
-  { classification: "versatile", label: "Versatile", classes: [] },
-].map((group) => ({
-  ...group,
-  classes: CLASS_LIST.filter(
-    (c) => CLASS_DETAILS[c.key].manualClassification === group.classification,
-  ),
-}));
-
-export function getClassIcon(characterClass: CharacterClass): string {
-  return CLASS_DETAILS[characterClass].icon;
-}
+export const classes = {
+  get(id: CharacterClass): ClassDetails {
+    return DATA[id];
+  },
+  find(id: string): ClassDetails | undefined {
+    return DATA[id as CharacterClass];
+  },
+  list(): { id: CharacterClass; details: ClassDetails }[] {
+    return Object.entries(DATA).map(([id, details]) => ({
+      id: id as CharacterClass,
+      details,
+    }));
+  },
+  byCategory(): {
+    classification: ManualClassification;
+    label: string;
+    classes: { id: CharacterClass; details: ClassDetails }[];
+  }[] {
+    const all = classes.list();
+    return CATEGORY_ORDER.map((classification) => ({
+      classification,
+      label: CATEGORY_LABELS[classification],
+      classes: all.filter(
+        ({ details }) => details.manualClassification === classification,
+      ),
+    }));
+  },
+};

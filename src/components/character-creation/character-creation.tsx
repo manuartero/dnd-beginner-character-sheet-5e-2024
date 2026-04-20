@@ -7,7 +7,7 @@ import { computeHpMax } from "src/models/common/character-stats";
 import { saveCharacter } from "src/models/common/character-storage";
 import { RECOMMENDED_SCORES } from "src/models/common/recommended-scores";
 import { resolveStartingEquipment } from "src/models/gear/starting-equipment";
-import { BACKGROUND_LIST } from "src/models/origin/backgrounds";
+import { backgrounds } from "src/models/origin/backgrounds";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
@@ -23,8 +23,6 @@ import type { Background } from "src/models/origin/backgrounds";
 import type { Species } from "src/models/origin/species";
 
 const DEFAULT_CHARACTER_CLASS: CharacterClass = "fighter";
-
-const BACKGROUND_MAP = new Map(BACKGROUND_LIST.map((b) => [b.key, b]));
 
 type CharacterCreationProps = {
   onSave: (character: Character) => void;
@@ -89,7 +87,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
   ].filter((n): n is number => n !== false);
 
   const backgroundEntry = draft.background
-    ? BACKGROUND_MAP.get(draft.background)
+    ? backgrounds.get(draft.background)
     : null;
 
   function handleBackgroundChange(background: Background) {

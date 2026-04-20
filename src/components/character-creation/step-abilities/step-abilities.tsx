@@ -1,9 +1,9 @@
 import { AbilityCard, RetroRadio, Section } from "elements";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
 import { useExpandable } from "src/hooks/use-expandable";
-import { CLASS_DETAILS } from "src/models/class/classes";
+import { classes } from "src/models/class/classes";
 import {
-  ABILITY_LIST,
+  abilities,
   computeModifier,
   formatModifier,
 } from "src/models/common/abilities";
@@ -37,7 +37,7 @@ export function StepAbilities({
   onAbilityBonusesChange,
 }: StepAbilitiesProps) {
   const primaryAbilities = characterClass
-    ? CLASS_DETAILS[characterClass].primaryAbilities
+    ? classes.get(characterClass).primaryAbilities
     : [];
 
   const {
@@ -71,7 +71,7 @@ export function StepAbilities({
         </div>
 
         <div className={styles.grid}>
-          {ABILITY_LIST.map(({ key }) => {
+          {abilities.list().map(({ id: key }) => {
             const bonus = abilityBonuses[key] ?? 0;
 
             if (mode === "quick-start") {
@@ -151,7 +151,7 @@ export function StepAbilities({
         <HpTracker
           mode="creation"
           max={hpMax}
-          description={`Hit Die: ${CLASS_DETAILS[characterClass].hitDie} (from ${CLASS_DETAILS[characterClass].label}) + CON modifier (${formatModifier(conModifier)})`}
+          description={`Hit Die: ${classes.get(characterClass).hitDie} (from ${classes.get(characterClass).label}) + CON modifier (${formatModifier(conModifier)})`}
         />
       )}
     </>

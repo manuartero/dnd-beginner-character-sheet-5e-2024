@@ -21,18 +21,19 @@ export type SpeciesDetails = {
   description: string;
 };
 
-export const SPECIES_DETAILS = speciesDetailsData as Record<
-  Species,
-  SpeciesDetails
->;
+const DATA = speciesDetailsData as Record<Species, SpeciesDetails>;
 
-export const SPECIES_LIST: { key: Species; label: string }[] = Object.entries(
-  SPECIES_DETAILS,
-).map(([key, value]) => ({
-  key: key as Species,
-  label: value.label,
-}));
-
-export function getSpeciesIcon(species: Species): string {
-  return SPECIES_DETAILS[species].icon;
-}
+export const species = {
+  get(id: Species): SpeciesDetails {
+    return DATA[id];
+  },
+  find(id: string): SpeciesDetails | undefined {
+    return (DATA as Record<string, SpeciesDetails>)[id];
+  },
+  list(): { id: Species; details: SpeciesDetails }[] {
+    return Object.entries(DATA).map(([id, details]) => ({
+      id: id as Species,
+      details,
+    }));
+  },
+};

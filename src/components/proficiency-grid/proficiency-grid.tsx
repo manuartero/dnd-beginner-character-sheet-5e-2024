@@ -7,7 +7,7 @@ import {
   type ProficiencySet,
 } from "src/models/class/classes";
 import { resolveIconPath } from "src/models/common/icons";
-import { PROFICIENCY_DETAILS } from "src/models/common/proficiency-details";
+import { proficiencyDetails } from "src/models/common/proficiency-details";
 import styles from "./proficiency-grid.module.css";
 
 type ProficiencyGridProps = {
@@ -35,7 +35,7 @@ function ProficiencyCell({
 }) {
   const enabled = hasProficiency(proficiencies, proficiencyKey);
   const restriction = getProficiencyRestriction(proficiencies, proficiencyKey);
-  const details = PROFICIENCY_DETAILS[proficiencyKey];
+  const details = proficiencyDetails.get(proficiencyKey);
 
   return (
     <div className={c(styles.cell, !enabled && styles.cellDisabled)}>
@@ -60,7 +60,7 @@ function collectFootnotes(
   for (const key of keys) {
     const restriction = getProficiencyRestriction(proficiencies, key);
     if (restriction) {
-      const label = PROFICIENCY_DETAILS[key].label;
+      const label = proficiencyDetails.get(key).label;
       footnotes.push(`* ${label}: ${restriction.join(", ")} only`);
     }
   }

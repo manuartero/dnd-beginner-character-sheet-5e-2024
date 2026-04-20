@@ -2,13 +2,7 @@ import c from "classnames";
 import { ChipGrid, labelStyles, Section, TileRow } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
-import {
-  type CharacterClass,
-  CLASS_DETAILS,
-  CLASS_LIST,
-  CLASSES_BY_CATEGORY,
-  getClassIcon,
-} from "src/models/class/classes";
+import { type CharacterClass, classes } from "src/models/class/classes";
 import styles from "./step-class.module.css";
 
 type StepClassProps = {
@@ -19,21 +13,21 @@ type StepClassProps = {
 const HIT_DIE_OPTIONS = ["d6", "d8", "d10", "d12"] as const;
 
 export function StepClass({ characterClass, onClassChange }: StepClassProps) {
-  const details = characterClass ? CLASS_DETAILS[characterClass] : null;
+  const details = characterClass ? classes.get(characterClass) : null;
 
   return (
     <>
       <Section title="Class">
-        {CLASSES_BY_CATEGORY.map((group) => (
+        {classes.byCategory().map((group) => (
           <div key={group.classification} className={styles.group}>
             <h3 className={c(labelStyles.groupLabel, styles.groupLabelSpacing)}>
               {group.label}
             </h3>
             <ChipGrid
-              actions={group.classes.map(({ key, label }) => ({
-                key,
-                label,
-                icon: getClassIcon(key as CharacterClass),
+              actions={group.classes.map(({ id, details }) => ({
+                key: id,
+                label: details.label,
+                icon: details.icon,
               }))}
               selectedKey={characterClass}
               onSelect={(key) => onClassChange(key as CharacterClass)}
@@ -44,12 +38,9 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
 
       {details && characterClass && (
         <DetailsPanel
-          icon={getClassIcon(characterClass)}
+          icon={details.icon}
           iconAlt={characterClass}
-          name={
-            CLASS_LIST.find((c) => c.key === characterClass)?.label ??
-            characterClass
-          }
+          name={details.label}
           description={details.description}
         >
           <div className={styles.detailsRow}>
