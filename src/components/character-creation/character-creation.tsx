@@ -87,7 +87,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
   ].filter((n): n is number => n !== false);
 
   const backgroundEntry = draft.background
-    ? backgrounds.get(draft.background)
+    ? backgrounds.get({ id: draft.background })
     : null;
 
   function handleBackgroundChange(background: Background) {

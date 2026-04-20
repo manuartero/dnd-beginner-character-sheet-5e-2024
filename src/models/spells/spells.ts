@@ -67,7 +67,7 @@ const CLASS_DATA: Partial<
 };
 
 export const spells = {
-  get({ cls, level }: { cls: CharacterClass; level: 0 | 1 }): Spell[] {
+  findAll({ cls, level }: { cls: CharacterClass; level: 0 | 1 }): Spell[] {
     return CLASS_DATA[cls]?.spells[level] ?? [];
   },
   limit({ cls, level }: { cls: CharacterClass; level: 0 | 1 }): number {

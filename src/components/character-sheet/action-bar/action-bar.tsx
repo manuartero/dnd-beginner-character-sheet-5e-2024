@@ -30,7 +30,9 @@ const CAST_SPELL_DESCRIPTION =
   "Cast one of your prepared spells using the appropriate casting time.";
 
 export function ActionBar({ characterClass, spells }: ActionBarProps) {
-  const classification = classes.get(characterClass).manualClassification;
+  const classification = classes.get({
+    id: characterClass,
+  }).manualClassification;
   const isSpellcaster =
     classification === "spell-caster" || classification === "versatile";
 
@@ -39,7 +41,7 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
   const grouped = useMemo(() => {
     const availableActions = [
       ...combatActions.list(),
-      ...classActions.forClass(characterClass, classification),
+      ...classActions.findAll({ cls: characterClass, classification }),
     ];
 
     return TIMING_ORDER.map((timing) => {

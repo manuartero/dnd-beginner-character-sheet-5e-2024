@@ -35,7 +35,7 @@ function ProficiencyCell({
 }) {
   const enabled = hasProficiency(proficiencies, proficiencyKey);
   const restriction = getProficiencyRestriction(proficiencies, proficiencyKey);
-  const details = proficiencyDetails.get(proficiencyKey);
+  const details = proficiencyDetails.get({ id: proficiencyKey });
 
   return (
     <div className={c(styles.cell, !enabled && styles.cellDisabled)}>
@@ -60,7 +60,7 @@ function collectFootnotes(
   for (const key of keys) {
     const restriction = getProficiencyRestriction(proficiencies, key);
     if (restriction) {
-      const label = proficiencyDetails.get(key).label;
+      const label = proficiencyDetails.get({ id: key }).label;
       footnotes.push(`* ${label}: ${restriction.join(", ")} only`);
     }
   }

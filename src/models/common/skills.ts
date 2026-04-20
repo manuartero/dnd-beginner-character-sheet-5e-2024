@@ -50,18 +50,18 @@ const DATA: SkillDefinition[] = [
 const BY_NAME = new Map(DATA.map((s) => [s.name, s]));
 
 export const skills = {
-  get(name: SkillName): SkillDefinition {
+  get({ name }: { name: SkillName }): SkillDefinition {
     const found = BY_NAME.get(name);
     if (!found) throw new Error(`Unknown skill: ${name}`);
     return found;
   },
-  find(name: string): SkillDefinition | undefined {
+  find({ name }: { name: string }): SkillDefinition | undefined {
     return BY_NAME.get(name as SkillName);
   },
   list(): SkillDefinition[] {
     return DATA;
   },
-  forAbility(ability: AbilityName): SkillDefinition[] {
+  findAll({ ability }: { ability: AbilityName }): SkillDefinition[] {
     return DATA.filter((s) => s.ability === ability);
   },
 };

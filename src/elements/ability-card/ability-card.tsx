@@ -67,10 +67,10 @@ type AbilityCardProps =
  */
 export function AbilityCard(props: AbilityCardProps) {
   const { abilityKey, score, isFlipped = false, onToggle } = props;
-  const short = abilities.get(abilityKey).short;
+  const short = abilities.get({ id: abilityKey }).short;
   const mod = computeModifier(score);
   const proficiencyBonus = computeProficiencyBonus(1);
-  const skillsForAbility = skills.forAbility(abilityKey);
+  const skillsForAbility = skills.findAll({ ability: abilityKey });
   const hasSkills = skillsForAbility.length > 0;
 
   const isPrimary =

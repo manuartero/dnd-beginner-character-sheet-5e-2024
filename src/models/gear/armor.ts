@@ -14,23 +14,27 @@ export type Armor = {
   icon: string;
 };
 
+type ArmorCriteria = { id: string } | { name: string };
+
 const DATA = armorData as Armor[];
 const BY_ID = new Map(DATA.map((a) => [a.id, a]));
 const BY_NAME = new Map(DATA.map((a) => [a.name, a]));
 
+function lookup(criteria: ArmorCriteria): Armor | undefined {
+  if ("id" in criteria) return BY_ID.get(criteria.id);
+  return BY_NAME.get(criteria.name);
+}
+
 export const armor = {
-  get(id: string): Armor {
-    const found = BY_ID.get(id);
-    if (!found) throw new Error(`Unknown armor: ${id}`);
+  get(criteria: ArmorCriteria): Armor {
+    const found = lookup(criteria);
+    if (!found) throw new Error(`Unknown armor: ${JSON.stringify(criteria)}`);
     return found;
   },
-  find(id: string): Armor | undefined {
-    return BY_ID.get(id);
+  find(criteria: ArmorCriteria): Armor | undefined {
+    return lookup(criteria);
   },
   list(): Armor[] {
     return DATA;
-  },
-  findByName(name: string): Armor | undefined {
-    return BY_NAME.get(name);
   },
 };

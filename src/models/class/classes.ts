@@ -46,6 +46,7 @@ export type StartingEquipmentItem = {
 export type ManualClassification = "martial" | "spell-caster" | "versatile";
 
 export type ClassDetails = {
+  id: CharacterClass;
   label: string;
   icon: string;
   hitDie: string;
@@ -80,45 +81,43 @@ export function getProficiencyRestriction(
   return null;
 }
 
-const DATA = classDetailsData as Record<CharacterClass, ClassDetails>;
+const RAW = classDetailsData as Record<
+  CharacterClass,
+  Omit<ClassDetails, "id">
+>;
+const DATA: ClassDetails[] = Object.entries(RAW).map(([id, v]) => ({
+  id: id as CharacterClass,
+  ...v,
+}));
+const BY_ID = new Map(DATA.map((c) => [c.id, c]));
 
-const CATEGORY_LABELS: Record<ManualClassification, string> = {
-  martial: "Martial",
-  "spell-caster": "Spell Casters",
-  versatile: "Versatile",
-};
-
-const CATEGORY_ORDER: ManualClassification[] = [
+const CLASSIFICATION_ORDER: ManualClassification[] = [
   "martial",
   "spell-caster",
   "versatile",
 ];
 
 export const classes = {
-  get(id: CharacterClass): ClassDetails {
-    return DATA[id];
+  get({ id }: { id: CharacterClass }): ClassDetails {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown class: ${id}`);
+    return found;
   },
-  find(id: string): ClassDetails | undefined {
-    return DATA[id as CharacterClass];
+  find({ id }: { id: string }): ClassDetails | undefined {
+    return BY_ID.get(id as CharacterClass);
   },
-  list(): { id: CharacterClass; details: ClassDetails }[] {
-    return Object.entries(DATA).map(([id, details]) => ({
-      id: id as CharacterClass,
-      details,
-    }));
+  list(): ClassDetails[] {
+    return DATA;
   },
-  byCategory(): {
-    classification: ManualClassification;
-    label: string;
-    classes: { id: CharacterClass; details: ClassDetails }[];
-  }[] {
-    const all = classes.list();
-    return CATEGORY_ORDER.map((classification) => ({
-      classification,
-      label: CATEGORY_LABELS[classification],
-      classes: all.filter(
-        ({ details }) => details.manualClassification === classification,
-      ),
+  groupBy({
+    by,
+  }: {
+    by: "classification";
+  }): { key: ManualClassification; items: ClassDetails[] }[] {
+    if (by !== "classification") throw new Error(`Unknown group axis: ${by}`);
+    return CLASSIFICATION_ORDER.map((key) => ({
+      key,
+      items: DATA.filter((c) => c.manualClassification === key),
     }));
   },
 };

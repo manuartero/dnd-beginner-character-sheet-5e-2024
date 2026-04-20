@@ -11,16 +11,16 @@ type StepSpeciesProps = {
 };
 
 export function StepSpecies({ race, onRaceChange }: StepSpeciesProps) {
-  const details = race ? species.get(race) : null;
+  const details = race ? species.get({ id: race }) : null;
 
   return (
     <>
       <Section title="Species">
         <ChipGrid
-          actions={species.list().map(({ id, details }) => ({
+          actions={species.list().map(({ id, label, icon }) => ({
             key: id,
-            label: details.label,
-            icon: details.icon,
+            label,
+            icon,
           }))}
           selectedKey={race}
           onSelect={(key) => onRaceChange(key as Species)}

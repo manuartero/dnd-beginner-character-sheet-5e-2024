@@ -41,11 +41,11 @@ export function OriginBonusPicker({
     }
   }
 
-  const items = abilities.list().map(({ id, details }) => {
+  const items = abilities.list().map(({ id, short }) => {
     const allocated = abilityBonuses[id] ?? 0;
     return {
       key: id,
-      label: details.short,
+      label: short,
       selected: allocated > 0,
       dimmed: !abilityOptions.includes(id),
       badge: allocated > 0 ? `+${allocated}` : undefined,

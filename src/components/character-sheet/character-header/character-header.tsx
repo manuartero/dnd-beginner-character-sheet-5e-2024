@@ -26,8 +26,8 @@ export function CharacterHeader({
           aria-label={characterClass}
           className={styles.classIcon}
           style={{
-            maskImage: `url(${classes.get(characterClass).icon})`,
-            WebkitMaskImage: `url(${classes.get(characterClass).icon})`,
+            maskImage: `url(${classes.get({ id: characterClass }).icon})`,
+            WebkitMaskImage: `url(${classes.get({ id: characterClass }).icon})`,
           }}
         />
         <div className={styles.details}>
@@ -40,7 +40,9 @@ export function CharacterHeader({
             <span className={styles.classStatic}>
               {characterClass.charAt(0).toUpperCase() + characterClass.slice(1)}
             </span>
-            <span className={styles.raceStatic}>{species.get(race).label}</span>
+            <span className={styles.raceStatic}>
+              {species.get({ id: race }).label}
+            </span>
           </div>
         </div>
       </header>

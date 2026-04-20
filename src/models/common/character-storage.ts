@@ -13,7 +13,7 @@ const STORAGE_KEY = "dnd-characters";
 
 function migrateRace(raw: string): Species {
   const lower = raw.toLowerCase().trim();
-  return species.find(lower) ? (lower as Species) : "human";
+  return species.find({ id: lower }) ? (lower as Species) : "human";
 }
 
 function migrateEquipment(equipment: Equipment[]): Equipment[] {

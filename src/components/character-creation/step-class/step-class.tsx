@@ -2,7 +2,11 @@ import c from "classnames";
 import { ChipGrid, labelStyles, Section, TileRow } from "elements";
 import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
-import { type CharacterClass, classes } from "src/models/class/classes";
+import {
+  type CharacterClass,
+  classes,
+  type ManualClassification,
+} from "src/models/class/classes";
 import styles from "./step-class.module.css";
 
 type StepClassProps = {
@@ -12,22 +16,28 @@ type StepClassProps = {
 
 const HIT_DIE_OPTIONS = ["d6", "d8", "d10", "d12"] as const;
 
+const CLASSIFICATION_LABELS: Record<ManualClassification, string> = {
+  martial: "Martial",
+  "spell-caster": "Spell Casters",
+  versatile: "Versatile",
+};
+
 export function StepClass({ characterClass, onClassChange }: StepClassProps) {
-  const details = characterClass ? classes.get(characterClass) : null;
+  const details = characterClass ? classes.get({ id: characterClass }) : null;
 
   return (
     <>
       <Section title="Class">
-        {classes.byCategory().map((group) => (
-          <div key={group.classification} className={styles.group}>
+        {classes.groupBy({ by: "classification" }).map(({ key, items }) => (
+          <div key={key} className={styles.group}>
             <h3 className={c(labelStyles.groupLabel, styles.groupLabelSpacing)}>
-              {group.label}
+              {CLASSIFICATION_LABELS[key]}
             </h3>
             <ChipGrid
-              actions={group.classes.map(({ id, details }) => ({
-                key: id,
-                label: details.label,
-                icon: details.icon,
+              actions={items.map((cls) => ({
+                key: cls.id,
+                label: cls.label,
+                icon: cls.icon,
               }))}
               selectedKey={characterClass}
               onSelect={(key) => onClassChange(key as CharacterClass)}

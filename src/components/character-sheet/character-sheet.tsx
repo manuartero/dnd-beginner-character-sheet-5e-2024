@@ -55,7 +55,7 @@ export function CharacterSheet({
     onCharacterUpdate(updated);
   }
 
-  const classDetails = classes.get(character.characterClass);
+  const classDetails = classes.get({ id: character.characterClass });
   const isSpellcaster = classDetails.manualClassification !== "martial";
   const needsWeaponMastery = WEAPON_MASTERY_CLASSES.has(
     character.characterClass,
@@ -161,8 +161,8 @@ export function CharacterSheet({
 
         {step === 4 && isSpellcaster && (
           <SpellBook
-            availableCantrips={spells.get({ cls, level: 0 })}
-            availableLevel1={spells.get({ cls, level: 1 })}
+            availableCantrips={spells.findAll({ cls, level: 0 })}
+            availableLevel1={spells.findAll({ cls, level: 1 })}
             selectedSpells={character.spells}
             cantripLimit={spells.limit({ cls, level: 0 })}
             level1Limit={spells.limit({ cls, level: 1 })}

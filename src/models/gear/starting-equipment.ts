@@ -17,7 +17,7 @@ function formatItemName(id: string): string {
 }
 
 function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
-  const weapon = weapons.find(item);
+  const weapon = weapons.find({ id: item });
   if (weapon) {
     return {
       name: weapon.name,
@@ -29,7 +29,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
       ...(quantity > 1 ? { quantity } : {}),
     };
   }
-  const armorItem = armor.find(item);
+  const armorItem = armor.find({ id: item });
   if (armorItem) {
     return {
       name: armorItem.name,
@@ -58,5 +58,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
 export function resolveStartingEquipment(
   characterClass: CharacterClass,
 ): Equipment[] {
-  return classes.get(characterClass).startingEquipment[0].map(toEquipment);
+  return classes
+    .get({ id: characterClass })
+    .startingEquipment[0].map(toEquipment);
 }

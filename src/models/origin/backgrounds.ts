@@ -38,7 +38,22 @@ export type OriginFeat =
   | "tavern-brawler"
   | "tough";
 
+export type OriginFeatEntry = {
+  id: OriginFeat;
+  name: string;
+  description: string;
+};
+
 export type BackgroundEntry = {
+  id: Background;
+  label: string;
+  icon: string;
+  originFeat: OriginFeatEntry;
+  abilityOptions: [AbilityName, AbilityName, AbilityName];
+  skillProficiencies: [SkillName, SkillName];
+};
+
+type RawBackground = {
   key: Background;
   label: string;
   icon: string;
@@ -48,33 +63,41 @@ export type BackgroundEntry = {
   skillProficiencies: [SkillName, SkillName];
 };
 
-const DATA = backgroundListData as BackgroundEntry[];
-const BY_KEY = new Map(DATA.map((b) => [b.key, b]));
 const FEAT_DESCRIPTIONS = originFeatDescriptions as Record<OriginFeat, string>;
+const RAW = backgroundListData as RawBackground[];
+
+const DATA: BackgroundEntry[] = RAW.map((r) => ({
+  id: r.key,
+  label: r.label,
+  icon: r.icon,
+  originFeat: {
+    id: r.originFeat,
+    name: r.originFeatLabel,
+    description: FEAT_DESCRIPTIONS[r.originFeat],
+  },
+  abilityOptions: r.abilityOptions,
+  skillProficiencies: r.skillProficiencies,
+}));
+
+const BY_ID = new Map(DATA.map((b) => [b.id, b]));
 
 const PLACEHOLDER_ICON = "/race-icons/placeholder.png";
 
 export const backgrounds = {
-  get(id: Background): BackgroundEntry {
-    const found = BY_KEY.get(id);
+  get({ id }: { id: Background }): BackgroundEntry {
+    const found = BY_ID.get(id);
     if (!found) throw new Error(`Unknown background: ${id}`);
     return found;
   },
-  find(id: string): BackgroundEntry | undefined {
-    return BY_KEY.get(id as Background);
+  find({ id }: { id: string }): BackgroundEntry | undefined {
+    return BY_ID.get(id as Background);
   },
   list(): BackgroundEntry[] {
     return DATA;
   },
-  icon(id: Background, opts?: { variant?: IconVariant }): string {
-    const entry = BY_KEY.get(id);
+  icon({ id, variant }: { id: Background; variant?: IconVariant }): string {
+    const entry = BY_ID.get(id);
     if (!entry?.icon) return PLACEHOLDER_ICON;
-    return resolveIconPath(entry.icon, { variant: opts?.variant ?? "BLACK" });
-  },
-};
-
-export const originFeats = {
-  describe(id: OriginFeat): string {
-    return FEAT_DESCRIPTIONS[id];
+    return resolveIconPath(entry.icon, { variant: variant ?? "BLACK" });
   },
 };

@@ -18,21 +18,21 @@ describe("weaponMastery.list()", () => {
   });
 });
 
-describe("weapons.find()", () => {
+describe("weapons.find({ id })", () => {
   it("finds a weapon by id", () => {
-    const weapon = weapons.find("longsword");
+    const weapon = weapons.find({ id: "longsword" });
     expect(weapon).toBeDefined();
     expect(weapon?.name).toBe("Longsword");
   });
 
   it("returns undefined for unknown id", () => {
-    expect(weapons.find("lightsaber")).toBeUndefined();
+    expect(weapons.find({ id: "lightsaber" })).toBeUndefined();
   });
 });
 
-describe("weapons.findByName()", () => {
+describe("weapons.find({ name })", () => {
   it("finds a weapon by exact name", () => {
-    const weapon = weapons.findByName("Longsword");
+    const weapon = weapons.find({ name: "Longsword" });
     expect(weapon).toBeDefined();
     expect(weapon?.damage.dice).toBe("1d8");
     expect(weapon?.proficiency).toBe("martial");
@@ -40,11 +40,11 @@ describe("weapons.findByName()", () => {
   });
 
   it("finds a weapon case-insensitively", () => {
-    expect(weapons.findByName("longsword")).toBeDefined();
-    expect(weapons.findByName("LONGSWORD")).toBeDefined();
+    expect(weapons.find({ name: "longsword" })).toBeDefined();
+    expect(weapons.find({ name: "LONGSWORD" })).toBeDefined();
   });
 
   it("returns undefined for unknown weapons", () => {
-    expect(weapons.findByName("Lightsaber")).toBeUndefined();
+    expect(weapons.find({ name: "Lightsaber" })).toBeUndefined();
   });
 });

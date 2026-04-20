@@ -24,7 +24,7 @@ export function computeHpMax({
   characterClass: CharacterClass;
   conScore: number;
 }): number {
-  const hitDie = classes.get(characterClass).hitDie;
+  const hitDie = classes.get({ id: characterClass }).hitDie;
   const hitDieMax = Number.parseInt(hitDie.replace("d", ""), 10);
   return Math.max(1, hitDieMax + computeModifier(conScore));
 }
@@ -34,7 +34,7 @@ function findEquippedArmor(equipment: Equipment[]): Armor | null {
     (e) => e.type === "armor" && e.equipped === true,
   );
   if (!armorItem) return null;
-  return armor.findByName(armorItem.name) ?? null;
+  return armor.find({ name: armorItem.name }) ?? null;
 }
 
 function hasShield(equipment: Equipment[]): boolean {
@@ -121,7 +121,7 @@ export function computeSpellAttack({
 
   const abilityMod = computeModifier(abilityScores[spellAbility]);
   const total = abilityMod + proficiencyBonus;
-  const shortLabel = abilities.get(spellAbility).short;
+  const shortLabel = abilities.get({ id: spellAbility }).short;
 
   return {
     total,

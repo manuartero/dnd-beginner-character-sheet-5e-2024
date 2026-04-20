@@ -10,9 +10,11 @@ type ExplorationBarProps = {
 };
 
 export function ExplorationBar({ characterClass }: ExplorationBarProps) {
-  const classification = classes.get(characterClass).manualClassification;
+  const classification = classes.get({
+    id: characterClass,
+  }).manualClassification;
   const availableActions = explorationActions
-    .forClassification(classification)
+    .findAll({ classification })
     .map((a) => ({
       key: a.name,
       label: a.name,

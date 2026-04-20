@@ -2,27 +2,30 @@ export type AbilityName = "str" | "dex" | "con" | "int" | "wis" | "cha";
 export type AbilityScores = Record<AbilityName, number>;
 
 export type AbilityDetails = {
+  id: AbilityName;
   label: string;
   short: string;
 };
 
-const DATA: Record<AbilityName, AbilityDetails> = {
-  str: { label: "Strength", short: "STR" },
-  dex: { label: "Dexterity", short: "DEX" },
-  con: { label: "Constitution", short: "CON" },
-  int: { label: "Intelligence", short: "INT" },
-  wis: { label: "Wisdom", short: "WIS" },
-  cha: { label: "Charisma", short: "CHA" },
-};
+const DATA: AbilityDetails[] = [
+  { id: "str", label: "Strength", short: "STR" },
+  { id: "dex", label: "Dexterity", short: "DEX" },
+  { id: "con", label: "Constitution", short: "CON" },
+  { id: "int", label: "Intelligence", short: "INT" },
+  { id: "wis", label: "Wisdom", short: "WIS" },
+  { id: "cha", label: "Charisma", short: "CHA" },
+];
 
-const ORDER: AbilityName[] = ["str", "dex", "con", "int", "wis", "cha"];
+const BY_ID = new Map(DATA.map((a) => [a.id, a]));
 
 export const abilities = {
-  get(id: AbilityName): AbilityDetails {
-    return DATA[id];
+  get({ id }: { id: AbilityName }): AbilityDetails {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown ability: ${id}`);
+    return found;
   },
-  list(): { id: AbilityName; details: AbilityDetails }[] {
-    return ORDER.map((id) => ({ id, details: DATA[id] }));
+  list(): AbilityDetails[] {
+    return DATA;
   },
 };
 

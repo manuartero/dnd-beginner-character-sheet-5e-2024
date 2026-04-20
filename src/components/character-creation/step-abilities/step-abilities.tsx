@@ -37,7 +37,7 @@ export function StepAbilities({
   onAbilityBonusesChange,
 }: StepAbilitiesProps) {
   const primaryAbilities = characterClass
-    ? classes.get(characterClass).primaryAbilities
+    ? classes.get({ id: characterClass }).primaryAbilities
     : [];
 
   const {
@@ -151,7 +151,7 @@ export function StepAbilities({
         <HpTracker
           mode="creation"
           max={hpMax}
-          description={`Hit Die: ${classes.get(characterClass).hitDie} (from ${classes.get(characterClass).label}) + CON modifier (${formatModifier(conModifier)})`}
+          description={`Hit Die: ${classes.get({ id: characterClass }).hitDie} (from ${classes.get({ id: characterClass }).label}) + CON modifier (${formatModifier(conModifier)})`}
         />
       )}
     </>

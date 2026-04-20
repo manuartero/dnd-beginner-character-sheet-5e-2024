@@ -79,7 +79,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
         onClick={() => onSelect(character.id)}
       >
         <img
-          src={classes.get(character.characterClass).icon}
+          src={classes.get({ id: character.characterClass }).icon}
           alt={character.characterClass}
           className={c(styles.classIcon, styles.cardIcon)}
         />

@@ -2,7 +2,7 @@ import { computeSkillModifier, skills } from "./skills";
 
 import type { AbilityName } from "./abilities";
 
-describe("skills.forAbility()", () => {
+describe("skills.findAll()", () => {
   [
     { ability: "str", expected: ["athletics"] },
     { ability: "dex", expected: ["acrobatics", "sleight-of-hand", "stealth"] },
@@ -27,7 +27,7 @@ describe("skills.forAbility()", () => {
     },
   ].forEach(({ ability, expected }) => {
     it(`returns correct skills for ${ability}`, () => {
-      const result = skills.forAbility(ability as AbilityName);
+      const result = skills.findAll({ ability: ability as AbilityName });
       expect(result.map((s) => s.name)).toEqual(expected);
     });
   });
@@ -35,8 +35,10 @@ describe("skills.forAbility()", () => {
 
 describe("skills.get()", () => {
   it("returns definition for a known skill", () => {
-    expect(skills.get("athletics").label).toBe("Athletics");
-    expect(skills.get("sleight-of-hand").label).toBe("Sleight of Hand");
+    expect(skills.get({ name: "athletics" }).label).toBe("Athletics");
+    expect(skills.get({ name: "sleight-of-hand" }).label).toBe(
+      "Sleight of Hand",
+    );
   });
 });
 
