@@ -2,6 +2,37 @@ import { computeSkillModifier, skills } from "./skills";
 
 import type { AbilityName } from "./abilities";
 
+describe("skills.get()", () => {
+  it("returns definition for a known skill", () => {
+    expect(skills.get({ name: "athletics" }).label).toBe("Athletics");
+    expect(skills.get({ name: "sleight-of-hand" }).label).toBe(
+      "Sleight of Hand",
+    );
+  });
+
+  it("throws on unknown skill", () => {
+    expect(() =>
+      skills.get({ name: "flying" as unknown as "athletics" }),
+    ).toThrow(/Unknown skill/);
+  });
+});
+
+describe("skills.find()", () => {
+  it("returns a definition for a known skill", () => {
+    expect(skills.find({ name: "stealth" })?.ability).toBe("dex");
+  });
+
+  it("returns undefined for unknown skill", () => {
+    expect(skills.find({ name: "flying" })).toBeUndefined();
+  });
+});
+
+describe("skills.list()", () => {
+  it("returns all 18 skills", () => {
+    expect(skills.list()).toHaveLength(18);
+  });
+});
+
 describe("skills.findAll()", () => {
   [
     { ability: "str", expected: ["athletics"] },
@@ -30,15 +61,6 @@ describe("skills.findAll()", () => {
       const result = skills.findAll({ ability: ability as AbilityName });
       expect(result.map((s) => s.name)).toEqual(expected);
     });
-  });
-});
-
-describe("skills.get()", () => {
-  it("returns definition for a known skill", () => {
-    expect(skills.get({ name: "athletics" }).label).toBe("Athletics");
-    expect(skills.get({ name: "sleight-of-hand" }).label).toBe(
-      "Sleight of Hand",
-    );
   });
 });
 

@@ -37,7 +37,7 @@
     "preview": "astro preview",
     "lint": "biome check .",
     "format": "biome format . --write",
-    "test": "vitest run",
+    "test": "vitest run --reporter=tree",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "sprite:color-analysis": "node scripts/color-analysis.mjs",
