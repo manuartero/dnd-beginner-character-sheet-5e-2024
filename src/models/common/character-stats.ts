@@ -7,8 +7,6 @@ import type { Armor } from "src/models/gear/armor";
 import type { Equipment } from "src/models/gear/equipment";
 import type { AbilityName, AbilityScores } from "./abilities";
 
-// --- Shared types ---
-
 export type StatBreakdownLine = {
   label: string;
   value: string;
@@ -18,8 +16,6 @@ export type StatResult = {
   total: number;
   lines: StatBreakdownLine[];
 };
-
-// --- HP ---
 
 export function computeHpMax({
   characterClass,
@@ -32,8 +28,6 @@ export function computeHpMax({
   const hitDieMax = Number.parseInt(hitDie.replace("d", ""), 10);
   return Math.max(1, hitDieMax + computeModifier(conScore));
 }
-
-// --- AC ---
 
 function findEquippedArmor(equipment: Equipment[]): Armor | null {
   const armorItem = equipment.find(
@@ -94,8 +88,6 @@ export function computeArmorClass({
   return { total, lines };
 }
 
-// --- Initiative ---
-
 export function computeInitiative(abilityScores: AbilityScores): StatResult {
   const dexMod = computeModifier(abilityScores.dex);
   return {
@@ -103,8 +95,6 @@ export function computeInitiative(abilityScores: AbilityScores): StatResult {
     lines: [{ label: "DEX modifier", value: formatModifier(dexMod) }],
   };
 }
-
-// --- Spell Attack ---
 
 const SPELLCASTING_ABILITY: Partial<Record<CharacterClass, AbilityName>> = {
   bard: "cha",

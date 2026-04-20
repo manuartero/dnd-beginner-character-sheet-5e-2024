@@ -3,14 +3,12 @@ import "src/styles/global.css";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 
-// --- Types ---
 type PaletteEntry = {
   hex: string;
   sprites: Record<string, number>;
   totalPixels: number;
 };
 
-// --- Data ---
 const SPRITES = ["barbarian", "paladin", "rogue", "sorcerer", "warlock", "wizard"];
 const HUE_TOLERANCE = 10;
 
@@ -42,7 +40,6 @@ function textColor(hex: string): string {
   return l > 50 ? "#1a1a1a" : "#f0f0f0";
 }
 
-// --- Hue clusters ---
 type Cluster = { centerHue: number; colors: (PaletteEntry & { h: number; s: number; l: number })[] };
 
 const enriched = palette.map((e) => {
@@ -70,7 +67,6 @@ for (const color of [...enriched].sort((a, b) => a.h - b.h)) {
 clusters.sort((a, b) => a.centerHue - b.centerHue);
 for (const g of clusters) g.colors.sort((a, b) => a.l - b.l);
 
-// --- Cluster health ---
 type ClusterHealth = { hueSpread: number };
 
 function clusterHealth(colors: { h: number; s: number; l: number }[]): ClusterHealth {
@@ -89,7 +85,6 @@ function clusterHealth(colors: { h: number; s: number; l: number }[]): ClusterHe
   return { hueSpread };
 }
 
-// --- Color distance helpers ---
 function toRgb(hex: string): [number, number, number] {
   const c = hex.replace("#", "");
   return [parseInt(c.slice(0, 2), 16), parseInt(c.slice(2, 4), 16), parseInt(c.slice(4, 6), 16)];
