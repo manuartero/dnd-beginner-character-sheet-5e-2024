@@ -22,3 +22,10 @@
 - Prefer plain functions and closures over `class` syntax.
 - Use **function factories** for encapsulation and polymorphism
 - no `this`, no `new`, no class-based patterns.
+
+### Folder layout
+
+- Forbidden folders: `src/utils/`, `src/types/`, `src/helpers/`. No catch-alls.
+- Name every folder by its domain. Types live with their domain — e.g. `Character` type in `src/character/`, `Equipment` type in `src/models/common/gear/`, not a shared `types/` folder.
+- If a helper doesn't belong to an existing domain folder, prefer folding it into the model it serves as a projection (e.g. `classes.startingEquipment({id})`) over creating a standalone file.
+- When a standalone file is genuinely needed, pick a per-domain folder name. Accepted non-domain folders: `src/data/` (JSON data), `src/services/` (I/O), `src/lib/` (low-level primitives).
