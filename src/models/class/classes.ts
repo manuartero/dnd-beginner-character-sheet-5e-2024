@@ -1,6 +1,10 @@
 import classDetailsData from "src/data/class/class-details.json";
+import { GOLD_ICON } from "src/lib/icons";
+import { armor } from "src/models/common/gear/armor";
+import { weapons } from "src/models/common/gear/weapons";
 
 import type { AbilityName, AbilityScores } from "src/models/common/abilities";
+import type { Equipment } from "src/models/common/gear/equipment";
 import type { Background } from "src/models/origin/backgrounds";
 
 export type CharacterClass =
@@ -98,6 +102,53 @@ const CLASSIFICATION_ORDER: ManualClassification[] = [
   "versatile",
 ];
 
+function formatItemName(item: string): string {
+  return item
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
+  const weapon = weapons.find({ id: item });
+  if (weapon) {
+    return {
+      name: weapon.name,
+      type: "weapon",
+      icon: weapon.icon,
+      damage: weapon.damage,
+      properties: weapon.properties,
+      equipped: true,
+      ...(quantity > 1 ? { quantity } : {}),
+    };
+  }
+  const armorItem = armor.find({ id: item });
+  if (armorItem) {
+    return {
+      name: armorItem.name,
+      type: armorItem.category === "shield" ? "shield" : "armor",
+      armorId: armorItem.id,
+      icon: armorItem.icon,
+      ac: armorItem.baseAc,
+      equipped: true,
+      ...(quantity > 1 ? { quantity } : {}),
+    };
+  }
+  if (item === "gp") {
+    return {
+      name: "Gold",
+      type: "money",
+      icon: GOLD_ICON,
+      quantity,
+    };
+  }
+  return {
+    name: formatItemName(item),
+    type: "gear",
+    ...(quantity > 1 ? { quantity } : {}),
+  };
+}
+
 export const classes = {
   get({ id }: { id: CharacterClass }): ClassDetails {
     const found = BY_ID.get(id);
@@ -120,5 +171,8 @@ export const classes = {
       key,
       items: DATA.filter((c) => c.manualClassification === key),
     }));
+  },
+  startingEquipment({ id }: { id: CharacterClass }): Equipment[] {
+    return classes.get({ id }).startingEquipment[0].map(toEquipment);
   },
 };

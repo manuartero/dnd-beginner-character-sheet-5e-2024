@@ -5,7 +5,6 @@ import { computeProficiencyBonus } from "src/character/modifiers";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { getResourcesForLevel } from "src/models/class/class-resources";
 import { classes } from "src/models/class/classes";
-import { resolveStartingEquipment } from "src/models/common/gear/starting-equipment";
 import { backgrounds } from "src/models/origin/backgrounds";
 import { saveCharacter } from "src/services/character-storage";
 import { CreationActions } from "./creation-actions";
@@ -105,7 +104,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       ac: 10,
       proficiencyBonus: computeProficiencyBonus(1),
       spells: [],
-      equipment: resolveStartingEquipment(draft.characterClass),
+      equipment: classes.startingEquipment({ id: draft.characterClass }),
       classResources: getResourcesForLevel(
         draft.characterClass,
         1,

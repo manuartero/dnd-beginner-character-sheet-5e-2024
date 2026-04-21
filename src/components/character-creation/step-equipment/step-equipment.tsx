@@ -1,5 +1,5 @@
 import { Inventory } from "src/components/inventory/inventory";
-import { resolveStartingEquipment } from "src/models/common/gear/starting-equipment";
+import { classes } from "src/models/class/classes";
 
 import type { CharacterClass } from "src/models/class/classes";
 
@@ -8,7 +8,7 @@ type StepEquipmentProps = {
 };
 
 export function StepEquipment({ characterClass }: StepEquipmentProps) {
-  const equipment = resolveStartingEquipment(characterClass);
+  const equipment = classes.startingEquipment({ id: characterClass });
 
   return (
     <Inventory
