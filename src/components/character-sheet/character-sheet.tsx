@@ -6,10 +6,10 @@ import {
   computeInitiative,
   computeSpellAttack,
 } from "src/character/character-stats";
+import { applyRest } from "src/character/rest";
 import { Inventory } from "src/components/inventory/inventory";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import { useScrollDirection } from "src/hooks/use-scroll-direction";
-import { applyRest } from "src/models/class/class-resources";
 import { classes } from "src/models/class/classes";
 import { spells } from "src/models/spells/spells";
 import { saveCharacter } from "src/services/character-storage";

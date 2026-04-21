@@ -3,7 +3,6 @@ import { useState } from "react";
 import { computeHpMax } from "src/character/character-stats";
 import { computeProficiencyBonus } from "src/character/modifiers";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { getResourcesForLevel } from "src/models/class/class-resources";
 import { classes } from "src/models/class/classes";
 import { backgrounds } from "src/models/origin/backgrounds";
 import { saveCharacter } from "src/services/character-storage";
@@ -105,11 +104,11 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
       proficiencyBonus: computeProficiencyBonus(1),
       spells: [],
       equipment: classes.startingEquipment({ id: draft.characterClass }),
-      classResources: getResourcesForLevel(
-        draft.characterClass,
-        1,
-        draft.abilityScores,
-      ),
+      classResources: classes.resources({
+        id: draft.characterClass,
+        level: 1,
+        abilityScores: draft.abilityScores,
+      }),
     };
     saveCharacter(character);
     onSave(character);

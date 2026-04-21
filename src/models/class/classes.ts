@@ -2,10 +2,19 @@ import classDetailsData from "src/data/class/class-details.json";
 import { GOLD_ICON } from "src/lib/icons";
 import { armor } from "src/models/common/gear/armor";
 import { weapons } from "src/models/common/gear/weapons";
+import {
+  resolveResourceResetOn,
+  resolveResourcesForLevel,
+} from "./class-resources";
 
 import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 import type { Equipment } from "src/models/common/gear/equipment";
 import type { Background } from "src/models/origin/backgrounds";
+import type {
+  CharacterResource,
+  ResourceId,
+  RestType,
+} from "./class-resources";
 
 export type CharacterClass =
   | "barbarian"
@@ -174,5 +183,25 @@ export const classes = {
   },
   startingEquipment({ id }: { id: CharacterClass }): Equipment[] {
     return classes.get({ id }).startingEquipment[0].map(toEquipment);
+  },
+  resources({
+    id,
+    level,
+    abilityScores,
+  }: {
+    id: CharacterClass;
+    level: number;
+    abilityScores: AbilityScores;
+  }): CharacterResource[] {
+    return resolveResourcesForLevel(id, level, abilityScores);
+  },
+  resourceResetOn({
+    id,
+    resourceId,
+  }: {
+    id: CharacterClass;
+    resourceId: ResourceId;
+  }): RestType {
+    return resolveResourceResetOn(id, resourceId);
   },
 };

@@ -2,10 +2,8 @@ import c from "classnames";
 import { ResourceChip, Section } from "elements";
 import { useState } from "react";
 import { resolveIconPath } from "src/lib/icons";
-import {
-  getResourceDefinition,
-  getResourceResetOn,
-} from "src/models/class/class-resources";
+import { classResources } from "src/models/class/class-resources";
+import { classes } from "src/models/class/classes";
 import styles from "./resource-tracker.module.css";
 
 import type {
@@ -58,10 +56,14 @@ function buildChips(
 ): UseChip[] {
   return resources
     .filter(
-      (r) => getResourceResetOn(characterClass, r.resourceId) === resetFilter,
+      (r) =>
+        classes.resourceResetOn({
+          id: characterClass,
+          resourceId: r.resourceId,
+        }) === resetFilter,
     )
     .flatMap((r) => {
-      const def = getResourceDefinition(r.resourceId);
+      const def = classResources.find({ id: r.resourceId });
       const iconSrc = resolveIconPath(def?.icon ?? "vol5/icon-vol5_02");
       const label =
         RESOURCE_SHORT_NAMES[r.resourceId] ??
