@@ -1,12 +1,12 @@
 import c from "classnames";
 import { Section } from "elements";
+import { resolveIconPath } from "src/lib/icons";
 import {
   getProficiencyRestriction,
   hasProficiency,
   type ProficiencyKey,
   type ProficiencySet,
 } from "src/models/class/classes";
-import { resolveIconPath } from "src/models/common/icons";
 import { proficiencyDetails } from "src/models/common/proficiency-details";
 import styles from "./proficiency-grid.module.css";
 

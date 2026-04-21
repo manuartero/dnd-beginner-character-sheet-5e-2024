@@ -1,6 +1,6 @@
+import { GOLD_ICON } from "src/lib/icons";
 import { classes } from "src/models/class/classes";
 import { armor } from "./armor";
-import { GOLD_ICON } from "./equipment";
 import { weapons } from "./weapons";
 
 import type {

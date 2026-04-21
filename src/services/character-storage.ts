@@ -1,7 +1,7 @@
 import { classes } from "src/models/class/classes";
 import { species } from "src/models/origin/species";
 
-import type { Character } from "./character";
+import type { Character } from "src/character/character";
 
 const STORAGE_KEY = "dnd-characters";
 

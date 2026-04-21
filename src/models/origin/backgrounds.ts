@@ -1,9 +1,9 @@
 import backgroundListData from "src/data/origin/background-list.json";
 import originFeatDescriptions from "src/data/origin/origin-feat-descriptions.json";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 
+import type { IconVariant } from "src/lib/icons";
 import type { AbilityName } from "src/models/common/abilities";
-import type { IconVariant } from "src/models/common/icons";
 import type { SkillName } from "src/models/common/skills";
 
 export type Background =

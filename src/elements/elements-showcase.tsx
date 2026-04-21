@@ -20,7 +20,7 @@ import {
   TileRow,
 } from "elements";
 import { useState } from "react";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 
 function ShowcaseBlock({
   name,

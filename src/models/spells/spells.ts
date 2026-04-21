@@ -10,7 +10,7 @@ import warlockSpellsData from "src/data/spells/warlock-spells.json";
 import wizardSpellsData from "src/data/spells/wizard-spells.json";
 
 import type { CharacterClass } from "src/models/class/classes";
-import type { DamageType } from "src/models/common/damage-types";
+import type { DamageType } from "src/models/common/damage";
 
 type SpellId = string;
 

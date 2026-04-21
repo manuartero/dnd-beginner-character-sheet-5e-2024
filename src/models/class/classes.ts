@@ -1,6 +1,6 @@
 import classDetailsData from "src/data/class/class-details.json";
 
-import type { AbilityName } from "src/models/common/abilities";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 import type { Background } from "src/models/origin/backgrounds";
 
 export type CharacterClass =
@@ -57,6 +57,7 @@ export type ClassDetails = {
   recommendedBackgrounds: Background[];
   proficiencies: ProficiencySet;
   startingEquipment: [StartingEquipmentItem[], StartingEquipmentItem[]];
+  recommendedScores: AbilityScores;
 };
 
 export function hasProficiency(

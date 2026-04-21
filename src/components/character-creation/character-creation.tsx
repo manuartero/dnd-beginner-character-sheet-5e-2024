@@ -1,13 +1,13 @@
 import { ScreenFlash, Stepper } from "elements";
 import { useState } from "react";
+import { computeHpMax } from "src/character/character-stats";
+import { computeProficiencyBonus } from "src/character/modifiers";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
 import { getResourcesForLevel } from "src/models/class/class-resources";
-import { computeProficiencyBonus } from "src/models/common/abilities";
-import { computeHpMax } from "src/models/common/character-stats";
-import { saveCharacter } from "src/models/common/character-storage";
-import { RECOMMENDED_SCORES } from "src/models/common/recommended-scores";
-import { resolveStartingEquipment } from "src/models/gear/starting-equipment";
+import { classes } from "src/models/class/classes";
+import { resolveStartingEquipment } from "src/models/common/gear/starting-equipment";
 import { backgrounds } from "src/models/origin/backgrounds";
+import { saveCharacter } from "src/services/character-storage";
 import { CreationActions } from "./creation-actions";
 import { isValidScore, StepAbilities } from "./step-abilities";
 import { StepClass } from "./step-class";
@@ -16,9 +16,9 @@ import { StepName } from "./step-name";
 import { StepOrigin } from "./step-origin";
 import { StepSpecies } from "./step-species";
 
+import type { Character } from "src/character/character";
 import type { CharacterClass } from "src/models/class/classes";
 import type { AbilityName } from "src/models/common/abilities";
-import type { Character } from "src/models/common/character";
 import type { Background } from "src/models/origin/backgrounds";
 import type { Species } from "src/models/origin/species";
 
@@ -45,14 +45,7 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
     race: "human",
     background: "soldier",
     abilityScores: {
-      ...(RECOMMENDED_SCORES[DEFAULT_CHARACTER_CLASS] ?? {
-        str: 10,
-        dex: 10,
-        con: 10,
-        int: 10,
-        wis: 10,
-        cha: 10,
-      }),
+      ...classes.get({ id: DEFAULT_CHARACTER_CLASS }).recommendedScores,
     },
     abilityBonuses: {},
   });
@@ -141,8 +134,8 @@ export function CharacterCreation({ onSave }: CharacterCreationProps) {
               setDraft((prev) => ({
                 ...prev,
                 characterClass,
-                abilityScores:
-                  RECOMMENDED_SCORES[characterClass] ?? prev.abilityScores,
+                abilityScores: classes.get({ id: characterClass })
+                  .recommendedScores,
               }))
             }
           />

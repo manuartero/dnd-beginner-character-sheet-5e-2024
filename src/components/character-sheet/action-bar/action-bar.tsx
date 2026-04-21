@@ -1,9 +1,9 @@
 import { ChipGrid, EmptySlot, labelStyles, Section } from "elements";
 import { useMemo } from "react";
 import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
+import { resolveIconPath } from "src/lib/icons";
 import { classes } from "src/models/class/classes";
 import { classActions, combatActions } from "src/models/common/actions";
-import { resolveIconPath } from "src/models/common/icons";
 import { groupSpellsByTiming } from "src/models/spells/spell-timing";
 import styles from "./action-bar.module.css";
 

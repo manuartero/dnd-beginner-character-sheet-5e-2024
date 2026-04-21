@@ -4,7 +4,7 @@ import { useState } from "react";
 import { classes } from "src/models/class/classes";
 import styles from "./character-list.module.css";
 
-import type { Character } from "src/models/common/character";
+import type { Character } from "src/character/character";
 
 type CharacterListProps = {
   characters: Character[];

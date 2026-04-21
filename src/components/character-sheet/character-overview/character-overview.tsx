@@ -2,7 +2,7 @@ import { AbilityScores } from "src/components/character-sheet/ability-scores";
 import { CharacterHeader } from "src/components/character-sheet/character-header";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
 
-import type { Character } from "src/models/common/character";
+import type { Character } from "src/character/character";
 
 type CharacterOverviewProps = {
   character: Character;

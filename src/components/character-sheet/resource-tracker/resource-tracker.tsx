@@ -1,11 +1,11 @@
 import c from "classnames";
 import { ResourceChip, Section } from "elements";
 import { useState } from "react";
+import { resolveIconPath } from "src/lib/icons";
 import {
   getResourceDefinition,
   getResourceResetOn,
 } from "src/models/class/class-resources";
-import { resolveIconPath } from "src/models/common/icons";
 import styles from "./resource-tracker.module.css";
 
 import type {

@@ -1,7 +1,7 @@
 import { ChipGrid, Section } from "elements";
+import { resolveIconPath } from "src/lib/icons";
 import { classes } from "src/models/class/classes";
 import { explorationActions } from "src/models/common/actions";
-import { resolveIconPath } from "src/models/common/icons";
 
 import type { CharacterClass } from "src/models/class/classes";
 

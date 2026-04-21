@@ -67,15 +67,3 @@ export const skills = {
 };
 
 export const DEFAULT_PROFICIENCIES: SkillName[] = ["insight", "perception"];
-
-export function computeSkillModifier({
-  abilityModifier,
-  proficiencyBonus,
-  isProficient,
-}: {
-  abilityModifier: number;
-  proficiencyBonus: number;
-  isProficient: boolean;
-}): number {
-  return abilityModifier + (isProficient ? proficiencyBonus : 0);
-}

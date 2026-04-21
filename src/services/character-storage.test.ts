@@ -5,7 +5,7 @@ import {
   saveCharacter,
 } from "./character-storage";
 
-import type { Character } from "./character";
+import type { Character } from "src/character/character";
 
 function makeCharacter(overrides: Partial<Character> = {}): Character {
   return {

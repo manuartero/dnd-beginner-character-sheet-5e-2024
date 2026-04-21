@@ -1,5 +1,5 @@
 import { Inventory } from "src/components/inventory/inventory";
-import { resolveStartingEquipment } from "src/models/gear/starting-equipment";
+import { resolveStartingEquipment } from "src/models/common/gear/starting-equipment";
 
 import type { CharacterClass } from "src/models/class/classes";
 

@@ -1,5 +1,5 @@
+import { computeModifier } from "src/character/modifiers";
 import classResourcesData from "src/data/class/class-resources.json";
-import { computeModifier } from "src/models/common/abilities";
 
 import type { AbilityName, AbilityScores } from "src/models/common/abilities";
 import type { CharacterClass } from "./classes";

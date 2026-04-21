@@ -5,8 +5,8 @@ import {
   computeSpellAttack,
 } from "./character-stats";
 
-import type { Equipment } from "src/models/gear/equipment";
-import type { AbilityScores } from "./abilities";
+import type { AbilityScores } from "src/models/common/abilities";
+import type { Equipment } from "src/models/common/gear/equipment";
 import type { StatResult } from "./character-stats";
 
 describe("computeHpMax()", () => {

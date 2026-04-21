@@ -1,11 +1,11 @@
 import { useState } from "react";
-import {
-  RECOMMENDED_SCORES,
-  STANDARD_ARRAY,
-} from "src/models/common/recommended-scores";
+import standardArrayData from "src/data/class/standard-array.json";
+import { classes } from "src/models/class/classes";
 
 import type { CharacterClass } from "src/models/class/classes";
 import type { AbilityName, AbilityScores } from "src/models/common/abilities";
+
+const STANDARD_ARRAY: number[] = standardArrayData;
 
 type AbilityScoreMode = "quick-start" | "customize" | "advanced";
 
@@ -86,7 +86,7 @@ export function useAbilityScores({
   function handleModeChange(newMode: AbilityScoreMode) {
     setMode(newMode);
     if (newMode === "quick-start" && characterClass) {
-      const recommended = RECOMMENDED_SCORES[characterClass];
+      const recommended = classes.get({ id: characterClass }).recommendedScores;
       onScoresChange(recommended);
       setRawScores(toRawScores(recommended));
     } else if (newMode === "customize") {

@@ -1,12 +1,9 @@
 import { AbilityCard, RetroRadio, Section } from "elements";
+import { computeModifier, formatModifier } from "src/character/modifiers";
 import { HpTracker } from "src/components/character-sheet/hp-tracker";
 import { useExpandable } from "src/hooks/use-expandable";
 import { classes } from "src/models/class/classes";
-import {
-  abilities,
-  computeModifier,
-  formatModifier,
-} from "src/models/common/abilities";
+import { abilities } from "src/models/common/abilities";
 import { isValidScore } from "./is-valid-score";
 import { OriginBonusPicker } from "./origin-bonus-picker";
 import styles from "./step-abilities.module.css";

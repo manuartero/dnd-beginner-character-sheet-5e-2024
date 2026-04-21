@@ -1,6 +1,4 @@
-import type { DamageType } from "src/models/common/damage-types";
-
-export const GOLD_ICON = "vol1/icon-vol1_63";
+import type { DamageType } from "src/models/common/damage";
 
 export type Equipment = {
   name: string;

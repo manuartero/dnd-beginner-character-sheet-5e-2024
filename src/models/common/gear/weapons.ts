@@ -2,7 +2,7 @@ import weaponMasteryData from "src/data/gear/weapon-mastery.json";
 import weaponPropertiesData from "src/data/gear/weapon-properties.json";
 import weaponsData from "src/data/gear/weapons.json";
 
-import type { DamageType } from "src/models/common/damage-types";
+import type { DamageType } from "src/models/common/damage";
 
 export type WeaponProficiency = "simple" | "martial";
 
