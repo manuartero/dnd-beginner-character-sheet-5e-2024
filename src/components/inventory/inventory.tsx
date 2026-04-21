@@ -9,7 +9,7 @@ import { useState } from "react";
 import { GOLD_ICON, resolveIconPath } from "src/lib/icons";
 import styles from "./inventory.module.css";
 
-import type { Equipment } from "src/models/common/gear/equipment";
+import type { Equipment } from "src/models/common/gear";
 
 type ReadonlyProps = {
   mode: "readonly";

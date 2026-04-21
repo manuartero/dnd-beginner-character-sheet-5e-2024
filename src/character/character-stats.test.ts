@@ -6,7 +6,7 @@ import {
 } from "./character-stats";
 
 import type { AbilityScores } from "src/models/common/abilities";
-import type { Equipment } from "src/models/common/gear/equipment";
+import type { Equipment } from "src/models/common/gear";
 import type { StatResult } from "./character-stats";
 
 describe("computeHpMax()", () => {

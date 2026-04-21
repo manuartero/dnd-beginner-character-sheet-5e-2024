@@ -1,12 +1,11 @@
 import { computeModifier, formatModifier } from "src/character/modifiers";
 import { classes } from "src/models/class/classes";
 import { abilities } from "src/models/common/abilities";
-import { armor } from "src/models/common/gear/armor";
+import { armor } from "src/models/common/gear";
 
 import type { CharacterClass } from "src/models/class/classes";
 import type { AbilityName, AbilityScores } from "src/models/common/abilities";
-import type { Armor } from "src/models/common/gear/armor";
-import type { Equipment } from "src/models/common/gear/equipment";
+import type { Armor, Equipment } from "src/models/common/gear";
 
 export type StatBreakdownLine = {
   label: string;
