@@ -40,60 +40,102 @@ spells/
 ### `classes` — `classes.get({ id: "barbarian" })`
 ```ts
 {
-  id, label, hitDie,
-  primaryAbilities, saves,
-  proficiencies: { "light-armor", "shields", "simple-weapons", skills, ... },
-  startingEquipment: [...],
-  recommendedScores: { str, dex, con, int, wis, cha },
+  id: "barbarian",
+  label: "Barbarian",
+  hitDie: "d12",
+  primaryAbilities: ["str"],
+  saves: "Strength & Constitution",
+  proficiencies: {
+    "light-armor": true, "medium-armor": true, "shields": true,
+    "simple-weapons": true, "martial-weapons": true,
+    skills: { n: 2, options: ["athletics", "intimidation", ...] },
+  },
+  startingEquipment: [[{ item: "greataxe", quantity: 1 }, ...], [...]],
+  recommendedScores: { str: 15, dex: 13, con: 14, int: 8, wis: 12, cha: 10 },
 }
 ```
 Projections: `startingEquipment({id})`, `resources({id, level, abilityScores})`, `resourceResetOn({id, resourceId})`, `groupBy({by: "classification"})`.
 
 ### `classResources` — `classResources.get({ id: "rage" })`
 ```ts
-{ id, name, description, icon }
+{
+  id: "rage",
+  name: "Rage",
+  description: "Enter a fierce rage for extra damage and resistance...",
+  icon: "vol2/icon-vol2_65",
+}
 ```
 
 ### `abilities`
 ```ts
-{ id, label, short }
+{ id: "str", label: "Strength", short: "STR" }
 ```
 
 ### `skills`
 ```ts
-{ name, label, ability }
+{ name: "athletics", label: "Athletics", ability: "str" }
 ```
 
 ### `combatActions` / `classActions` / `explorationActions`
 ```ts
-{ name, timing, description, icon? }
-// classActions adds: classRestriction?, classificationRestriction?
-// explorationActions: category + classificationRestriction?
+// combat
+{ name: "Attack", timing: "action", description: "Make one melee or ranged attack..." }
+
+// class (adds classRestriction / classificationRestriction)
+{ name: "Sneak Attack", timing: "action", classRestriction: "rogue", description: "..." }
+
+// exploration
+{ name: "Search", category: "exploration", description: "..." }
 ```
 
 ### `restActions`
 ```ts
-{ id, label, icon, description }
+{
+  id: "short-rest",
+  label: "Short Rest",
+  icon: "vol4/icon-vol4_09",
+  description: "Restores short rest resources.",
+}
 ```
 
 ### `proficiencyDetails`
 ```ts
-{ id, label, icon }
+{ id: "light-armor", label: "Light Armor", icon: "vol9/icon-vol9_317" }
 ```
 
 ### `armor`
 ```ts
-{ id, name, category, baseAc, dexModifier, maxDexModifier, stealthDisadvantage }
+{
+  id: "leather-armor",
+  name: "Leather Armor",
+  category: "light",
+  baseAc: 11,
+  dexModifier: true,
+  maxDexModifier: null,
+  stealthDisadvantage: false,
+}
 ```
 
 ### `weapons`
 ```ts
-{ id, name, proficiency, range, damage: { dice, type }, mastery, properties }
+{
+  id: "longsword",
+  name: "Longsword",
+  proficiency: "martial",
+  range: "melee",
+  damage: { dice: "1d8", type: "slashing" },
+  mastery: "sap",
+  properties: ["versatile"],
+}
 ```
 
 ### `weaponProperties` / `weaponMastery`
 ```ts
-{ id, description }
+// properties
+{ id: "finesse", description: "When making an attack with a Finesse weapon..." }
+
+// mastery
+{ id: "cleave", description: "If you hit a creature with a melee attack..." }
 ```
 
 ### `DamageType`
@@ -101,18 +143,46 @@ Type only: `"slashing" | "piercing" | "bludgeoning" | "fire" | "cold" | ...`
 
 ### `species`
 ```ts
-{ id, label, size, speed, traits, description }
+{
+  id: "dragonborn",
+  label: "Dragonborn",
+  size: "Medium",
+  speed: "30 ft.",
+  traits: ["Dragon Ancestry", "Breath Weapon", "Damage Resistance", ...],
+  description: "Descendants hatched from the eggs of chromatic and metallic dragons",
+}
 ```
 
 ### `backgrounds`
 ```ts
-{ id, label, originFeat, abilityOptions, skillProficiencies }
+{
+  id: "acolyte",
+  label: "Acolyte",
+  originFeat: {
+    id: "magic-initiate-cleric",
+    name: "Magic Initiate (Cleric)",
+    description: "...",
+  },
+  abilityOptions: ["int", "wis", "cha"],
+  skillProficiencies: ["insight", "religion"],
+}
 ```
 Projection: `icon({id, variant?})`.
 
 ### `spells`
 ```ts
-{ id, name, level, school, castingTime, range, components, duration, damage? }
+{
+  id: "alarm",
+  name: "Alarm",
+  level: 1,
+  school: "Abjuration",
+  castingTime: "1 minute",
+  range: "30 ft",
+  components: "V, S, M (a tiny bell and a piece of fine silver wire)",
+  duration: "8 hours",
+  ritual: true,
+  damage: { dice: "1d10", type: ["fire"] },  // on damaging spells
+}
 ```
 Projections: `findAll({cls, level})`, `limit({cls, level})`, `timing(spell)`, `groupByTiming(spells)`.
 
