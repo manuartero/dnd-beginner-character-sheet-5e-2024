@@ -1,3 +1,5 @@
+import skillsData from "src/data/common/skills.json";
+
 import type { AbilityName } from "./abilities";
 
 export type SkillName =
@@ -26,27 +28,7 @@ export type SkillDefinition = {
   ability: AbilityName;
 };
 
-const DATA: SkillDefinition[] = [
-  { name: "athletics", label: "Athletics", ability: "str" },
-  { name: "acrobatics", label: "Acrobatics", ability: "dex" },
-  { name: "sleight-of-hand", label: "Sleight of Hand", ability: "dex" },
-  { name: "stealth", label: "Stealth", ability: "dex" },
-  { name: "arcana", label: "Arcana", ability: "int" },
-  { name: "history", label: "History", ability: "int" },
-  { name: "investigation", label: "Investigation", ability: "int" },
-  { name: "nature", label: "Nature", ability: "int" },
-  { name: "religion", label: "Religion", ability: "int" },
-  { name: "animal-handling", label: "Animal Handling", ability: "wis" },
-  { name: "insight", label: "Insight", ability: "wis" },
-  { name: "medicine", label: "Medicine", ability: "wis" },
-  { name: "perception", label: "Perception", ability: "wis" },
-  { name: "survival", label: "Survival", ability: "wis" },
-  { name: "deception", label: "Deception", ability: "cha" },
-  { name: "intimidation", label: "Intimidation", ability: "cha" },
-  { name: "performance", label: "Performance", ability: "cha" },
-  { name: "persuasion", label: "Persuasion", ability: "cha" },
-];
-
+const DATA = skillsData as SkillDefinition[];
 const BY_NAME = new Map(DATA.map((s) => [s.name, s]));
 
 export const skills = {

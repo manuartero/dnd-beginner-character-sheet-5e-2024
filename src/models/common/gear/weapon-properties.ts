@@ -1,4 +1,4 @@
-import weaponPropertiesData from "src/data/gear/weapon-properties.json";
+import weaponPropertiesData from "src/data/common/gear/weapon-properties.json";
 
 export type WeaponProperty = {
   id: string;

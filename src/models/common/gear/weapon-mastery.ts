@@ -1,4 +1,4 @@
-import weaponMasteryData from "src/data/gear/weapon-mastery.json";
+import weaponMasteryData from "src/data/common/gear/weapon-mastery.json";
 
 export type WeaponMasteryName =
   | "cleave"

@@ -1,4 +1,4 @@
-import armorData from "src/data/gear/armor.json";
+import armorData from "src/data/common/gear/armor.json";
 
 export type ArmorId =
   | "padded-armor"

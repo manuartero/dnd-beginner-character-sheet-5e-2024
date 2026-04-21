@@ -1,0 +1,8 @@
+[
+  { "id": "str", "label": "Strength", "short": "STR" },
+  { "id": "dex", "label": "Dexterity", "short": "DEX" },
+  { "id": "con", "label": "Constitution", "short": "CON" },
+  { "id": "int", "label": "Intelligence", "short": "INT" },
+  { "id": "wis", "label": "Wisdom", "short": "WIS" },
+  { "id": "cha", "label": "Charisma", "short": "CHA" }
+]

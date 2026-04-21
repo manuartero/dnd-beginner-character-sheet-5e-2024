@@ -1,4 +1,4 @@
-import weaponsData from "src/data/gear/weapons.json";
+import weaponsData from "src/data/common/gear/weapons.json";
 
 import type { DamageType } from "src/models/common/damage";
 import type { WeaponMasteryName } from "./weapon-mastery";
