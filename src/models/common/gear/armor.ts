@@ -1,9 +1,24 @@
 import armorData from "src/data/gear/armor.json";
 
+export type ArmorId =
+  | "padded-armor"
+  | "leather-armor"
+  | "studded-leather-armor"
+  | "hide-armor"
+  | "chain-shirt"
+  | "scale-mail"
+  | "breastplate"
+  | "half-plate-armor"
+  | "ring-mail"
+  | "chain-mail"
+  | "splint-armor"
+  | "plate-armor"
+  | "shield";
+
 export type ArmorCategory = "light" | "medium" | "heavy" | "shield";
 
 export type Armor = {
-  id: string;
+  id: ArmorId;
   name: string;
   category: ArmorCategory;
   baseAc: number;
@@ -14,25 +29,17 @@ export type Armor = {
   icon: string;
 };
 
-type ArmorCriteria = { id: string } | { name: string };
-
 const DATA = armorData as Armor[];
 const BY_ID = new Map(DATA.map((a) => [a.id, a]));
-const BY_NAME = new Map(DATA.map((a) => [a.name.toLowerCase(), a]));
-
-function lookup(criteria: ArmorCriteria): Armor | undefined {
-  if ("id" in criteria) return BY_ID.get(criteria.id);
-  return BY_NAME.get(criteria.name.toLowerCase());
-}
 
 export const armor = {
-  get(criteria: ArmorCriteria): Armor {
-    const found = lookup(criteria);
-    if (!found) throw new Error(`Unknown armor: ${JSON.stringify(criteria)}`);
+  get({ id }: { id: ArmorId }): Armor {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown armor: ${id}`);
     return found;
   },
-  find(criteria: ArmorCriteria): Armor | undefined {
-    return lookup(criteria);
+  find({ id }: { id: string }): Armor | undefined {
+    return BY_ID.get(id as ArmorId);
   },
   list(): Armor[] {
     return DATA;

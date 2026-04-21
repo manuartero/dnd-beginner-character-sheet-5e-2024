@@ -52,7 +52,12 @@ describe("computeArmorClass()", () => {
     {
       // light armor + shield: full DEX modifier applies
       equipment: [
-        { type: "armor", name: "Leather Armor", equipped: true },
+        {
+          type: "armor",
+          name: "Leather Armor",
+          armorId: "leather-armor",
+          equipped: true,
+        },
         { type: "shield", name: "Shield", equipped: true },
       ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
@@ -67,7 +72,14 @@ describe("computeArmorClass()", () => {
     },
     {
       // heavy armor: DEX modifier is ignored
-      equipment: [{ type: "armor", name: "Chain Mail", equipped: true }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Chain Mail",
+          armorId: "chain-mail",
+          equipped: true,
+        },
+      ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
@@ -76,7 +88,14 @@ describe("computeArmorClass()", () => {
     },
     {
       // medium armor: DEX modifier capped at +2
-      equipment: [{ type: "armor", name: "Scale Mail", equipped: true }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Scale Mail",
+          armorId: "scale-mail",
+          equipped: true,
+        },
+      ],
       abilityScores: { str: 10, dex: 18, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
@@ -88,7 +107,14 @@ describe("computeArmorClass()", () => {
     },
     {
       // unequipped armor: treated as no armor
-      equipment: [{ type: "armor", name: "Chain Mail", equipped: false }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Chain Mail",
+          armorId: "chain-mail",
+          equipped: false,
+        },
+      ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 12,

@@ -1,20 +1,16 @@
 import { armor } from "./armor";
 
+import type { ArmorId } from "./armor";
+
 describe("armor.get()", () => {
   it("returns armor by id", () => {
     expect(armor.get({ id: "leather-armor" }).name).toBe("Leather Armor");
   });
 
-  it("returns armor by name (case-insensitive)", () => {
-    expect(armor.get({ name: "LEATHER ARMOR" }).id).toBe("leather-armor");
-  });
-
   it("throws on unknown id", () => {
-    expect(() => armor.get({ id: "mithril" })).toThrow(/Unknown armor/);
-  });
-
-  it("throws on unknown name", () => {
-    expect(() => armor.get({ name: "Mithril" })).toThrow(/Unknown armor/);
+    expect(() => armor.get({ id: "mithril" as unknown as ArmorId })).toThrow(
+      /Unknown armor/,
+    );
   });
 });
 
@@ -23,21 +19,8 @@ describe("armor.find()", () => {
     expect(armor.find({ id: "leather-armor" })?.name).toBe("Leather Armor");
   });
 
-  it("finds armor by exact name", () => {
-    expect(armor.find({ name: "Leather Armor" })?.id).toBe("leather-armor");
-  });
-
-  it("finds armor case-insensitively by name", () => {
-    expect(armor.find({ name: "leather armor" })).toBeDefined();
-    expect(armor.find({ name: "LEATHER ARMOR" })).toBeDefined();
-  });
-
   it("returns undefined for unknown id", () => {
     expect(armor.find({ id: "mithril" })).toBeUndefined();
-  });
-
-  it("returns undefined for unknown name", () => {
-    expect(armor.find({ name: "Mithril" })).toBeUndefined();
   });
 });
 

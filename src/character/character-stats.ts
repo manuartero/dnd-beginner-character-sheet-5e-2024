@@ -33,8 +33,8 @@ function findEquippedArmor(equipment: Equipment[]): Armor | null {
   const armorItem = equipment.find(
     (e) => e.type === "armor" && e.equipped === true,
   );
-  if (!armorItem) return null;
-  return armor.find({ name: armorItem.name }) ?? null;
+  if (!armorItem?.armorId) return null;
+  return armor.find({ id: armorItem.armorId }) ?? null;
 }
 
 function hasShield(equipment: Equipment[]): boolean {

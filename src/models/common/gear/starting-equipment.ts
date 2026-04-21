@@ -34,6 +34,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
     return {
       name: armorItem.name,
       type: armorItem.category === "shield" ? "shield" : "armor",
+      armorId: armorItem.id,
       icon: armorItem.icon,
       ac: armorItem.baseAc,
       equipped: true,
