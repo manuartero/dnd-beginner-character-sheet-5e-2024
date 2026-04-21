@@ -24,6 +24,9 @@ export const proficiencyDetails = {
     if (!found) throw new Error(`Unknown proficiency: ${id}`);
     return found;
   },
+  find({ id }: { id: string }): ProficiencyDetails | undefined {
+    return BY_ID.get(id as ProficiencyKey);
+  },
   list(): ProficiencyDetails[] {
     return DATA;
   },
