@@ -1,8 +1,8 @@
 import { ChipGrid, EmptySlot, labelStyles, Section } from "elements";
 import { useMemo } from "react";
 import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
-import { CLASS_DETAILS } from "src/models/class/classes";
-import { CLASS_ACTIONS, COMBAT_ACTIONS } from "src/models/common/actions";
+import { classes } from "src/models/class/classes";
+import { classActions, combatActions } from "src/models/common/actions";
 import { resolveIconPath } from "src/models/common/icons";
 import { groupSpellsByTiming } from "src/models/spells/spell-timing";
 import styles from "./action-bar.module.css";
@@ -30,7 +30,9 @@ const CAST_SPELL_DESCRIPTION =
   "Cast one of your prepared spells using the appropriate casting time.";
 
 export function ActionBar({ characterClass, spells }: ActionBarProps) {
-  const classification = CLASS_DETAILS[characterClass].manualClassification;
+  const classification = classes.get({
+    id: characterClass,
+  }).manualClassification;
   const isSpellcaster =
     classification === "spell-caster" || classification === "versatile";
 
@@ -38,17 +40,8 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
 
   const grouped = useMemo(() => {
     const availableActions = [
-      ...COMBAT_ACTIONS,
-      ...CLASS_ACTIONS.filter((a) => {
-        if (a.classRestriction && a.classRestriction !== characterClass)
-          return false;
-        if (
-          a.classificationRestriction &&
-          !a.classificationRestriction.includes(classification)
-        )
-          return false;
-        return true;
-      }),
+      ...combatActions.list(),
+      ...classActions.findAll({ cls: characterClass, classification }),
     ];
 
     return TIMING_ORDER.map((timing) => {

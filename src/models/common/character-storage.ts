@@ -1,94 +1,57 @@
-import { getResourcesForLevel } from "src/models/class/class-resources";
-import { GOLD_ICON } from "src/models/gear/equipment";
-import { SPECIES_LIST } from "src/models/origin/species";
+import { classes } from "src/models/class/classes";
+import { species } from "src/models/origin/species";
 
-import type { CharacterResource } from "src/models/class/class-resources";
-import type { CharacterClass } from "src/models/class/classes";
-import type { Equipment } from "src/models/gear/equipment";
-import type { Species } from "src/models/origin/species";
-import type { AbilityScores } from "./abilities";
 import type { Character } from "./character";
 
 const STORAGE_KEY = "dnd-characters";
 
-const VALID_SPECIES: Species[] = SPECIES_LIST.map((r) => r.key);
-
-function migrateRace(raw: string): Species {
-  const lower = raw.toLowerCase().trim();
-  if (VALID_SPECIES.includes(lower as Species)) {
-    return lower as Species;
-  }
-  return "human";
-}
-
-function migrateEquipment(equipment: Equipment[]): Equipment[] {
-  return equipment.map((item) => {
-    if (item.name === "Gp" && item.type === "gear") {
-      return {
-        name: "Gold",
-        type: "money",
-        icon: GOLD_ICON,
-        quantity: item.quantity ?? 0,
-        equipped: false,
-      };
-    }
-    if (item.equipped === undefined) {
-      return {
-        ...item,
-        equipped:
-          item.type === "weapon" ||
-          item.type === "armor" ||
-          item.type === "shield",
-      };
-    }
-    return item;
-  });
-}
-
-function migrateClassResources(
-  existing: CharacterResource[] | undefined,
-  characterClass: CharacterClass,
-  level: number,
-  abilityScores: AbilityScores,
-): CharacterResource[] {
-  const expected = getResourcesForLevel(characterClass, level, abilityScores);
-  if (!Array.isArray(existing) || existing.length === 0) return expected;
-
-  const existingIds = new Set(existing.map((r) => r.resourceId));
-  const missing = expected.filter((r) => !existingIds.has(r.resourceId));
-  return missing.length > 0 ? [...existing, ...missing] : existing;
-}
-
-function migrateCharacter(raw: Record<string, unknown>): Character {
-  const character = {
-    ...(raw as unknown as Character),
-    race: migrateRace(String(raw.race ?? "human")),
-  };
-  if (Array.isArray(character.equipment)) {
-    character.equipment = migrateEquipment(character.equipment);
-  }
-  character.classResources = migrateClassResources(
-    character.classResources,
-    character.characterClass,
-    character.level,
-    character.abilityScores,
+function isValidCharacter(raw: unknown): raw is Character {
+  if (!raw || typeof raw !== "object") return false;
+  const c = raw as Partial<Character>;
+  return (
+    typeof c.id === "string" &&
+    typeof c.name === "string" &&
+    typeof c.level === "number" &&
+    !!c.race &&
+    species.find({ id: c.race }) !== undefined &&
+    !!c.characterClass &&
+    classes.find({ id: c.characterClass }) !== undefined &&
+    !!c.abilityScores &&
+    !!c.hp &&
+    Array.isArray(c.spells) &&
+    Array.isArray(c.equipment) &&
+    Array.isArray(c.classResources)
   );
-  return character;
 }
 
-export function loadCharacters(): Character[] {
+export type LoadResult = {
+  characters: Character[];
+  corrupted: boolean;
+};
+
+export function loadCharacters(): LoadResult {
+  let raw: string | null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw) as Record<string, unknown>[];
-    return parsed.map(migrateCharacter);
+    raw = localStorage.getItem(STORAGE_KEY);
   } catch {
-    return [];
+    return { characters: [], corrupted: false };
   }
+  if (!raw) return { characters: [], corrupted: false };
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { characters: [], corrupted: true };
+  }
+  if (!Array.isArray(parsed)) {
+    return { characters: [], corrupted: true };
+  }
+  const characters = parsed.filter(isValidCharacter);
+  return { characters, corrupted: characters.length < parsed.length };
 }
 
 export function saveCharacter(character: Character): void {
-  const characters = loadCharacters();
+  const { characters } = loadCharacters();
   const index = characters.findIndex((c) => c.id === character.id);
   if (index >= 0) {
     characters[index] = character;
@@ -99,6 +62,7 @@ export function saveCharacter(character: Character): void {
 }
 
 export function deleteCharacter(id: string): void {
-  const characters = loadCharacters().filter((c) => c.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
+  const { characters } = loadCharacters();
+  const filtered = characters.filter((c) => c.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
 }

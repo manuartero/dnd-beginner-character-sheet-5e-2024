@@ -9,8 +9,6 @@ import type { Equipment } from "src/models/gear/equipment";
 import type { AbilityScores } from "./abilities";
 import type { StatResult } from "./character-stats";
 
-// --- computeHpMax ---
-
 describe("computeHpMax()", () => {
   it("computes HP for a d12 with 12 CON (modifier +1)", () => {
     expect(computeHpMax({ characterClass: "barbarian", conScore: 12 })).toBe(
@@ -42,8 +40,6 @@ describe("computeHpMax()", () => {
     expect(computeHpMax({ characterClass: "wizard", conScore: 1 })).toBe(1);
   });
 });
-
-// --- computeArmorClass ---
 
 type AcTestCase = {
   equipment: Equipment[];
@@ -137,8 +133,6 @@ describe("computeArmorClass()", () => {
   });
 });
 
-// --- computeInitiative ---
-
 describe("computeInitiative()", () => {
   it("returns the DEX modifier as total", () => {
     const scores: AbilityScores = {
@@ -170,8 +164,6 @@ describe("computeInitiative()", () => {
     });
   });
 });
-
-// --- computeSpellAttack ---
 
 describe("computeSpellAttack()", () => {
   const scores: AbilityScores = {

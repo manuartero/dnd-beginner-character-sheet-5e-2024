@@ -29,10 +29,76 @@ export type ExplorationAction = {
   classificationRestriction?: ManualClassification[];
 };
 
-export const COMBAT_ACTIONS: CombatAction[] =
-  actionsData.combat as CombatAction[];
+const COMBAT = actionsData.combat as CombatAction[];
+const CLASS = actionsData.class as ClassAction[];
+const EXPLORATION = actionsData.exploration as ExplorationAction[];
 
-export const CLASS_ACTIONS: ClassAction[] = actionsData.class as ClassAction[];
+export const combatActions = {
+  get({ name }: { name: string }): CombatAction {
+    const found = COMBAT.find((a) => a.name === name);
+    if (!found) throw new Error(`Unknown combat action: ${name}`);
+    return found;
+  },
+  find({ name }: { name: string }): CombatAction | undefined {
+    return COMBAT.find((a) => a.name === name);
+  },
+  list(): CombatAction[] {
+    return COMBAT;
+  },
+};
 
-export const EXPLORATION_ACTIONS: ExplorationAction[] =
-  actionsData.exploration as ExplorationAction[];
+export const classActions = {
+  get({ name }: { name: string }): ClassAction {
+    const found = CLASS.find((a) => a.name === name);
+    if (!found) throw new Error(`Unknown class action: ${name}`);
+    return found;
+  },
+  find({ name }: { name: string }): ClassAction | undefined {
+    return CLASS.find((a) => a.name === name);
+  },
+  list(): ClassAction[] {
+    return CLASS;
+  },
+  findAll({
+    cls,
+    classification,
+  }: {
+    cls: CharacterClass;
+    classification: ManualClassification;
+  }): ClassAction[] {
+    return CLASS.filter((a) => {
+      if (a.classRestriction && a.classRestriction !== cls) return false;
+      if (
+        a.classificationRestriction &&
+        !a.classificationRestriction.includes(classification)
+      )
+        return false;
+      return true;
+    });
+  },
+};
+
+export const explorationActions = {
+  get({ name }: { name: string }): ExplorationAction {
+    const found = EXPLORATION.find((a) => a.name === name);
+    if (!found) throw new Error(`Unknown exploration action: ${name}`);
+    return found;
+  },
+  find({ name }: { name: string }): ExplorationAction | undefined {
+    return EXPLORATION.find((a) => a.name === name);
+  },
+  list(): ExplorationAction[] {
+    return EXPLORATION;
+  },
+  findAll({
+    classification,
+  }: {
+    classification: ManualClassification;
+  }): ExplorationAction[] {
+    return EXPLORATION.filter(
+      (a) =>
+        !a.classificationRestriction ||
+        a.classificationRestriction.includes(classification),
+    );
+  },
+};

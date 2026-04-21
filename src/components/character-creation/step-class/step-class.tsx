@@ -4,10 +4,8 @@ import { DetailsPanel } from "src/components/details-panel";
 import { ProficiencyGrid } from "src/components/proficiency-grid/proficiency-grid";
 import {
   type CharacterClass,
-  CLASS_DETAILS,
-  CLASS_LIST,
-  CLASSES_BY_CATEGORY,
-  getClassIcon,
+  classes,
+  type ManualClassification,
 } from "src/models/class/classes";
 import styles from "./step-class.module.css";
 
@@ -18,22 +16,28 @@ type StepClassProps = {
 
 const HIT_DIE_OPTIONS = ["d6", "d8", "d10", "d12"] as const;
 
+const CLASSIFICATION_LABELS: Record<ManualClassification, string> = {
+  martial: "Martial",
+  "spell-caster": "Spell Casters",
+  versatile: "Versatile",
+};
+
 export function StepClass({ characterClass, onClassChange }: StepClassProps) {
-  const details = characterClass ? CLASS_DETAILS[characterClass] : null;
+  const details = characterClass ? classes.get({ id: characterClass }) : null;
 
   return (
     <>
       <Section title="Class">
-        {CLASSES_BY_CATEGORY.map((group) => (
-          <div key={group.classification} className={styles.group}>
+        {classes.groupBy({ by: "classification" }).map(({ key, items }) => (
+          <div key={key} className={styles.group}>
             <h3 className={c(labelStyles.groupLabel, styles.groupLabelSpacing)}>
-              {group.label}
+              {CLASSIFICATION_LABELS[key]}
             </h3>
             <ChipGrid
-              actions={group.classes.map(({ key, label }) => ({
-                key,
-                label,
-                icon: getClassIcon(key as CharacterClass),
+              actions={items.map((cls) => ({
+                key: cls.id,
+                label: cls.label,
+                icon: cls.icon,
               }))}
               selectedKey={characterClass}
               onSelect={(key) => onClassChange(key as CharacterClass)}
@@ -44,12 +48,9 @@ export function StepClass({ characterClass, onClassChange }: StepClassProps) {
 
       {details && characterClass && (
         <DetailsPanel
-          icon={getClassIcon(characterClass)}
+          icon={details.icon}
           iconAlt={characterClass}
-          name={
-            CLASS_LIST.find((c) => c.key === characterClass)?.label ??
-            characterClass
-          }
+          name={details.label}
           description={details.description}
         >
           <div className={styles.detailsRow}>

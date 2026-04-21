@@ -1,6 +1,6 @@
 import { Section } from "elements";
-import { type CharacterClass, getClassIcon } from "src/models/class/classes";
-import { SPECIES_LIST } from "src/models/origin/species";
+import { type CharacterClass, classes } from "src/models/class/classes";
+import { species } from "src/models/origin/species";
 import styles from "./character-header.module.css";
 
 import type { Species } from "src/models/origin/species";
@@ -11,10 +11,6 @@ type CharacterHeaderProps = {
   characterClass: CharacterClass;
   level: number;
 };
-
-function getRaceLabel(race: Species): string {
-  return SPECIES_LIST.find((r) => r.key === race)?.label ?? race;
-}
 
 export function CharacterHeader({
   name,
@@ -30,8 +26,8 @@ export function CharacterHeader({
           aria-label={characterClass}
           className={styles.classIcon}
           style={{
-            maskImage: `url(${getClassIcon(characterClass)})`,
-            WebkitMaskImage: `url(${getClassIcon(characterClass)})`,
+            maskImage: `url(${classes.get({ id: characterClass }).icon})`,
+            WebkitMaskImage: `url(${classes.get({ id: characterClass }).icon})`,
           }}
         />
         <div className={styles.details}>
@@ -44,7 +40,9 @@ export function CharacterHeader({
             <span className={styles.classStatic}>
               {characterClass.charAt(0).toUpperCase() + characterClass.slice(1)}
             </span>
-            <span className={styles.raceStatic}>{getRaceLabel(race)}</span>
+            <span className={styles.raceStatic}>
+              {species.get({ id: race }).label}
+            </span>
           </div>
         </div>
       </header>

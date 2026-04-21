@@ -1,26 +1,53 @@
 import c from "classnames";
-import { InlineConfirm, Section } from "elements";
+import { Banner, InlineConfirm, Section } from "elements";
 import { useState } from "react";
-import { getClassIcon } from "src/models/class/classes";
+import { classes } from "src/models/class/classes";
 import styles from "./character-list.module.css";
 
 import type { Character } from "src/models/common/character";
 
 type CharacterListProps = {
   characters: Character[];
+  corrupted?: boolean;
   onSelect: (characterId: string) => void;
   onNew: () => void;
   onDelete: (characterId: string) => void;
 };
 
+const CORRUPTED_DISMISS_KEY = "corrupted-storage-dismissed";
+
+function CorruptedStorageNotice() {
+  const [dismissed, setDismissed] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(CORRUPTED_DISMISS_KEY) === "true",
+  );
+
+  if (dismissed) return null;
+
+  function handleDismiss() {
+    window.localStorage.setItem(CORRUPTED_DISMISS_KEY, "true");
+    setDismissed(true);
+  }
+
+  return (
+    <Banner icon="⚠" onDismiss={handleDismiss} dismissLabel="Dismiss notice">
+      <strong>Some saved characters couldn't be loaded</strong> and were
+      discarded.
+    </Banner>
+  );
+}
+
 export function CharacterList({
   characters,
+  corrupted = false,
   onSelect,
   onNew,
   onDelete,
 }: CharacterListProps) {
   return (
     <Section title="Characters">
+      {corrupted && <CorruptedStorageNotice />}
       <div className={styles.grid}>
         {characters.map((char) => (
           <CharacterCard
@@ -79,7 +106,7 @@ function CharacterCard({ character, onSelect, onDelete }: CharacterCardProps) {
         onClick={() => onSelect(character.id)}
       >
         <img
-          src={getClassIcon(character.characterClass)}
+          src={classes.get({ id: character.characterClass }).icon}
           alt={character.characterClass}
           className={c(styles.classIcon, styles.cardIcon)}
         />

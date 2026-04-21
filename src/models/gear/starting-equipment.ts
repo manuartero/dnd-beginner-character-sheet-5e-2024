@@ -1,7 +1,7 @@
-import { CLASS_DETAILS } from "src/models/class/classes";
-import { getArmorById } from "./armor";
+import { classes } from "src/models/class/classes";
+import { armor } from "./armor";
 import { GOLD_ICON } from "./equipment";
-import { getWeaponById } from "./weapons";
+import { weapons } from "./weapons";
 
 import type {
   CharacterClass,
@@ -17,7 +17,7 @@ function formatItemName(id: string): string {
 }
 
 function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
-  const weapon = getWeaponById(item);
+  const weapon = weapons.find({ id: item });
   if (weapon) {
     return {
       name: weapon.name,
@@ -29,13 +29,13 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
       ...(quantity > 1 ? { quantity } : {}),
     };
   }
-  const armor = getArmorById(item);
-  if (armor) {
+  const armorItem = armor.find({ id: item });
+  if (armorItem) {
     return {
-      name: armor.name,
-      type: armor.category === "shield" ? "shield" : "armor",
-      icon: armor.icon,
-      ac: armor.baseAc,
+      name: armorItem.name,
+      type: armorItem.category === "shield" ? "shield" : "armor",
+      icon: armorItem.icon,
+      ac: armorItem.baseAc,
       equipped: true,
       ...(quantity > 1 ? { quantity } : {}),
     };
@@ -58,5 +58,7 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
 export function resolveStartingEquipment(
   characterClass: CharacterClass,
 ): Equipment[] {
-  return CLASS_DETAILS[characterClass].startingEquipment[0].map(toEquipment);
+  return classes
+    .get({ id: characterClass })
+    .startingEquipment[0].map(toEquipment);
 }

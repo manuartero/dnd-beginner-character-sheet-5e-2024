@@ -1,6 +1,6 @@
 import { Section, TileRow } from "elements";
 import { totalBonuses } from "src/components/character-creation/total-bonuses";
-import { ABILITY_LIST } from "src/models/common/abilities";
+import { abilities } from "src/models/common/abilities";
 import styles from "./step-abilities.module.css";
 
 import type { AbilityName } from "src/models/common/abilities";
@@ -41,13 +41,13 @@ export function OriginBonusPicker({
     }
   }
 
-  const items = ABILITY_LIST.map(({ key, short }) => {
-    const allocated = abilityBonuses[key] ?? 0;
+  const items = abilities.list().map(({ id, short }) => {
+    const allocated = abilityBonuses[id] ?? 0;
     return {
-      key,
+      key: id,
       label: short,
       selected: allocated > 0,
-      dimmed: !abilityOptions.includes(key),
+      dimmed: !abilityOptions.includes(id),
       badge: allocated > 0 ? `+${allocated}` : undefined,
     };
   });

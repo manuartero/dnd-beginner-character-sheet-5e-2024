@@ -1,13 +1,11 @@
-import { CLASS_DETAILS } from "src/models/class/classes";
-import { ARMORS } from "src/models/gear/armor";
-import { ABILITY_LIST, computeModifier, formatModifier } from "./abilities";
+import { classes } from "src/models/class/classes";
+import { armor } from "src/models/gear/armor";
+import { abilities, computeModifier, formatModifier } from "./abilities";
 
 import type { CharacterClass } from "src/models/class/classes";
 import type { Armor } from "src/models/gear/armor";
 import type { Equipment } from "src/models/gear/equipment";
 import type { AbilityName, AbilityScores } from "./abilities";
-
-// --- Shared types ---
 
 export type StatBreakdownLine = {
   label: string;
@@ -19,8 +17,6 @@ export type StatResult = {
   lines: StatBreakdownLine[];
 };
 
-// --- HP ---
-
 export function computeHpMax({
   characterClass,
   conScore,
@@ -28,19 +24,17 @@ export function computeHpMax({
   characterClass: CharacterClass;
   conScore: number;
 }): number {
-  const hitDie = CLASS_DETAILS[characterClass].hitDie;
+  const hitDie = classes.get({ id: characterClass }).hitDie;
   const hitDieMax = Number.parseInt(hitDie.replace("d", ""), 10);
   return Math.max(1, hitDieMax + computeModifier(conScore));
 }
-
-// --- AC ---
 
 function findEquippedArmor(equipment: Equipment[]): Armor | null {
   const armorItem = equipment.find(
     (e) => e.type === "armor" && e.equipped === true,
   );
   if (!armorItem) return null;
-  return ARMORS.find((a) => a.name === armorItem.name) ?? null;
+  return armor.find({ name: armorItem.name }) ?? null;
 }
 
 function hasShield(equipment: Equipment[]): boolean {
@@ -94,8 +88,6 @@ export function computeArmorClass({
   return { total, lines };
 }
 
-// --- Initiative ---
-
 export function computeInitiative(abilityScores: AbilityScores): StatResult {
   const dexMod = computeModifier(abilityScores.dex);
   return {
@@ -103,8 +95,6 @@ export function computeInitiative(abilityScores: AbilityScores): StatResult {
     lines: [{ label: "DEX modifier", value: formatModifier(dexMod) }],
   };
 }
-
-// --- Spell Attack ---
 
 const SPELLCASTING_ABILITY: Partial<Record<CharacterClass, AbilityName>> = {
   bard: "cha",
@@ -131,8 +121,7 @@ export function computeSpellAttack({
 
   const abilityMod = computeModifier(abilityScores[spellAbility]);
   const total = abilityMod + proficiencyBonus;
-  const shortLabel =
-    ABILITY_LIST.find((a) => a.key === spellAbility)?.short ?? spellAbility;
+  const shortLabel = abilities.get({ id: spellAbility }).short;
 
   return {
     total,

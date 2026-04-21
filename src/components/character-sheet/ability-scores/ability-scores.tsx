@@ -1,6 +1,6 @@
 import { AbilityCard, Section } from "elements";
 import { useExpandable } from "src/hooks/use-expandable";
-import { ABILITY_LIST } from "src/models/common/abilities";
+import { abilities } from "src/models/common/abilities";
 import styles from "./ability-scores.module.css";
 
 import type {
@@ -19,13 +19,13 @@ export function AbilityScores({ scores }: AbilityScoresProps) {
   return (
     <Section title="Abilities">
       <div className={styles.grid}>
-        {ABILITY_LIST.map(({ key }) => (
+        {abilities.list().map(({ id }) => (
           <AbilityCard
-            key={key}
+            key={id}
             mode="display"
-            abilityKey={key}
-            score={scores[key]}
-            isFlipped={flippedAbility === key}
+            abilityKey={id}
+            score={scores[id]}
+            isFlipped={flippedAbility === id}
             onToggle={toggleFlip}
           />
         ))}

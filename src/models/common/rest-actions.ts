@@ -9,4 +9,15 @@ export type RestAction = {
   description: string;
 };
 
-export const REST_ACTIONS: RestAction[] = restActionsData as RestAction[];
+const DATA = restActionsData as RestAction[];
+
+export const restActions = {
+  get({ id }: { id: RestType }): RestAction {
+    const found = DATA.find((a) => a.id === id);
+    if (!found) throw new Error(`Unknown rest action: ${id}`);
+    return found;
+  },
+  list(): RestAction[] {
+    return DATA;
+  },
+};

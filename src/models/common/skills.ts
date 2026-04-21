@@ -20,13 +20,13 @@ export type SkillName =
   | "performance"
   | "persuasion";
 
-type SkillDefinition = {
+export type SkillDefinition = {
   name: SkillName;
   label: string;
   ability: AbilityName;
 };
 
-export const SKILLS: SkillDefinition[] = [
+const DATA: SkillDefinition[] = [
   { name: "athletics", label: "Athletics", ability: "str" },
   { name: "acrobatics", label: "Acrobatics", ability: "dex" },
   { name: "sleight-of-hand", label: "Sleight of Hand", ability: "dex" },
@@ -47,14 +47,24 @@ export const SKILLS: SkillDefinition[] = [
   { name: "persuasion", label: "Persuasion", ability: "cha" },
 ];
 
-export function skillsForAbility(ability: AbilityName): SkillDefinition[] {
-  return SKILLS.filter((s) => s.ability === ability);
-}
+const BY_NAME = new Map(DATA.map((s) => [s.name, s]));
 
-export function getSkillLabel(skill: SkillName): string {
-  const entry = SKILLS.find((s) => s.name === skill);
-  return entry ? entry.label : skill;
-}
+export const skills = {
+  get({ name }: { name: SkillName }): SkillDefinition {
+    const found = BY_NAME.get(name);
+    if (!found) throw new Error(`Unknown skill: ${name}`);
+    return found;
+  },
+  find({ name }: { name: string }): SkillDefinition | undefined {
+    return BY_NAME.get(name as SkillName);
+  },
+  list(): SkillDefinition[] {
+    return DATA;
+  },
+  findAll({ ability }: { ability: AbilityName }): SkillDefinition[] {
+    return DATA.filter((s) => s.ability === ability);
+  },
+};
 
 export const DEFAULT_PROFICIENCIES: SkillName[] = ["insight", "perception"];
 

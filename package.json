@@ -37,18 +37,16 @@
     "preview": "astro preview",
     "lint": "biome check .",
     "format": "biome format . --write",
-    "test": "vitest run",
+    "test": "vitest run --reporter=tree",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "sprite:colors": "node scripts/color-analysis.mjs",
+    "sprite:color-analysis": "node scripts/color-analysis.mjs",
     "sprite:upscale": "node scripts/upscale-sprite.mjs",
     "sprite:merge-colors": "node scripts/reduce-palette.mjs",
     "sprite:remove-background": "node scripts/remove-background.mjs",
-    "sprite:flip": "node scripts/flip-sprite.mjs",
     "sprite:build-palette": "node scripts/build-main-palette.mjs",
     "sprite:candidates": "node scripts/sprite-merge-candidates.mjs",
     "sprite:replace": "node scripts/global-replace-color.mjs",
-    "sprite:analyze": "node scripts/analyze-palette.mjs",
     "blue-ball": "pnpm lint && pnpm test && pnpm build",
     "postblue-ball": "pnpm test:coverage && ./.hooks/update-coverage-badge.sh"
   },
@@ -61,6 +59,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
+  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "@biomejs/biome": "2.3.14",
     "@testing-library/jest-dom": "6.9.1",

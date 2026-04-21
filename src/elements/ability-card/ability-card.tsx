@@ -1,7 +1,7 @@
 import c from "classnames";
 import { ScorePicker } from "src/elements/score-picker";
 import {
-  ABILITY_LIST,
+  abilities,
   computeModifier,
   computeProficiencyBonus,
   formatModifier,
@@ -9,15 +9,11 @@ import {
 import {
   computeSkillModifier,
   DEFAULT_PROFICIENCIES,
-  skillsForAbility,
+  skills,
 } from "src/models/common/skills";
 import styles from "./ability-card.module.css";
 
 import type { AbilityName } from "src/models/common/abilities";
-
-const ABILITY_SHORTS = Object.fromEntries(
-  ABILITY_LIST.map(({ key, short }) => [key, short]),
-) as Record<AbilityName, string>;
 
 type _BaseProps = {
   abilityKey: AbilityName;
@@ -71,11 +67,11 @@ type AbilityCardProps =
  */
 export function AbilityCard(props: AbilityCardProps) {
   const { abilityKey, score, isFlipped = false, onToggle } = props;
-  const short = ABILITY_SHORTS[abilityKey];
+  const short = abilities.get({ id: abilityKey }).short;
   const mod = computeModifier(score);
   const proficiencyBonus = computeProficiencyBonus(1);
-  const skills = skillsForAbility(abilityKey);
-  const hasSkills = skills.length > 0;
+  const skillsForAbility = skills.findAll({ ability: abilityKey });
+  const hasSkills = skillsForAbility.length > 0;
 
   const isPrimary =
     (props.mode === "creation" || props.mode === "assign") && !!props.isPrimary;
@@ -95,7 +91,7 @@ export function AbilityCard(props: AbilityCardProps) {
           {...props}
           mod={mod}
           proficiencyBonus={proficiencyBonus}
-          skills={skills}
+          skills={skillsForAbility}
           short={short}
           labelIsToggle
         />
@@ -116,7 +112,7 @@ export function AbilityCard(props: AbilityCardProps) {
           {...props}
           mod={mod}
           proficiencyBonus={proficiencyBonus}
-          skills={skills}
+          skills={skillsForAbility}
           short={short}
         />
       </button>

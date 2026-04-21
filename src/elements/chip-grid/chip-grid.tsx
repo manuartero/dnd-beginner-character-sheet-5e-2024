@@ -1,8 +1,8 @@
 import c from "classnames";
+import { ActionChip } from "src/elements/action-chip/action-chip";
+import actionChipStyles from "src/elements/action-chip/action-chip.module.css";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { ActionChip } from "../action-chip/action-chip";
-import actionChipStyles from "../action-chip/action-chip.module.css";
 import styles from "./chip-grid.module.css";
 
 type GridAction = {

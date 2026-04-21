@@ -13,6 +13,7 @@ export type Species =
   | "tiefling";
 
 export type SpeciesDetails = {
+  id: Species;
   label: string;
   icon: string;
   size: string;
@@ -21,18 +22,23 @@ export type SpeciesDetails = {
   description: string;
 };
 
-export const SPECIES_DETAILS = speciesDetailsData as Record<
-  Species,
-  SpeciesDetails
->;
-
-export const SPECIES_LIST: { key: Species; label: string }[] = Object.entries(
-  SPECIES_DETAILS,
-).map(([key, value]) => ({
-  key: key as Species,
-  label: value.label,
+const RAW = speciesDetailsData as Record<Species, Omit<SpeciesDetails, "id">>;
+const DATA: SpeciesDetails[] = Object.entries(RAW).map(([id, v]) => ({
+  id: id as Species,
+  ...v,
 }));
+const BY_ID = new Map(DATA.map((s) => [s.id, s]));
 
-export function getSpeciesIcon(species: Species): string {
-  return SPECIES_DETAILS[species].icon;
-}
+export const species = {
+  get({ id }: { id: Species }): SpeciesDetails {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown species: ${id}`);
+    return found;
+  },
+  find({ id }: { id: string }): SpeciesDetails | undefined {
+    return BY_ID.get(id as Species);
+  },
+  list(): SpeciesDetails[] {
+    return DATA;
+  },
+};
