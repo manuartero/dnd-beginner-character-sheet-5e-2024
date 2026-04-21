@@ -4,7 +4,7 @@ import { CastSpellGrid } from "src/components/cast-spell-grid/cast-spell-grid";
 import { resolveIconPath } from "src/lib/icons";
 import { classes } from "src/models/class/classes";
 import { classActions, combatActions } from "src/models/common/actions";
-import { groupSpellsByTiming } from "src/models/spells/spell-timing";
+import { spells as spellsModel } from "src/models/spells/spells";
 import styles from "./action-bar.module.css";
 
 import type { GridAction } from "elements";
@@ -36,7 +36,10 @@ export function ActionBar({ characterClass, spells }: ActionBarProps) {
   const isSpellcaster =
     classification === "spell-caster" || classification === "versatile";
 
-  const spellsByTiming = useMemo(() => groupSpellsByTiming(spells), [spells]);
+  const spellsByTiming = useMemo(
+    () => spellsModel.groupByTiming(spells),
+    [spells],
+  );
 
   const grouped = useMemo(() => {
     const availableActions = [
