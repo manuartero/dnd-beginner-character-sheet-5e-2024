@@ -68,6 +68,12 @@ describe("resolveResourceResetOn", () => {
       "short-rest",
     );
   });
+
+  it("throws on unknown resource for the given class", () => {
+    expect(() => resolveResourceResetOn("fighter", "mana")).toThrow(
+      /Unknown resource/,
+    );
+  });
 });
 
 describe("resolveResourcesForLevel", () => {

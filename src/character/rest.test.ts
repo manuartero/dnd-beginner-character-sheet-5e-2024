@@ -61,4 +61,21 @@ describe("applyRest", () => {
     );
     expect(result[0].current).toBe(1);
   });
+
+  it("returns empty array when resources is empty", () => {
+    expect(applyRest("short-rest", [], "fighter")).toEqual([]);
+  });
+
+  it("returns a new array (does not mutate input)", () => {
+    const input = [res("second-wind", 0, 1)];
+    const result = applyRest("short-rest", input, "fighter");
+    expect(result).not.toBe(input);
+    expect(result[0]).not.toBe(input[0]);
+  });
+
+  it("throws on unknown resource id for the given class", () => {
+    expect(() =>
+      applyRest("short-rest", [res("not-a-resource", 0, 1)], "fighter"),
+    ).toThrow(/Unknown resource/);
+  });
 });

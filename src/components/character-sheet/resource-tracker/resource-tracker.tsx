@@ -63,11 +63,11 @@ function buildChips(
         }) === resetFilter,
     )
     .flatMap((r) => {
-      const def = classResources.find({ id: r.resourceId });
-      const iconSrc = resolveIconPath(def?.icon ?? "vol5/icon-vol5_02");
+      const def = classResources.get({ id: r.resourceId });
+      const iconSrc = resolveIconPath(def.icon);
       const label =
         RESOURCE_SHORT_NAMES[r.resourceId] ??
-        (def?.name ?? r.resourceId).slice(0, 5).toUpperCase();
+        def.name.slice(0, 5).toUpperCase();
 
       return Array.from({ length: r.max }, (_, i) => ({
         resourceId: r.resourceId,

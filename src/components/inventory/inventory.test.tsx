@@ -7,7 +7,14 @@ describe("<Inventory />", () => {
     render(
       <Inventory
         mode="editable"
-        equipment={[{ name: "Longsword", type: "weapon" }]}
+        equipment={[
+          {
+            name: "Longsword",
+            type: "weapon",
+            damage: { dice: "1d8", type: "slashing" },
+            properties: [],
+          },
+        ]}
         onEquipmentChange={vi.fn()}
       />,
     );
@@ -21,7 +28,14 @@ describe("<Inventory />", () => {
       <Inventory
         mode="readonly"
         title="Starting Equipment"
-        equipment={[{ name: "Longsword", type: "weapon" }]}
+        equipment={[
+          {
+            name: "Longsword",
+            type: "weapon",
+            damage: { dice: "1d8", type: "slashing" },
+            properties: [],
+          },
+        ]}
       />,
     );
     expect(
@@ -34,9 +48,24 @@ describe("<Inventory />", () => {
       <Inventory
         mode="readonly"
         equipment={[
-          { name: "Longsword", type: "weapon" },
-          { name: "Shield", type: "shield" },
-          { name: "Leather Armor", type: "armor" },
+          {
+            name: "Longsword",
+            type: "weapon",
+            damage: { dice: "1d8", type: "slashing" },
+            properties: [],
+          },
+          {
+            name: "Shield",
+            type: "shield",
+            armorId: "shield",
+            ac: 2,
+          },
+          {
+            name: "Leather Armor",
+            type: "armor",
+            armorId: "leather-armor",
+            ac: 11,
+          },
         ]}
       />,
     );
@@ -78,7 +107,14 @@ describe("<Inventory />", () => {
     render(
       <Inventory
         mode="readonly"
-        equipment={[{ name: "Longsword", type: "weapon" }]}
+        equipment={[
+          {
+            name: "Longsword",
+            type: "weapon",
+            damage: { dice: "1d8", type: "slashing" },
+            properties: [],
+          },
+        ]}
       />,
     );
     expect(screen.getByText("Arms & Armor")).toBeInTheDocument();

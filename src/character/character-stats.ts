@@ -31,10 +31,11 @@ export function computeHpMax({
 
 function findEquippedArmor(equipment: Equipment[]): Armor | null {
   const armorItem = equipment.find(
-    (e) => e.type === "armor" && e.equipped === true,
+    (e): e is Extract<Equipment, { type: "armor" }> =>
+      e.type === "armor" && e.equipped === true,
   );
-  if (!armorItem?.armorId) return null;
-  return armor.find({ id: armorItem.armorId }) ?? null;
+  if (!armorItem) return null;
+  return armor.get({ id: armorItem.armorId });
 }
 
 function hasShield(equipment: Equipment[]): boolean {

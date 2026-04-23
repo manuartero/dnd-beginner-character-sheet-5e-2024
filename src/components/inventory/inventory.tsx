@@ -31,16 +31,18 @@ type IndexedEquipment = {
   item: Equipment;
 };
 
+type MoneyEquipment = Extract<Equipment, { type: "money" }>;
+
 type GroupedInventory = {
   armsAndArmor: IndexedEquipment[];
   adventureGear: IndexedEquipment[];
-  money: Equipment | null;
+  money: MoneyEquipment | null;
 };
 
 function groupEquipment(equipment: Equipment[]): GroupedInventory {
   const armsAndArmor: IndexedEquipment[] = [];
   const adventureGear: IndexedEquipment[] = [];
-  let money: Equipment | null = null;
+  let money: MoneyEquipment | null = null;
 
   for (const [index, item] of equipment.entries()) {
     if (item.type === "money") {
@@ -166,6 +168,11 @@ type ItemContentProps = {
 };
 
 function ItemContent({ item, mode, onRemoveRequest }: ItemContentProps) {
+  const quantity =
+    item.type === "weapon" || item.type === "gear" || item.type === "money"
+      ? item.quantity
+      : undefined;
+
   return (
     <>
       {item.icon && (
@@ -178,18 +185,18 @@ function ItemContent({ item, mode, onRemoveRequest }: ItemContentProps) {
       <div className={rowListStyles.info}>
         <span className={rowListStyles.name}>{item.name}</span>
         <span className={rowListStyles.meta}>
-          {item.damage && `${item.damage.dice} ${item.damage.type}`}
-          {item.ac && `AC ${item.ac}`}
-          {item.properties && item.properties.length > 0 && (
+          {item.type === "weapon" && `${item.damage.dice} ${item.damage.type}`}
+          {(item.type === "armor" || item.type === "shield") && `AC ${item.ac}`}
+          {item.type === "weapon" && item.properties.length > 0 && (
             <> | {item.properties.join(", ")}</>
           )}
         </span>
       </div>
-      {item.attackBonus !== undefined && (
+      {item.type === "weapon" && item.attackBonus !== undefined && (
         <span className={rowListStyles.badge}>+{item.attackBonus}</span>
       )}
-      {item.quantity !== undefined && item.quantity > 1 && (
-        <span className={rowListStyles.trailing}>x{item.quantity}</span>
+      {quantity !== undefined && quantity > 1 && (
+        <span className={rowListStyles.trailing}>x{quantity}</span>
       )}
       {mode === "editable" && (
         <button

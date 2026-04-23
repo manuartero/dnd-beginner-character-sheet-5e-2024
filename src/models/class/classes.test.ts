@@ -1,5 +1,16 @@
 import { classes } from "./classes";
 
+import type { AbilityScores } from "src/models/common/abilities";
+
+const DEFAULT_SCORES: AbilityScores = {
+  str: 10,
+  dex: 10,
+  con: 10,
+  int: 10,
+  wis: 10,
+  cha: 10,
+};
+
 describe("classes.get()", () => {
   it("returns details for a known class", () => {
     const wizard = classes.get({ id: "wizard" });
@@ -117,5 +128,65 @@ describe("classes.startingEquipment()", () => {
     for (const cls of classes.list()) {
       expect(() => classes.startingEquipment({ id: cls.id })).not.toThrow();
     }
+  });
+});
+
+describe("classes.resources()", () => {
+  it("returns second-wind for fighter at level 1", () => {
+    expect(
+      classes.resources({
+        id: "fighter",
+        level: 1,
+        abilityScores: DEFAULT_SCORES,
+      }),
+    ).toEqual([{ resourceId: "second-wind", current: 1, max: 1 }]);
+  });
+
+  it("returns rage for barbarian at level 1", () => {
+    expect(
+      classes.resources({
+        id: "barbarian",
+        level: 1,
+        abilityScores: DEFAULT_SCORES,
+      }),
+    ).toEqual([{ resourceId: "rage", current: 2, max: 2 }]);
+  });
+
+  it("returns empty array for rogue (no resources)", () => {
+    expect(
+      classes.resources({
+        id: "rogue",
+        level: 1,
+        abilityScores: DEFAULT_SCORES,
+      }),
+    ).toEqual([]);
+  });
+});
+
+describe("classes.resourceResetOn()", () => {
+  it("returns short-rest for fighter second-wind", () => {
+    expect(
+      classes.resourceResetOn({ id: "fighter", resourceId: "second-wind" }),
+    ).toBe("short-rest");
+  });
+
+  it("returns long-rest for cleric spell-slot-1st", () => {
+    expect(
+      classes.resourceResetOn({ id: "cleric", resourceId: "spell-slot-1st" }),
+    ).toBe("long-rest");
+  });
+
+  it("throws on unknown resource", () => {
+    expect(() =>
+      classes.resourceResetOn({ id: "fighter", resourceId: "mana" }),
+    ).toThrow(/Unknown resource/);
+  });
+});
+
+describe("ClassDetails.recommendedScores", () => {
+  it("is exposed as a field on each class via classes.get()", () => {
+    const wizard = classes.get({ id: "wizard" });
+    expect(wizard.recommendedScores).toBeDefined();
+    expect(typeof wizard.recommendedScores.int).toBe("number");
   });
 });

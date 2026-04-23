@@ -111,6 +111,30 @@ const CLASSIFICATION_ORDER: ManualClassification[] = [
   "versatile",
 ];
 
+const GENERIC_GEAR_IDS = new Set<string>([
+  "arcane-focus-crystal",
+  "arcane-focus-orb",
+  "arcane-focus-quarterstaff",
+  "arrows",
+  "artisans-tools",
+  "book-occult-lore",
+  "burglars-pack",
+  "druidic-focus",
+  "druidic-focus-quarterstaff",
+  "dungeoneers-pack",
+  "entertainers-pack",
+  "explorers-pack",
+  "herbalism-kit",
+  "holy-symbol",
+  "musical-instrument",
+  "priests-pack",
+  "quiver",
+  "robe",
+  "scholars-pack",
+  "spellbook",
+  "thieves-tools",
+]);
+
 function formatItemName(item: string): string {
   return item
     .split("-")
@@ -122,8 +146,9 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
   const weapon = weapons.find({ id: item });
   if (weapon) {
     return {
-      name: weapon.name,
       type: "weapon",
+      name: weapon.name,
+      weaponId: weapon.id,
       icon: weapon.icon,
       damage: weapon.damage,
       properties: weapon.properties,
@@ -134,26 +159,28 @@ function toEquipment({ item, quantity }: StartingEquipmentItem): Equipment {
   const armorItem = armor.find({ id: item });
   if (armorItem) {
     return {
-      name: armorItem.name,
       type: armorItem.category === "shield" ? "shield" : "armor",
+      name: armorItem.name,
       armorId: armorItem.id,
       icon: armorItem.icon,
       ac: armorItem.baseAc,
       equipped: true,
-      ...(quantity > 1 ? { quantity } : {}),
     };
   }
   if (item === "gp") {
     return {
-      name: "Gold",
       type: "money",
+      name: "Gold",
       icon: GOLD_ICON,
       quantity,
     };
   }
+  if (!GENERIC_GEAR_IDS.has(item)) {
+    throw new Error(`Unknown starting-equipment item: ${item}`);
+  }
   return {
-    name: formatItemName(item),
     type: "gear",
+    name: formatItemName(item),
     ...(quantity > 1 ? { quantity } : {}),
   };
 }

@@ -13,12 +13,14 @@ import type { CharacterClass } from "src/models/class/classes";
 import type { ActionTiming } from "src/models/common/actions";
 import type { DamageType } from "src/models/common/damage";
 
-type SpellId = string;
+export type SpellId = string;
+
+export type SpellLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export type Spell = {
   id: SpellId;
   name: string;
-  level: number; // 0 = cantrip
+  level: SpellLevel;
   school: string;
   castingTime: string;
   range: string;
@@ -72,14 +74,6 @@ const CLASS_DATA: Partial<
   ranger: { spells: resolveSpells(rangerSpellsData), selections: [0, 0] },
 };
 
-function castingTimingOf(spell: Spell): ActionTiming | null {
-  const ct = spell.castingTime.toLowerCase();
-  if (ct === "1 action") return "action";
-  if (ct === "1 bonus action") return "bonus-action";
-  if (ct.startsWith("1 reaction")) return "reaction";
-  return null;
-}
-
 export const spells = {
   get({ id }: { id: SpellId }): Spell {
     const found = BY_ID.get(id);
@@ -99,7 +93,7 @@ export const spells = {
     return CLASS_DATA[cls]?.selections[level] ?? 0;
   },
   timing(spell: Spell): ActionTiming | null {
-    return castingTimingOf(spell);
+    return parseCastingTiming(spell.castingTime);
   },
   groupByTiming(spellList: Spell[]): Record<ActionTiming, Spell[]> {
     const groups: Record<ActionTiming, Spell[]> = {
@@ -108,11 +102,17 @@ export const spells = {
       reaction: [],
     };
     for (const spell of spellList) {
-      const timing = castingTimingOf(spell);
-      if (timing) {
-        groups[timing].push(spell);
-      }
+      const timing = parseCastingTiming(spell.castingTime);
+      if (timing) groups[timing].push(spell);
     }
     return groups;
   },
 };
+
+function parseCastingTiming(castingTime: string): ActionTiming | null {
+  const ct = castingTime.toLowerCase();
+  if (ct === "1 action") return "action";
+  if (ct === "1 bonus action") return "bonus-action";
+  if (ct.startsWith("1 reaction")) return "reaction";
+  return null;
+}

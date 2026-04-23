@@ -4,7 +4,7 @@ import { ResourceTracker } from "./resource-tracker";
 
 import type { CharacterResource } from "src/models/class/class-resources";
 
-vi.mock("src/models/common/icons", () => ({
+vi.mock("src/lib/icons", () => ({
   resolveIconPath: (pseudo: string) => `/mocked/${pseudo}.svg`,
 }));
 

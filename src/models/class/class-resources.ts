@@ -8,6 +8,14 @@ export type ResourceId = string;
 
 export type RestType = "short-rest" | "long-rest";
 
+export type AbilityModKey =
+  | "cha-mod"
+  | "wis-mod"
+  | "int-mod"
+  | "str-mod"
+  | "dex-mod"
+  | "con-mod";
+
 export type ResourceDefinition = {
   id: ResourceId;
   name: string;
@@ -21,7 +29,7 @@ export type CharacterResource = {
   max: number;
 };
 
-type ProgressionValue = number | string;
+type ProgressionValue = number | AbilityModKey;
 
 type ClassResourceEntry = ResourceDefinition & {
   resetOn: RestType;
@@ -50,7 +58,7 @@ for (const classEntry of Object.values(CLASS_RESOURCES)) {
   }
 }
 
-const ABILITY_MOD_KEYS: Record<string, AbilityName> = {
+const ABILITY_MOD_KEYS: Record<AbilityModKey, AbilityName> = {
   "cha-mod": "cha",
   "wis-mod": "wis",
   "int-mod": "int",
@@ -65,10 +73,8 @@ function resolveMax(
 ): number {
   if (typeof value === "number") return value;
   const ability = ABILITY_MOD_KEYS[value];
-  if (ability) {
-    return Math.max(1, computeModifier(abilityScores[ability]));
-  }
-  return 0;
+  if (!ability) throw new Error(`Unknown progression value: ${value}`);
+  return Math.max(1, computeModifier(abilityScores[ability]));
 }
 
 export function resolveResourcesForLevel(
@@ -76,13 +82,10 @@ export function resolveResourcesForLevel(
   level: number,
   abilityScores: AbilityScores,
 ): CharacterResource[] {
-  const classEntry = CLASS_RESOURCES[characterClass];
-  if (!classEntry) return [];
-
   const resources: CharacterResource[] = [];
   const levelKey = String(level);
 
-  for (const entry of classEntry.resources) {
+  for (const entry of CLASS_RESOURCES[characterClass].resources) {
     const rawMax = entry.progression[levelKey];
     if (rawMax === undefined) continue;
 
@@ -99,10 +102,15 @@ export function resolveResourceResetOn(
   characterClass: CharacterClass,
   resourceId: ResourceId,
 ): RestType {
-  const entry = CLASS_RESOURCES[characterClass]?.resources.find(
+  const entry = CLASS_RESOURCES[characterClass].resources.find(
     (r) => r.id === resourceId,
   );
-  return entry?.resetOn ?? "long-rest";
+  if (!entry) {
+    throw new Error(
+      `Unknown resource ${resourceId} for class ${characterClass}`,
+    );
+  }
+  return entry.resetOn;
 }
 
 export const classResources = {
