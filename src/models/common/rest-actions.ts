@@ -17,6 +17,9 @@ export const restActions = {
     if (!found) throw new Error(`Unknown rest action: ${id}`);
     return found;
   },
+  find({ id }: { id: string }): RestAction | undefined {
+    return DATA.find((a) => a.id === id);
+  },
   list(): RestAction[] {
     return DATA;
   },

@@ -29,13 +29,38 @@
     },
     "startingEquipment": [
       [
-        { "item": "greataxe", "quantity": 1 },
-        { "item": "handaxe", "quantity": 4 },
-        { "item": "explorers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 15 }
+        {
+          "item": "greataxe",
+          "quantity": 1
+        },
+        {
+          "item": "handaxe",
+          "quantity": 4
+        },
+        {
+          "item": "explorers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 15
+        }
       ],
-      [{ "item": "gp", "quantity": 75 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 75
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 15,
+      "dex": 13,
+      "con": 14,
+      "int": 8,
+      "wis": 12,
+      "cha": 10
+    }
   },
   "bard": {
     "label": "Bard",
@@ -75,14 +100,42 @@
     },
     "startingEquipment": [
       [
-        { "item": "leather-armor", "quantity": 1 },
-        { "item": "dagger", "quantity": 2 },
-        { "item": "musical-instrument", "quantity": 1 },
-        { "item": "entertainers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 19 }
+        {
+          "item": "leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "dagger",
+          "quantity": 2
+        },
+        {
+          "item": "musical-instrument",
+          "quantity": 1
+        },
+        {
+          "item": "entertainers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 19
+        }
       ],
-      [{ "item": "gp", "quantity": 90 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 90
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 14,
+      "con": 13,
+      "int": 10,
+      "wis": 12,
+      "cha": 15
+    }
   },
   "cleric": {
     "label": "Cleric",
@@ -107,15 +160,46 @@
     },
     "startingEquipment": [
       [
-        { "item": "chain-shirt", "quantity": 1 },
-        { "item": "shield", "quantity": 1 },
-        { "item": "mace", "quantity": 1 },
-        { "item": "holy-symbol", "quantity": 1 },
-        { "item": "priests-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 7 }
+        {
+          "item": "chain-shirt",
+          "quantity": 1
+        },
+        {
+          "item": "shield",
+          "quantity": 1
+        },
+        {
+          "item": "mace",
+          "quantity": 1
+        },
+        {
+          "item": "holy-symbol",
+          "quantity": 1
+        },
+        {
+          "item": "priests-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 7
+        }
       ],
-      [{ "item": "gp", "quantity": 110 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 110
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 13,
+      "dex": 10,
+      "con": 14,
+      "int": 8,
+      "wis": 15,
+      "cha": 12
+    }
   },
   "druid": {
     "label": "Druid",
@@ -150,16 +234,50 @@
     },
     "startingEquipment": [
       [
-        { "item": "leather-armor", "quantity": 1 },
-        { "item": "shield", "quantity": 1 },
-        { "item": "sickle", "quantity": 1 },
-        { "item": "druidic-focus-quarterstaff", "quantity": 1 },
-        { "item": "explorers-pack", "quantity": 1 },
-        { "item": "herbalism-kit", "quantity": 1 },
-        { "item": "gp", "quantity": 9 }
+        {
+          "item": "leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "shield",
+          "quantity": 1
+        },
+        {
+          "item": "sickle",
+          "quantity": 1
+        },
+        {
+          "item": "druidic-focus-quarterstaff",
+          "quantity": 1
+        },
+        {
+          "item": "explorers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "herbalism-kit",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 9
+        }
       ],
-      [{ "item": "gp", "quantity": 50 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 50
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 13,
+      "con": 14,
+      "int": 12,
+      "wis": 15,
+      "cha": 10
+    }
   },
   "fighter": {
     "label": "Fighter",
@@ -193,24 +311,74 @@
     },
     "startingEquipment": [
       [
-        { "item": "chain-mail", "quantity": 1 },
-        { "item": "greatsword", "quantity": 1 },
-        { "item": "flail", "quantity": 1 },
-        { "item": "javelin", "quantity": 8 },
-        { "item": "dungeoneers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 4 }
+        {
+          "item": "chain-mail",
+          "quantity": 1
+        },
+        {
+          "item": "greatsword",
+          "quantity": 1
+        },
+        {
+          "item": "flail",
+          "quantity": 1
+        },
+        {
+          "item": "javelin",
+          "quantity": 8
+        },
+        {
+          "item": "dungeoneers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 4
+        }
       ],
       [
-        { "item": "studded-leather-armor", "quantity": 1 },
-        { "item": "scimitar", "quantity": 1 },
-        { "item": "shortsword", "quantity": 1 },
-        { "item": "longbow", "quantity": 1 },
-        { "item": "arrows", "quantity": 20 },
-        { "item": "quiver", "quantity": 1 },
-        { "item": "dungeoneers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 11 }
+        {
+          "item": "studded-leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "scimitar",
+          "quantity": 1
+        },
+        {
+          "item": "shortsword",
+          "quantity": 1
+        },
+        {
+          "item": "longbow",
+          "quantity": 1
+        },
+        {
+          "item": "arrows",
+          "quantity": 20
+        },
+        {
+          "item": "quiver",
+          "quantity": 1
+        },
+        {
+          "item": "dungeoneers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 11
+        }
       ]
-    ]
+    ],
+    "recommendedScores": {
+      "str": 15,
+      "dex": 13,
+      "con": 14,
+      "int": 8,
+      "wis": 12,
+      "cha": 10
+    }
   },
   "monk": {
     "label": "Monk",
@@ -244,14 +412,42 @@
     },
     "startingEquipment": [
       [
-        { "item": "spear", "quantity": 1 },
-        { "item": "dagger", "quantity": 5 },
-        { "item": "artisans-tools", "quantity": 1 },
-        { "item": "explorers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 11 }
+        {
+          "item": "spear",
+          "quantity": 1
+        },
+        {
+          "item": "dagger",
+          "quantity": 5
+        },
+        {
+          "item": "artisans-tools",
+          "quantity": 1
+        },
+        {
+          "item": "explorers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 11
+        }
       ],
-      [{ "item": "gp", "quantity": 50 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 50
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 12,
+      "dex": 15,
+      "con": 13,
+      "int": 8,
+      "wis": 14,
+      "cha": 10
+    }
   },
   "paladin": {
     "label": "Paladin",
@@ -283,16 +479,50 @@
     },
     "startingEquipment": [
       [
-        { "item": "chain-mail", "quantity": 1 },
-        { "item": "shield", "quantity": 1 },
-        { "item": "longsword", "quantity": 1 },
-        { "item": "javelin", "quantity": 6 },
-        { "item": "holy-symbol", "quantity": 1 },
-        { "item": "priests-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 9 }
+        {
+          "item": "chain-mail",
+          "quantity": 1
+        },
+        {
+          "item": "shield",
+          "quantity": 1
+        },
+        {
+          "item": "longsword",
+          "quantity": 1
+        },
+        {
+          "item": "javelin",
+          "quantity": 6
+        },
+        {
+          "item": "holy-symbol",
+          "quantity": 1
+        },
+        {
+          "item": "priests-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 9
+        }
       ],
-      [{ "item": "gp", "quantity": 150 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 150
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 15,
+      "dex": 10,
+      "con": 13,
+      "int": 8,
+      "wis": 12,
+      "cha": 14
+    }
   },
   "ranger": {
     "label": "Ranger",
@@ -326,18 +556,58 @@
     },
     "startingEquipment": [
       [
-        { "item": "studded-leather-armor", "quantity": 1 },
-        { "item": "scimitar", "quantity": 1 },
-        { "item": "shortsword", "quantity": 1 },
-        { "item": "longbow", "quantity": 1 },
-        { "item": "arrows", "quantity": 20 },
-        { "item": "quiver", "quantity": 1 },
-        { "item": "druidic-focus", "quantity": 1 },
-        { "item": "explorers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 7 }
+        {
+          "item": "studded-leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "scimitar",
+          "quantity": 1
+        },
+        {
+          "item": "shortsword",
+          "quantity": 1
+        },
+        {
+          "item": "longbow",
+          "quantity": 1
+        },
+        {
+          "item": "arrows",
+          "quantity": 20
+        },
+        {
+          "item": "quiver",
+          "quantity": 1
+        },
+        {
+          "item": "druidic-focus",
+          "quantity": 1
+        },
+        {
+          "item": "explorers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 7
+        }
       ],
-      [{ "item": "gp", "quantity": 150 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 150
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 12,
+      "dex": 15,
+      "con": 13,
+      "int": 8,
+      "wis": 14,
+      "cha": 10
+    }
   },
   "rogue": {
     "label": "Rogue",
@@ -377,18 +647,58 @@
     "tools": ["thieves-tools"],
     "startingEquipment": [
       [
-        { "item": "leather-armor", "quantity": 1 },
-        { "item": "dagger", "quantity": 2 },
-        { "item": "shortsword", "quantity": 1 },
-        { "item": "shortbow", "quantity": 1 },
-        { "item": "arrows", "quantity": 20 },
-        { "item": "quiver", "quantity": 1 },
-        { "item": "thieves-tools", "quantity": 1 },
-        { "item": "burglars-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 8 }
+        {
+          "item": "leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "dagger",
+          "quantity": 2
+        },
+        {
+          "item": "shortsword",
+          "quantity": 1
+        },
+        {
+          "item": "shortbow",
+          "quantity": 1
+        },
+        {
+          "item": "arrows",
+          "quantity": 20
+        },
+        {
+          "item": "quiver",
+          "quantity": 1
+        },
+        {
+          "item": "thieves-tools",
+          "quantity": 1
+        },
+        {
+          "item": "burglars-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 8
+        }
       ],
-      [{ "item": "gp", "quantity": 100 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 100
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 15,
+      "con": 14,
+      "int": 12,
+      "wis": 10,
+      "cha": 13
+    }
   },
   "sorcerer": {
     "label": "Sorcerer",
@@ -420,14 +730,42 @@
     },
     "startingEquipment": [
       [
-        { "item": "spear", "quantity": 1 },
-        { "item": "dagger", "quantity": 2 },
-        { "item": "arcane-focus-crystal", "quantity": 1 },
-        { "item": "dungeoneers-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 28 }
+        {
+          "item": "spear",
+          "quantity": 1
+        },
+        {
+          "item": "dagger",
+          "quantity": 2
+        },
+        {
+          "item": "arcane-focus-crystal",
+          "quantity": 1
+        },
+        {
+          "item": "dungeoneers-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 28
+        }
       ],
-      [{ "item": "gp", "quantity": 50 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 50
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 13,
+      "con": 14,
+      "int": 10,
+      "wis": 12,
+      "cha": 15
+    }
   },
   "warlock": {
     "label": "Warlock",
@@ -460,16 +798,50 @@
     },
     "startingEquipment": [
       [
-        { "item": "leather-armor", "quantity": 1 },
-        { "item": "sickle", "quantity": 1 },
-        { "item": "dagger", "quantity": 2 },
-        { "item": "arcane-focus-orb", "quantity": 1 },
-        { "item": "book-occult-lore", "quantity": 1 },
-        { "item": "scholars-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 15 }
+        {
+          "item": "leather-armor",
+          "quantity": 1
+        },
+        {
+          "item": "sickle",
+          "quantity": 1
+        },
+        {
+          "item": "dagger",
+          "quantity": 2
+        },
+        {
+          "item": "arcane-focus-orb",
+          "quantity": 1
+        },
+        {
+          "item": "book-occult-lore",
+          "quantity": 1
+        },
+        {
+          "item": "scholars-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 15
+        }
       ],
-      [{ "item": "gp", "quantity": 100 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 100
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 13,
+      "con": 14,
+      "int": 10,
+      "wis": 12,
+      "cha": 15
+    }
   },
   "wizard": {
     "label": "Wizard",
@@ -501,14 +873,45 @@
     },
     "startingEquipment": [
       [
-        { "item": "dagger", "quantity": 2 },
-        { "item": "arcane-focus-quarterstaff", "quantity": 1 },
-        { "item": "robe", "quantity": 1 },
-        { "item": "spellbook", "quantity": 1 },
-        { "item": "scholars-pack", "quantity": 1 },
-        { "item": "gp", "quantity": 5 }
+        {
+          "item": "dagger",
+          "quantity": 2
+        },
+        {
+          "item": "arcane-focus-quarterstaff",
+          "quantity": 1
+        },
+        {
+          "item": "robe",
+          "quantity": 1
+        },
+        {
+          "item": "spellbook",
+          "quantity": 1
+        },
+        {
+          "item": "scholars-pack",
+          "quantity": 1
+        },
+        {
+          "item": "gp",
+          "quantity": 5
+        }
       ],
-      [{ "item": "gp", "quantity": 55 }]
-    ]
+      [
+        {
+          "item": "gp",
+          "quantity": 55
+        }
+      ]
+    ],
+    "recommendedScores": {
+      "str": 8,
+      "dex": 13,
+      "con": 14,
+      "int": 15,
+      "wis": 12,
+      "cha": 10
+    }
   }
 }

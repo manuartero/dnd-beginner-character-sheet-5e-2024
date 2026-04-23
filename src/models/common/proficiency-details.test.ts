@@ -19,6 +19,20 @@ describe("proficiencyDetails.get()", () => {
   });
 });
 
+describe("proficiencyDetails.find()", () => {
+  it("returns details for a known proficiency", () => {
+    expect(proficiencyDetails.find({ id: "light-armor" })?.label).toBe(
+      "Light Armor",
+    );
+  });
+
+  it("returns undefined for an unknown proficiency", () => {
+    expect(
+      proficiencyDetails.find({ id: "spoon-proficiency" }),
+    ).toBeUndefined();
+  });
+});
+
 describe("proficiencyDetails.list()", () => {
   it("returns all 6 proficiency entries", () => {
     expect(proficiencyDetails.list()).toHaveLength(6);

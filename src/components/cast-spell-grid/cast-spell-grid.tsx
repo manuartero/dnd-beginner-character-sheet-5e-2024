@@ -4,7 +4,7 @@ import {
   AccordionList,
   accordionStyles as styles,
 } from "elements";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 
 import type { Spell } from "src/models/spells/spells";
 

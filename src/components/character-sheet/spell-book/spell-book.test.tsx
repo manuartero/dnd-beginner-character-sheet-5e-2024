@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { SpellBook } from "./spell-book";
 
-import type { Spell } from "src/models/spells/spells";
+import type { Spell, SpellLevel } from "src/models/spells/spells";
 
 function createSpell({
   id,
@@ -12,7 +12,7 @@ function createSpell({
 }: {
   id: string;
   name: string;
-  level: number;
+  level: SpellLevel;
   description: string;
 }): Spell {
   return {

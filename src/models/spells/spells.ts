@@ -10,14 +10,17 @@ import warlockSpellsData from "src/data/spells/warlock-spells.json";
 import wizardSpellsData from "src/data/spells/wizard-spells.json";
 
 import type { CharacterClass } from "src/models/class/classes";
-import type { DamageType } from "src/models/common/damage-types";
+import type { ActionTiming } from "src/models/common/actions";
+import type { DamageType } from "src/models/common/damage";
 
-type SpellId = string;
+export type SpellId = string;
+
+export type SpellLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export type Spell = {
-  id: string;
+  id: SpellId;
   name: string;
-  level: number; // 0 = cantrip
+  level: SpellLevel;
   school: string;
   castingTime: string;
   range: string;
@@ -36,6 +39,11 @@ export type Spell = {
 
 const ALL_CANTRIPS = cantripsData as Record<SpellId, Spell>;
 const ALL_SPELLS_LEVEL_1 = spellsLevel1Data as Record<SpellId, Spell>;
+const ALL: Spell[] = [
+  ...Object.values(ALL_CANTRIPS),
+  ...Object.values(ALL_SPELLS_LEVEL_1),
+];
+const BY_ID = new Map(ALL.map((s) => [s.id, s]));
 
 function resolveSpells(data: {
   cantrips: string[];
@@ -67,10 +75,44 @@ const CLASS_DATA: Partial<
 };
 
 export const spells = {
+  get({ id }: { id: SpellId }): Spell {
+    const found = BY_ID.get(id);
+    if (!found) throw new Error(`Unknown spell: ${id}`);
+    return found;
+  },
+  find({ id }: { id: string }): Spell | undefined {
+    return BY_ID.get(id);
+  },
+  list(): Spell[] {
+    return ALL;
+  },
   findAll({ cls, level }: { cls: CharacterClass; level: 0 | 1 }): Spell[] {
     return CLASS_DATA[cls]?.spells[level] ?? [];
   },
   limit({ cls, level }: { cls: CharacterClass; level: 0 | 1 }): number {
     return CLASS_DATA[cls]?.selections[level] ?? 0;
   },
+  timing(spell: Spell): ActionTiming | null {
+    return parseCastingTiming(spell.castingTime);
+  },
+  groupByTiming(spellList: Spell[]): Record<ActionTiming, Spell[]> {
+    const groups: Record<ActionTiming, Spell[]> = {
+      action: [],
+      "bonus-action": [],
+      reaction: [],
+    };
+    for (const spell of spellList) {
+      const timing = parseCastingTiming(spell.castingTime);
+      if (timing) groups[timing].push(spell);
+    }
+    return groups;
+  },
 };
+
+function parseCastingTiming(castingTime: string): ActionTiming | null {
+  const ct = castingTime.toLowerCase();
+  if (ct === "1 action") return "action";
+  if (ct === "1 bonus action") return "bonus-action";
+  if (ct.startsWith("1 reaction")) return "reaction";
+  return null;
+}

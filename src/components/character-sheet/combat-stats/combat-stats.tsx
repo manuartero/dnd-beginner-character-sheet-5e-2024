@@ -1,12 +1,12 @@
 import { ActionChip, Section } from "elements";
 import { useId } from "react";
+import { formatModifier } from "src/character/modifiers";
 import { useArrowOffset } from "src/hooks/use-arrow-offset";
 import { useExpandable } from "src/hooks/use-expandable";
-import { formatModifier } from "src/models/common/abilities";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 import styles from "./combat-stats.module.css";
 
-import type { StatResult } from "src/models/common/character-stats";
+import type { StatResult } from "src/character/character-stats";
 
 type CombatStatsKey = "initiative" | "ac" | "spell";
 

@@ -5,8 +5,8 @@ import {
   computeSpellAttack,
 } from "./character-stats";
 
-import type { Equipment } from "src/models/gear/equipment";
-import type { AbilityScores } from "./abilities";
+import type { AbilityScores } from "src/models/common/abilities";
+import type { Equipment } from "src/models/common/gear";
 import type { StatResult } from "./character-stats";
 
 describe("computeHpMax()", () => {
@@ -52,8 +52,20 @@ describe("computeArmorClass()", () => {
     {
       // light armor + shield: full DEX modifier applies
       equipment: [
-        { type: "armor", name: "Leather Armor", equipped: true },
-        { type: "shield", name: "Shield", equipped: true },
+        {
+          type: "armor",
+          name: "Leather Armor",
+          armorId: "leather-armor",
+          ac: 11,
+          equipped: true,
+        },
+        {
+          type: "shield",
+          name: "Shield",
+          armorId: "shield",
+          ac: 2,
+          equipped: true,
+        },
       ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
@@ -67,7 +79,15 @@ describe("computeArmorClass()", () => {
     },
     {
       // heavy armor: DEX modifier is ignored
-      equipment: [{ type: "armor", name: "Chain Mail", equipped: true }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Chain Mail",
+          armorId: "chain-mail",
+          ac: 16,
+          equipped: true,
+        },
+      ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
@@ -76,7 +96,15 @@ describe("computeArmorClass()", () => {
     },
     {
       // medium armor: DEX modifier capped at +2
-      equipment: [{ type: "armor", name: "Scale Mail", equipped: true }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Scale Mail",
+          armorId: "scale-mail",
+          ac: 14,
+          equipped: true,
+        },
+      ],
       abilityScores: { str: 10, dex: 18, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 16,
@@ -88,7 +116,15 @@ describe("computeArmorClass()", () => {
     },
     {
       // unequipped armor: treated as no armor
-      equipment: [{ type: "armor", name: "Chain Mail", equipped: false }],
+      equipment: [
+        {
+          type: "armor",
+          name: "Chain Mail",
+          armorId: "chain-mail",
+          ac: 16,
+          equipped: false,
+        },
+      ],
       abilityScores: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 },
       expected: {
         total: 12,

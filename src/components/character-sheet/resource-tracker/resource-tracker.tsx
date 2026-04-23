@@ -1,11 +1,9 @@
 import c from "classnames";
 import { ResourceChip, Section } from "elements";
 import { useState } from "react";
-import {
-  getResourceDefinition,
-  getResourceResetOn,
-} from "src/models/class/class-resources";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
+import { classResources } from "src/models/class/class-resources";
+import { classes } from "src/models/class/classes";
 import styles from "./resource-tracker.module.css";
 
 import type {
@@ -58,14 +56,18 @@ function buildChips(
 ): UseChip[] {
   return resources
     .filter(
-      (r) => getResourceResetOn(characterClass, r.resourceId) === resetFilter,
+      (r) =>
+        classes.resourceResetOn({
+          id: characterClass,
+          resourceId: r.resourceId,
+        }) === resetFilter,
     )
     .flatMap((r) => {
-      const def = getResourceDefinition(r.resourceId);
-      const iconSrc = resolveIconPath(def?.icon ?? "vol5/icon-vol5_02");
+      const def = classResources.get({ id: r.resourceId });
+      const iconSrc = resolveIconPath(def.icon);
       const label =
         RESOURCE_SHORT_NAMES[r.resourceId] ??
-        (def?.name ?? r.resourceId).slice(0, 5).toUpperCase();
+        def.name.slice(0, 5).toUpperCase();
 
       return Array.from({ length: r.max }, (_, i) => ({
         resourceId: r.resourceId,

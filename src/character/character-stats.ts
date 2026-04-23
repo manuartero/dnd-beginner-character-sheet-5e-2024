@@ -1,11 +1,11 @@
+import { computeModifier, formatModifier } from "src/character/modifiers";
 import { classes } from "src/models/class/classes";
-import { armor } from "src/models/gear/armor";
-import { abilities, computeModifier, formatModifier } from "./abilities";
+import { abilities } from "src/models/common/abilities";
+import { armor } from "src/models/common/gear";
 
 import type { CharacterClass } from "src/models/class/classes";
-import type { Armor } from "src/models/gear/armor";
-import type { Equipment } from "src/models/gear/equipment";
-import type { AbilityName, AbilityScores } from "./abilities";
+import type { AbilityName, AbilityScores } from "src/models/common/abilities";
+import type { Armor, Equipment } from "src/models/common/gear";
 
 export type StatBreakdownLine = {
   label: string;
@@ -31,10 +31,11 @@ export function computeHpMax({
 
 function findEquippedArmor(equipment: Equipment[]): Armor | null {
   const armorItem = equipment.find(
-    (e) => e.type === "armor" && e.equipped === true,
+    (e): e is Extract<Equipment, { type: "armor" }> =>
+      e.type === "armor" && e.equipped === true,
   );
   if (!armorItem) return null;
-  return armor.find({ name: armorItem.name }) ?? null;
+  return armor.get({ id: armorItem.armorId });
 }
 
 function hasShield(equipment: Equipment[]): boolean {

@@ -1,5 +1,5 @@
 import { ChipGrid, Section } from "elements";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 import { restActions } from "src/models/common/rest-actions";
 import styles from "./rest-bar.module.css";
 

@@ -5,7 +5,7 @@ import {
   saveCharacter,
 } from "./character-storage";
 
-import type { Character } from "./character";
+import type { Character } from "src/character/character";
 
 function makeCharacter(overrides: Partial<Character> = {}): Character {
   return {
@@ -57,7 +57,11 @@ describe("character-storage", () => {
 
   describe("loadCharacters()", () => {
     it("returns empty result when nothing stored", () => {
-      expect(loadCharacters()).toEqual({ characters: [], corrupted: false });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: false,
+        unavailable: false,
+      });
     });
 
     it("returns parsed characters that match the current schema", () => {
@@ -66,29 +70,57 @@ describe("character-storage", () => {
       expect(loadCharacters()).toEqual({
         characters: chars,
         corrupted: false,
+        unavailable: false,
+      });
+    });
+
+    it("flags unavailable when localStorage.getItem throws", () => {
+      vi.spyOn(localStorage, "getItem").mockImplementation(() => {
+        throw new Error("access denied");
+      });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: false,
+        unavailable: true,
       });
     });
 
     it("flags corruption when stored JSON is malformed", () => {
       store["dnd-characters"] = "not-json{{{";
-      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: true,
+        unavailable: false,
+      });
     });
 
     it("flags corruption when parsed value is not an array", () => {
       store["dnd-characters"] = JSON.stringify({ legacy: "shape" });
-      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: true,
+        unavailable: false,
+      });
     });
 
     it("flags corruption when entries have an unknown race", () => {
       const bad = { ...makeCharacter(), race: "Half-Dragon" };
       store["dnd-characters"] = JSON.stringify([bad]);
-      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: true,
+        unavailable: false,
+      });
     });
 
     it("flags corruption when entries have an unknown class", () => {
       const bad = { ...makeCharacter(), characterClass: "necromancer" };
       store["dnd-characters"] = JSON.stringify([bad]);
-      expect(loadCharacters()).toEqual({ characters: [], corrupted: true });
+      expect(loadCharacters()).toEqual({
+        characters: [],
+        corrupted: true,
+        unavailable: false,
+      });
     });
 
     it("keeps valid entries and flags corruption when some are invalid", () => {
@@ -123,6 +155,13 @@ describe("character-storage", () => {
       saveCharacter(makeCharacter({ id: "id-1", name: "Thorn" }));
       saveCharacter(makeCharacter({ id: "id-2", name: "Elara" }));
       expect(loadCharacters().characters).toHaveLength(2);
+    });
+
+    it("re-throws when localStorage.setItem fails", () => {
+      vi.spyOn(localStorage, "setItem").mockImplementation(() => {
+        throw new Error("quota exceeded");
+      });
+      expect(() => saveCharacter(makeCharacter())).toThrow(/quota exceeded/);
     });
   });
 

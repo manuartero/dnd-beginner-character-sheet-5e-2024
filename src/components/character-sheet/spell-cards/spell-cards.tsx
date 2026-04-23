@@ -1,6 +1,6 @@
 import { DetailRow, EmptySlot, labelStyles, Section } from "elements";
 import { useExpandable } from "src/hooks/use-expandable";
-import { resolveIconPath } from "src/models/common/icons";
+import { resolveIconPath } from "src/lib/icons";
 import styles from "./spell-cards.module.css";
 
 import type { Spell } from "src/models/spells/spells";

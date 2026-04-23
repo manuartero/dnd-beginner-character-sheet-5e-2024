@@ -18,6 +18,16 @@ describe("restActions.get()", () => {
   });
 });
 
+describe("restActions.find()", () => {
+  it("returns details for a known rest action", () => {
+    expect(restActions.find({ id: "short-rest" })?.label).toBe("Short Rest");
+  });
+
+  it("returns undefined for an unknown rest action", () => {
+    expect(restActions.find({ id: "nap" })).toBeUndefined();
+  });
+});
+
 describe("restActions.list()", () => {
   it("returns both rest actions", () => {
     expect(restActions.list()).toHaveLength(2);

@@ -9,10 +9,10 @@ import { useKeyboardMode } from "src/hooks/use-keyboard-mode";
 import {
   deleteCharacter,
   loadCharacters,
-} from "src/models/common/character-storage";
+} from "src/services/character-storage";
 import styles from "./app.module.css";
 
-import type { Character } from "src/models/common/character";
+import type { Character } from "src/character/character";
 
 type AppView =
   | { kind: "character-list" }

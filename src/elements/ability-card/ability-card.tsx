@@ -1,16 +1,13 @@
 import c from "classnames";
-import { ScorePicker } from "src/elements/score-picker";
 import {
-  abilities,
   computeModifier,
   computeProficiencyBonus,
-  formatModifier,
-} from "src/models/common/abilities";
-import {
   computeSkillModifier,
-  DEFAULT_PROFICIENCIES,
-  skills,
-} from "src/models/common/skills";
+  formatModifier,
+} from "src/character/modifiers";
+import { ScorePicker } from "src/elements/score-picker";
+import { abilities } from "src/models/common/abilities";
+import { DEFAULT_PROFICIENCIES, skills } from "src/models/common/skills";
 import styles from "./ability-card.module.css";
 
 import type { AbilityName } from "src/models/common/abilities";
